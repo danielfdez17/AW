@@ -2,6 +2,7 @@
     --bg-color-e1: rgb(148, 44, 44);
     --bg-color-content-e1: rgba(128, 128, 128, 0.627);
     --bg-color-options-e2: rgb(126, 126, 124);
+    --nav-bar-color-e3: white;
 }
 * {
     margin: 0;
@@ -114,5 +115,15 @@ html, body {
     align-items: center;
 }
 /* Estructura 3 */
+.nav-bar {
+    background-color: var(--nav-bar-color-e3);
+    padding-left: 1%;
+    display: flex;
+    align-items: center;
+    height: 3%;
+    margin: 0.25% 0.25% 0 0.25%;
+    border: black solid 1px;
+    border-radius: 3px;
+}
 /* Estructura 4 */
 /* Estructura 5 */
