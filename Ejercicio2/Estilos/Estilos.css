@@ -1,65 +1,64 @@
 html, body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 1rem;
-    margin: 0px;
-    height: 98%;
+    font-size: 18px;
+    height: 97.5%;
     color: white;
     display: flex;
     flex-direction: column;
+    gap: 1%;
+    margin: 0.5%;
 }
 
 .Encabezado
 {
-    margin: 1%;
     background-color: rgb(0, 0, 0);
     height: 23%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    font-size: 1.5rem;
 }
-
 
 .Logo
 {
     margin: 1%;
     width: 10%;
-    background-color: rgb(56, 56, 56);
-    text-align: center;
-    height: 8%;
-    padding-top: 2%;
-    border: 1px solid;
-    position: absolute;
     right: 85%;
+    background-color: rgb(56, 56, 56);
+    height: 68%;
+    text-align: center;
+    border: 1px solid;
+    padding-top: 1%;
+    position: absolute;
+    font-size: 1.2rem;
+    
 }
 
 .Titulo
 {
     margin: 1%;
-    width: 60%;
-    height: 75%;
+    height: 80%;
+    width: 80%;
+    left: 7%;
     background-color: rgb(56, 56, 56);
     display: flex;
     align-items: center;
     border: 1px solid;
     padding-left: 2%;
-}
-
-.Encabezado a
-{
-    display: flex;
-    align-items: center;
+    position: relative;
+    font-size: 2.5rem;
 }
 
 .Navegacion
 {
-    margin: 1%;
     height: 12%;
     display: flex;
     background-color: rgb(0, 0, 0);
     justify-content: space-between;
     padding-left: 2%;
     align-items: center;
-    
+    font-size: 1.1rem;
 }
 
 .Identificacion
@@ -79,11 +78,9 @@ html, body{
 .contenido-central
 {
     min-height: 48.5%;
-    margin-left: 1%;
-    margin-right: 1%;
     display: flex;
     text-align: center;
-    gap: 1%;
+    gap: 0.5%;
     flex-grow: 1;
     justify-content: center;
 }
@@ -93,14 +90,18 @@ html, body{
 {
     background-color: rgb(0, 0, 0);
     width: 19.5%;
+    padding-top: 2.5%;
+    font-size: 1.25rem;
 }
 
 .Contenido
 {
     background-color: rgb(0, 0, 0);
     flex-grow: 1;
+    padding-top: 2.5%;
     min-width: 49%;
     max-width: 80%;
+    font-size: 1.5rem;
 }
 
 .Articulos
@@ -109,7 +110,8 @@ html, body{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 5%;
+    gap: 2.5%;
+    font-size: 1.2rem;
 }
 
 .Articulo1
@@ -117,7 +119,7 @@ html, body{
     background-color: rgb(0, 0, 0);
     width: 100%;
     height: 47.5%;
-    padding-top: 2%;
+    padding-top: 3%;
 }
 
 .Columna
@@ -130,6 +132,7 @@ html, body{
     background-color: rgb(0, 0, 0);
     width: 20.5%;
     border: 1px solid;
+    font-size: 1.2rem;
 }
 
 .busqueda
@@ -154,9 +157,9 @@ html, body{
 .Footer
 {
     background-color: rgb(0, 0, 0);
-    margin: 1%;
     height: 12%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.4rem;
 }
