@@ -1,0 +1,13 @@
+body {
+    height: 100%;
+}
+section {
+    border: 1px solid black;
+}
+
+#cambio_tema {
+    /* border: 1px solid black; */
+    display: block;
+    margin: 10px 0;
+    background-color: black;
+}
