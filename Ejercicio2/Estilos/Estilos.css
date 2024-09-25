@@ -1,3 +1,4 @@
+/*HTML BODY*/
 html, body{
     height: 97.5%;
 
@@ -13,6 +14,7 @@ html, body{
     color: white;
 }
 
+/*Encabezado*/
 .Encabezado
 {
     height: 23%;
@@ -67,6 +69,7 @@ html, body{
     font-size: 2.5rem;
 }
 
+/*Barra de navegación*/
 .Navegacion
 {
     height: 12%;
@@ -96,6 +99,7 @@ html, body{
     border: 1px solid;
 }
 
+/*Contendio principal*/
 .contenido-central
 {
     min-height: 48.5%;
@@ -112,7 +116,7 @@ html, body{
 
 .opciones
 {
-    width: 19.5%;
+    width: 24.5%;
     
     padding-top: 25px;
     
@@ -122,7 +126,7 @@ html, body{
 
 .Contenido
 {
-    min-width: 49%;
+    min-width: 50%;
     max-width: 80%;
 
     flex-grow: 1;
@@ -194,6 +198,7 @@ html, body{
     border: 1px solid;
 }
 
+/*Pie de página*/
 .Footer
 {
     height: 12%;
