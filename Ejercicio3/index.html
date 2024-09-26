@@ -7,67 +7,97 @@
     <title>Suscripción a la revista</title>
 </head>
 <body>
-    <section id="datos_personales">datos personales
-        <form action="#">
-            <label for="nombre">Nombre: <input type="text" required></label>
-            <label for="primer_apellido">Primer apellido: <input type="text" required></label>
-            <label for="segundo_apellido">Segundo apellido: <input type="text" required></label>
-            <label for="direccion">Dirección: <input type="text" required placeholder="calle o plaza, número y piso."></label>
-            <label for="email">e-mail: <input type="email" required placeholder="@"></label>
-            <label for="contrasenya">contraseña: <input type="password" required></label>
-            <p>sexo</p>
-            <input type="radio" id="hombre" name="genero" value="hombre">
-            <label for="hombre">Varón</label><br>
-            <input type="radio" id="mujer" name="genero" value="mujer">
-            <label for="mujer">Mujer</label>
-        </form>
-    </section>
-    <section id="nivel_estudios">nivel de estudios e intereses
-        <form action="#">
-            <label for="estudios">Nivel de estudios</label>
-            <select name="estudios" id="estudios">
-                <option value="certificado_escolar">Certificado escolar</option>
-                <option value="eso">Educación Secundaria Obligatoria</option>
-                <option value="bachillerato">Bachillerato</option>
-                <option value="fp">Formación Profesional</option>
-                <option value="grado_universitario">Grado universitario</option>
+    <h1>Suscripción a la revista</h1>
+    <fieldset><legend>Datos personales</legend>
+        <section id="datos_personales">
+            <form action="#">
+                <div class="form-group">
+                    <label for="nombre">Nombre <input type="text" placeholder="Introduce tu nombre" required></label><br>
+                </div>
+                <div class="form-group">
+                    <label for="primer_apellido">Primer apellido <input type="text" placeholder="Introduce tu primer apellido" required></label><br>
+                </div>
+                <div class="form-group">
+                    <label for="segundo_apellido">Segundo apellido <input type="text" placeholder="Introduce tu segundo apellido" required></label><br>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección <input type="text" required placeholder="Calle o plaza, número y piso."></label><br>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail <input type="email" required placeholder="@"></label><br>
+                </div>
+                <div class="form-group">
+                    <label for="contrasenya">Contraseña <input type="password" required></label><br>
+                </div>
+                <div class="form-group">
+                    <label>Sexo</label><br>
+                    <input type="radio" id="prefiero_no_decirlo" name="genero" value="prefiero_no_decirlo">
+                    <label for="prefiero_no_decirlo">Prefiero no decirlo</label><br>
+                    <input type="radio" id="hombre" name="genero" value="hombre" >
+                    <label for="hombre">Varón</label><br>
+                    <input type="radio" id="mujer" name="genero" value="mujer">
+                    <label for="mujer">Mujer</label><br>
+                </div>
+            </form>
+        </section>
+    </fieldset>
+    <fieldset><legend>Nivel de estudios e intereses</legend>
+        <section id="nivel_estudios">
+            <form action="#">
+                <label for="estudios">Nivel de estudios</label><br>
+                <select name="estudios" id="estudios">
+                    <option value="certificado_escolar">Certificado escolar</option>
+                    <option value="eso">Educación Secundaria Obligatoria</option>
+                    <option value="bachillerato">Bachillerato</option>
+                    <option value="fp">Formación Profesional</option>
+                    <option value="grado_universitario">Grado universitario</option>
+                </select>
+                <p>Recibir artículos sobre los siguientes temas </p>
+                <input type="checkbox" id="hombre" name="articulos_sobre_temas" value="musica">
+                <label for="musica">Música</label><br>
+                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="deportes">
+                <label for="deportes">Deportes</label><br>
+                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="cine">
+                <label for="cine">Cine</label><br>
+                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="libros">
+                <label for="libros">Libros</label><br>
+                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="ciencia">
+                <label for="ciencia">Ciencia</label><br>
+            </form>
+        </section>
+    </fieldset>
+    <hr class="solid">
+    <fieldset>
+        <legend>Datos sobre la revista</legend>
+        <section id="datos_sobre_revista" selected="true">
+            <p>Frecuencia con la que se recibirá la revista</p>
+            <select name="frecuencia" id="frecuencia">
+                <option value="diario">Diario</option>
+                <option value="semanal">Semanal</option>
+                <option value="quincenal">Quincenal</option>
+                <option value="mensual">Mensual</option>
             </select>
-            <p>Recibir artículos sobre los siguientes temas: </p>
-            <input type="checkbox" id="hombre" name="articulos_sobre_temas" value="musica">
-            <label for="musica">Música</label><br>
-            <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="deportes">
-            <label for="deportes">Deportes</label><br>
-            <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="cine">
-            <label for="cine">Cine</label><br>
-            <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="libros">
-            <label for="libros">Libros</label><br>
-            <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="ciencia">
-            <label for="ciencia">Ciencia</label><br>
-        </form>
-    </section>
-    <br id="cambio_tema">
-    <section id="datos_sobre_revista" selected="true">datos sobre la revista
-        <p>Frecuencia con la que se recibirá la revista:</p>
-        <select name="frecuencia" id="frecuencia">
-            <option value="diario">Diario</option>
-            <option value="semanal">Semanal</option>
-            <option value="quincenal">Quincenal</option>
-            <option value="mensual">Mensual</option>
-        </select>
-        <br>
-        <p>Puedes mandar tu artículo sobre cualquier tema de los que tratamos. Nosotros lo valoraremos para que puede ser publicado.</p>
-        <label for="articulo">Mandar artículo: </label>
-        <input type="file" id="articulo" name="articulo" placeholder="Seleccionar archivo"> 
-        <br>
-        <label for="sugerencias">Si deseas mandar simplemente una opinión o comentario, escríbelo aquí:</label>
-        <textarea name="sugerencias" id="sugerencias" cols="60" rows="5" placeholder="Escribe tu comentario: "></textarea>
-    </section>
-    <section id="comenzar_de_nuevo">comenzar de nuevo
-        <label for="comenzar_de_nuevo">Borrar todos los datos del formulario y volver a empezar: <input type="button" value="borrar todo"></label>
-    </section>
-    <section id="enviar_correo">enviar
-        <p>Enviar formulario por correo electrónico: Al pulsar en el botón se abrirá la página de envío de correo: en esa página pulsa en enviar:</p>
-        <input type="button" value="enviar por correo">
-    </section>
+            <br>
+            <p>Puedes mandar tu artículo sobre cualquier tema de los que tratamos. Nosotros lo valoraremos para que puede ser publicado.</p>
+            <label for="articulo">Mandar artículo: </label>
+            <input type="file" id="articulo" name="articulo" placeholder="Seleccionar archivo"> 
+            <br>
+            <label for="sugerencias">Si deseas mandar simplemente una opinión o comentario, escríbelo aquí:</label>
+            <textarea name="sugerencias" id="sugerencias" cols="60" rows="5" placeholder="Escribe tu comentario: "></textarea>
+        </section>
+    </fieldset>
+    <fieldset>
+        <legend>Comenzar de nuevo</legend>
+        <section id="comenzar_de_nuevo">
+            <label for="comenzar_de_nuevo">Borrar todos los datos del formulario y volver a empezar: <input type="button" value="Borrar todo"></label>
+        </section>
+    </fieldset>
+    <fieldset>
+        <legend>Enviar</legend>
+        <section id="enviar_correo">
+            <p>Enviar formulario por correo electrónico: Al pulsar en el botón se abrirá la página de envío de correo: en esa página pulsa en enviar:</p>
+            <input type="button" value="Enviar por correo">
+        </section>
+    </fieldset>
 </body>
 </html>
