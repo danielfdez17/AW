@@ -1,0 +1,184 @@
+html, body
+{   
+    margin: 0.5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: rgb(237, 244, 246);
+    font-size: 18px;
+    font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;
+}
+
+body h1
+{
+    margin: 3vh;
+    font-weight: 700;
+
+    text-align: center;
+    font-size: 3rem;
+}
+
+.main-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+fieldset
+{
+    width: 80%;
+
+    padding: 10vh 8% 3% 4%;
+
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    color: rgba(243, 244, 246, 1);
+    background-color: rgba(17, 24, 39, 1); 
+}
+
+legend
+{
+    position: relative;
+    top: 40px;
+
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px black;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+fieldset label
+{
+    font-size: 0.875rem;
+}
+
+input[type="file"]
+{
+    padding-right: 175px;
+}
+
+/*input[type="file"]::file-selector-button, es necesario para que le file selector funcione*/
+input, input[type="file"]::file-selector-button, textarea, select
+{
+    width: 100%;
+
+    padding: 1.5% 1%;
+    
+    border-radius: 6px;
+    background-color: rgba(17, 24, 39, 1);
+    color: rgba(243, 244, 246, 1);
+}   
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="file"]::file-selector-button:hover, textarea:focus, select:focus
+{
+    outline: none;
+    border: 2px solid rgba(167, 139, 250);
+}
+
+.container-checkbox
+{
+    display: flex;
+    flex-direction: column;
+
+    gap: 1vh;
+}
+
+/*Ocultamos el boton que aparece por defecto en los checkbox*/
+.container-checkbox input
+{
+    display: none;
+}
+
+.container-checkbox label {
+    width: 100%;
+    
+    padding: 1.5% 1%;
+
+    transition: 0.5s;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    background-color: rgba(17, 24, 39, 1);
+    border-radius: 4px;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+/* Estilo para el label cuando el radio está seleccionado */
+.container-checkbox input:checked + label {
+    padding: 1.5% 1.5%;
+
+    outline: none;
+    border: 0;
+    background-color: rgba(167, 139, 250);
+}
+
+.container-checkbox label:focus,
+.container-checkbox label:hover{
+    outline: 1px solid rgba(167, 139, 250); 
+    border: 0;
+}
+
+.container select, input[type="file"]
+{
+    width: 20%;
+    cursor: pointer;
+}
+
+
+
+button
+{
+    padding: 10px 15px;
+
+    background-color: rgba(17, 24, 39, 1);
+    border-radius: 4px;
+    border: 1px solid white;
+    color: white;
+}
+
+button:active
+{
+    background-color: rgba(167, 139, 250);
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+}
+
+/*Interfaz que muestra los resultados*/
+#resultados
+{
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 5vh;
+}
+
+#resultados p
+{
+    font-weight: bold;
+}
+
+#resultados h1
+{
+    padding-top: 5%;
+}
+
+#resultados span
+{
+    font-weight: lighter;
+    font-style: italic;
+}
+
+/*Linea divisorea que hay enmedio de la pantalla*/
+.divisor
+{ 
+    width: 95%;
+}

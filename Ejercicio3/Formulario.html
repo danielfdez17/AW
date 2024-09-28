@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="Estilos/Estilos.css">
+    <script src="Funciones.js"></script>
+</head>
+<body>
+    <div id="formulario" class="main-container">
+        <h1>Suscripción a la revista</h1>
+
+        <fieldset>
+            <legend>Datos personales</legend>
+            
+            <form id="Datos-personales">
+                <div class="container">
+                    <label for="nombre">Nombre</label><br>
+                    <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
+                </div>  
+
+                <div class="container">
+                    <label for="primer_apellido">Primer apellido</label><br>
+                    <input type="text" name="primer_apellido" placeholder="Escribe tu primer apellido">
+                </div>
+
+                <div class="container">
+                    <label for="segundo_apellido">Segundo apellido</label><br>
+                    <input type="text" name="segundo_apellido" placeholder="Escribe tu segundo apellido">
+                </div>
+                
+                <div class="container">
+                    <label for="direccion">Dirección</label><br>
+                    <input type="text" name="direccion" placeholder="Escribe tu direccion">
+                </div>
+
+                <div class="container">
+                    <label for="e_mail">E-mail</label><br>
+                    <input type="text" name="e_mail" placeholder="Escribe tu e-mail">
+                </div>
+
+                <div class="container">
+                    <label for="contrasena">Contraseña</label><br>
+                    <input type="password" name="contrasena" placeholder="Escribe tu contraseña">
+                </div>   
+
+                <label for="sexo">Sexo</label>
+                <!--Añadimos tabindex = "0" para que se pueda 'tabulear' sobre el label-->
+                <div class="container-checkbox">
+                    <input type="radio" id="varon" name="sexo" value="varon">
+                    <label for="varon" tabindex="0">Varón</label>
+
+                    <input type="radio" id="mujer" name="sexo" value="mujer">
+                    <label for="mujer" tabindex="0">Mujer</label>
+                </div>
+            </form>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Nivel de estudios e intereses</legend>
+            
+            <form id="Nivel-de-estudios-e-intereses">
+                <div class="container">
+                    <label for="estudios">Nivel de estudios</label>
+                    <select id="estudios" name="estudios">
+                        <option value="Certificado escolar">Certificado escolar</option>
+                        <option value="Estudios secundarios">Estudios secundarios</option>
+                        <option value="Estudios universitarios">Estudios universitarios</option>
+                    </select>
+                </div>
+                
+                
+                <label>Recibir artículos sobre los siguientes temas:</label>
+                <!--Añadimos tabindex = "0" para que se pueda 'tabulear' sobre el label-->
+                <div class="container-checkbox">
+                    <input type="checkbox" id="Musica" name="interes" value="Música">
+                    <label for="Musica" tabindex="0">Música</label>
+
+                    <input type="checkbox" id="Deportes" name="interes" value="Deportes">
+                    <label for="Deportes" tabindex="0">Deportes</label>
+
+                    <input type="checkbox" id="Cine" name="interes" value="Cine">
+                    <label for="Cine" tabindex="0">Cine</label>
+
+                    <input type="checkbox" id="Libros" name="interes" value="Libros">
+                    <label for="Libros" tabindex="0">Libros</label>
+
+                    <input type="checkbox" id="Ciencia" name="interes" value="Ciencia">
+                    <label for="Ciencia" tabindex="0">Ciencia</label>
+                </div>
+            </form>
+        </fieldset>
+
+        <hr class="divisor">
+
+        <fieldset>
+            <legend>Datos sobre la revista</legend>
+
+            <form id="Datos-sobre-la-revista">
+                <div class="container">
+                    <label for="nombre">Frecuencia con la que se recibirá la revista</label><br>
+                    <select id="frecuencia" name="frecuencia">
+                        <option value="Semanal">Semanal</option>
+                        <option value="Mensual">Mensual</option>
+                    </select>
+                </div>
+                
+                <div class="container">
+                    <label for="archivo">Puedes mandar tu articulo sobre cualquier tema de los que tratamos. 
+                    Nosotros lo valoraremos para que pueda ser publicado. mandar articulo:</label><br>
+                    <input type="file" id="archivo" name="archivo" value="">
+                </div>
+
+                <div class="container">
+                    <label for="comentario">Si deseas mandar simplemente una opcion o comentario escibelo aquí</label><br>
+                    <textarea name="comentario" id="comentario" placeholder="Escribe tu comentario aquí" rows="10" style="resize:none"></textarea> 
+                </div>
+            </form>
+        </fieldset>
+
+        <fieldset>
+            <legend>Comenzar de nuevo</legend>
+            <label for="opcion1">Borrar todos los datos del formulario y volver a empezar: </label>
+            <button onclick="resetFormulario()">Borrar todo</button>
+        </fieldset>
+
+        <fieldset>
+            <legend>Enviar</legend>
+            <label for="opcion1">Enviar formulario por correo electronico: Al pulsar en el botón se abrirá la 
+            pagina de envió de correo: en esa página pulsa en enviar: </label><br>
+            <button onclick="mostrarResultados()">Enviar por correo</button>
+
+        </fieldset>
+    </div>
+
+
+    <div id="resultados" class="main-container">
+        <h1>Resultados</h1>
+        <div>
+            <h2>Datos Personales</h2>
+            <p>Nombre: <span id="nombreResultado"></span></p>
+            <p>Primer Apellido: <span id="primer_apellidoResultado"></span></p>
+            <p>Segundo Apellido: <span id="segundo_apellidoResultado"></span></p>
+            <p>Direccion: <span id="direccionResultado"></span></p>
+            <p>E-Mail: <span id="emailResultado"></span></p>
+            <p>Contraseña: <span id="contrasenaResultado"></span></p>
+            <p>Sexo: <span id="sexoResultado"></span></p>
+        </div>
+        <div>
+            <h2>Nivel de estudios e intereses</h2>
+            <p>Nivel de estudios <span id="nivelResultado"></span></p>
+            <p>Temas: <span id="temasResultado"></span></p>
+        </div>
+
+        <div>
+            <h2>Datos sobre la revista</h2>
+            <p>Frecuencia <span id="frecuenciaResultado"></span></p>
+            <p>Archivo: <span id="archivoResultado"></span></p>
+            <p>Opinion: <span id="comentarioResultado"></span></p>
+        </div>
+    </div>
+
+</body>
+</html>
