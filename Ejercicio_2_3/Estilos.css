@@ -123,8 +123,8 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="file"]::file
 
 .container-checkbox label:focus,
 .container-checkbox label:hover{
-    outline: 1px solid rgba(167, 139, 250); 
-    border: 0;
+    outline: 0; 
+    border: 1px solid rgba(167, 139, 250);
 }
 
 .container select, input[type="file"]
@@ -132,8 +132,6 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="file"]::file
     width: 20%;
     cursor: pointer;
 }
-
-
 
 button
 {
