@@ -37,7 +37,7 @@
 
                 <div class="container">
                     <label for="e_mail">E-mail</label><br>
-                    <input type="text" name="e_mail" placeholder="Escribe tu e-mail">
+                    <input type="email" name="e_mail" placeholder="Escribe tu e-mail">
                 </div>
 
                 <div class="container">
@@ -130,7 +130,7 @@
             <legend>Enviar</legend>
             <label for="opcion1">Enviar formulario por correo electronico: Al pulsar en el botón se abrirá la 
             pagina de envió de correo: en esa página pulsa en enviar: </label><br>
-            <button onclick="mostrarResultados()">Enviar por correo</button>
+            <button onclick="mostrarResultados()" type="submit">Enviar por correo</button>
 
         </fieldset>
     </div>
@@ -144,7 +144,7 @@
             <p>Primer Apellido: <span id="primer_apellidoResultado"></span></p>
             <p>Segundo Apellido: <span id="segundo_apellidoResultado"></span></p>
             <p>Direccion: <span id="direccionResultado"></span></p>
-            <p>E-Mail: <span id="emailResultado"></span></p>
+            <p>E-mail: <span id="emailResultado"></span></p>
             <p>Contraseña: <span id="contrasenaResultado"></span></p>
             <p>Sexo: <span id="sexoResultado"></span></p>
         </div>
