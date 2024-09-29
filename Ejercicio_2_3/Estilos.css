@@ -146,11 +146,20 @@ button
     cursor: pointer;
 }
 
+button:hover, button:focus
+{
+    outline: 0 ;
+    border: 1px solid rgba(167, 139, 250) ;
+
+}
+
 button:active
 {
     background-color: rgba(167, 139, 250);
     color: rgb(0, 0, 0);
 }
+
+
 
 /*Interfaz que muestra los resultados*/
 #resultados
@@ -183,3 +192,6 @@ button:active
 { 
     width: 95%;
 }
+
+
+/*TODO FALTA HACER EL HOVER DE LOS BOTONES
