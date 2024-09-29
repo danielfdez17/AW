@@ -29,11 +29,44 @@ ul
 
 table
 {
-    width: 30%;
+    width: 25%;
     text-align: center;
 }
 
-table th, table td
+.social-media
 {
-    border: 1px solid;
+    padding-left: 10px;
+    width: 30%;
+    gap: 5%;
+}
+
+header img
+{
+    width: 20%;
+}
+
+.social-media img
+{
+    height: 4vh;
+}
+
+.rojo {
+
+    color:red;
+}
+
+.resaltado {
+
+    background:lightgray;
+}
+
+#tc
+{
+    font-style: italic;
+}
+
+/*$= es un generico que indica que debe coincidir con el final de la cadena*/
+li img[src$="svg"] {
+    /* Estilos para las imágenes que terminan en png */
+    filter: invert(1) sepia(1) saturate(10) hue-rotate(0deg);
 }
