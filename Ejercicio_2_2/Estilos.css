@@ -15,22 +15,86 @@ header
     gap: 1%;
 }
 
+
+header img
+{
+    width: 20%;
+}
+
+/*Linea divisorea*/
+hr
+{
+    width: 60%;
+
+    margin-left: 0;
+    
+    border-top: 20px solid rgb(152, 11, 11);
+}
+
 ul
 {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
 
+    padding-left: 0px;
+
     list-style: none;
     font-size: 1.5rem;
+
     gap: 1%;
+}
+
+.navegacion a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.navegacion li 
+{
+    padding: 10px;
+    background-color: rgb(15, 13, 13);
 }
 
 
 table
 {
-    width: 25%;
-    text-align: center;
+    width: 40%;
+    text-align: center;  
+}
+
+th {
+    background-color: #6e6e6e;
+    padding: 10px;
+}
+
+.calendario {
+    background-color: #949494;
+}
+
+.desayuno {
+    background-color: #be883d;
+}
+
+.desayuno-linea {
+    background-color: #f0da4e;
+}
+
+.break {
+    background-color: #d94f9b;
+}
+
+.break-linea {
+    background-color: #d46faf;
+}
+
+.comida {
+    background-color: #59b559;
+}
+
+.comida-linea {
+    background-color: #71df71;
 }
 
 .social-media
@@ -38,11 +102,6 @@ table
     padding-left: 10px;
     width: 30%;
     gap: 5%;
-}
-
-header img
-{
-    width: 20%;
 }
 
 .social-media img
@@ -66,7 +125,7 @@ header img
 }
 
 /*$= es un generico que indica que debe coincidir con el final de la cadena*/
-li img[src$="svg"] {
-    /* Estilos para las imágenes que terminan en png */
-    filter: invert(1) sepia(1) saturate(10) hue-rotate(0deg);
+li img[src$="svg"]:hover {
+    /*Transformamos el gris en rojo*/
+    filter: invert(0.2) sepia(1) saturate(30);
 }
