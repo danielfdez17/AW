@@ -127,5 +127,5 @@ th {
 /*$= es un generico que indica que debe coincidir con el final de la cadena*/
 li img[src$="svg"]:hover {
     /*Transformamos el gris en rojo*/
-    filter: invert(0.2) sepia(1) saturate(30);
+    filter: invert(0.1) sepia(1) saturate(100);
 }
