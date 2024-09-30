@@ -12,27 +12,27 @@
         <section id="datos_personales">
             <form action="#">
                 <div class="form-group">
-                    <label for="nombre">Nombre <input type="text" placeholder="Introduce tu nombre" required></label><br>
+                    <label for="nombre">Nombre <input id="nombre" type="text" placeholder="Introduce tu nombre" required></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="primer_apellido">Primer apellido <input type="text" placeholder="Introduce tu primer apellido" required></label><br>
+                    <label for="primer_apellido">Primer apellido <input id="primer_apellido" type="text" placeholder="Introduce tu primer apellido" required></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="segundo_apellido">Segundo apellido <input type="text" placeholder="Introduce tu segundo apellido" required></label><br>
+                    <label for="segundo_apellido">Segundo apellido <input id="segundo_apellido" type="text" placeholder="Introduce tu segundo apellido" required></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="direccion">Dirección <input type="text" required placeholder="Calle o plaza, número y piso."></label><br>
+                    <label for="direccion">Dirección <input id="direccion" type="text" required placeholder="Calle o plaza, número y piso."></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="email">E-mail <input type="email" required placeholder="@"></label><br>
+                    <label for="email">E-mail <input id="email" type="email" required placeholder="@"></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="contrasenya">Contraseña <input type="password" required></label><br>
+                    <label for="contrasenya">Contraseña <input id="contrasenya" type="password" required></label><br>
                 </div>
                 <div class="form-group">
                     <label>Sexo</label><br>
                     <input type="radio" id="prefiero_no_decirlo" name="genero" value="prefiero_no_decirlo">
-                    <label for="prefiero_no_decirlo">Prefiero no decirlo</label><br>
+                    <label for="prefiero_no_decirlo" checked>Prefiero no decirlo</label><br>
                     <input type="radio" id="hombre" name="genero" value="hombre" >
                     <label for="hombre">Varón</label><br>
                     <input type="radio" id="mujer" name="genero" value="mujer">
@@ -46,22 +46,22 @@
             <form action="#">
                 <label for="estudios">Nivel de estudios</label><br>
                 <select name="estudios" id="estudios">
-                    <option value="certificado_escolar">Certificado escolar</option>
+                    <option id="nivel_estudios_por_defecto" value="certificado_escolar">Certificado escolar</option>
                     <option value="eso">Educación Secundaria Obligatoria</option>
                     <option value="bachillerato">Bachillerato</option>
                     <option value="fp">Formación Profesional</option>
                     <option value="grado_universitario">Grado universitario</option>
                 </select>
                 <p>Recibir artículos sobre los siguientes temas </p>
-                <input type="checkbox" id="hombre" name="articulos_sobre_temas" value="musica">
+                <input type="checkbox" id="musica" name="articulos_sobre_temas" value="musica">
                 <label for="musica">Música</label><br>
-                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="deportes">
+                <input type="checkbox" id="deportes" name="articulos_sobre_temas" value="deportes">
                 <label for="deportes">Deportes</label><br>
-                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="cine">
+                <input type="checkbox" id="cine" name="articulos_sobre_temas" value="cine">
                 <label for="cine">Cine</label><br>
-                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="libros">
+                <input type="checkbox" id="libros" name="articulos_sobre_temas" value="libros">
                 <label for="libros">Libros</label><br>
-                <input type="checkbox" id="mujer" name="articulos_sobre_temas" value="ciencia">
+                <input type="checkbox" id="ciencia" name="articulos_sobre_temas" value="ciencia">
                 <label for="ciencia">Ciencia</label><br>
             </form>
         </section>
@@ -72,7 +72,7 @@
         <section id="datos_sobre_revista" selected="true">
             <p>Frecuencia con la que se recibirá la revista</p>
             <select name="frecuencia" id="frecuencia">
-                <option value="diario">Diario</option>
+                <option id="frecuencia_por_defecto" value="diario">Diario</option>
                 <option value="semanal">Semanal</option>
                 <option value="quincenal">Quincenal</option>
                 <option value="mensual">Mensual</option>
@@ -80,7 +80,7 @@
             <br>
             <p>Puedes mandar tu artículo sobre cualquier tema de los que tratamos. Nosotros lo valoraremos para que puede ser publicado.</p>
             <label for="articulo">Mandar artículo: </label>
-            <input type="file" id="articulo" name="articulo" placeholder="Seleccionar archivo"> 
+            <input type="file" id="articulo" name="articulo" value="Seleccionar archivo"> 
             <br>
             <label for="sugerencias">Si deseas mandar simplemente una opinión o comentario, escríbelo aquí:</label>
             <textarea name="sugerencias" id="sugerencias" cols="60" rows="5" placeholder="Escribe tu comentario: "></textarea>
@@ -99,5 +99,6 @@
             <input type="button" value="Enviar por correo">
         </section>
     </fieldset>
+    <script src="js/scripts.js"></script>
 </body>
 </html>

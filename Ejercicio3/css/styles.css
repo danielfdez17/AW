@@ -50,3 +50,7 @@ input[type="button"] {
     height: 2rem;
     font-size: 1rem;
 }
+
+textarea {
+    width: 100%;
+}
