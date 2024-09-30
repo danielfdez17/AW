@@ -1,3 +1,7 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 body {
     height: 100%;
     width: 100%;
@@ -7,7 +11,7 @@ header {
 }
 header h1 {
     margin: auto;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .navbar > ul {
@@ -40,9 +44,22 @@ th {
     padding: 5%;
 }
 
+td {
+    text-align: center;
+}
+
+.days {
+    font-weight: bold;
+}
+
 .social-media img[src$=".png"]:hover {
     filter: opacity(0.6);
     background-color: red;
+}
+
+ul {
+    margin-left: 0;
+    padding-left: 0;  
 }
 
 ul li {
@@ -66,21 +83,21 @@ hr {
 .grey {
     background-color: lightgrey;
 }
-.yellow {
-    background-color: yellow;
+.orange {
+    background-color: #ff9900;
 }
 .pink {
-    background-color: pink;
+    background-color: #cc3399;
 }
 .green {
-    background-color: green;
+    background-color: #33cc33;
 }
-.light_yellow {
-    background-color: rgba(255, 255, 0, 0.531);
+.light_orange {
+    background-color: #ffcc00;
 }
 .light_pink {
-    background-color: rgba(255, 192, 203, 0.493);
+    background-color: #ff00ff;
 }
 .light_green {
-    background-color: rgba(0, 128, 0, 0.467);
+    background-color: #99ff66;
 }
