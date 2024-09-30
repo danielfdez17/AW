@@ -1,7 +1,7 @@
 html, body
 {   
     margin: 0.5%;
-
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,6 +164,7 @@ button:active
 /*Interfaz que muestra los resultados*/
 #resultados
 {
+    width: 60%;
     display: none;
     justify-content: center;
     align-items: flex-start;
@@ -178,7 +179,8 @@ button:active
 
 #resultados h1
 {
-    padding-top: 5%;
+    margin: 0;
+    padding-bottom: 50px;
 }
 
 #resultados span
