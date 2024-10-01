@@ -1,13 +1,19 @@
 i {
     display: block;
     margin: 0 auto;
+    color: blue;
 }
 
 .card {
     width: 25%;
+    background-color: #99ccff;
 }
 
 .card:hover{
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+#instagram_icon:hover, #twitter_icon:hover, #facebook_icon:hover {
+    color: red;
 }
