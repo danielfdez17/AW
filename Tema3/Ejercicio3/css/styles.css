@@ -3,17 +3,19 @@
 }
 
 #contenedor_general {
-    display: flex;
+    /* display: flex; */
+    margin: 5%;
 }
 
 #contactos {
-    width: 250px;
-    height: 250px;
+    /* width: 250px;
+    height: 250px; */
 }
 
 #conversaciones {
-    width: 500px;
-    height: 500px;
+    /* width: 500px;
+    height: 500px; */
+    background-image: url("../img/bla.png");
 }
 
 ul li {
@@ -21,9 +23,9 @@ ul li {
 }
 
 .img-container {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
+    /* width: 100px;
+    height: 100px; */
+    /* margin: 0 auto; */
 }
 
 .img-container:hover {
@@ -32,4 +34,13 @@ ul li {
 
 h6:hover {
     background-color: red;
+}
+
+span {
+    font-size: 0.8rem;
+}
+
+hr {
+    border-top: none;
+    border-bottom: 2px solid #bbb;
 }
