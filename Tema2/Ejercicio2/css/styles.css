@@ -1,0 +1,118 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+header {
+    display: flex;
+}
+header h1 {
+    margin: auto;
+    font-size: 2.5rem;
+}
+
+.navbar > ul {
+    list-style: none;
+}
+
+.navbar {
+    margin-top: 3%;
+    margin-bottom: 2.5%;
+}
+
+/* table, td {
+    border: 1px solid black;
+} */
+
+.rojo {
+    color: red;
+}
+.resaltado {
+    background: lightgray;
+}
+
+#tc {
+    font-style: italic;
+    width: 30%;
+}
+
+th {
+    padding: 5%;
+}
+
+td {
+    text-align: center;
+}
+
+.days {
+    font-weight: bold;
+}
+
+/* .social-media img[src$=".png"]:hover {
+    filter: opacity(0.6);
+    background-color: red;
+} */
+
+ul {
+    margin-left: 0;
+    padding-left: 0;  
+}
+
+ul li {
+    display: inline;
+    margin-left: 0;
+}
+ul li a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 0.5rem;
+}
+
+ul li a:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+hr {
+    height: 1rem;
+    border-style: none;
+    background-color: rgb(162, 21, 21);
+}
+
+.grey {
+    background-color: lightgrey;
+}
+.orange {
+    background-color: #e7b262;
+}
+.pink {
+    background-color: #ff00ff83;
+}
+.green {
+    background-color: #33cc33be;
+}
+.light_orange {
+    background-color: #ffcc00;
+}
+.light_pink {
+    background-color: #cc339993;
+}
+.light_green {
+    background-color: #99ff66;
+}
+
+svg {
+    height: 3rem;
+    width: 3rem;
+}
+
+svg:hover {
+    fill: red;
+}
