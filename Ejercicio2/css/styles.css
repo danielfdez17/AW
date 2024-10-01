@@ -19,10 +19,8 @@ header h1 {
 }
 
 .navbar {
-    display: block !important;
-    height: auto !important;
-    padding-bottom: 0;
-    overflow: visible !important;
+    margin-top: 3%;
+    margin-bottom: 2.5%;
 }
 
 /* table, td {
@@ -38,6 +36,7 @@ header h1 {
 
 #tc {
     font-style: italic;
+    width: 30%;
 }
 
 th {
@@ -52,10 +51,10 @@ td {
     font-weight: bold;
 }
 
-.social-media img[src$=".png"]:hover {
+/* .social-media img[src$=".png"]:hover {
     filter: opacity(0.6);
     background-color: red;
-}
+} */
 
 ul {
     margin-left: 0;
@@ -77,6 +76,7 @@ ul li a:hover {
     color: black;
     background-color: white;
     border: 1px solid black;
+    border-radius: 5px;
     font-weight: bold;
 }
 
@@ -86,25 +86,33 @@ hr {
     background-color: rgb(162, 21, 21);
 }
 
-/* Para la tabla */
 .grey {
     background-color: lightgrey;
 }
 .orange {
-    background-color: #ff9900;
+    background-color: #e7b262;
 }
 .pink {
-    background-color: #cc3399;
+    background-color: #ff00ff83;
 }
 .green {
-    background-color: #33cc33;
+    background-color: #33cc33be;
 }
 .light_orange {
     background-color: #ffcc00;
 }
 .light_pink {
-    background-color: #ff00ff;
+    background-color: #cc339993;
 }
 .light_green {
     background-color: #99ff66;
+}
+
+svg {
+    height: 3rem;
+    width: 3rem;
+}
+
+svg:hover {
+    fill: red;
 }
