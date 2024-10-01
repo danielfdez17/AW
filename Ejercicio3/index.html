@@ -12,27 +12,27 @@
         <section id="datos_personales">
             <form action="#">
                 <div class="form-group">
-                    <label for="nombre">Nombre <input id="nombre" type="text" placeholder="Introduce tu nombre" required></label><br>
+                    <label for="nombre"><span>*</span> Nombre <input id="nombre" type="text" placeholder="Introduce tu nombre" required></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="primer_apellido">Primer apellido <input id="primer_apellido" type="text" placeholder="Introduce tu primer apellido" required></label><br>
+                    <label for="primer_apellido"><span>*</span> Primer apellido <input id="primer_apellido" type="text" placeholder="Introduce tu primer apellido" required></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="segundo_apellido">Segundo apellido <input id="segundo_apellido" type="text" placeholder="Introduce tu segundo apellido" required></label><br>
+                    <label for="segundo_apellido"><span>*</span> Segundo apellido <input id="segundo_apellido" type="text" placeholder="Introduce tu segundo apellido" required></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="direccion">Dirección <input id="direccion" type="text" required placeholder="Calle o plaza, número y piso."></label><br>
+                    <label for="direccion"><span>*</span> Dirección <input id="direccion" type="text" required placeholder="Calle o plaza, número y piso."></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="email">E-mail <input id="email" type="email" required placeholder="@"></label><br>
+                    <label for="email"><span>*</span> E-mail <input id="email" type="email" required placeholder="@"></label><br>
                 </div>
                 <div class="form-group">
-                    <label for="contrasenya">Contraseña <input id="contrasenya" type="password" required></label><br>
+                    <label for="contrasenya"><span>*</span> Contraseña <input id="contrasenya" type="password" required></label><br>
                 </div>
                 <div class="form-group">
                     <label>Sexo</label><br>
-                    <input type="radio" id="prefiero_no_decirlo" name="genero" value="prefiero_no_decirlo">
-                    <label for="prefiero_no_decirlo" checked>Prefiero no decirlo</label><br>
+                    <input type="radio" id="prefiero_no_decirlo" name="genero" value="prefiero_no_decirlo" checked>
+                    <label for="prefiero_no_decirlo">Prefiero no decirlo</label><br>
                     <input type="radio" id="hombre" name="genero" value="hombre" >
                     <label for="hombre">Varón</label><br>
                     <input type="radio" id="mujer" name="genero" value="mujer">
@@ -43,7 +43,7 @@
     </fieldset>
     <fieldset><legend>Nivel de estudios e intereses</legend>
         <section id="nivel_estudios">
-            <form action="#">
+            <form action="#" method="post">
                 <label for="estudios">Nivel de estudios</label><br>
                 <select name="estudios" id="estudios">
                     <option id="nivel_estudios_por_defecto" value="certificado_escolar">Certificado escolar</option>

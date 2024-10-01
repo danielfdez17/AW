@@ -1,5 +1,7 @@
 body {
     height: 100%;
+    background-color: #28284c;
+    color: white;
 }
 section {
     border: none;
@@ -9,13 +11,18 @@ label {
     margin: 1%;
 }
 
+h1 {
+    /* margin: 0 auto; */
+    text-align: center;
+}
+
 hr.solid {
-    border-top: 1px solid #bbb;
-    width: 99%;
+    border-top: 2px solid #bbb;
+    width: 51%;
 }
 
 .form-group {
-    margin: 1% 0;
+    margin: 1% auto;
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
@@ -38,11 +45,15 @@ section > form > div {
     /* border: 1px solid red; */
     padding: 3px;
     border-radius: 5px;
-    background-color: rgb(219, 219, 219);
+    /* background-color: rgb(219, 219, 219); */
 }
 
 fieldset {
-    border: 1px solid black;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin: 1% auto;
+    width: 50%;
+    background-color: rgb(31, 31, 107);
 }
 
 input[type="button"] {
@@ -53,4 +64,15 @@ input[type="button"] {
 
 textarea {
     width: 100%;
+}
+legend {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+input[type="button"]:hover, input[type="file"]:hover {
+    font-size: 1.2rem;
+    cursor: pointer;
 }
