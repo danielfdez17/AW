@@ -1,0 +1,35 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+#contenedor_general {
+    display: flex;
+}
+
+#contactos {
+    width: 250px;
+    height: 250px;
+}
+
+#conversaciones {
+    width: 500px;
+    height: 500px;
+}
+
+ul li {
+    list-style: none;
+}
+
+.img-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.img-container:hover {
+    cursor: pointer;
+}
+
+h6:hover {
+    background-color: red;
+}
