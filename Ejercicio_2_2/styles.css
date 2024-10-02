@@ -11,10 +11,8 @@ header
     display: flex;
     align-items: center;
     /*Añadimos flex-wrap: wrap para que si el texto no cabe pase a la linea de abajo*/
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
 
-    font-size: 1.5rem;
-    
     gap: 1%;
 }
 
@@ -23,11 +21,17 @@ header img
     width: 200px;
 }
 
+h1
+{
+    /*Jugamos con esta funcion de modo que en la vista movil sean 30px, y en la vista de laptop sean 3.5 vw, ya que al 
+    reducir es mayor 30px que 3.5vw*/
+    font-size: max(30px, 3.5vw);
+}
+
 /*Linea divisorea*/
 hr
 {
     width: 100%;
-    min-width: 400px;   
     border-top: 20px solid rgb(152, 11, 11);
 }
 
@@ -41,15 +45,16 @@ ul
     padding-left: 0px;
 
     list-style: none;
-    font-size: 1.5rem;
+    font-size: max(0.85rem, 1.5vw);
 
-    gap: 1%;
+    gap: 0.5%;
 }
 
 .navegacion a
 {
     display: block;
-    padding: 10px;
+    padding: 10px 15px;
+
     text-decoration: none;
     color: white;
 }
@@ -59,11 +64,12 @@ ul
     background-color: rgb(15, 13, 13);
 }
 
-/*TABLA*/
+/*Tabla*/
 table
 {
     width: 40%;
-    min-width: 400px;
+    min-width: 300px;
+
     text-align: center;  
 }
 
@@ -72,9 +78,11 @@ table
     font-style: italic;
 }
 
-th {
-    background-color: #b8b8b8;
+.nombre-tabla
+{
     padding: 10px;
+
+    background-color: #b8b8b8;
 }
 
 .calendario {
@@ -118,8 +126,11 @@ th {
 /*Redes sociales*/
 .social-media
 {
-    padding-left: 10px;
     width: 30%;
+    min-width: 300px;
+
+    padding-left: 10px;
+
     gap: 5%;
 }
 
