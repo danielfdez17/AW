@@ -22,10 +22,11 @@ ul li {
     list-style: none;
 }
 
-.img-container {
-    /* width: 100px;
-    height: 100px; */
-    /* margin: 0 auto; */
+.img-container img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 100px;
 }
 
 .img-container:hover {
@@ -33,7 +34,11 @@ ul li {
 }
 
 h6:hover {
-    background-color: red;
+    color: red;
+}
+
+h6 {
+    margin-top: 10%;
 }
 
 span {
