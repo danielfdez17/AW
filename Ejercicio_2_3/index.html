@@ -8,9 +8,13 @@
 
 </head>
 <body>
+
+    
+    <!-- Formulario -->
     <div id="formulario" class="main-container">
         <h1>Suscripción a la revista</h1>
 
+        <!-- Datos personales -->
         <fieldset>
             <legend>Datos personales</legend>
             
@@ -58,6 +62,7 @@
 
         </fieldset>
 
+        <!-- Nivel de estudios e intereses -->
         <fieldset>
             <legend>Nivel de estudios e intereses</legend>
             
@@ -95,6 +100,7 @@
 
         <hr class="divisor">
 
+        <!-- Datos sobre la revista -->
         <fieldset>
             <legend>Datos sobre la revista</legend>
 
@@ -120,12 +126,14 @@
             </form>
         </fieldset>
 
+        <!-- Comenzar de nuevo -->
         <fieldset>
             <legend>Comenzar de nuevo</legend>
             <p>Borrar todos los datos del formulario y volver a empezar: </p>
             <button onclick="resetFormulario()">Borrar todo</button>
         </fieldset>
 
+        <!-- Enviar -->
         <fieldset>
             <legend>Enviar</legend>
             <p>Enviar formulario por correo electronico: Al pulsar en el botón se abrirá la 
@@ -136,6 +144,7 @@
     </div>
 
 
+    <!-- Resultados -->
     <div id="resultados" class="main-container">
         <fieldset>
             <h1>Resultados</h1>
@@ -163,11 +172,12 @@
                 <p>Opinion: <span id="comentarioResultado"></span></p>
             </div>
 
-            <button onclick="volverFormulario()" type="submit">Enviar por correo</button>
+            <button onclick="volverFormulario()" type="submit">Volver al formulario</button>
         </fieldset>   
 
     </div>
 
+    <!-- JavaScript -->
     <script>
         //Funcion de borrar todo
         function resetFormulario() {
@@ -214,7 +224,7 @@
             {
                 datos.forEach(dato =>
                 {
-                    salida_intereses += dato.value;      
+                    salida_intereses += dato.value + " ";      
                 });
             }
             document.getElementById('temasResultado').textContent = salida_intereses;

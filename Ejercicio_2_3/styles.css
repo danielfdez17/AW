@@ -10,7 +10,7 @@ html, body
 
     background-color: rgb(237, 244, 246);
     font-size: 18px;
-    font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
 }
 
 h1
@@ -72,6 +72,7 @@ fieldset label
     font-size: 0.875rem;
 }
 
+/*Distiguimos que tipo de input es*/
 input[type="file"]
 {
     padding-right: 175px;
