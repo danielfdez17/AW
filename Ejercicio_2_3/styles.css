@@ -1,23 +1,32 @@
 html, body
 {   
-    margin: 0.5%;
     width: 100%;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    margin: 0.5%;
 
     background-color: rgb(237, 244, 246);
     font-size: 18px;
     font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;
 }
 
-body h1
+h1
 {
     margin: 3vh;
-    font-weight: 700;
 
+    font-weight: 700;
     text-align: center;
     font-size: 3rem;
+}
+
+p
+{
+    margin: 0;
+    
+    font-size: 0.875rem;
 }
 
 .main-container
@@ -54,6 +63,7 @@ form
 {
     display: flex;
     flex-direction: column;
+
     gap: 3vh;
 }
 
@@ -65,6 +75,12 @@ fieldset label
 input[type="file"]
 {
     padding-right: 175px;
+}
+
+textarea
+{
+    /*Eliminamos la opcion de que el textarea no se pueda cambiar de tamaño*/
+    resize: none;
 }
 
 /*input[type="file"]::file-selector-button, es necesario para que le file selector funcione*/
@@ -159,12 +175,12 @@ button:active
     color: rgb(0, 0, 0);
 }
 
-
-
 /*Interfaz que muestra los resultados*/
 #resultados
 {
     width: 60%;
+    
+    /*Marcamos a none para que inicialmente no aparezca*/
     display: none;
     justify-content: center;
     align-items: flex-start;
@@ -194,6 +210,3 @@ button:active
 { 
     width: 95%;
 }
-
-
-/*TODO FALTA HACER EL HOVER DE LOS BOTONES

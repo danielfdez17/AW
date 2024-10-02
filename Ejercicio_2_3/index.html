@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
-    <link rel="stylesheet" href="Estilos.css">
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
@@ -22,30 +22,30 @@
 
                 <div class="container">
                     <label for="primer_apellido">Primer apellido</label><br>
-                    <input type="text" name="primer_apellido" placeholder="Escribe tu primer apellido">
+                    <input type="text" name="primer_apellido" id="primer_apellido" placeholder="Escribe tu primer apellido">
                 </div>
 
                 <div class="container">
                     <label for="segundo_apellido">Segundo apellido</label><br>
-                    <input type="text" name="segundo_apellido" placeholder="Escribe tu segundo apellido">
+                    <input type="text" name="segundo_apellido" id="segundo_apellido" placeholder="Escribe tu segundo apellido">
                 </div>
                 
                 <div class="container">
                     <label for="direccion">Dirección</label><br>
-                    <input type="text" name="direccion" placeholder="Escribe tu direccion">
+                    <input type="text" name="direccion" id="direccion" placeholder="Escribe tu direccion">
                 </div>
 
                 <div class="container">
                     <label for="e_mail">E-mail</label><br>
-                    <input type="email" name="e_mail" placeholder="Escribe tu e-mail">
+                    <input type="email" name="e_mail" id="e_mail" placeholder="Escribe tu e-mail">
                 </div>
 
                 <div class="container">
                     <label for="contrasena">Contraseña</label><br>
-                    <input type="password" name="contrasena" placeholder="Escribe tu contraseña">
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Escribe tu contraseña">
                 </div>   
 
-                <label for="sexo">Sexo</label>
+                <p>Sexo</p>
                 <!--Añadimos tabindex = "0" para que se pueda 'tabulear' sobre el label-->
                 <div class="container-checkbox">
                     <input type="radio" id="varon" name="sexo" value="varon">
@@ -110,26 +110,26 @@
                 <div class="container">
                     <label for="archivo">Puedes mandar tu articulo sobre cualquier tema de los que tratamos. 
                     Nosotros lo valoraremos para que pueda ser publicado. mandar articulo:</label><br>
-                    <input type="file" id="archivo" name="archivo" value="">
+                    <input type="file" id="archivo" name="archivo">
                 </div>
 
                 <div class="container">
                     <label for="comentario">Si deseas mandar simplemente una opcion o comentario escibelo aquí</label><br>
-                    <textarea name="comentario" id="comentario" placeholder="Escribe tu comentario aquí" rows="10" style="resize:none"></textarea> 
+                    <textarea name="comentario" id="comentario" placeholder="Escribe tu comentario aquí" rows="10"></textarea> 
                 </div>
             </form>
         </fieldset>
 
         <fieldset>
             <legend>Comenzar de nuevo</legend>
-            <label for="opcion1">Borrar todos los datos del formulario y volver a empezar: </label>
+            <p>Borrar todos los datos del formulario y volver a empezar: </p>
             <button onclick="resetFormulario()">Borrar todo</button>
         </fieldset>
 
         <fieldset>
             <legend>Enviar</legend>
-            <label for="opcion1">Enviar formulario por correo electronico: Al pulsar en el botón se abrirá la 
-            pagina de envió de correo: en esa página pulsa en enviar: </label><br>
+            <p>Enviar formulario por correo electronico: Al pulsar en el botón se abrirá la 
+            pagina de envió de correo: en esa página pulsa en enviar:</p>
             <button onclick="mostrarResultados()" type="submit">Enviar por correo</button>
 
         </fieldset>
@@ -164,9 +164,7 @@
             </div>
 
             <button onclick="volverFormulario()" type="submit">Enviar por correo</button>
-        </fieldset>
-
-        
+        </fieldset>   
 
     </div>
 
@@ -218,8 +216,6 @@
                 {
                     salida_intereses += dato.value;      
                 });
-
-        
             }
             document.getElementById('temasResultado').textContent = salida_intereses;
 
