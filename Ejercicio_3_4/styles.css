@@ -1,0 +1,17 @@
+img
+{
+    width: 250px;
+    height: 250px;
+    background-size: 100%;
+    border: 1px solid;
+}
+
+.container
+{
+    border: 10px solid #17375E;
+}
+
+.secundario
+{
+    margin-left: 200px;
+}
