@@ -1,16 +1,25 @@
-    img
-    {
-        width: 25% !important; 
-        transition: .3s
-    }
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    img:hover
-    {
-        width: 50% !important; 
-    }
+img
+{
+    width: 25% !important; 
+    transition: .3s
+}
 
-    .card
-    {
-        background-color: #ADD8E6;
-    }
+img:hover
+{
+    width: 50% !important; 
+}
+
+.card
+{
+    background-color: #ADD8E6;
+}
+
+.facebook
+{
+    border-radius: 20px;
+}
 
