@@ -1,3 +1,9 @@
+h1
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.8rem;
+}
+
 img
 {
     width: 250px;
@@ -14,4 +20,5 @@ img
 .secundario
 {
     margin-left: 200px;
+    margin-top: 10px
 }
