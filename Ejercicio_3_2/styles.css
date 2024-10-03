@@ -1,0 +1,16 @@
+    img
+    {
+        width: 25% !important; 
+        transition: .3s
+    }
+
+    img:hover
+    {
+        width: 50% !important; 
+    }
+
+    .card
+    {
+        background-color: #ADD8E6;
+    }
+
