@@ -27,6 +27,11 @@ header h1
     color: var(--secondary-text-color);
 }
 
+nav
+{
+    margin: 0 !important;
+}
+
 nav ul
 {
     display: flex;
