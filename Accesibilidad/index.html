@@ -3,56 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title></title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a Mi Página Web Accesible</h1>
+        <h1 class="fs-1">Bienvenido a Mi Página Web Accesible</h1>
     </header>
 
-    <nav>
+    <nav class="row">
         <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Acerca de Nosotros</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li class="col-3 fs-5"><a href="#">Inicio</a></li>
+            <li class="col-3 fs-5"><a href="#">Acerca de Nosotros</a></li>
+            <li class="col-3 fs-5"><a href="#">Servicios</a></li>
+            <li class="col-3 fs-5"><a href="#">Contacto</a></li>
         </ul>
     </nav>
 
-    <main>
-        <section id="div1" aria-labelledby="div1-section">
-            <!--<h2 id="div1-section">Enlaces</h2>-->
+    <main class="row">
+
+        <div id="div1" aria-labelledby="div1-section" class="col-md-3">
+            <h2 class="fs-2" id="div1-section">Enlaces</h2>
             <ul>
-                <li><a href="https://developer.mozilla.org/es/docs/Web">MDN Web Docs</a></li>
-                <li><a href="https://www.w3schools.com/">W3Schools</a></li>
-                <li><a href="https://www.javascript.info/">JavaScript.info</a></li>
-                <li><a href="https://nodejs.org/es/">Node.js</a></li>
-                <li><a href="https://expressjs.com/es/">Express.js</a></li>
-                <li><a href="https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs">Express.js en MDN</a></li>
-                <li><a href="https://www.codecademy.com/">Codecademy</a></li>
+                <li class="fs-5"><a href="https://developer.mozilla.org/es/docs/Web" target="_blank">MDN Web Docs</a></li>
+                <li class="fs-5"><a href="https://www.w3schools.com/" target="_blank">W3Schools</a></li>
+                <li class="fs-5"><a href="https://www.javascript.info/" target="_blank">JavaScript.info</a></li>
+                <li class="fs-5"><a href="https://nodejs.org/es/" target="_blank">Node.js</a></li>
+                <li class="fs-5"><a href="https://expressjs.com/es/" target="_blank">Express.js</a></li>
+                <li class="fs-5"><a href="https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs" target="_blank">Express.js en MDN</a></li>
+                <li class="fs-5"><a href="https://www.codecademy.com/" target="_blank">Codecademy</a></li>
             </ul>
-        </section>
+        </div>
     
 
-        <div id="div2" aria-labelledby="div2-section">
+        <div id="div2" aria-labelledby="div2-section"class="col-md-8">
             <h2 id="div2-section">Eventos</h2>
-            <p>Últimamente, he estado inmerso en la planificación de mi próximo viaje. 
-                Estoy researching different destinations y, en mi búsqueda, j'ai découvert des 
-                endroits incroyables que je ne peux pas attendre pour explorer. 
-                La idea de conectar with new cultures y experimentar con diferentes cuisines me 
-                llena de emoción. Cada journey es una oportunidad para aprender y crecer, y estoy 
-                ansioso de vivir nuevas aventuras.</p>
-            <p>En mi día a día, me encuentro working on a creative project. Trabajar en algo que 
-                es una expresión de mi pasión y me permite partager mes idées y perspectivas es 
-                increíblemente gratificante. J'apprécie chaque étape du proceso creativo, desde 
-                la conceptualización hasta la realización final. The beauty of creating algo 
-                significativo es que puede ser comprendido y apreciado en todo el mundo, 
-                transcending las barreras del language y conectando con personas de diversas culturas.</p>    
-            <p>Estas experiencias enriquecedoras me han enseñado que, al integrar diferentes languages 
-                y perspectives, podemos lograr una mayor comprensión y aprecio por el mundo que nos rodea. 
-                Cada frase, ya sea en inglés, francés o español, contribuye a la narrativa única de mi 
-                viaje personal y creativo.</p>
+            <p lang="es">Últimamente, he estado inmerso en la planificación de mi próximo viaje. 
+                Estoy <span lang="en">researching</span> diferentes destinos y, en mi búsqueda, 
+                <span lang="fr">j'ai découvert des</span> lugares increíbles que no puedo esperar para explorar. 
+                La idea de conectar <span lang="en">with new cultures</span> y experimentar con diferentes 
+                <span lang="en">cuisines</span> me llena de emoción. Cada <span lang="en">journey</span> 
+                es una oportunidad para aprender y crecer, y estoy ansioso de vivir nuevas aventuras.
+            </p>
+            <p lang="es">En mi día a día, me encuentro <span lang="en">working</span> en un proyecto creativo. 
+                Trabajar en algo que es una expresión de mi pasión y me permite <span lang="fr">partager mes idées</span> 
+                y perspectivas es increíblemente gratificante. <span lang="fr">J'apprécie</span> cada etapa del 
+                proceso creativo, desde la conceptualización hasta la realización final. La belleza de 
+                crear algo significativo es que puede ser comprendido y apreciado en todo el mundo, 
+                <span lang="en">transcending</span> las barreras del <span lang="en">language</span> y conectando 
+                con personas de diversas culturas.
+            </p>    
+            <p lang="es">Estas experiencias enriquecedoras me han enseñado que, al integrar diferentes 
+                <span lang="en">languages</span> y <span lang="en">perspectives</span>, podemos lograr una 
+                mayor comprensión y aprecio por el mundo que nos rodea. Cada frase, ya sea en inglés, 
+                francés o español, contribuye a la narrativa única de mi viaje personal y creativo.
+            </p>            
         </div>
     </main>
 
