@@ -1,9 +1,11 @@
+/*Variables para la gestión de los colores*/
 :root {
     --primary-color: #f5f5f5; 
     --secundary-color: #F0EEE5;
     --primary-text-color: #0F0F0D;
     --secondary-text-color: #C15F3C;
 }
+
 
 body {
     font-family: 'Segoe UI';
@@ -12,21 +14,26 @@ body {
     color: var(--primary-text-color);
 }
 
+/*Encabezado*/
 header {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    
     padding: 2%;
+
+    text-align: center;
 }
 
 header h1
 {
     margin: 0;
+
     font-weight: bold;
     color: var(--secondary-text-color);
 }
 
+/*Barra de navegación*/
 nav
 {
     margin: 0 !important;
@@ -38,12 +45,11 @@ nav ul
     justify-content:space-around;
 
     padding-left: 0px;
-
-    list-style: none;
-    font-size: 1.5rem;
     padding: 1% 0;
     margin: 0;
 
+    list-style: none;
+    font-size: 1.5rem;
 }
 
 nav ul a
@@ -51,10 +57,12 @@ nav ul a
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    
+    flex:1;
 
     padding: 15px 0px;
-    flex:1;
+    
+    text-align: center;
     text-decoration: none;
     color: var(--text-color);
     transition: .5s;
@@ -70,27 +78,34 @@ nav li a:hover, nav li a:focus {
     color: var(--secondary-text-color);
 }
 
+/*Contenido principal*/
 main {
     margin: 0 !important;
+
     gap: 50px;
 }
 
+/*Enlaces*/
 #div1 h2
 {
-    padding-left: 20px;
     height: 10%;
-    margin: 5px;
 
+    padding-left: 20px;
+    margin: 5px;
 }
 
 #div1 ul
 {
+    height: 90%;
+
     margin: 0;
     padding: 0;
-    list-style: none;
+    
     display: flex;
     flex-direction: column;
-    height: 90%;
+
+    list-style: none;
+
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
 }
@@ -100,7 +115,9 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+
     flex: 1;
+
     transition: .5s;
 }
 
@@ -114,10 +131,12 @@ main {
 
 #div1 li:hover, #div1 li a:focus
 {
+    width: 80%;
+
+    margin: auto;
+
     border-top: 1px solid var(--secundary-color);
     border-bottom: 1px solid var(--secundary-color);
-    width: 80%;
-    margin: auto;
 }
 
 #div1 li:hover a
@@ -125,28 +144,34 @@ main {
     padding: 30px;
 }
 
+/*Eventos*/
 #div2 {
     padding: 20px;
+
     border-radius: 20px;
     background-color: var(--secundary-color);
 }
 
 #div2 h2
 {
-    color: var(--secondary-text-color);
     margin: 0;
     margin-bottom: 10px;
+
+    color: var(--secondary-text-color);
 }
 
+/*Pie de página*/
 footer {
-    text-align: center;
     margin: 1.5%;
+
+    text-align: center;
 }
 
 footer a {
+    margin: 0 10px;
+
     text-decoration: none;
     color: var(--primary-text-color);
-    margin: 0 10px;
     font-weight: bold;
     transition: .3s;
 }
