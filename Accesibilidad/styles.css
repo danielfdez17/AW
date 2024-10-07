@@ -74,14 +74,15 @@ nav li
 }
 
 nav li a:hover, nav li a:focus {
+
     background-color: var(--secundary-color);
     color: var(--secondary-text-color);
+    text-decoration: underline;
 }
 
 /*Contenido principal*/
 main {
     margin: 0 !important;
-
     gap: 50px;
 }
 
