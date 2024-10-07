@@ -1,6 +1,6 @@
 /*Variables para la gestión de los colores*/
 :root {
-    --primary-color: #f5f5f5; 
+    --primary-color: #F5F4EF; 
     --secundary-color: #F0EEE5;
     --primary-text-color: #0F0F0D;
     --secondary-text-color: #C15F3C;
@@ -149,6 +149,7 @@ main {
     padding: 20px;
 
     border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: var(--secundary-color);
 }
 
