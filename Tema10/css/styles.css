@@ -3,16 +3,26 @@
     --orange: #ff6d09;
     --grey: #979797;
     --white: #ffffff;
+
+    --bg-dark-orange: #c44601;
+    --bg-light-orange: #f57600;
+    --bg-light-blue: #8babf1;
+    --bg-med-blue: #0073e6;
+    --bg-dark-blue: #054fb9;
 }
 
 body {
-    background-color: var(--black);
+    background-color: var(--bg-light-blue);
     color: var(--white)
+}
+
+.container {
+    background-color: var(--bg-med-blue);
 }
 
 a {
     text-decoration: none;
-    color: var(--orange);
+    color: var(--bg-light-orange);
 }
 
 .list-inline-item:hover {
@@ -35,5 +45,5 @@ a {
 }
 
 #derechos {
-    color: var(--grey);
+    color: var(--bg-dark-blue);
 }
