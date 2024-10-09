@@ -26,3 +26,9 @@ console.log(`Multiplicar dos números: ${producto(2, 3)}`);
 console.log(`Multiplicar un número por un array: ${producto(2, [1, 2, 3])}`);
 console.log(`Multiplicar un array por un número: ${producto([1, 2, 3], 2)}`);
 console.log(`Multiplicar dos arrays: ${producto([1, 2, 3], [1, 2, 3])}`);
+
+
+function controlErrores() {
+    try {}
+    catch (error) {}
+}
