@@ -1,0 +1,62 @@
+:root {
+    --inicio-degradado: rgb(255, 237, 241);
+    --fin-degradado: rgb(231, 207, 243);
+    --text-color: rgb(20, 20, 28);
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    background-color: var(--inicio-degradado);
+    color: var(--text-color);
+}
+
+header nav li:hover{
+    text-decoration: underline;
+}
+
+.seccion {
+    background: linear-gradient(to bottom, var(--inicio-degradado), var(--fin-degradado));
+    color: var(--text-color);
+}
+
+.boton {
+    background-color: var(--inicio-degradado);
+    color: inherit;
+    border: 1px solid rgba(20, 20, 28, 0.2);
+    transition: 0.3s;
+}
+
+.boton:hover {
+    border-radius: 20px;
+    border: 1px solid rgba(20, 20, 28, 0.2);
+    background-color: var(--inicio-degradado);
+    color: inherit;
+}
+
+.boton:active {
+    opacity: 0.5;
+}
+
+#texto-dinamico {
+    transition: 0.5s;
+}
+
+#imagen {
+    transition: 0.5s;
+}
+
+.ajustes {
+    font-size: 18px;
+}
+
+footer
+{
+    background-color: var(--fin-degradado);
+}

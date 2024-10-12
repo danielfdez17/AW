@@ -1,0 +1,15 @@
+header, .seccion
+{
+    color: black;
+}
+
+nav, .boton_ajustes, .boton, .ajustes, footer
+{
+    display: none !important;
+}
+
+img
+{
+    display: none;
+}
+
