@@ -24,6 +24,7 @@ header nav li:hover{
 .seccion {
     background: linear-gradient(to bottom, var(--inicio-degradado), var(--fin-degradado));
     color: var(--text-color);
+    transition: 2s;
 }
 
 .boton {
@@ -54,6 +55,7 @@ header nav li:hover{
 
 .ajustes {
     font-size: 18px;
+    transition: 1s;
 }
 
 footer
