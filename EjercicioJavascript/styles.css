@@ -10,10 +10,12 @@ html {
 
 body {
     font-family: "Poppins", sans-serif;
+    /*background: linear-gradient(to bottom, var(--inicio-degradado), var(--fin-degradado));*/
+    background: radial-gradient(circle 500px at 50% 80%, var(--fin-degradado), var(--inicio-degradado));
+    transition: background 0.5s ease-in-out;
 }
 
 header {
-    background-color: var(--inicio-degradado);
     color: var(--text-color);
 }
 
@@ -22,7 +24,7 @@ header nav li:hover{
 }
 
 .seccion {
-    background: linear-gradient(to bottom, var(--inicio-degradado), var(--fin-degradado));
+
     color: var(--text-color);
     transition: 2s;
 }
@@ -56,9 +58,4 @@ header nav li:hover{
 .ajustes {
     font-size: 18px;
     transition: 1s;
-}
-
-footer
-{
-    background-color: var(--fin-degradado);
 }
