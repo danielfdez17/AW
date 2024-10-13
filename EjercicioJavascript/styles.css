@@ -1,6 +1,6 @@
 :root {
     --inicio-degradado: rgb(255, 237, 241);
-    --fin-degradado: rgb(231, 207, 243);
+    --fin-degradado: rgb(207, 146, 238);
     --text-color: rgb(20, 20, 28);
 }
 
@@ -9,10 +9,35 @@ html {
 }
 
 body {
+    background: radial-gradient(circle 500px, var(--fin-degradado), var(--inicio-degradado));
+    background-size: 200% 200%; 
     font-family: "Poppins", sans-serif;
-    /*background: linear-gradient(to bottom, var(--inicio-degradado), var(--fin-degradado));*/
-    background: radial-gradient(circle 500px at 50% 80%, var(--fin-degradado), var(--inicio-degradado));
-    transition: background 0.5s ease-in-out;
+    animation: AnimationName 5s ease forwards;
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 425px) {
+    body {
+        animation: AnimationNameSmall 5s ease forwards; /* Cambia la animación para pantallas pequeñas */
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 50% 20%;
+    }
+}
+
+@keyframes AnimationNameSmall {
+    0% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 50% 10%;
+    }
 }
 
 header {

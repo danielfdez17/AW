@@ -21,7 +21,7 @@ function conocermas()
 }
 
 const inicio_degradado_claro = "rgb(255, 237, 241)";
-const fin_degradado_claro = "rgb(231, 207, 243)";
+const fin_degradado_claro = "rgb(207, 146, 238)";
 const text_color_claro = "rgb(20, 20, 28)";
 
 const inicio_degradado_oscuro = "rgb(0, 0, 0)";
@@ -45,9 +45,9 @@ function ajustes_color(tipo_letra)
     }
     else if (tipo_letra == "Predeterminado")
     {
-        root.style.setProperty('--inicio-degradado', inicio_degradado_claro);
-        root.style.setProperty('--fin-degradado', fin_degradado_claro);
-        root.style.setProperty('--text-color', text_color_claro);
+        root.style.setProperty('--inicio-degradado', inicio_degradado_oscuro);
+        root.style.setProperty('--fin-degradado', fin_degradado_oscuro);
+        root.style.setProperty('--text-color', text_color_oscuro);
     }
 }
 
@@ -87,4 +87,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     ajustes_color("Predeterminado");
 });
-
