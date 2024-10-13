@@ -92,7 +92,7 @@ button {
     justify-content: center;
     background-color: var(--bg-body);
     color: white;
-    scale: 1.5;
+    transform: scale(1.5);
     transition: 0.75s;
 }
 
