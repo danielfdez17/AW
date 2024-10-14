@@ -27,7 +27,7 @@ body {
         background-position: 50% 100%;
     }
     100% {
-        background-position: 50% 20%;
+        background-position: 50% 25%;
     }
 }
 
@@ -63,9 +63,8 @@ header nav li:hover{
 
 .boton:hover {
     border-radius: 20px;
-    border: 1px solid rgba(20, 20, 28, 0.2);
-    background-color: var(--inicio-degradado);
-    color: inherit;
+    background-color: var(--fin-degradado);
+    color: var(--inicio-degradado);
 }
 
 .boton:active {
