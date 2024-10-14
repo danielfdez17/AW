@@ -11,7 +11,7 @@ html {
 body {
     background: radial-gradient(circle 500px, var(--fin-degradado), var(--inicio-degradado));
     background-size: 200% 200%; 
-    font-family: "Poppins", sans-serif;
+    font-family: "Fraunces", serif;
     animation: AnimationName 5s ease forwards;
 }
 
