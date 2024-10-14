@@ -1,0 +1,1 @@
+a. Escribir un programa ej1a.js que lea un fichero concreto y sustituya cualquier grupo de uno o más espacios en blanco por un único blanco. Se deben utilizar las funciones asíncronas readFile y writeFile del módulo fs. 
