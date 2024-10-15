@@ -1,9 +1,11 @@
-.row
+/*Fila doble*/
+.doble
 {
     height: 200px;
 }
 
+/*Fila simple*/
 .individual
 {
-    height: 100px !important;
+    height: 100px;
 }
