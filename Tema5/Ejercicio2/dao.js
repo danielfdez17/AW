@@ -87,22 +87,24 @@ class DAO {
   }
 
   buscarUsuario(str, callback) {
-    if (err) {
-      callback(err, undefined);
-    } else {
-      connection.query(
-        "SELECT * FROM usuarios WHERE nombre LIKE %?%",
-        [str],
-        (err, rows) => {
-          if (err) {
-            callback(err, undefined);
-          } else {
-            callback(null, rows);
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err, undefined);
+      } else {
+        connection.query(
+          "SELECT * FROM usuarios WHERE nombre LIKE %?%",
+          [str],
+          (err, rows) => {
+            if (err) {
+              callback(err, undefined);
+            } else {
+              callback(null, rows);
+            }
+            connection.release();
           }
-          connection.release();
-        }
-      );
-    }
+        );
+      }
+    });
   }
 
   terminarConexion(callback) {
