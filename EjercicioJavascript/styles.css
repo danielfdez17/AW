@@ -24,7 +24,7 @@ body {
 
 @keyframes AnimationName {
     0% {
-        background-position: 50% 100%;
+        background-position: 50% 150%;
     }
     100% {
         background-position: 50% 25%;
@@ -44,7 +44,7 @@ header {
     color: var(--text-color);
 }
 
-header nav li:hover{
+header nav li:hover, header nav li a:focus{
     text-decoration: underline;
 }
 
@@ -61,7 +61,7 @@ header nav li:hover{
     transition: 0.3s;
 }
 
-.boton:hover {
+.boton:hover, .boton:focus {
     border-radius: 20px;
     background-color: var(--fin-degradado);
     color: var(--inicio-degradado);
@@ -82,4 +82,13 @@ header nav li:hover{
 .ajustes {
     font-size: 18px;
     transition: 1s;
+}
+
+
+
+.boton_ajustes:focus
+{
+
+    border: 2px solid var(--text-color) !important;
+    background-color: rgb(108, 108, 108) !important;
 }
