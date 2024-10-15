@@ -11,11 +11,13 @@ img
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/*Contenedor principal*/
 .container
 {
     border: 10px solid #17375E;
 }
 
+/*Contenedor secundario para desplazar con respecto al container principal*/
 .secundario
 {
     margin-left: 10%;
