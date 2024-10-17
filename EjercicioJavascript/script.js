@@ -1,3 +1,5 @@
+"use strict";
+
 function conocermas()
 {
     let boton = document.getElementById("conocermas");
