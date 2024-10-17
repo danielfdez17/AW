@@ -6,30 +6,33 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-<div class="calculadora-grilla">
+<form class="calculadora-grilla" id="formulario" action="/calculate" method="POST">
     <div class= "output">
     <input class="display" type="text" id="result" placeholder="0">
     </div>
+    <button type="button" name="data-number" value="1">1</button>
+    <button type="button" name="data-number" value="2">2</button>
+    <button type="button" name="data-number" value="3">3</button>
+    <button type="button" name="data-opera" value="+">+</button>
+    <button type="button" name="data-number" value="4">4</button>
+    <button type="button" name="data-number" value="5">5</button>
+    <button type="button" name="data-number" value="6">6</button>
+    <button type="button" name="data-opera" value="-">-</button>
+    <button type="button" name="data-number" value="7">7</button>
+    <button type="button" name="data-number" value="8">8</button>
+    <button type="button" name="data-number" value="9">9</button>
+    <button type="button" name="data-opera" value="*">*</button>
+    <button type="button" name="data-delete" value="C">C</button>
+    <button type="button" name="data-number" value="0">0</button>
+    <button type="button" name="data-igual" value="=">=</button>
+    <button type="button" name="data-opera" value="/">/</button>
 
-    <button name="data-number">1</button>
-    <button name="data-number">2</button>
-    <button name="data-number">3</button>
-    <button name="data-opera">+</button>
-    <button name="data-number">4</button>
-    <button name="data-number">5</button>
-    <button name="data-number">6</button>
-    <button name="data-opera">-</button>
-    <button name="data-number">7</button>
-    <button name="data-number">8</button>
-    <button name="data-number">9</button>
-    <button name="data-opera">*</button>
-    <button name="data-delete">C</button>
-    <button name="data-number">0</button>
-    <button name="data-igual">=</button>
-    <button name="data-opera">/</button>
-</div>
+    <input type="hidden" id="firstValue" name="firstValue">
+    <input type="hidden" id="operator" name="operator">
+    <input type="hidden" id="secondValue" name="secondValue">
+</form>
+
     <script src='scripts/script.js'></script>
-
 </body>
 </html>
 
