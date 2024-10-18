@@ -142,3 +142,10 @@ button {
         display: none !important;
     }
 }
+
+footer > ul > li > p > a > img {
+    border-radius: 0;
+    border: 0;
+    width: 88px;
+    height: 31px;
+}
