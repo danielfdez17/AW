@@ -48,40 +48,62 @@ input
     width: 30% !important;
 }
 
-/* Media query para pantallas menores a 430px */
-@media (min-width: 430px) and (max-width: 675px) {
+@media (min-device-width: 320px) and (max-device-width: 430px) {
     .ancho {
-        background-color: rgb(238, 0, 255); /* Color rojo */
+        width: 100% !important;
+    }
+
+    .display
+    {
+        font-size: 10rem;
+    }
+
+    .container
+    {
+        font-size: 100px;
+    }
+}
+
+
+
+/* Media query para pantallas menores a 430px */
+@media (min-device-width: 430px) and (max-device-width: 600px) {
+    .ancho {
+        width: 70% !important;
     }
 
     .display
     {
         font-size: 8rem;
     }
+
+    
+    .container
+    {
+        font-size: 70px;
+    }
 }
 
-@media (min-width: 675px) and (max-width: 1070px) {
+@media (min-device-width: 600px) and (max-device-width: 1070px) {
     .ancho {
         width: 50% !important;
-        background-color: red;
     }
 
     .display
     {
-        font-size: 7rem;
+        font-size: 5rem;
     }
 }
 
 
-@media (min-width: 1070px) and (max-width: 1440px) {
+@media (min-device-width: 1070px) and (max-device-width: 1440px) {
     .ancho{
         width: 40%!important;
-        background-color: gray;
     }
 
     .display
     {
-        font-size: 6rem;
+        font-size: 4rem;
     }
 }
 
