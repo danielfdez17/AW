@@ -22,14 +22,10 @@ app.post("/calculate", (req, res) => {
   let primer_valor = parseFloat(req.body.firstValue);
   let segundo_valor = parseFloat(req.body.secondValue);
 
-  if (req.body.operator === "+")
-    resultado = calculadora.sum(primer_valor, segundo_valor);
-  else if (req.body.operator === "-")
-    resultado = calculadora.subtract(primer_valor, segundo_valor);
-  else if (req.body.operator === "*")
-    resultado = calculadora.multiply(primer_valor, segundo_valor);
-  else if (req.body.operator === "/")
-    resultado = calculadora.divide(primer_valor, segundo_valor);
+  if (req.body.operator === "+") resultado = calculadora.sum(primer_valor, segundo_valor);
+  else if (req.body.operator === "-") resultado = calculadora.subtract(primer_valor, segundo_valor);
+  else if (req.body.operator === "*") resultado = calculadora.multiply(primer_valor, segundo_valor);
+  else if (req.body.operator === "/") resultado = calculadora.divide(primer_valor, segundo_valor);
 
   res.json({ resultado: resultado });
 });

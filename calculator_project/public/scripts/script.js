@@ -1,11 +1,18 @@
 "use strict";
 
 function show(c) {
-  if ($("#display").val() !== "0") {
+
+  let ultimoCaracter = $("#display").val().slice(-1);
+ 
+  //Sustituir ultimo caracter
+  if(/[+\-*/]/.test(ultimoCaracter) && /[+\-*/]/.test(c)) 
+  {
+    remove();
     $("#display").val($("#display").val() + c);
-  } else {
-    $("#display").val(c);
   }
+  else if (($("#display").val() !== "0")) $("#display").val($("#display").val() + c);
+  else $("#display").val(c);
+
 }
 
 function remove() {
