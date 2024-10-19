@@ -1,42 +1,88 @@
-body
+.container
 {
-    padding: 0;
-    margin: 0;
-    background: linear-gradient(to right,#000000, #00ff6c);
-}
-.calculadora-grilla 
-{
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    grid-template-columns: repeat(4,100px);
-    min-height: 100vh;
-    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    font-size: 40px;
 }
 
-.output
+.display
 {
-    grid-column: 1/-1;
-    background-color: rgba(255, 255, 255, 0.75);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    flex-direction: column;
-    padding: 10px;
-    word-wrap: break-word;
-    word-break: break-all;
-}
-.output .display
-{
-    color: black;
-    font-size: 1.85rem;
+    background: transparent;
+    border: 0;
     text-align: right;
-}
-.calculadora-grilla>button:hover
-{
-    background-color: rgb(0, 238, 255);
+    font-size: 5rem;
+    color: #FFFAF5;
 }
 
-input[type="submit"] {
-    width: 400%;
+input
+{
+    width: 23% !important; /* Máximo ancho del 23% */
+    border: 0;
+    border-radius: 50px;
+    color: #FFFAF5;
 }
+
+.operador
+{
+    background-color: #FF9F0A;
+}
+
+.numero
+{
+    background-color: #2A2A2C;
+}
+
+.especiales
+{
+    background-color: #59595C;
+}
+
+.h-20 {
+    height: 20%;
+}
+
+.h-30 {
+    height: 30%;
+}
+
+.ancho
+{
+    width: 30% !important;
+}
+
+/* Media query para pantallas menores a 430px */
+@media (min-width: 430px) and (max-width: 675px) {
+    .ancho {
+        background-color: rgb(238, 0, 255); /* Color rojo */
+    }
+
+    .display
+    {
+        font-size: 8rem;
+    }
+}
+
+@media (min-width: 675px) and (max-width: 1070px) {
+    .ancho {
+        width: 50% !important;
+        background-color: red;
+    }
+
+    .display
+    {
+        font-size: 7rem;
+    }
+}
+
+
+@media (min-width: 1070px) and (max-width: 1440px) {
+    .ancho{
+        width: 40%!important;
+        background-color: gray;
+    }
+
+    .display
+    {
+        font-size: 6rem;
+    }
+}
+
+
