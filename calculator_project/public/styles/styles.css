@@ -20,6 +20,11 @@ input
     color: #FFFAF5;
 }
 
+input:hover, input:focus
+{
+    opacity: .75;
+}
+
 .operador
 {
     background-color: #FF9F0A;
