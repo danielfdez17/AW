@@ -3,12 +3,16 @@
 function show(c) {
   let ultimoCaracter = $("#display").val().slice(-1);
 
+  //Permite comenzar con decimales 0.x sin este if se vería .x sin el 0
   if(c == "." && 
     ($("#display").val().length == 0 
     || $("#display").val().length == 1 && $("#display").val() === "0")) $("#display").val("0.")
+
+  //Evitamos poder poner mas de 2 puntos en un numero que ya es decimal
   else if((c == "." && parseFloat($("#display").val()) % 1 !== 0) || (ultimoCaracter == "." && c == ".")) return;
   else
   {
+    //Sutiuimos el operador
     if(/[+\-*/]/.test(ultimoCaracter) && /[+\-*/]/.test(c)) 
       {
         remove();

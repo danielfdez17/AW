@@ -3,6 +3,7 @@
     font-size: 40px;
 }
 
+/* Pantalla */
 .display
 {
     background: transparent;
@@ -12,6 +13,7 @@
     color: #FFFAF5;
 }
 
+/* Botones */
 input
 {
     width: 23% !important; /* Máximo ancho del 23% */
@@ -40,6 +42,7 @@ input:hover, input:focus
     background-color: #59595C;
 }
 
+/* Alturas especificas que no tiene bootstrap*/
 .h-20 {
     height: 20%;
 }
@@ -48,6 +51,8 @@ input:hover, input:focus
     height: 30%;
 }
 
+
+/* Tamaños especificos segun tamaño de la pantalla*/
 .ancho
 {
     width: 30% !important;
@@ -69,9 +74,6 @@ input:hover, input:focus
     }
 }
 
-
-
-/* Media query para pantallas menores a 430px */
 @media (min-device-width: 430px) and (max-device-width: 600px) {
     .ancho {
         width: 70% !important;
@@ -99,7 +101,6 @@ input:hover, input:focus
         font-size: 5rem;
     }
 }
-
 
 @media (min-device-width: 1070px) and (max-device-width: 1440px) {
     .ancho{
