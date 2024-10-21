@@ -8,42 +8,42 @@
 </head>
 <body class="d-flex align-items-center vh-100 bg-black">
 
-    <form id="formulario" class="container h-75 d-flex flex-column ancho"action="/calculate" method="post">
+    <form id="formulario" class="container h-75 d-flex flex-column ancho" action="/calculate" method="post" aria-label="Calculadora">
 
         <div class="row h-20 w-100">
-            <input class="col-12 output display w-100" type="text" id="display" placeholder="0" disabled>
+            <input class="col-12 output display w-100" type="text" id="display" placeholder="0" aria-label="Pantalla de resultado" disabled>
         </div>
 
         <div class="row h-30 w-100 mt-1">
-            <input class="numero m-1" type="button" value="1" onclick="show('1')">
-            <input class="numero m-1" type="button" value="2" onclick="show('2')">
-            <input class="numero m-1" type="button" value="3" onclick="show('3')">
-            <input class="operador m-1" type="button" value="+" onclick="show('+')">
+            <input class="numero m-1" type="button" value="1" onclick="show('1')" aria-label="Número 1">
+            <input class="numero m-1" type="button" value="2" onclick="show('2')" aria-label="Número 2">
+            <input class="numero m-1" type="button" value="3" onclick="show('3')" aria-label="Número 3">
+            <input class="operador m-1" type="button" value="+" onclick="show('+')" aria-label="Símbolo de más">
         </div>
 
         <div class="row h-30 w-100">
-            <input class="numero m-1" type="button" value="4" onclick="show('4')">
-            <input class="numero m-1" type="button" value="5" onclick="show('5')">
-            <input class="numero m-1" type="button" value="6" onclick="show('6')">
-            <input class="operador m-1" class="numero" type="button" value="-" onclick="show('-')">
+            <input class="numero m-1" type="button" value="4" onclick="show('4')" aria-label="Número 4">
+            <input class="numero m-1" type="button" value="5" onclick="show('5')" aria-label="Número 5">
+            <input class="numero m-1" type="button" value="6" onclick="show('6')" aria-label="Número 6">
+            <input class="operador m-1" class="numero" type="button" value="-" onclick="show('-')" aria-label="Símbolo de menos">
         </div>
 
         <div class="row h-30 w-100">
-            <input class="numero m-1" type="button" value="7" onclick="show('7')">
-            <input class="numero m-1" type="button" value="8" onclick="show('8')">
-            <input class="numero m-1" type="button" value="9" onclick="show('9')">
-            <input class="operador m-1" type="button" value="/" onclick="show('/')">
+            <input class="numero m-1" type="button" value="7" onclick="show('7')" aria-label="Número 7">
+            <input class="numero m-1" type="button" value="8" onclick="show('8')" aria-label="Número 8">
+            <input class="numero m-1" type="button" value="9" onclick="show('9')" aria-label="Número 9">
+            <input class="operador m-1" type="button" value="/" onclick="show('/')" aria-label="Símbolo de dividir">
         </div>
 
         <div class="row h-30 w-100">
-            <input class="especiales m-1" type="button" value="C" onclick="clearDisplay()">
-            <input class="numero m-1" type="button" value="0" onclick="show('0')">
-            <input class="numero m-1" type="button" value="." onclick="show('.')">
-            <input class="operador m-1" type="button" value="*" onclick="show('*')">
+            <input class="especiales m-1" type="button" value="C" onclick="clearDisplay()" aria-label="Limpiar pantalla">
+            <input class="numero m-1" type="button" value="0" onclick="show('0')" aria-label="Número 0">
+            <input class="numero m-1" type="button" value="." onclick="show('.')" aria-label="Coma">
+            <input class="operador m-1" type="button" value="*" onclick="show('*')" aria-label="Símbolo de multiplicar">
         </div>
         
         <div class="row h-30 w-100">
-            <input class="operador w-100 mt-1" type="submit" value="=" onclick="calculate()">
+            <input class="operador w-100 mt-1" type="submit" value="=" onclick="calculate()" aria-label="Símbolo de multiplicar">
         </div>
 
     </form>

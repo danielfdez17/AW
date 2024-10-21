@@ -1,18 +1,22 @@
 "use strict";
 
 function show(c) {
-
   let ultimoCaracter = $("#display").val().slice(-1);
- 
-  //Sustituir ultimo caracter
-  if(/[+\-*/]/.test(ultimoCaracter) && /[+\-*/]/.test(c)) 
-  {
-    remove();
-    $("#display").val($("#display").val() + c);
-  }
-  else if (($("#display").val() !== "0")) $("#display").val($("#display").val() + c);
-  else $("#display").val(c);
 
+  if(c == "." && 
+    ($("#display").val().length == 0 
+    || $("#display").val().length == 1 && $("#display").val() === "0")) $("#display").val("0.")
+  else if((c == "." && parseFloat($("#display").val()) % 1 !== 0) || (ultimoCaracter == "." && c == ".")) return;
+  else
+  {
+    if(/[+\-*/]/.test(ultimoCaracter) && /[+\-*/]/.test(c)) 
+      {
+        remove();
+        $("#display").val($("#display").val() + c);
+      }
+      else if (($("#display").val() !== "0")) $("#display").val($("#display").val() + c);
+      else $("#display").val(c);
+  }
 }
 
 function remove() {
@@ -46,9 +50,10 @@ $("#formulario").on("submit", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
+  
   const key = event.key;
   if (
-    (key >= 0 && key <= 9) ||
+    (key >= 0 && key <= 9 && key != " ") ||
     key == "." ||
     key == "+" ||
     key == "*" ||
@@ -56,7 +61,7 @@ document.addEventListener("keydown", (event) => {
     key == "-"
   ) {
     show(key);
-  } else if (key == "c") clearDisplay();
-  else if (key == "=" || key == "Enter") calculate();
+  } else if (key.toLowerCase() == "c") clearDisplay();
+  else if (key == "=") calculate();
   else if (event.key == "Backspace" || event.key == "Delete") remove();
 });
