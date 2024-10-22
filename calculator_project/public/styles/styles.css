@@ -104,7 +104,7 @@ input:hover, input:focus
 
 @media (min-device-width: 1070px) and (max-device-width: 1440px) {
     .ancho{
-        width: 40%!important;
+        width: 40% !important;
     }
 
     .display
