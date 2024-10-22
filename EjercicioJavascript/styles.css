@@ -22,6 +22,7 @@ body {
     }
 }
 
+/* Cambio en la posicion para pantallas grandes*/
 @keyframes AnimationName {
     0% {
         background-position: 50% 150%;
@@ -31,6 +32,7 @@ body {
     }
 }
 
+/* Cambio en la posicion para pantallas pequeñas*/
 @keyframes AnimationNameSmall {
     0% {
         background-position: 50% 100%;
@@ -40,6 +42,7 @@ body {
     }
 }
 
+/* Encabezado */
 header {
     color: var(--text-color);
 }
@@ -48,11 +51,13 @@ header nav li:hover, header nav li a:focus{
     text-decoration: underline;
 }
 
+/* Hero */
 .seccion {
     color: var(--text-color);
     transition: 2s;
 }
 
+/* Boton conocer más */
 .boton {
     background-color: var(--inicio-degradado);
     color: inherit;
@@ -70,19 +75,23 @@ header nav li:hover, header nav li a:focus{
     opacity: 0.5;
 }
 
+/* Texto */
 #texto-dinamico {
     transition: 0.5s;
 }
 
+/* Imagen */
 #imagen {
     transition: 0.5s;
 }
 
+/* Ajustes tema y tamaño */
 .ajustes {
     font-size: 18px;
     transition: 1s;
 }
 
+/* Boton ajustes tema y tamaño */
 .boton_ajustes:focus{
     border: 2px solid var(--text-color) !important;
     background-color: rgb(108, 108, 108) !important;

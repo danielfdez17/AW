@@ -1,5 +1,6 @@
 "use strict";
 
+//Funcionamiento del boton conocer más
 function conocermas()
 {
     let boton = document.getElementById("conocermas");
