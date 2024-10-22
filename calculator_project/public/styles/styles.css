@@ -42,7 +42,7 @@ input:hover, input:focus
     background-color: #59595C;
 }
 
-/* Alturas especificas que no tiene bootstrap*/
+/* Alturas especificas que no tiene bootstrap */
 .h-20 {
     height: 20%;
 }
@@ -52,7 +52,7 @@ input:hover, input:focus
 }
 
 
-/* Tamaños especificos segun tamaño de la pantalla*/
+/* Tamaños especificos segun tamaño de la pantalla */
 .ancho
 {
     width: 30% !important;
