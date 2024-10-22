@@ -49,7 +49,6 @@ header nav li:hover, header nav li a:focus{
 }
 
 .seccion {
-
     color: var(--text-color);
     transition: 2s;
 }
@@ -84,11 +83,7 @@ header nav li:hover, header nav li a:focus{
     transition: 1s;
 }
 
-
-
-.boton_ajustes:focus
-{
-
+.boton_ajustes:focus{
     border: 2px solid var(--text-color) !important;
     background-color: rgb(108, 108, 108) !important;
 }
