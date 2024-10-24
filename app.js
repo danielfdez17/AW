@@ -21,6 +21,35 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Envía el archivo estático para mostrar la calculadora
+app.get("/", (req, res) => {
+  res.redirect("/productos");
+});
+
+// Envía el archivo estático para mostrar la calculadora
+app.get("/productos", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Recibe la petición del formulario para realizar la operación ingresada por el usuario
+app.post("/calculate", (req, res) => {
+  let resultado = 0;
+
+  let primer_valor = parseFloat(req.body.firstValue);
+  let segundo_valor = parseFloat(req.body.secondValue);
+
+  if (req.body.operator === "+")
+    resultado = calculadora.sum(primer_valor, segundo_valor);
+  else if (req.body.operator === "-")
+    resultado = calculadora.subtract(primer_valor, segundo_valor);
+  else if (req.body.operator === "*")
+    resultado = calculadora.multiply(primer_valor, segundo_valor);
+  else if (req.body.operator === "/")
+    resultado = calculadora.divide(primer_valor, segundo_valor);
+
+  res.json({ resultado: resultado });
+});
+
 // Manejo de errores 404
 app.use(function (req, res, next) {
   next(createError(404));
