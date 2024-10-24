@@ -6,14 +6,16 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const port = 3000;
-const mysql = require("mysql")
+const mysql = require("mysql");
+const operaciones = require("./db/operaciones.js");
+const paginasDinamicas = require("./public/script.js");
 
 // Database
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DB
+  database: process.env.MYSQL_DB,
 });
 
 // Middlewares generales
@@ -33,22 +35,17 @@ app.get("/productos", (req, res) => {
 
 // Recibe la petición del formulario para realizar la operación ingresada por el usuario
 app.post("/productos", (req, res) => {
-  let resultado = 0;
-
-  let primer_valor = parseFloat(req.body.firstValue);
-  let segundo_valor = parseFloat(req.body.secondValue);
-
-  if (req.body.operator === "+")
-    resultado = calculadora.sum(primer_valor, segundo_valor);
-  else if (req.body.operator === "-")
-    resultado = calculadora.subtract(primer_valor, segundo_valor);
-  else if (req.body.operator === "*")
-    resultado = calculadora.multiply(primer_valor, segundo_valor);
-  else if (req.body.operator === "/")
-    resultado = calculadora.divide(primer_valor, segundo_valor);
-
-  res.json({ resultado: resultado });
+  const producto = req.params.producto;
+  operaciones.insertarProducto(producto, (err, nombre) => {
+    if (err) {
+      console.log(`Error: ${err}`);
+    } else {
+      paginasDinamicas.productoInsertado(res, nombre);
+    }
+  });
 });
+
+app.patch("/productos", (req, res) => {});
 
 // Manejo de errores 404
 app.use(function (req, res, next) {
@@ -60,4 +57,4 @@ app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto http://localhost:${port}`);
 });
 
-module.exports = {app, pool};
+module.exports = { app, pool };

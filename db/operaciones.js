@@ -1,7 +1,7 @@
 "use strict";
 const { pool } = require("../app.js");
 
-function insertarProducto(producto) {}
+function insertarProducto(producto, callback) {}
 function eliminarProducto(id, callback) {
   pool.getConnection((err, connection) => {
     if (err) {
