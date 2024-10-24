@@ -32,7 +32,7 @@ app.get("/productos", (req, res) => {
 });
 
 // Recibe la petición del formulario para realizar la operación ingresada por el usuario
-app.post("/calculate", (req, res) => {
+app.post("/productos", (req, res) => {
   let resultado = 0;
 
   let primer_valor = parseFloat(req.body.firstValue);
