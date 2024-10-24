@@ -62,3 +62,5 @@ function productosLeidos(res, productos) {
   res.write("</body>");
   res.write("</html>");
 }
+
+module.exports = { productoEliminado, productoInsertado, productosLeidos };
