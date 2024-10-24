@@ -1,5 +1,5 @@
 "use strict";
-const { pool } = require("./app.js");
+const { pool } = require("../app.js");
 
 function insertarProducto(producto) {}
 function eliminarProducto(id, callback) {
