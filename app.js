@@ -4,10 +4,9 @@
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
-const calculadora = require("./calculos");
 const app = express();
 const port = 3000;
-const mysql = require("mysql2")
+const mysql = require("mysql")
 
 // Database
 const pool = mysql.createPool({
