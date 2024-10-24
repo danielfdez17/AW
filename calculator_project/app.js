@@ -5,7 +5,6 @@ const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const calculadora = require("./calculos");
-const exp = require("constants");
 const app = express();
 const port = 3000;
 
@@ -13,6 +12,11 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
+// Envía el archivo estático para mostrar la calculadora
+app.get("/", (req, res) => {
+  res.redirect("/calculate");
+});
 
 // Envía el archivo estático para mostrar la calculadora
 app.get("/calculate", (req, res) => {
