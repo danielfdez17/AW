@@ -11,11 +11,11 @@ function show(c) {
     .trim();
   //Permite comenzar con decimales 0.x; Sin este if se vería .x sin el 0
   if (
-    c == "." &&
+    (c == "." || c == "+" || c == "-" || c == "*" || c == "/") &&
     $("#display").val().length == 1 &&
     $("#display").val() === "0"
   )
-    $("#display").val("0.");
+    $("#display").val(`0${c}`);
   //Evitamos poder poner mas de 2 puntos en un numero que ya es decimal
   else if (
     (c == "." && parseFloat(ultimoNumero) % 1 !== 0) ||
