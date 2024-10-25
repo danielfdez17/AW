@@ -41,3 +41,9 @@
     color: white !important;
     cursor: pointer;
 }
+
+.modal-formato{
+    background-color: #424242 !important;
+    color: white !important;
+    border: 2px solid white !important;
+}

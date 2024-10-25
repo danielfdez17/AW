@@ -38,17 +38,6 @@ app.get("/productos", (req, res) => {
   paginasDinamicas.productosLeidos(res, productos);
 });
 
-app.get("/productos", (req, res) => {
-  const productos = [
-    // Aquí van tus productos, por ejemplo:
-    { nombre: "Producto 1", fecha_registro: "2024-10-01", precio: 10.99 },
-    { nombre: "Producto 2", fecha_registro: "2024-10-02", precio: 15.49 },
-    // Agrega más productos según sea necesario
-  ];
-  paginasDinamicas.productosLeidos(res, productos);
-  res.render("index");
-});
-
 // Recibe la petición del formulario para realizar la operación ingresada por el usuario
 app.post("/productos", (req, res) => {
   const producto = req.params.producto;

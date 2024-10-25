@@ -108,10 +108,10 @@ function productosLeidos(res, productos) {
 
         </div>
 
-        <!-- Modal -->
+    <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
+              <div class="modal-content modal-formato">
                 <form>
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo producto</h1>
