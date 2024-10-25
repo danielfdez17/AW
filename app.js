@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Envía el archivo estático para mostrar la calculadora
 app.get("/productos", (req, res) => {
   const productos = [
-    // Aquí van tus productos, por ejemplo:
+    //Producots de ejemplo, habria que cambiar esta parte por operaciones.js
     { nombre: "Producto 1", fecha_registro: "2024-10-01", precio: 10.99 },
     { nombre: "Producto 2", fecha_registro: "2024-10-02", precio: 15.49 },
   ];
