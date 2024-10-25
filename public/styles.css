@@ -1,1 +1,36 @@
-/**/
+:root
+{
+    background: rgba(31,30,35); 
+    background: rgba(24,23,28);
+}
+
+.fondo
+{
+    background: #212121;
+}
+
+.lista
+{
+    background: #424242; 
+    border:1px solid white;
+    color: white !important;
+    border-radius: 20px !important;
+}
+
+.lista .elemento
+{
+    background: #424242; 
+    border: 2px solid white !important;
+    color: white !important;
+    border-radius: 20px !important;
+}
+
+.lista .nuevo
+{
+    background: #424242; 
+    border-radius: 20px !important;
+    border: 2px solid white !important;
+    border-style: dashed !important;
+    color: white !important;
+    cursor: pointer;
+}
