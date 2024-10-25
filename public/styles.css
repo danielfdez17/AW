@@ -25,6 +25,13 @@
     border-radius: 20px !important;
 }
 
+.lista .elemento .eliminar
+{
+    background-color: transparent;
+    border: 0;
+    fill: white;
+}
+
 .lista .nuevo
 {
     background: #424242; 
