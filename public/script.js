@@ -1,56 +1,5 @@
 "use strict";
 
-function productoInsertado(res, nombre) {
-  res.setHeader("Content-Type", "text/html");
-  res.write(`
-      <div class="toast-container position-fixed bottom-0 end-0 p-3">
-          <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="liveToast" data-bs-autohide="false">
-              <div class="d-flex">
-                  <div class="toast-body">
-                      Producto ${nombre} añadido correctamente
-                  </div>
-                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-          </div>
-      </div>
-  `);
-  res.end();
-}
-
-function productoEliminado(res, nombre) {
-  res.setHeader("Content-Type", "text/html");
-  res.write(`
-      <div class="toast-container position-fixed bottom-0 end-0 p-3">
-          <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="liveToast" data-bs-autohide="false">
-              <div class="d-flex">
-                  <div class="toast-body">
-                      Producto ${nombre} eliminado correctamente
-                  </div>
-                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-          </div>
-      </div>
-  `);
-  res.end();
-}
-
-function error(res, error) {
-  res.setHeader("Content-Type", "text/html");
-  res.write(`
-      <div class="toast-container position-fixed bottom-0 end-0 p-3">
-          <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="liveToast">
-              <div class="d-flex">
-                  <div class="toast-body">
-                      Ha ocurrido un error ${error}
-                  </div>
-                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-          </div>
-      </div> 
-  `);
-  res.end();
-}
-
 function productosLeidos(res, productos) {
   res.setHeader("Content-Type", "text/html");
 
@@ -80,7 +29,7 @@ function productosLeidos(res, productos) {
                 </div>
                 <div class="d-flex gap-5 align-items-center">
                 <span class="badge bg-primary rounded-pill">
-                $${producto.precio.toFixed(2)}
+                ${producto.precio}
                 </span>
                 <button type="submit" class="eliminar m-0 p-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
@@ -103,8 +52,6 @@ function productosLeidos(res, productos) {
                     Nuevo Producto
                 </li>
             </ul>
-            {{mensajes}}
-
         </div>
 
     <!-- Modal -->
@@ -136,13 +83,73 @@ function productosLeidos(res, productos) {
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="submit" class="btn btn-primary" id="guardar">Guardar cambios</button>
                     </div>
                 </form>
               </div>
             </div>
-        </div>
+            
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" id="nuevo">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Producto añadido correctamente
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" id="eliminar">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Producto eliminado correctamente
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="error">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Ha ocurrido un error
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+        <script>
+        document.getElementById('guardar').onclick = (event) => {
+            // Prevenir el envío del formulario temporalmente
+            event.preventDefault();
+
+            // Obtener los valores de los campos
+            let nombre = document.getElementById('nombre').value.trim();
+            let precio = document.getElementById('precio').value.trim();
+            let disponibilidad = document.getElementById('disponibilidad').value;
+
+            // Validar que todos los campos requeridos estén completos
+            if (nombre && precio && disponibilidad) {
+                // Si todo está completo, mostrar el toast y enviar el formulario
+                let toastEl = document.getElementById('nuevo')
+                let toast = new bootstrap.Toast(toastEl);
+                toast.show();
+                setTimeout(() => {
+                    event.target.closest("form").submit();
+                }, 2000); // Opcional: esperar 2 segundos antes de enviar el formulario
+            } else {
+                // Si falta algún campo, mostrar el toast de error
+                let errorToastEl = document.getElementById('error');
+                let errorToast = new bootstrap.Toast(errorToastEl);
+                errorToast.show();
+            }
+        };
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
     </html>
@@ -152,9 +159,4 @@ function productosLeidos(res, productos) {
   res.end();
 }
 
-module.exports = {
-  productoEliminado,
-  productoInsertado,
-  error,
-  productosLeidos,
-};
+module.exports = { productosLeidos };

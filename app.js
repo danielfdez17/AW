@@ -36,14 +36,9 @@ function cbLeerProductos(err) {}
 
 // Envía el archivo estático para mostrar la calculadora
 app.get("/productos", (req, res) => {
-  //   const productos = [
-  //     //Producots de ejemplo, habria que cambiar esta parte por operaciones.js
-  //     { nombre: "Producto 1", fecha_registro: "2024-10-01", precio: 10.99 },
-  //     { nombre: "Producto 2", fecha_registro: "2024-10-02", precio: 15.49 },
-  //   ];
   operaciones.leerProductos(pool, (err, productos) => {
     if (err) {
-      console.log(`Error: ${err}`);
+      paginasDinamicas.productosLeidos(res, nombre, "error");
     } else {
       paginasDinamicas.productosLeidos(res, productos);
     }
@@ -52,16 +47,23 @@ app.get("/productos", (req, res) => {
 
 // Recibe la petición del formulario para realizar la operación ingresada por el usuario
 app.post("/productos", (req, res) => {
-  const producto = {
+  const nuevo_producto = {
     nombre: req.body.nombre,
     precio: req.body.precio,
     disponibilidad: req.body.disponibilidad,
   };
-  operaciones.insertarProducto(pool, producto, (err, nombre) => {
+  operaciones.insertarProducto(pool, nuevo_producto, (err, nombre) => {
     if (err) {
-      console.log(`Error: ${err}`);
-    } else {
-      paginasDinamicas.productoInsertado(res, nombre);
+      paginasDinamicas.productosLeidos(res, null, "error", nuevo_producto);
+    } else 
+    {
+      operaciones.leerProductos(pool, (err, productos) => {
+        if (err) {
+          paginasDinamicas.productosLeidos(res, null, "error", nuevo_producto);
+        } else {
+          paginasDinamicas.productosLeidos(res, productos, "nuevo", nuevo_producto);
+        }
+      });
     }
   });
 });
