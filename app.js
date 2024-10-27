@@ -55,15 +55,31 @@ app.post("/productos", (req, res) => {
   operaciones.insertarProducto(pool, nuevo_producto, (err, nombre) => {
     if (err) {
       paginasDinamicas.productosLeidos(res, null, "error", nuevo_producto);
-    } else 
-    {
+    } else {
       operaciones.leerProductos(pool, (err, productos) => {
         if (err) {
           paginasDinamicas.productosLeidos(res, null, "error", nuevo_producto);
         } else {
-          paginasDinamicas.productosLeidos(res, productos, "nuevo", nuevo_producto);
+          paginasDinamicas.productosLeidos(
+            res,
+            productos,
+            "nuevo",
+            nuevo_producto
+          );
         }
       });
+    }
+  });
+});
+
+app.patch("/productos", (req, res) => {
+  const id = req.params.id;
+  console.log(`Se quiere eliminar el producto con id ${id}`);
+  operaciones.eliminarProducto(pool, id, (err) => {
+    if (err) {
+      console.log(`Error: ${err}`);
+    } else {
+      console.log(`Producto ${id} eliminado correctamente`);
     }
   });
 });
