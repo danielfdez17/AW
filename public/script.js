@@ -22,7 +22,6 @@ function productosLeidos(res, productos) {
     res.write(`
                 <li class="list-group-item d-flex justify-content-between align-items-center py-3 elemento">
                 <div>
-                <strong>ID:</strong> ${producto.id}<br>
                 <strong>Producto:</strong> ${producto.nombre}<br>
                 <strong>Fecha de Registro:</strong> ${new Date(
                   producto.fecha_registro
@@ -56,13 +55,6 @@ function productosLeidos(res, productos) {
                       </svg>
                     Nuevo Producto
                 </li>
-    <li class="list-group-item mx-3 py-3 d-flex align-items-center gap-2 nuevo" data-bs-toggle="modal" data-bs-target="#removeModal"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-x" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708"/>
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-                    </svg>
-                    Eliminar Producto
-                </li>
             </ul>
         </div>
 
@@ -91,29 +83,6 @@ function productosLeidos(res, productos) {
                                 <option value="1">Sí</option>
                                 <option value="0">No</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="guardar">Guardar cambios</button>
-                    </div>
-                </form>
-              </div>
-            </div>
-    <!-- Remove Modal -->
-
-        <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content modal-formato">
-                <form method="patch" action="/productos">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="removeModalLabel">Eliminar un producto</h1>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="id">ID</label>
-                            <input id="id" class="form-control" name="id" placeholder="Introduzca el id del producto" required/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -158,7 +127,7 @@ function productosLeidos(res, productos) {
             </div> 
 
         </div>
-        <script src="/public/script.js">
+        <script>
         document.getElementById('guardar').onclick = (event) => {
             // Prevenir el envío del formulario temporalmente
             event.preventDefault();
@@ -209,6 +178,5 @@ function productosLeidos(res, productos) {
   `);
   res.end();
 }
-
 
 module.exports = { productosLeidos };

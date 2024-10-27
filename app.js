@@ -14,7 +14,7 @@ const paginasDinamicas = require("./public/script.js");
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "",
   database: "tienda",
   //   host: process.env.MYSQL_HOST,
   //   user: process.env.MYSQL_USER,
@@ -69,6 +69,7 @@ app.post("/productos/eliminar", (req, res) => {
       res.redirect("/productos");
   });
 });
+
 
 // Manejo de errores 404
 app.use(function (req, res, next) {
