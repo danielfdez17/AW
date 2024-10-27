@@ -70,7 +70,6 @@ app.post("/productos/eliminar", (req, res) => {
   });
 });
 
-
 // Manejo de errores 404
 app.use(function (req, res, next) {
   next(createError(404));

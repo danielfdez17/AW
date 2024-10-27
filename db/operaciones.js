@@ -30,6 +30,7 @@ function eliminarProducto(pool, id, callback) {
     } else {
       const sql = "UPDATE productos SET activo = 0 WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
+        console.log(`Acceso a la BD desde eliminarProducto() con id ${id}`);
         connection.release();
         if (err) {
           callback(err);
