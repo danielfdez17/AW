@@ -28,13 +28,13 @@ function eliminarProducto(pool, id, callback) {
     if (err) {
       callback(err);
     } else {
-      const sql = "UPDATE productos SET activo = 0 WHERE activo = ?";
+      const sql = "UPDATE productos SET activo = 0 WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
           callback(err);
         } else {
-          callback(null, filas);
+          callback(null, rows);
         }
       });
     }

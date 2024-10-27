@@ -31,12 +31,16 @@ function productosLeidos(res, productos) {
                 <span class="badge bg-primary rounded-pill">
                 ${producto.precio}
                 </span>
-                <button type="submit" class="eliminar m-0 p-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                </svg>
-                </button>
+
+                <form method="post" action="/productos/eliminar">
+                    <input type="hidden" name="productoId" value="${producto.id}">
+                    <button type="submit" name="productoId" class="boton-eliminar eliminar m-0 p-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                    </button>
+                </form>
                 </div>
                 </li>
                 `);
@@ -58,7 +62,7 @@ function productosLeidos(res, productos) {
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content modal-formato">
-                <form method="post" action="/productos">
+                <form method="post" action="/productos/nuevo">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo producto</h1>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -149,13 +153,29 @@ function productosLeidos(res, productos) {
                 errorToast.show();
             }
         };
+
+        document.querySelectorAll('.boton-eliminar').forEach(boton => {
+        boton.onclick = (event) => {
+            event.preventDefault();
+            const toastEl = document.getElementById('eliminar');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+            
+            // Obtener el formulario más cercano
+            const form = event.target.closest("form");
+
+            setTimeout(() => {
+                form.submit();
+            }, 2000); // Opcional: esperar 2 segundos antes de enviar el formulario
+        };
+        });
+
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
     </html>
               
   `);
-
   res.end();
 }
 

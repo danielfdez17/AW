@@ -6,7 +6,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const port = 3000;
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const operaciones = require("./db/operaciones.js");
 const paginasDinamicas = require("./public/script.js");
 
@@ -14,7 +14,7 @@ const paginasDinamicas = require("./public/script.js");
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "root",
   database: "tienda",
   //   host: process.env.MYSQL_HOST,
   //   user: process.env.MYSQL_USER,
@@ -46,27 +46,30 @@ app.get("/productos", (req, res) => {
 });
 
 // Recibe la petición del formulario para realizar la operación ingresada por el usuario
-app.post("/productos", (req, res) => {
+app.post("/productos/nuevo", (req, res) => {
   const nuevo_producto = {
     nombre: req.body.nombre,
     precio: req.body.precio,
     disponibilidad: req.body.disponibilidad,
   };
   operaciones.insertarProducto(pool, nuevo_producto, (err, nombre) => {
-    if (err) {
-      paginasDinamicas.productosLeidos(res, null, "error", nuevo_producto);
-    } else 
-    {
-      operaciones.leerProductos(pool, (err, productos) => {
-        if (err) {
-          paginasDinamicas.productosLeidos(res, null, "error", nuevo_producto);
-        } else {
-          paginasDinamicas.productosLeidos(res, productos, "nuevo", nuevo_producto);
-        }
-      });
-    }
+    if (err)
+      paginasDinamicas.productosLeidos(res, err);
+    else 
+      res.redirect("/productos");
   });
 });
+
+app.post("/productos/eliminar", (req, res) => {
+  const id_producto = req.body.productoId
+  operaciones.eliminarProducto(pool, id_producto, (err, nombre) => {
+    if (err)
+      paginasDinamicas.productosLeidos(res, err);
+    else 
+      res.redirect("/productos");
+  });
+});
+
 
 // Manejo de errores 404
 app.use(function (req, res, next) {
