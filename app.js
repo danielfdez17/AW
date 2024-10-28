@@ -8,19 +8,21 @@ const app = express();
 const port = 3000;
 const mysql = require("mysql2");
 const operaciones = require("./db/operaciones.js");
-const paginasDinamicas = require("./public/script.js");
 
 // Database
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "root",
   database: "tienda",
   //   host: process.env.MYSQL_HOST,
   //   user: process.env.MYSQL_USER,
   //   password: process.env.MYSQL_PASSWORD,
   //   database: process.env.MYSQL_DB,
 });
+
+app.set('views', path.join(__dirname, 'public'));
+app.set('view engine', 'ejs');
 
 // Envía el archivo estático para mostrar la calculadora
 app.get("/", (req, res) => {
@@ -38,9 +40,9 @@ function cbLeerProductos(err) {}
 app.get("/productos", (req, res) => {
   operaciones.leerProductos(pool, (err, productos) => {
     if (err) {
-      paginasDinamicas.productosLeidos(res, nombre, "error");
+      console.log(err);
     } else {
-      paginasDinamicas.productosLeidos(res, productos);
+      res.render("index", {productos: productos})
     }
   });
 });
@@ -54,7 +56,7 @@ app.post("/productos/nuevo", (req, res) => {
   };
   operaciones.insertarProducto(pool, nuevo_producto, (err, nombre) => {
     if (err)
-      paginasDinamicas.productosLeidos(res, err);
+      console.log(err);
     else 
       res.redirect("/productos");
   });
@@ -64,7 +66,7 @@ app.post("/productos/eliminar", (req, res) => {
   const id_producto = req.body.productoId
   operaciones.eliminarProducto(pool, id_producto, (err, nombre) => {
     if (err)
-      paginasDinamicas.productosLeidos(res, err);
+      console.log(err);
     else 
       res.redirect("/productos");
   });
