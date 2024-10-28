@@ -9,7 +9,7 @@
 </head>
 <body class="d-flex vh-100">
     <div class="container-fluid d-flex justify-content-center align-items-center fondo">
-        <ul class="w-50 list-group list-group-flush p-1 gap-2 lista">
+        <ul class="w-100 w-sm-75 w-md-50 list-group list-group-flush p-1 gap-2 lista">
 
             <%  productos.forEach((producto) => { %>
                 <li class="list-group-item d-flex justify-content-between align-items-center py-3 elemento">
@@ -17,6 +17,8 @@
                         <strong>Producto:</strong><%= producto.nombre %>
                         <br>
                         <strong>Fecha de Registro:</strong><%= new Date(producto.fecha_registro).toLocaleDateString() %>
+                        <br>
+                        <strong>Disponibilidad:</strong><%= producto.disponible == 1 ? ' Si' : ' No' %>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center gap-md-5">
