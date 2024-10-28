@@ -9,9 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let nombre = document.getElementById('nombre').value.trim();
         let precio = document.getElementById('precio').value.trim();
         let disponibilidad = document.getElementById('disponibilidad').value;
-
         // Validar que todos los campos requeridos estén completos
-        if (nombre && precio && disponibilidad) {
+        if ((isNaN(parseFloat(nombre)) && typeof nombre === 'string') && !isNaN(parseFloat(precio)) && disponibilidad) {
             // Si todo está completo, mostrar el toast y enviar el formulario
             let toastEl = document.getElementById('nuevo')
             let toast = new bootstrap.Toast(toastEl);

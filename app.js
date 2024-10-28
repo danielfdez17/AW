@@ -34,8 +34,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-function cbLeerProductos(err) {}
-
 // Envía el archivo estático para mostrar la calculadora
 app.get("/productos", (req, res) => {
   operaciones.leerProductos(pool, (err, productos) => {
@@ -54,6 +52,7 @@ app.post("/productos/nuevo", (req, res) => {
     precio: req.body.precio,
     disponibilidad: req.body.disponibilidad,
   };
+
   operaciones.insertarProducto(pool, nuevo_producto, (err, nombre) => {
     if (err)
       console.log(err);
