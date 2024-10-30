@@ -15,6 +15,8 @@
     border:1px solid white;
     color: white !important;
     border-radius: 20px !important;
+    max-height: 95vh;
+    overflow-y: auto;
 }
 
 .lista .elemento
@@ -46,4 +48,25 @@
     background-color: #424242 !important;
     color: white !important;
     border: 2px solid white !important;
+}
+
+@media (min-device-width: 768px){
+    .w-lg-50
+    {
+        width: 50%;
+    }
+}
+
+@media (min-device-width: 425px) and (max-device-width: 768px){
+    .w-md-75
+    {
+        width: 75%;
+    }
+}
+
+@media (max-device-width: 425px){
+    .w-sm-100
+    {
+        width: 100%;
+    }
 }
