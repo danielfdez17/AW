@@ -22,12 +22,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Usamos router
 app.use("/", router);
 
+// Control error 404
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
+// Control error 500
 app.use(function(req, res, next) {
   next(createError(500));
 });
