@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let precio = document.getElementById('precio').value.trim();
         let disponibilidad = document.getElementById('disponibilidad').value;
         
-        // Validar que todos los campos requeridos estén completos
+        // Validar que todos los campos requeridos estén completos y con los datos correctos
         if ((isNaN(parseFloat(nombre)) && typeof nombre === 'string') && !isNaN(parseFloat(precio)) && disponibilidad) {
             
-            // Si todo está completo, mostrar el toast y enviar el formulario
+            //Mostrar toast de acierto con mensaje correspondiente
             let toastEl = document.getElementById('acierto')
             toastEl.innerHTML  = 
             ` <div class="d-flex">
@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let toast = new bootstrap.Toast(toastEl);
             toast.show();
 
+            //Esperamos 1 segundo antes de enviar el formulario para poder ver el toast
             setTimeout(() => {
                 event.target.closest("form").submit();
             }, 1000);
@@ -40,13 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    //Añadimos un listenter para cuando se haga click en el boton de eliminar de un elemento
     document.querySelectorAll('.boton-eliminar').forEach(boton => {
         boton.onclick = (event) => {
+
+            // Prevenir el envío del formulario temporalmente
             event.preventDefault();
             
+            //Identificamos cual es el nombre del producto mas cercano
             let elemento = event.target.closest("li");
             let nombre = elemento.querySelector("#nombre_producto").textContent;
 
+            //Mostrar toast de acierto con mensaje correspondiente
             let toastEl = document.getElementById('acierto');
             toastEl.innerHTML  = 
             ` <div class="d-flex">
@@ -55,11 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>`;
-
             let toast = new bootstrap.Toast(toastEl);
-            
             toast.show();
             
+            //Esperamos 1 segundo antes de enviar el formulario para poder ver el toast
             setTimeout(() => {
                 event.target.closest("form").submit();
             }, 1000);

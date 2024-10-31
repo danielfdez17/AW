@@ -1,11 +1,11 @@
 "use strict";
-const mysql = require("mysql2");
+const mysql = require("mysql");
 
 // Pool de conexiones para acceso a la BD
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "",
   database: "tienda",
 });
 
