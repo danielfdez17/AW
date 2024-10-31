@@ -7,7 +7,7 @@ const path = require("path");
 const app = express();
 const port = 3000;
 const mysql = require("mysql2");
-const operaciones = require("./db/operaciones.js");
+const router = require("./routers/router.js")
 
 // Database
 const pool = mysql.createPool({
@@ -34,42 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Envía el archivo estático para mostrar la calculadora
-app.get("/productos", (req, res) => {
-  operaciones.leerProductos(pool, (err, productos) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("index", {productos: productos})
-    }
-  });
-});
-
-// Recibe la petición del formulario para realizar la operación ingresada por el usuario
-app.post("/productos/nuevo", (req, res) => {
-  const nuevo_producto = {
-    nombre: req.body.nombre,
-    precio: req.body.precio,
-    disponibilidad: req.body.disponibilidad,
-  };
-
-  operaciones.insertarProducto(pool, nuevo_producto, (err, nombre) => {
-    if (err)
-      console.log(err);
-    else 
-      res.redirect("/productos");
-  });
-});
-
-app.post("/productos/eliminar", (req, res) => {
-  const id_producto = req.body.productoId
-  operaciones.eliminarProducto(pool, id_producto, (err, nombre) => {
-    if (err)
-      console.log(err);
-    else 
-      res.redirect("/productos");
-  });
-});
+app.use("/", router);
 
 
 // Manejo de errores 404
