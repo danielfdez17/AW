@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "ejs": "3.1.10",
+    "express": "4.21.1",
+    "mocha": "10.8.2",
+    "morgan": "1.10.0",
+    "mysql": "^2.18.1"
+  },
+  "name": "aw",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {
+    "nodemon": "3.1.7"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.js",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "local"
+  },
+  "author": "",
+  "license": "ISC"
+}
