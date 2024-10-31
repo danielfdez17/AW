@@ -1,5 +1,6 @@
 "use strict";
 
+// Función que inserta un producto en la BD
 function insertarProducto(pool, producto, callback) {
   pool.getConnection((err, connection) => {
     if (err) {
@@ -22,6 +23,7 @@ function insertarProducto(pool, producto, callback) {
     }
   });
 }
+// Función que elimina un producto de la BD (baja lógica, no física)
 function eliminarProducto(pool, id, callback) {
   pool.getConnection((err, connection) => {
     if (err) {
@@ -39,6 +41,7 @@ function eliminarProducto(pool, id, callback) {
     }
   });
 }
+// Función que lee todos los productos que estén activos en la BD
 function leerProductos(pool, callback) {
   pool.getConnection((err, connection) => {
     if (err) {
