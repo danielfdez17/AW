@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const operaciones = require("../db/operaciones.js");
+const pool = require("../db/pool.js")
 
 router.get("/", (req, res) => {
   res.redirect("/productos");
@@ -9,24 +10,13 @@ router.get("/", (req, res) => {
 
 // Envía el archivo estático para mostrar la calculadora
 router.get("/productos", (req, res) => {
-  res.render("index", {
-    productos: [
-      {
-        nombre: "Producto 1",
-        precio: 15.3,
-        fecha_registro: "31/10/2024",
-        disponible: 1,
-        activo: 1,
-      },
-    ],
+  operaciones.leerProductos(pool, (err, productos) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("index", { productos: productos });
+    }
   });
-  //   operaciones.leerProductos(pool, (err, productos) => {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       res.render("index", { productos: productos });
-  //     }
-  //   });
 });
 
 // Recibe la petición del formulario para realizar la operación ingresada por el usuario
