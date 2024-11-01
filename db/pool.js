@@ -1,10 +1,11 @@
+"use strict";
 const mysql = require("mysql");
 
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "UCM_RIU",
+  database: "UCM_GEU",
   port: 3306,
 });
 
