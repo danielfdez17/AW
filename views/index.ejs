@@ -23,7 +23,7 @@
                     <div>
                         <strong>Producto:</strong> <span id="nombre_producto"><%= producto.nombre %></span>
                         <br>
-                        <strong>Fecha de Registro:</strong><%= new Date(producto.fecha_registro).toLocaleDateString() %>
+                        <strong>Fecha de Registro: </strong><%= new Date(producto.fecha_registro).toLocaleDateString() %>
                         <br>
                         <strong>Disponibilidad:</strong><%= producto.disponible == 1 ? ' Si' : ' No' %>
                     </div>
