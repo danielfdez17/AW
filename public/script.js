@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let disponibilidad = document.getElementById('disponibilidad').value;
         
         // Validar que todos los campos requeridos estén completos y con los datos correctos
-        if ((isNaN(parseFloat(nombre)) && typeof nombre === 'string') && !isNaN(parseFloat(precio)) && disponibilidad) {
+        if (nombre != "" && (isNaN(parseFloat(nombre)) && typeof nombre === 'string') && !isNaN(parseFloat(precio)) && disponibilidad) {
             
             //Mostrar toast de acierto con mensaje correspondiente
             let toastEl = document.getElementById('acierto')
