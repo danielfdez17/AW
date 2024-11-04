@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <%- include("./fragments/head.ejs")%>
+</head>
+<body>
+
+    <div class="container mt-3">
+        <ul class="">
+            <% usuarios.forEach(usuario => { %>
+                <% if (usuario.activo) {%>
+                    <li class="">
+                        <%= usuario.nombre %>
+                        <form action="/borrar" method="post">
+                            <input type="submit" name="id" value="<%= usuario.id %>">
+                        </form>
+                        <!-- <a href="/borrar/<%= usuario.id %>" rel="noopener noreferrer">Borrar</a>  -->
+                    </li>
+                <%}%>
+            <% }); %>
+        </ul>
+    </div>
+    
+</body>
+</html>
