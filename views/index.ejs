@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,17 +10,17 @@
 <body class="d-flex vh-100">
 
     <!-- Contenedor principal -->
-    <div class="container-fluid d-flex justify-content-center align-items-center fondo">
+    <div class="container-fluid d-flex justify-content-center align-items-center fondo" role="main">
 
         <!-- Lista de productos -->
-        <ul class="w-lg-50 w-md-75 w-sm-100 list-group list-group-flush p-1 gap-2 lista">
+        <ul class="w-lg-50 w-md-75 w-sm-100 list-group list-group-flush p-1 gap-2 lista" aria-label="Lista de productos">
             
             <!-- forEach para mostrar todos los productos de la base de datos-->
             <%  productos.forEach((producto) => { %>
                 <li class="list-group-item d-flex justify-content-between align-items-center py-3 elemento">
                     
                     <!-- Informacion general -->
-                    <div>
+                    <div aria-label="Información general sobre el producto (nombre, fecha de registro y disponibilidad)">
                         <strong>Producto:</strong> <span id="nombre_producto"><%= producto.nombre %></span>
                         <br>
                         <strong>Fecha de Registro: </strong><%= new Date(producto.fecha_registro).toLocaleDateString() %>
@@ -29,14 +29,14 @@
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center gap-md-5">
-                        <span class="badge bg-primary rounded-pill">
+                        <span class="badge bg-primary rounded-pill" aria-label="Precio">
                             <%= producto.precio %>
                         </span>
                         
                         <!-- Boton de eliminar -->
                         <form method="post" action="/productos/eliminar">
                             <input type="hidden" name="productoId" value="<%=producto.id%>" id="<%=producto.id%>">
-                            <button type="submit" name="productoId" class="boton-eliminar eliminar m-0 p-0">
+                            <button type="submit" name="productoId" class="boton-eliminar eliminar m-0 p-0" aria-label="Eliminar producto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
@@ -49,7 +49,7 @@
             <% }) %>
 
             <!-- Boton de añadir nuevo producto que despliega el modal -->
-            <li class="list-group-item mx-3 py-3 d-flex align-items-center gap-2 nuevo" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+            <li class="list-group-item mx-3 py-3 d-flex align-items-center gap-2 nuevo" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Añadir nuevo producto"> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"/>
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
@@ -60,13 +60,13 @@
     </div>
 
 <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-label="Formulario para añadir nuevo producto">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content modal-formato">
             <form method="post" action="/productos/nuevo">
                 <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo producto</h1>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Botón de cerrar"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-outline mb-4">
@@ -87,8 +87,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="guardar">Guardar cambios</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Botón de cerrar">Close</button>
+                <button type="submit" class="btn btn-primary" id="guardar" aria-label="Botón de guardar cambios">Guardar cambios</button>
                 </div>
             </form>
           </div>
@@ -97,13 +97,13 @@
 
     <!-- Toast acierto -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" id="acierto">
+        <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" id="acierto" aria-label="Operación exitosa">
         </div>
     </div>
 
     <!-- Toast error -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="error">
+        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="error" aria-label="Error en la operación">
             <div class="d-flex">
                 <div class="toast-body p-3">
                     Ha ocurrido un error
