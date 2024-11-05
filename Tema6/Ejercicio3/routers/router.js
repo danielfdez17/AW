@@ -23,15 +23,15 @@ router.get("/inicio", (req, res) => {
 });
 
 router.get("/secreto", identificacionRequerida, (req, res) => {
-  res.render("secreto");
+  res.render("plantilla", {titulo: "Secreto", cabecera: "SECRETO"});
 });
 
 router.get("/otro_secreto", identificacionRequerida, (req, res) => {
-  res.render("otro_secreto");
+    res.render("plantilla", {titulo: "Otro secreto", cabecera: "OTRO SECRETO"});
 });
 
 router.get("/publico", (req, res) => {
-  res.render("publico");
+    res.render("plantilla", {titulo: "Público", cabecera: "PÚBLICO"});
 });
 
 router.post("/login", (req, res) => {
