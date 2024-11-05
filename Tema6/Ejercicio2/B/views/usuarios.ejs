@@ -12,13 +12,14 @@
         <ul class="">
             <% usuarios.forEach(usuario => { %>
                 <% if (usuario.activo) {%>
+                    <form action="/borrar" method="post">
                     <li class="">
                         <%= usuario.nombre %>
-                        <form action="/borrar" method="post">
-                            <input type="submit" name="id" value="<%= usuario.id %>">
-                        </form>
-                        <!-- <a href="/borrar/<%= usuario.id %>" rel="noopener noreferrer">Borrar</a>  -->
-                    </li>
+                            <input type="hidden" name="id" value="<%= usuario.id %>">
+                            <button type="submit">Borrar</button>
+                            <!-- <a href="/borrar/<%= usuario.id %>" rel="noopener noreferrer">Borrar</a>  -->
+                        </li>
+                    </form>
                 <%}%>
             <% }); %>
         </ul>
