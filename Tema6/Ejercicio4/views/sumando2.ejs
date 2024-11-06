@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primer sumando</title>
+    <title>Segundo sumando</title>
     <%- include("../public/html/head.html")%>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center fw-bold">Sumador de números</h1>
-        <h5 class="text-center">Introduce el primer sumando</h5>
-        <form action="/primer_sumando" method="post">
+    <div class="container mt-3">
+        <h5 class="text-center">Introduce el segundo sumando</h5>
+        <form action="/segundo_sumando" method="post">
             <div class="mb-3 d-flex justify-content-center">
                 <input class="form-control w-25 me-3 border border-3 border-black border-solid" type="number" name="primer_sumando" id="primer_sumando" required>
                 <button class="btn btn-primary" type="submit">Enviar</button>
