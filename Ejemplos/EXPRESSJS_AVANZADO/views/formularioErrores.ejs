@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario con Errores</title>
+        <meta charset="utf-8">
+        <link href="css/estilos.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="login-top">
+            <h2>Formulario de registro con errores</h2>
+        </div>
+        
+        <div id= "mainContainer">
+ <!--           <% if (errores.length>0) { %>
+                <div class="caja_errores">
+                    La información introducida en el formulario es incorrecta:
+                    <ul>
+                        <% errores.forEach(function(error) { %>
+                            <li> <%= error.msg %> </li>
+                        <% }); %>
+                    </ul>
+                </div>
+            <% } %>-->
+            <form method="post" action="procesar_formulario" class = "loginForm">
+                <div class="login-field">
+                    <label for="login">Nombre de usuario: </label>
+                    <input type="text" name="login" width="70%" >
+                </div>
+                <div class="login-field">
+                    <label for="pass" onselectstart="return false;">Contraseña: </label>
+                    <input type="password" name="pass">
+                </div>
+                <div class="login-field">
+                    <label for="email" onselectstart="return false;">Email: </label>
+                    <input type="text" name="email">
+                    <% if (errores.email) { %>
+                        <span class="rojo"> <%= errores.email.msg %> </span>
+                    <% } %>
+                </div>
+                <div class="login-field">
+                    <label for="fechaNacimiento" onselectstart="return false;">Fecha de nacimiento: </label>
+                    <input type="text" name="fechaNacimiento" >
+                    <% if (errores.fechaNacimiento) { %>
+                        <span class="rojo"> <%= errores.fechaNacimiento.msg %> </span>
+                    <% } %>
+                </div>
+                <div class="login-field">
+                    <input type="submit" value="Enviar" class="login-button_normal">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

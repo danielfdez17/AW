@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario</title>
+    <meta charset="utf-8">
+    <link href="css/estilos.css" rel="stylesheet" type="text/css" />
+</head>
+    <body>
+        <h2>Formulario</h2>
+        <form method="POST" action="procesar_formulario.html" enctype="multipart/form-data">
+            <label for="nombre">Nombre: </label> 
+            <input type="text" name="nombre">
+            <label for="apellidos">Apellidos:</label> 
+            <input type="text" name="apellidos">
+            <input type="checkbox" name="fumador" value="si">Fumador/a
+            <label for="foto">Foto:</label> 
+            <input type="file" name="foto">
+            <div class="align-right"><input type="submit" value="Enviar"></div>
+        </form>
+    </body>
+</html>
