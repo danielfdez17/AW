@@ -1,0 +1,29 @@
+.logo
+{
+    height: 80px;
+    width: auto;
+}
+
+.inicio:hover
+{
+    text-decoration: underline;
+}
+
+.registrar
+{
+    color: white;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.registrar:hover
+{
+    color: white;
+    border-radius: 20px;
+}
+
+.registrar:focus
+{
+    opacity: 80%;
+}
+
