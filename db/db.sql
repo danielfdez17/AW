@@ -1,4 +1,4 @@
-create database UCM_GEU;
+create database AW_24;
 
 create table facultades(
     id int primary key auto_increment,
@@ -38,7 +38,7 @@ create table inscripciones(
 );
 
 create table accesibilidad(
-    id_usuario int not null primary key auto_increment,
+    id_usuario int not null primary key,
     paleta_colores varchar(100) not null,
     tamano_texto varchar(100) not null,
     config_navegacion varchar(100) not null,
