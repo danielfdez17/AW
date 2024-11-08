@@ -14,32 +14,13 @@
             </span>
         </button>
          
-        <button class="btn border-0 bg-transparent d-flex align-items-center inicio" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
+        <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin">
             <span class="fs-4">
                 Log In
             </span>
         </button>
-
-        <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-     
-         <button class="btn border-0 bg-black d-flex align-items-center registrar">
+               
+         <button class="btn border-0 bg-black d-flex align-items-center registrar"  data-bs-toggle="modal" data-bs-target="#modalSignUp">
             <span class="fs-4">
                 Sign Up
             </span>
@@ -81,3 +62,84 @@
      <script src="/js/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </header>
+
+
+<!-- Modales -->
+<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <form action="/logIn" method="post">
+
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Log In</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="usuario" class="form-label">Usuario</label>
+          <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu usuario">
+
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="contrasena" placeholder="Ingresa tu contrasena">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Log In</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modales -->
+<div class="modal fade" id="modalSignUp" tabindex="-1" aria-labelledby="modalSignUp" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <form action="/logIn" method="post">
+
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="usuario" class="form-label">Usuario</label>
+          <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu usuario">
+
+          <label for="correo" class="form-label">Correo</label>
+          <input type="text" class="form-control" id="correo" placeholder="Ingresa tu correo">
+
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="contrasena" placeholder="Ingresa tu contrasena">
+
+          <!-- TODO: añadir foreach -->
+          <label for="facultad" class="form-label">Facultad</label>
+          <select name="facultad" id="facultad" class="form-select">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="ingenieria">Ingeniería</option>
+            <option value="medicina">Medicina</option>
+            <option value="derecho">Derecho</option>
+            <option value="arquitectura">Arquitectura</option>
+          </select>
+
+          <label for="rol" class="form-label">Rol</label>
+          <select name="rol" id="rol" class="form-select">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="ingenieria">Organizador</option>
+            <option value="medicina">Asistente</option>
+          </select>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
