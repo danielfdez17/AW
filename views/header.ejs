@@ -51,12 +51,33 @@
             </span>
          </button>
      
-         <button class="btn border-0 bg-transparent d-flex align-items-center">
+         <button class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
              <span class="material-symbols-rounded fs-2">
                 settings
              </span>
          </button>
+
+        <!-- El menú dropdown que se muestra al hacer clic -->
+        <div class="dropdown-menu dropdown-menu-end p-2 mt-2 shadow ajustes">
+            <span>Tema</span>
+            <ul class="list-unstyled d-grid gap-1 p-2 rounded-3 mx-0 shadow" id="Tema">
+                <li><button class="dropdown-item rounded-2" value="Claro" aria-label="Activar modo claro">Claro</button></li>
+                <li><button class="dropdown-item rounded-2" value="Oscuro" aria-label="Activar modo oscuro">Oscuro</button></li>
+                <li><button class="dropdown-item rounded-2 active" value="Predeterminado" aria-label="Activar modo predeterminado">Predeterminado</button></li>
+            </ul>
+            <span class="mt-2">Letra</span>
+            <ul class="list-unstyled d-grid gap-1 p-2 rounded-3 mx-0 shadow" id="Letra">
+                <li><button class="dropdown-item rounded-2 active" value="Normal" aria-label="Activar tamaño de letra normal">Normal</button></li>
+                <li><button class="dropdown-item rounded-2" value="Grande" aria-label="Activar tamaño de letra grande">Grande</button></li>
+                <li><button class="dropdown-item rounded-2" value="Muy grande" aria-label="Activar tamaño de letra muy grande">Muy grande</button></li>
+            </ul>
+        </div>
+      </div>
+
+
     </div>
 
-
+    <!-- Funcionamiento del dropdown -->
+     <script src="/js/header.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </header>
