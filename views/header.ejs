@@ -14,15 +14,34 @@
             </span>
         </button>
          
-        <button class="btn border-0 bg-transparent d-flex align-items-center inicio">
+        <button class="btn border-0 bg-transparent d-flex align-items-center inicio" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
             <span class="fs-4">
                 Log In
             </span>
         </button>
+
+        <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
      
          <button class="btn border-0 bg-black d-flex align-items-center registrar">
             <span class="fs-4">
-                Sig Up
+                Sign Up
             </span>
          </button>
      
