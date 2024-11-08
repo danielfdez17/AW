@@ -29,9 +29,12 @@
         <% } else { %>
 
           <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
-              <span class="fs-5"> 
-                <%= usuario.nombre %>
-              </span>
+            <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
+                <span class="fs-5"> 
+                  <%= usuario.nombre %>
+                </span>
+              </button>
+              
 
               <a href="/logOut" class="text-white d-flex align-items-center text-decoration-none">
                 <span class="material-symbols-rounded fs-2" href="/logOut">
@@ -85,7 +88,7 @@
 
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Log In</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
         <div class="modal-body">
           <label for="correo" class="form-label">Correo</label>
@@ -106,7 +109,6 @@
   </div>
 </div>
 
-<!-- Modales -->
 <div class="modal fade" id="modalSignUp" tabindex="-1" aria-labelledby="modalSignUp" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -115,7 +117,7 @@
 
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
         <div class="modal-body">
           <label for="nombre" class="form-label">Nombre</label>
@@ -128,7 +130,7 @@
           <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Ingresa tu contraseña" minlength="4" maxlength="50" required>
 
           <label for="telefono" class="form-label">Telefono</label>
-          <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Ingresa tu teléfono" pattern="/[0-9]{9}/" required>
+          <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Ingresa tu teléfono" pattern="^[0-9]*$" required>
           
           <label for="facultad" class="form-label">Facultad</label>
           <select name="facultad" id="facultad" class="form-select">
@@ -149,7 +151,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </div>
 
@@ -158,4 +160,51 @@
     </div>
   </div>
 </div>
+<% } else { %>
+    <!-- Modal -->
+<div class="modal fade" id="modalEditarPerfil" tabindex="-1" aria-labelledby="modalEditarPerfil" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            <button type="button" class="btn btn-transparent text-dark">
+                Editar perfil
+            </button>
+            <button type="button" class="btn btn-transparent text-dark">
+                Eventos
+            </button>
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="<%= usuario.nombre %>" required disabled>
+            </div>
+            
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="text" class="form-control" name="correo" id="correo" placeholder="<%= usuario.correo %>" pattern="^[a-zA-Z0-9]+@ucm\.es$" required disabled>
+            </div>
+            
+            <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="****" minlength="4" maxlength="50" required disabled>
+            </div>
+            
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" name="telefono" id="telefono" placeholder="<%= usuario.telefono %>" pattern="^[0-9]*$" required disabled>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-primary me-0"><i class="bi bi-pencil-fill"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 <% } %> 
