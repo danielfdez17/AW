@@ -16,12 +16,12 @@ class DAOUsuarios {
       connection.query(
         sql,
         [
-          usuario.usuario,
+          usuario.nombre,
           usuario.correo,
           usuario.telefono,
           usuario.facultad,
           usuario.rol,
-          usuario.contrasena
+          usuario.contrasena,
         ],
         (err, rows) => {
           if (err) {
@@ -34,14 +34,14 @@ class DAOUsuarios {
     });
   }
 
-  readUsuario(nombre, callback) {
+  readUsuarioPorCorreo(correo, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
         return;
       }
-      const sql = "SELECT * FROM usuario WHERE nombre = ?";
-      connection.query(sql, [nombre], (err, rows) => {
+      const sql = "SELECT * FROM usuarios WHERE correo = ?";
+      connection.query(sql, [correo], (err, rows) => {
         if (err) {
           callback(err);
           return;

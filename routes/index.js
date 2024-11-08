@@ -73,6 +73,6 @@ router.get('/logOut', (req, res, next) => {
 });
 
 router.post("/signUp", signUpController.SignUp);
-router.post("/logIn", loginController.login);
+router.post("/login", loginController.login);
 
 module.exports = router;

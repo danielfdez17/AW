@@ -9,15 +9,15 @@ class LoginController {
   login(req, res, next) {
     if (!validationResult(req).isEmpty())
       return res.status(400).json({ errors: validationResult(req).array() });
-    const { nombre, contrasena } = req.body;
-    daoUsuarios.readUsuario(nombre, (err, usuario) => {
+    const { correo, contrasena } = req.body;
+    daoUsuarios.readUsuarioPorCorreo(correo, (err, usuario) => {
       if (err) next(err);
       if (usuario.contrasena === contrasena) {
-        req.session.idUsuario = usuario.id;
-        req.session.rol = usuario.rol;
-        res.end();
+        req.session.usuario = usuario;
+        req.session.auth = true;
+        res.redirect("/");
       } else {
-        res.status(401).send("Error: usuario y/o contraseña incorrectos");
+        res.status(401).send("Error: correo y/o contraseña incorrectos");
       }
     });
   }
