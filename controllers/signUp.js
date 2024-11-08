@@ -14,7 +14,8 @@ class SignUpController {
     daoUsuarios.createUsuario(usuario, (err, usuario) => {
       if (err) next(err);
       else {
-        res.session.usuario = usuario;
+        req.session.usuario = usuario;
+        req.session.auth = true;
         res.redirect("/");
       }
     });

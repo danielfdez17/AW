@@ -53,7 +53,7 @@ router.get('/',  (req, res) =>{
         capacidad: evento.capacidad,
         ubicacion: evento.ubicacion,
         tipoEvento: evento.tipoEvento,
-        usuario: null,
+        usuario: req.session.usuario,
         facultades: facultades
       });
     });
