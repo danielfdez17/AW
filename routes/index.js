@@ -53,15 +53,24 @@ router.get('/',  (req, res) =>{
         capacidad: evento.capacidad,
         ubicacion: evento.ubicacion,
         tipoEvento: evento.tipoEvento,
-        usuario: req.session.usuario,
+        usuario: null,
         facultades: facultades
       });
     });
   }
   
-
 });
 
+router.get('/logOut', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) {
+      return next(createError(err));  // Maneja el error si ocurre al destruir la sesión
+    } else {
+      res.clearCookie('connect.sid');  // Limpia la cookie de sesión
+      res.redirect('/');  // Redirige al usuario a la página principal
+    }
+  });
+});
 
 router.post("/signUp", signUpController.SignUp);
 router.post("/logIn", loginController.login);
