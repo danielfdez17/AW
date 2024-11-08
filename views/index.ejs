@@ -5,14 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('./fragments/head.ejs') %>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/evento.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <title>Eventos</title>
 </head>
 <body>
+    <%- include('./header.ejs') %>
     <div class="container-fluid h-100">
+
+
+        <div class="row">
+            <% for(let i = 0; i < 3; ++i) { %>
+                <div class="col">
+                    <%- include('./evento.ejs') %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="row">
+            <% for(let i = 0; i < 3; ++i) { %>
+                <div class="col">
+                    <%- include('./evento.ejs') %>
+                </div>
+            <% } %>
+        </div>
         
-        <%- include('./header.ejs') %>
-
-
+        
+        
     </div>
+    <%- include('./footer.ejs') %>
+
 </body>
 </html>
