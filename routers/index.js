@@ -9,6 +9,10 @@ const loginController = new LoginController();
 const SignUpController = require("../controllers/signUp.js");
 const signUpController = new SignUpController();
 
+// Propuesta  para recoger info de render
+const DAOFacultades = require("../db/daoFacultades.js");
+const pool = require("../db/pool.js");
+
 const evento = {
   titulo: "Inteligencia Artificial",
   descripcion:
@@ -20,25 +24,26 @@ const evento = {
   tipoEvento: "Conferencia",
 };
 
-const facultades = [
-  { id: 1, nombre: "Informatica" },
-  { id: 2, nombre: "Medicina" },
-  { id: 3, nombre: "Enfermeria" }
-];
+const daoFacultades = new DAOFacultades(pool);
 
 
 // Redirige directamente a productos para evitar que el usuario tenga que escribir la URL completa
-router.get("/", (req, res) => {
-  res.render("index", {
-    titulo: evento.titulo,
-    descripcion: evento.descripcion,
-    fecha: evento.fecha,
-    hora: evento.hora,
-    capacidad: evento.capacidad,
-    ubicacion: evento.ubicacion,
-    tipoEvento: evento.tipoEvento,
-    facultades: facultades
+router.get("/",  (req, res) =>  {
+
+  daoFacultades.readAllFacultades(facultades =>
+  {
+    res.render("index", {
+      titulo: evento.titulo,
+      descripcion: evento.descripcion,
+      fecha: evento.fecha,
+      hora: evento.hora,
+      capacidad: evento.capacidad,
+      ubicacion: evento.ubicacion,
+      tipoEvento: evento.tipoEvento,
+      facultades: facultades
+    });
   });
+
 });
 
 

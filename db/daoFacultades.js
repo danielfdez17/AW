@@ -12,7 +12,7 @@ class DAOFacultades {
         callback(err);
         return;
       }
-      const sql = "SELECT nombre FROM facultades";
+      const sql = "SELECT * FROM facultades";
       connection.query(sql, (err, rows) => {
         if (err) {
           callback(err);
