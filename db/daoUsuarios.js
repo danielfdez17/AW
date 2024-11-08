@@ -12,22 +12,23 @@ class DAOUsuarios {
         return;
       }
       const sql =
-        "INSERT INTO usuarios (nombre, correo, telefono, id_facultad, rol) VALUES (?, ?, ?, ?, ?)";
+        "INSERT INTO usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) VALUES (?, ?, ?, ?, ?, ?)";
       connection.query(
         sql,
         [
-          usuario.nombre,
+          usuario.usuario,
           usuario.correo,
           usuario.telefono,
-          usuario.idFacultad,
+          usuario.facultad,
           usuario.rol,
+          usuario.contrasena
         ],
         (err, rows) => {
           if (err) {
             callback(err);
             return;
           }
-          callback(null, rows[0]);
+          callback(null, usuario);
         }
       );
     });

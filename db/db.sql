@@ -12,7 +12,7 @@ create table usuarios(
     telefono int(9) not null,
     id_facultad int not null,
     rol varchar(20) not null,
-    constrasena varchar(50) not null,
+    contrasena varchar(50) not null,
     foreign key (id_facultad) references facultades(id)
 );
 

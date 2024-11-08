@@ -3,8 +3,11 @@
 const express = require("express");
 const router = express.Router();
 
-const LoginController = require("../controllers/login.js");
+const LoginController = require("../controllers/logIn.js");
 const loginController = new LoginController();
+
+const SignUpController = require("../controllers/signUp.js");
+const signUpController = new SignUpController();
 
 const evento = {
   titulo: "Inteligencia Artificial",
@@ -17,6 +20,13 @@ const evento = {
   tipoEvento: "Conferencia",
 };
 
+const facultades = [
+  { id: 1, nombre: "Informatica" },
+  { id: 2, nombre: "Medicina" },
+  { id: 3, nombre: "Enfermeria" }
+];
+
+
 // Redirige directamente a productos para evitar que el usuario tenga que escribir la URL completa
 router.get("/", (req, res) => {
   res.render("index", {
@@ -27,9 +37,12 @@ router.get("/", (req, res) => {
     capacidad: evento.capacidad,
     ubicacion: evento.ubicacion,
     tipoEvento: evento.tipoEvento,
+    facultades: facultades
   });
 });
 
-router.post("logIn", loginController.login);
+
+router.post("/signUp", signUpController.SignUp);
+router.post("/logIn", loginController.login);
 
 module.exports = router;

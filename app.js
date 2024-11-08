@@ -16,12 +16,12 @@ app.set("view engine", "ejs");
 app.use(cookieParser());
 app.use(morgan("dev"));
 
-app.use('/', indexRouter);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
 
+app.use('/', indexRouter);
+
+app.use(express.static(path.join(__dirname, "public")));
 
 // Control error 404
 app.use(function(req, res, next) {
