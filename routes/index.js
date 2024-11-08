@@ -1,4 +1,4 @@
-"use strict";
+"use strict;"
 
 const express = require("express");
 const router = express.Router();
@@ -26,11 +26,9 @@ const evento = {
 
 const daoFacultades = new DAOFacultades(pool);
 
+router.get('/',  (req, res) =>{
 
-// Redirige directamente a productos para evitar que el usuario tenga que escribir la URL completa
-router.get("/",  (req, res) =>  {
-
-  daoFacultades.readAllFacultades(facultades =>
+  if (req.session.auth)
   {
     res.render("index", {
       titulo: evento.titulo,
@@ -40,9 +38,27 @@ router.get("/",  (req, res) =>  {
       capacidad: evento.capacidad,
       ubicacion: evento.ubicacion,
       tipoEvento: evento.tipoEvento,
-      facultades: facultades
+      usuario: req.session.usuario,
     });
-  });
+  }
+  else
+  {
+    daoFacultades.readAllFacultades(facultades =>
+    {
+      res.render("index", {
+        titulo: evento.titulo,
+        descripcion: evento.descripcion,
+        fecha: evento.fecha,
+        hora: evento.hora,
+        capacidad: evento.capacidad,
+        ubicacion: evento.ubicacion,
+        tipoEvento: evento.tipoEvento,
+        usuario: null,
+        facultades: facultades
+      });
+    });
+  }
+  
 
 });
 

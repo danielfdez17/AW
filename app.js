@@ -5,7 +5,9 @@ const cookieParser = require("cookie-parser");
 const createError = require('http-errors');
 const morgan = require('morgan');
 const path = require("path");
-const indexRouter = require("./routers/index.js");
+const indexRouter = require("./routes/index");
+const session = require('express-session');
+
 
 const port = 3000;
 const app = express();
@@ -19,9 +21,26 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', indexRouter);
-
 app.use(express.static(path.join(__dirname, "public")));
+
+// Configuración de la sesión
+app.use(session({
+  secret: 'mi_clave_secreta',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+// Middleware para la autenticación del usuario
+app.use((req, res, next) => {
+  if (req.session && req.session.auth) {
+    res.locals.usuario = req.session.usuario;
+    res.locals.granjas = req.session.granjas;
+  }
+  next();
+});
+
+app.use('/', indexRouter);
 
 // Control error 404
 app.use(function(req, res, next) {
