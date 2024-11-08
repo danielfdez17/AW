@@ -33,6 +33,23 @@ class DAOUsuarios {
     });
   }
 
+  readUsuario(nombre, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql = "SELECT * FROM usuario WHERE nombre = ?";
+      connection.query(sql, [nombre], (err, rows) => {
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(null, rows[0]);
+      });
+    });
+  }
+
   updateUsuario(usuario, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {

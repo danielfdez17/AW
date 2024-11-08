@@ -3,6 +3,9 @@
 const express = require("express");
 const router = express.Router();
 
+const LoginController = require("../controllers/login.js");
+const loginController = new LoginController();
+
 const evento = {
   titulo: "Inteligencia Artificial",
   descripcion:
@@ -26,5 +29,7 @@ router.get("/", (req, res) => {
     tipoEvento: evento.tipoEvento,
   });
 });
+
+router.post("logIn", loginController.login);
 
 module.exports = router;
