@@ -1,13 +1,38 @@
+<head>
+    <link rel="stylesheet" href="/css/gestion.css">
+</head>
 <form action="/gestion" method="post">
 
-    <div class="modal-body">
-        <h1>PRUEBA</h1>
+    <div class="modal-body d-flex flex-column gap-2">
+        <div class="w-100 d-flex justify-content-end">
+            <button class="d-flex btn btn-primary boton-nuevo-evento"> 
+                <span class="material-symbols-rounded">
+                    add
+                </span>
+                Crear nuevo evento
+            </button>
+        </div>
+
+        <div class="row">
+            <% for(let i = 0; i < 3; ++i) { %>
+                <div class="col">
+                    <%- include('./evento.ejs') %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="row">
+            <% for(let i = 0; i < 3; ++i) { %>
+                <div class="col">
+                    <%- include('./evento.ejs') %>
+                </div>
+            <% } %>
+        </div>
+
     </div>
 
     <div class="modal-footer">
         <button id="cerrarEdicion" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deshabilitarEdicion()">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <button id="habilitarEdicion" type="button" class="btn btn-primary me-0" onclick="habilitarEdicion()">Editar<i class="bi bi-pencil-fill"></i></button>
     </div>
 
   </form>
