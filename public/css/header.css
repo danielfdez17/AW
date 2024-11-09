@@ -31,3 +31,24 @@
 {
     border-radius: 20px;
 }
+
+.boton-encabezado
+{
+    border: 0;
+}
+
+.divisor
+{
+    height: 50px;
+}
+
+.activo
+{
+    background-color: grey;
+    transition: 1s;
+}
+
+.activo:hover
+{
+    background-color: grey;
+}

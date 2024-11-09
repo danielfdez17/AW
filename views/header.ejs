@@ -162,51 +162,34 @@
 </div>
 <% } else { %>
     <!-- Modal -->
-    <div class="modal fade" id="modalEditarPerfil" tabindex="-1" aria-labelledby="modalEditarPerfil" aria-hidden="true">
+    <div class="modal fade modal-xl" id="modalEditarPerfil" tabindex="-1" aria-labelledby="modalEditarPerfil" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="/editarPerfil" method="post">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        <button type="button" class="btn btn-transparent text-dark">
-                            Editar perfil
-                        </button>
-                        <button type="button" class="btn btn-transparent text-dark">
-                            Eventos
-                        </button>
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            
+            <div id="carouselExample" class="carousel slide" data-bs-wrap="false">
+
+              <div class="modal-header d-flex" id="informacion">
+                <button class="w-100 btn btn-transparent text-dark boton-encabezado activo" id="Perfil" data-bs-target="#carouselExample" data-bs-slide="prev">Editar perfil</button>
+                <div class="border-start divisor"></div>
+                <button class="w-100 btn btn-transparent text-dark boton-encabezado" id="Gestion" data-bs-target="#carouselExample" data-bs-slide="next">Eventos</button>
+              </div>
+
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                <%- include('./perfil.ejs') -%>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="editarNombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="editarNombre" placeholder="<%= usuario.nombre %>" required disabled>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="editarCorreo" class="form-label">Correo</label>
-                        <input type="text" class="form-control" name="correo" id="editarCorreo" placeholder="<%= usuario.correo %>" pattern="^[a-zA-Z0-9]+@ucm\.es$" required disabled>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="editarContrasena" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="contrasena" id="editarContrasena" placeholder="****" minlength="4" maxlength="50" required disabled>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="editarTelefono" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" name="telefono" id="editarTelefono" placeholder="<%= usuario.telefono %>" pattern="^[0-9]*$" required disabled>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button id="cerrarEdicion" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deshabilitarEdicion()">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <button id="habilitarEdicion" type="button" class="btn btn-primary me-0" onclick="habilitarEdicion()">Editar<i class="bi bi-pencil-fill"></i></button>
+                <div class="carousel-item">
+                  <%- include('./gestion.ejs') -%>
+                </div>
+              </div>
+
             </div>
 
           </div>
+
         </div>
+
+
         <script src="/js/editarPerfil.js"></script>
       </div>
   

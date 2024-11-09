@@ -1,0 +1,33 @@
+<form action="/editarPerfil" method="post">
+
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="editarNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="editarNombre" placeholder="<%= usuario.nombre %>" required disabled>
+        </div>
+        
+        <div class="mb-3">
+            <label for="editarCorreo" class="form-label">Correo</label>
+            <input type="text" class="form-control" name="correo" id="editarCorreo" placeholder="<%= usuario.correo %>" pattern="^[a-zA-Z0-9]+@ucm\.es$" required disabled>
+        </div>
+        
+        <div class="mb-3">
+            <label for="editarContrasena" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="contrasena" id="editarContrasena" placeholder="****" minlength="4" maxlength="50" required disabled>
+        </div>
+        
+        <div class="mb-3">
+            <label for="editarTelefono" class="form-label">Telefono</label>
+            <input type="text" class="form-control" name="telefono" id="editarTelefono" placeholder="<%= usuario.telefono %>" pattern="^[0-9]*$" required disabled>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button id="cerrarEdicion" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deshabilitarEdicion()">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button id="habilitarEdicion" type="button" class="btn btn-primary me-0" onclick="habilitarEdicion()">Editar<i class="bi bi-pencil-fill"></i></button>
+    </div>
+
+</form>
+
+

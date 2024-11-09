@@ -81,3 +81,22 @@ function habilitarEdicion()  {
     editarNombre.textContent = editarNombre.getAttribute("placeholder")
     editarContrasena.textContent = editarContrasena.getAttribute("placeholder")
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  //Identificamos los elementos a los que queremos añadirle el EventListener
+  document.querySelectorAll("#informacion button").forEach(function (button)
+  {
+  
+    button.addEventListener("click", function (event) {
+      // Evita que el dropdown se cierre al hacer clic
+      event.stopPropagation();
+
+      document.querySelectorAll("#informacion button").forEach(function (i) {
+        i.classList.remove("activo");
+      });
+
+      button.classList.add("activo");
+    });
+  });
+});
