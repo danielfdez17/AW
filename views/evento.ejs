@@ -1,15 +1,15 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title text-center fw-bold"><%= titulo %> </h5>
-        <p class="card-text"><%= descripcion %></p>
-        <p class="card-text"><i class="bi bi-calendar-event me-2"></i><%= fecha %></p>
-        <p class="card-text"><i class="bi bi-clock me-1"></i> <%= hora %></p>
-        <p class="card-text"><i class="bi bi-geo-alt me-2"></i><%= ubicacion %></p>
+        <h5 class="card-title text-center fw-bold"><%= evento.titulo %> </h5>
+        <p class="card-text"><%= evento.descripcion %></p>
+        <p class="card-text"><i class="bi bi-calendar-event me-2"></i><%= evento.fecha %></p>
+        <p class="card-text"><i class="bi bi-clock me-1"></i> <%= evento.hora %></p>
+        <p class="card-text"><i class="bi bi-geo-alt me-2"></i><%= evento.ubicacion %></p>
         <!-- if (asistente) -->
         <button class="btn btn-primary mt-1 mb-1" type="button">Inscribirse</button>
         <!-- else -->
         <button class="btn btn-primary mt-1 mb-1" type="button">Editar</button>
         <button class="btn btn-primary mt-1 mb-1" type="button">Eliminar</button>
-        <div class="card-footer mt-3"><%= tipoEvento %></div>
+        <div class="card-footer mt-3"><%= evento.tipoEvento %></div>
     </div>
 </div>

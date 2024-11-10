@@ -13,22 +13,14 @@
     <%- include('./header.ejs') %>
     <div class="container-fluid h-100">
 
-        <div class="row">
-            <% for(let i = 0; i < 3; ++i) { %>
-                <div class="col">
-                    <%- include('./evento.ejs') %>
-                </div>
-            <% } %>
-        </div>
+        <ul class="list-group">
+            <% eventos.forEach(evento => { %>
+                <li class="list-group-item">
+                    <%- include('./evento.ejs', {evento: evento}) %>
+                </li>
+            <% }); %>
+        </ul>
 
-        <div class="row">
-            <% for(let i = 0; i < 3; ++i) { %>
-                <div class="col">
-                    <%- include('./evento.ejs') %>
-                </div>
-            <% } %>
-        </div>
-        
     </div>
     <%- include('./footer.ejs') %>
 

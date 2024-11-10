@@ -11,6 +11,7 @@ const signUpController = new SignUpController();
 
 // Propuesta  para recoger info de render
 const DAOFacultades = require("../db/daoFacultades.js");
+const DAOEventos = require("../db/daoEventos.js")
 const pool = require("../db/pool.js");
 
 const evento = {
@@ -25,37 +26,32 @@ const evento = {
 };
 
 const daoFacultades = new DAOFacultades(pool);
+const daoEventos = new DAOEventos(pool);
 
 router.get('/',  (req, res) =>{
 
   if (req.session.auth)
   {
-    res.render("index", {
-      titulo: evento.titulo,
-      descripcion: evento.descripcion,
-      fecha: evento.fecha,
-      hora: evento.hora,
-      capacidad: evento.capacidad,
-      ubicacion: evento.ubicacion,
-      tipoEvento: evento.tipoEvento,
-      usuario: req.session.usuario,
-    });
+    daoEventos.readAllEventos(eventos => {
+
+        res.render("index", {
+            eventos: eventos,
+            usuario: req.session.usuario,
+        });
+    })
   }
   else
   {
     daoFacultades.readAllFacultades(facultades =>
     {
-      res.render("index", {
-        titulo: evento.titulo,
-        descripcion: evento.descripcion,
-        fecha: evento.fecha,
-        hora: evento.hora,
-        capacidad: evento.capacidad,
-        ubicacion: evento.ubicacion,
-        tipoEvento: evento.tipoEvento,
-        usuario: null,
-        facultades: facultades
-      });
+        daoEventos.readAllEventos(eventos => {
+
+            res.render("index", {
+                eventos: eventos,
+                usuario: null,
+                facultades: facultades
+            });
+        })
     });
   }
   
