@@ -6,6 +6,13 @@ const inputCorreo = document.getElementById("editarCorreo");
 const inputContrasena = document.getElementById("editarContrasena");
 const inputTelefono = document.getElementById("editarTelefono");
 
+console.log(botonHabilitarEdicion)
+console.log(botonCerrarEdicion)
+console.log(inputNombre)
+console.log(inputCorreo)
+console.log(inputContrasena)
+console.log(inputTelefono)
+
 function habilitarEdicion() {
   inputNombre.disabled = false;
   inputCorreo.disabled = false;
@@ -19,13 +26,16 @@ function habilitarEdicion() {
 }
 
 function deshabilitarEdicion() {
-    inputNombre.disabled = true;
-    inputCorreo.disabled = true;
-    inputContrasena.disabled = true;
-    inputTelefono.disabled = true;
-    
-    inputNombre.value = "";
-    inputCorreo.value = "";
-    inputContrasena.value = "";
-    inputTelefono.value = "";
+  inputNombre.disabled = true;
+  inputCorreo.disabled = true;
+  inputContrasena.disabled = true;
+  inputTelefono.disabled = true;
+
+  inputNombre.value = "";
+  inputCorreo.value = "";
+  inputContrasena.value = "";
+  inputTelefono.value = "";
 }
+
+botonHabilitarEdicion.addEventListener("click", habilitarEdicion)
+botonCerrarEdicion.addEventListener("click", deshabilitarEdicion)
