@@ -1,0 +1,21 @@
+<form action="/inscribirse" method="post">
+
+    <div class="modal-body d-flex flex-column gap-2">
+
+        <ul class="list-group">
+            <% if (eventosInscritos) { %>
+                <% eventosInscritos.forEach(evento => { %>
+                    <li class="list-group-item">
+                        <%- include('./evento.ejs', {evento: evento}) %>
+                    </li>
+                <% }); %>
+            <% } %>
+        </ul>
+
+    </div>
+
+    <div class="modal-footer">
+        <button id="cerrarEdicion" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deshabilitarEdicion()">Cerrar</button>
+    </div>
+
+  </form>

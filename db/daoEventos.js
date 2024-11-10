@@ -53,13 +53,30 @@ class DAOEventos {
     });
   }
 
-  readEventosPorUsuario(id, callback) {
+  readEventosPorOrganizador(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
         return;
       }
       const sql = "SELECT * FROM eventos WHERE id_organizador = ?";
+      connection.query(sql, [id], (err, rows) => {
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(null, rows);
+      });
+    });
+  }
+
+  readEvento(id, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql = "SELECT * FROM eventos WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
         if (err) {
           callback(err);

@@ -179,7 +179,11 @@
                 <%- include('./perfil.ejs') -%>
                 </div>
                 <div class="carousel-item">
-                  <%- include('./gestion.ejs') -%>
+                    <% if (usuario.rol === "organizador") { %>
+                        <%- include('./gestion.ejs') -%>
+                    <% } else { %>
+                        <%- include('./asistente.ejs', {eventosInscritos: eventosInscritos}) %>
+                    <% } %>
                 </div>
               </div>
 
