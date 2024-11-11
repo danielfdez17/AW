@@ -6,6 +6,7 @@
                 <% eventosInscritos.forEach(evento => { %>
                     <li class="list-group-item">
                         <%- include('./evento.ejs', {evento: evento}) %>
+                        <input type="hidden" name="evento" value="<%= evento %>">
                     </li>
                 <% }); %>
         </ul>

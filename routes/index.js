@@ -9,6 +9,9 @@ const loginController = new LoginController();
 const SignUpController = require("../controllers/signUp.js");
 const signUpController = new SignUpController();
 
+const InscripcionesController = require("../controllers/inscripciones.js")
+const inscripcionesController = new InscripcionesController();
+
 // Propuesta  para recoger info de render
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
@@ -77,5 +80,6 @@ router.get("/logOut", (req, res, next) => {
 
 router.post("/signUp", signUpController.SignUp);
 router.post("/login", loginController.login);
+router.post("/inscribirse", inscripcionesController.inscribirse);
 
 module.exports = router;
