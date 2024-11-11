@@ -37,7 +37,7 @@ create table eventos(
     ubicacion varchar(100) not null,
     capacidad_maxima int not null,
     id_organizador int not null,
-    tipo_evento varchar(100) not null,
+    tipo_evento varchar(20) not null,
     foreign key (id_organizador) references usuarios(id)
 );
 
