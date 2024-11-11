@@ -55,10 +55,10 @@ create table inscripciones(
     foreign key (id_evento) references eventos(id)
 );
 
-insert into inscripciones (id_usuario, id_evento, estado) values (1, 1, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (2, 2, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (1, 2, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (2, 1, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (3, 1, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (3, 2, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (4, 2, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (4, 1, "inscrito");
 
 create table accesibilidad(
     id_usuario int not null primary key,
