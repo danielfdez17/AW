@@ -24,7 +24,7 @@ create table usuarios(
 );
 
 insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("daniel", "danief17@ucm.es", 123456789, 1, "organizador", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Pedro", "pedro@ucm.es", 123456789, 3, "organizador", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("jose", "josetort@ucm.es", 123456789, 3, "organizador", "1234");
 insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Javier", "javier@ucm.es", 123456789, 1, "asistente", "1234");
 insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Antonio", "antonio@ucm.es", 123456789, 2, "asistente", "1234");
 
