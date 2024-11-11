@@ -1,4 +1,4 @@
-"use strict;"
+"use strict;";
 
 const express = require("express");
 const router = express.Router();
@@ -11,7 +11,8 @@ const signUpController = new SignUpController();
 
 // Propuesta  para recoger info de render
 const DAOFacultades = require("../db/daoFacultades.js");
-const DAOEventos = require("../db/daoEventos.js")
+const DAOEventos = require("../db/daoEventos.js");
+const DAOInscripciones = require("../db/daoInscripciones.js");
 const pool = require("../db/pool.js");
 
 const evento = {
@@ -27,43 +28,49 @@ const evento = {
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
+const daoInscripciones = new DAOInscripciones(pool);
 
-router.get('/',  (req, res) =>{
-
-  if (req.session.auth)
-  {
-    daoEventos.readAllEventos(eventos => {
-
-        res.render("index", {
-            eventos: eventos,
-            usuario: req.session.usuario,
-        });
-    })
-  }
-  else
-  {
-    daoFacultades.readAllFacultades(facultades =>
-    {
-        daoEventos.readAllEventos(eventos => {
-
+router.get("/", (req, res) => {
+  if (req.session.auth) {
+    daoEventos.readAllEventos((eventos) => {
+      if (req.session.usuario.rol === "asistente") {
+        daoInscripciones.readEventosInscritosPorAsistente(
+          req.session.usuario.id,
+          (eventosInscritos) => {
             res.render("index", {
-                eventos: eventos,
-                usuario: null,
-                facultades: facultades
+              eventos: eventos,
+              eventosInscritos: eventosInscritos,
+              usuario: req.session.usuario,
             });
-        })
+          }
+        );
+      } else {
+        res.render("index", {
+          eventos: eventos,
+          usuario: req.session.usuario,
+        });
+      }
+    });
+  } else {
+    daoFacultades.readAllFacultades((facultades) => {
+      daoEventos.readAllEventos((eventos) => {
+        res.render("index", {
+          eventos: eventos,
+          usuario: null,
+          facultades: facultades,
+        });
+      });
     });
   }
-  
 });
 
-router.get('/logOut', (req, res, next) => {
-  req.session.destroy(err => {
+router.get("/logOut", (req, res, next) => {
+  req.session.destroy((err) => {
     if (err) {
-      return next(createError(err));  // Maneja el error si ocurre al destruir la sesión
+      return next(createError(err)); // Maneja el error si ocurre al destruir la sesión
     } else {
-      res.clearCookie('connect.sid');  // Limpia la cookie de sesión
-      res.redirect('/');  // Redirige al usuario a la página principal
+      res.clearCookie("connect.sid"); // Limpia la cookie de sesión
+      res.redirect("/"); // Redirige al usuario a la página principal
     }
   });
 });

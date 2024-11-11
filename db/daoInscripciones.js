@@ -6,13 +6,13 @@ class DAOInscripciones {
       this.pool = pool;
     }
   
-    readInscripcionesPorAsistente(id, callback) {
+    readEventosInscritosPorAsistente(id, callback) {
       this.pool.getConnection((err, connection) => {
         if (err) {
           callback(err);
           return;
         }
-        const sql = "SELECT * FROM inscripciones WHERE id_usuario = ?";
+        const sql = "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador FROM inscripciones i JOIN eventos e ON i.id_evento = e.id WHERE id_usuario = ?";
         connection.query(sql, [id], (err, rows) => {
           if (err) {
             callback(err);

@@ -3,13 +3,11 @@
     <div class="modal-body d-flex flex-column gap-2">
 
         <ul class="list-group">
-            <% if (eventosInscritos) { %>
                 <% eventosInscritos.forEach(evento => { %>
                     <li class="list-group-item">
                         <%- include('./evento.ejs', {evento: evento}) %>
                     </li>
                 <% }); %>
-            <% } %>
         </ul>
 
     </div>
