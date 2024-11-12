@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="/css/gestion.css">
 </head>
-<form action="/gestion" method="post">
+<div>
 
     <div class="modal-body d-flex flex-column gap-2">
         <div class="w-100 d-flex justify-content-end">
@@ -9,7 +9,9 @@
                 <span class="material-symbols-rounded">
                     add
                 </span>
-                Crear nuevo evento
+                <a class="text-decoration-none text-white" href="/nuevo_evento" target="_blank" rel="noopener noreferrer">
+                    Crear nuevo evento
+                </a>
             </button>
         </div>
 
@@ -29,4 +31,4 @@
         <button id="cerrarEdicion" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deshabilitarEdicion()">Cerrar</button>
     </div>
 
-  </form>
+  </div>
