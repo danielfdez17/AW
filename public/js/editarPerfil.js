@@ -1,41 +1,29 @@
 "use strict";
-const botonHabilitarEdicion = document.getElementById("habilitarEdicion");
-const botonCerrarEdicion = document.getElementById("cerrarEdicion");
-const inputNombre = document.getElementById("editarNombre");
-const inputCorreo = document.getElementById("editarCorreo");
-const inputContrasena = document.getElementById("editarContrasena");
-const inputTelefono = document.getElementById("editarTelefono");
-
-console.log(botonHabilitarEdicion)
-console.log(botonCerrarEdicion)
-console.log(inputNombre)
-console.log(inputCorreo)
-console.log(inputContrasena)
-console.log(inputTelefono)
 
 function habilitarEdicion() {
-  inputNombre.disabled = false;
-  inputCorreo.disabled = false;
-  inputContrasena.disabled = false;
-  inputTelefono.disabled = false;
+    $("#editarNombre").prop("disabled", false);
+    $("#editarCorreo").prop("disabled", false);
+    $("#editarContrasena").prop("disabled", false);
+    $("#editarTelefono").prop("disabled", false);
 
-  inputNombre.value = inputNombre.placeholder;
-  inputCorreo.value = inputCorreo.placeholder;
-  inputContrasena.value = "";
-  inputTelefono.value = inputTelefono.placeholder;
+    $("#editarNombre").prop("value", $("#editarNombre").prop("placeholder"));
+    $("#editarCorreo").prop("value", $("#editarCorreo").prop("placeholder"));
+    $("#editarContrasena").prop("value", "");
+    $("#editarTelefono").prop("value", $("#editarTelefono").prop("placeholder"));
+    
 }
 
 function deshabilitarEdicion() {
-  inputNombre.disabled = true;
-  inputCorreo.disabled = true;
-  inputContrasena.disabled = true;
-  inputTelefono.disabled = true;
-
-  inputNombre.value = "";
-  inputCorreo.value = "";
-  inputContrasena.value = "";
-  inputTelefono.value = "";
+    $("#editarNombre").prop("disabled", true);
+    $("#editarCorreo").prop("disabled", true);
+    $("#editarContrasena").prop("disabled", true);
+    $("#editarTelefono").prop("disabled", true);
+    
+    $("#editarNombre").prop("value", "");
+    $("#editarCorreo").prop("value", "");
+    $("#editarContrasena").prop("value", "");
+    $("#editarTelefono").prop("value", "");
 }
 
-botonHabilitarEdicion.addEventListener("click", habilitarEdicion)
-botonCerrarEdicion.addEventListener("click", deshabilitarEdicion)
+$("#habilitarEdicion").on("click", habilitarEdicion)
+$("#cerrarEdicion").on("click", deshabilitarEdicion)
