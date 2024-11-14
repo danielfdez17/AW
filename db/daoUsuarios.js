@@ -58,15 +58,15 @@ class DAOUsuarios {
         return;
       }
       const sql =
-        "UPDATE usuarios SET nombre = ? and correo = ? and telefono = ? and id_facultad = ? and rol = ? WHERE id = ?";
+          "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ? WHERE id = ?";
       connection.query(
         sql,
         [
           usuario.nombre,
           usuario.correo,
           usuario.telefono,
-          usuario.telefono,
-          usuario.rol,
+          usuario.contrasena,
+          usuario.facultad,
           usuario.id,
         ],
         (err, rows) => {

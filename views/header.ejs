@@ -182,7 +182,7 @@
                     <% if (usuario.rol === "organizador") { %>
                         <%- include('./gestion.ejs') -%>
                     <% } else { %>
-                        <%- include('./asistente.ejs', {eventosInscritos: eventosInscritos}) %>
+                        <%- include('./asistente.ejs', { eventosInscritos: eventosInscritos || null }) %>
                     <% } %>
                 </div>
               </div>
@@ -192,8 +192,6 @@
           </div>
 
         </div>
-
-
 
         <script src="/js/editarPerfil.js"></script>
       </div>

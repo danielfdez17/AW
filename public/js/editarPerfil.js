@@ -6,11 +6,13 @@ function habilitarEdicion() {
   $("#editarCorreo").prop("disabled", false);
   $("#editarContrasena").prop("disabled", false);
   $("#editarTelefono").prop("disabled", false);
+  $("#editarFacultad").prop("disabled", false);
 
-  $("#editarNombre").prop("value", $("#editarNombre").prop("placeholder"));
-  $("#editarCorreo").prop("value", $("#editarCorreo").prop("placeholder"));
-  $("#editarContrasena").prop("value", "");
-  $("#editarTelefono").prop("value", $("#editarTelefono").prop("placeholder"));
+  $("#editarNombre").val($("#editarNombre").prop("placeholder"));
+  $("#editarCorreo").val($("#editarCorreo").prop("placeholder"));
+  $("#editarContrasena").val("");
+  $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
+  $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
 }
 
 function deshabilitarEdicion() {
@@ -18,31 +20,50 @@ function deshabilitarEdicion() {
   $("#editarCorreo").prop("disabled", true);
   $("#editarContrasena").prop("disabled", true);
   $("#editarTelefono").prop("disabled", true);
+  $("#editarFacultad").prop("disabled", true);
 
-  $("#editarNombre").prop("value", "");
-  $("#editarCorreo").prop("value", "");
-  $("#editarContrasena").prop("value", "");
-  $("#editarTelefono").prop("value", "");
+  $("#editarNombre").val("");
+  $("#editarCorreo").val("");
+  $("#editarContrasena").val("");
+  $("#editarTelefono").val("");
 }
 
 $("#habilitarEdicion").on("click", habilitarEdicion);
 $("#cerrarEdicion").on("click", deshabilitarEdicion);
 
 $("#formEditarPerfil button[type=submit]").on("click", (event) => {
-  if (/\d/.test($("#editarNombre").prop("value"))) {
-    alert("El campo nombre no puede contener números");
-  }
-  if (!/^\d+$/.test($("#editarTelefono").prop("value"))) {
-    alert("El campo teléfono solo puede contener números");
-  }
-  if (
-    $("#editarCorreo").prop("value").includes("@") &&
-    !$("#editarCorreo").prop("value").includes(dominio)
-  ) {
-    alert(`El correo debe terminar en ${dominio}`);
-  }
-  if ($("#editarContrasena").prop("value").length < 3) {
-    alert("La contraseña debe tener mínimo 4 caracteres");
-  }
   event.preventDefault();
+  
+  // Definir una variable para rastrear si el formulario es válido
+  let isValid = true;
+
+  // Validación del campo de nombre
+  if (/\d/.test($("#editarNombre").val())) {
+    alert("El campo nombre no puede contener números");
+    isValid = false;
+  }
+
+  // Validación del campo de teléfono
+  if (!/^\d+$/.test($("#editarTelefono").val())) {
+    alert("El campo teléfono solo puede contener números");
+    isValid = false;
+  }
+
+  // Validación del correo
+  const dominio = "ucm.es";  // Cambia 'ucm.es' por el dominio que necesites
+  if ($("#editarCorreo").val().includes("@") && !$("#editarCorreo").val().endsWith(dominio)) {
+    alert(`El correo debe terminar en @${dominio}`);
+    isValid = false;
+  }
+
+  // Validación de la contraseña
+  if ($("#editarContrasena").val().length < 4) {
+    alert("La contraseña debe tener mínimo 4 caracteres");
+    isValid = false;
+  }
+
+  // Enviar el formulario solo si todas las validaciones pasan
+  if (isValid) {
+    $("#formEditarPerfil").off("submit").submit();
+  }
 });

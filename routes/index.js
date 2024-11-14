@@ -9,6 +9,9 @@ const loginController = new LoginController();
 const SignUpController = require("../controllers/signUp.js");
 const signUpController = new SignUpController();
 
+const EditProfileController = require("../controllers/editProfile.js");
+const editProfileController = new EditProfileController();
+
 const InscripcionesController = require("../controllers/inscripciones.js");
 const inscripcionesController = new InscripcionesController();
 
@@ -21,53 +24,46 @@ const DAOEventos = require("../db/daoEventos.js");
 const DAOInscripciones = require("../db/daoInscripciones.js");
 const pool = require("../db/pool.js");
 
-const evento = {
-  titulo: "Inteligencia Artificial",
-  descripcion:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  fecha: "02/12/2024",
-  hora: "11:30",
-  capacidad: "15/20",
-  ubicacion: "Facultad de Informática",
-  tipoEvento: "Conferencia",
-};
-
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoInscripciones = new DAOInscripciones(pool);
 
 router.get("/", (req, res) => {
-  if (req.session.auth) {
-    daoEventos.readAllEventos((eventos) => {
-      if (req.session.usuario.rol === "asistente") {
-        daoInscripciones.readEventosInscritosPorAsistente(
-          req.session.usuario.id,
-          (eventosInscritos) => {
-            res.render("index", {
-              eventos: eventos,
-              eventosInscritos: eventosInscritos,
-              usuario: req.session.usuario,
-            });
-          }
-        );
-      } else {
-        res.render("index", {
-          eventos: eventos,
-          usuario: req.session.usuario,
-        });
-      }
-    });
-  } else {
-    daoFacultades.readAllFacultades((facultades) => {
+  daoFacultades.readAllFacultades((facultades) => {
+    if (req.session.auth) {
       daoEventos.readAllEventos((eventos) => {
-        res.render("index", {
-          eventos: eventos,
-          usuario: null,
-          facultades: facultades,
-        });
+        if (req.session.usuario.rol === "asistente") {
+          daoInscripciones.readEventosInscritosPorAsistente(
+            req.session.usuario.id,
+            (eventosInscritos) => {
+              res.render("index", {
+                eventos: eventos,
+                eventosInscritos: eventosInscritos,
+                usuario: req.session.usuario,
+                facultades: facultades,
+              });
+            }
+          );
+        } else {
+          res.render("index", {
+            eventos: eventos,
+            usuario: req.session.usuario,
+            facultades: facultades,
+          });
+        }
       });
-    });
-  }
+    } else {
+
+        daoEventos.readAllEventos((eventos) => {
+          res.render("index", {
+            eventos: eventos,
+            usuario: null,
+            facultades: facultades,
+          });
+        });
+
+    }
+  });
 });
 
 router.get("/logOut", (req, res, next) => {
@@ -87,6 +83,7 @@ router.get("/nuevo_evento", (req, res) => {
 
 router.post("/signUp", signUpController.SignUp);
 router.post("/login", loginController.login);
+router.post("/editarPerfil", editProfileController.edit);
 router.post("/inscribirse", inscripcionesController.inscribirse);
 router.post("/nuevo_evento", eventosController.crearEvento);
 
