@@ -2,6 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
+const { body, validationResult } = require('express-validator');
 
 const LoginController = require("../controllers/logIn.js");
 const loginController = new LoginController();
@@ -25,39 +26,58 @@ const routerOrganizadores = require("./organizadores.js");
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
 const DAOInscripciones = require("../db/daoInscripciones.js");
+const DAOListaNegra = require("../db/daolListaNegra.js");
 const pool = require("../db/pool.js");
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoInscripciones = new DAOInscripciones(pool);
+const daoListaNegra = new DAOListaNegra(pool);
+
 
 router.get("/", (req, res) => {
-  daoFacultades.readAllFacultades((facultades) => {
-    if (req.session.auth) {
-      daoEventos.readAllEventos((eventos) => {
-        if (req.session.usuario.rol === "asistente") {
-          res.render("asistentes", {
-            eventos: eventos,
-            usuario: req.session.usuario,
-            facultades: facultades,
+  const {ip} = req
+  daoListaNegra.readListaNegra(ip, (err, rows) => 
+  {  
+    if (err) {
+      return res.status(500).json({ error: "Error en la base de datos" });
+    }
+
+    if (rows) {
+      return res.status(401).json({ error: "Acceso denegado: IP en lista negra"});
+    }
+    else
+    {
+      daoFacultades.readAllFacultades((facultades) => {
+        if (req.session.auth) {
+          daoEventos.readAllEventos((eventos) => {
+            if (req.session.usuario.rol === "asistente") {
+              res.render("asistentes", {
+                eventos: eventos,
+                usuario: req.session.usuario,
+                facultades: facultades,
+              });
+            } else {
+              res.render("organizadores", {
+                eventos: eventos,
+                usuario: req.session.usuario,
+                facultades: facultades,
+              });
+            }
           });
         } else {
-          res.render("organizadores", {
-            eventos: eventos,
-            usuario: req.session.usuario,
-            facultades: facultades,
+          daoEventos.readAllEventos((eventos) => {
+            res.render("index", {
+              eventos: eventos,
+              usuario: null,
+              facultades: facultades,
+            });
           });
         }
       });
-    } else {
-      daoEventos.readAllEventos((eventos) => {
-        res.render("index", {
-          eventos: eventos,
-          usuario: null,
-          facultades: facultades,
-        });
-      });
+
     }
+
   });
 });
 
@@ -80,10 +100,44 @@ router.get("/nuevo_evento", (req, res) => {
   res.render("nuevo_evento");
 });
 
-router.post("/signUp", signUpController.SignUp);
-router.post("/login", loginController.login);
-router.post("/editarPerfil", editProfileController.edit);
-router.post("/inscribirse", inscripcionesController.inscribirse);
-router.post("/nuevo_evento", eventosController.crearEvento);
+//Middleware comprobacion
+const comprobacion = [
+  body('*')
+    .matches(/^[a-zA-Z0-9_@.]*$/).withMessage('Caracteres no permitidos')
+    .custom(value => {
+      const sqlKeywords = ['SELECT', 'INSERT', 'DROP', 'DELETE', 'UPDATE', 'UNION', 'ALTER', 'TRUNCATE', 'CREATE'];
+      if (sqlKeywords.some(keyword => value.toUpperCase().includes(keyword))) {
+        throw new Error('Uso de palabras reservadas no permitido');
+      }
+      return true;
+    }),
+
+  // Maneja los resultados de la validación
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const {ip} = req
+      daoListaNegra.createListaNegra(ip, (err) => 
+      {
+        if(err) next(err);
+        else
+        {
+          // res.status(401).json({ errors: errors.array() });
+          res.redirect('/logOut');
+        }
+      })
+    }
+    else
+      next();
+    
+  }
+];
+
+router.post("/signUp", comprobacion ,signUpController.SignUp);
+router.post("/login", comprobacion, loginController.login);
+router.post("/editarPerfil", comprobacion, editProfileController.edit);
+router.post("/inscribirse", comprobacion, inscripcionesController.inscribirse);
+router.post("/nuevo_evento", comprobacion, eventosController.crearEvento);
+
 
 module.exports = router;

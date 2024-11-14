@@ -67,3 +67,8 @@ create table accesibilidad(
     config_navegacion varchar(100) not null,
     foreign key (id_usuario) references usuarios(id)
 );
+
+create table listaNegra(
+    id int primary key auto_increment,
+    ip varchar(100) not null
+);

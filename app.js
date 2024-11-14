@@ -15,7 +15,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(cookieParser());
-app.use(morgan("dev"));
+app.use(morgan('combined'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
