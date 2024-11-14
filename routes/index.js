@@ -15,8 +15,11 @@ const editProfileController = new EditProfileController();
 const InscripcionesController = require("../controllers/inscripciones.js");
 const inscripcionesController = new InscripcionesController();
 
-const EventosController = require("../controllers/eventos.js")
+const EventosController = require("../controllers/eventos.js");
 const eventosController = new EventosController();
+
+const routerAsistentes = require("./asistentes.js");
+const routerOrganizadores = require("./organizadores.js");
 
 // Propuesta  para recoger info de render
 const DAOFacultades = require("../db/daoFacultades.js");
@@ -53,18 +56,19 @@ router.get("/", (req, res) => {
         }
       });
     } else {
-
-        daoEventos.readAllEventos((eventos) => {
-          res.render("index", {
-            eventos: eventos,
-            usuario: null,
-            facultades: facultades,
-          });
+      daoEventos.readAllEventos((eventos) => {
+        res.render("index", {
+          eventos: eventos,
+          usuario: null,
+          facultades: facultades,
         });
-
+      });
     }
   });
 });
+
+router.get("/asistentes", routerAsistentes);
+router.get("/organizadores", routerOrganizadores);
 
 router.get("/logOut", (req, res, next) => {
   req.session.destroy((err) => {
