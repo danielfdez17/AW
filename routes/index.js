@@ -36,19 +36,13 @@ router.get("/", (req, res) => {
     if (req.session.auth) {
       daoEventos.readAllEventos((eventos) => {
         if (req.session.usuario.rol === "asistente") {
-          daoInscripciones.readEventosInscritosPorAsistente(
-            req.session.usuario.id,
-            (eventosInscritos) => {
-              res.render("index", {
-                eventos: eventos,
-                eventosInscritos: eventosInscritos,
-                usuario: req.session.usuario,
-                facultades: facultades,
-              });
-            }
-          );
+          res.render("asistentes", {
+            eventos: eventos,
+            usuario: req.session.usuario,
+            facultades: facultades,
+          });
         } else {
-          res.render("index", {
+          res.render("organizadores", {
             eventos: eventos,
             usuario: req.session.usuario,
             facultades: facultades,
@@ -76,6 +70,7 @@ router.get("/logOut", (req, res, next) => {
       return next(createError(err)); // Maneja el error si ocurre al destruir la sesión
     } else {
       res.clearCookie("connect.sid"); // Limpia la cookie de sesión
+    //   res.render("index");
       res.redirect("/"); // Redirige al usuario a la página principal
     }
   });
