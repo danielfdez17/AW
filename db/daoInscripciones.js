@@ -13,7 +13,7 @@ class DAOInscripciones {
         return;
       }
       const sql =
-        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador FROM inscripciones i JOIN eventos e ON i.id_evento = e.id WHERE id_usuario = ?";
+        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM inscripciones i JOIN eventos e ON i.id_evento = e.id WHERE id_usuario = ?";
       connection.query(sql, [id], (err, rows) => {
         if (err) {
           callback(err);
