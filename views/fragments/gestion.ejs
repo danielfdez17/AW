@@ -9,7 +9,7 @@
                 <span class="material-symbols-rounded">
                     add
                 </span>
-                <a class="text-decoration-none text-white" href="/nuevo_evento" target="_blank" rel="noopener noreferrer">
+                <a class="text-decoration-none text-white" href="/organizadores/nuevo_evento" target="_blank" rel="noopener noreferrer">
                     Crear nuevo evento
                 </a>
             </button>
@@ -19,7 +19,7 @@
             <% eventos.forEach(evento => { %>
                 <% if (evento.id_organizador === usuario.id)  { %>
                     <li class="list-group-item">
-                        <%- include('./evento.ejs', {evento: evento}) %>
+                        <%- include('./evento.ejs', {evento: evento, index: false}) %>
                     </li>
                 <% } %>
             <% }); %>

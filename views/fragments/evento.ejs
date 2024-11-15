@@ -5,12 +5,14 @@
         <p class="card-text"><i class="bi bi-calendar-event me-2"></i><%= evento.fecha %></p>
         <p class="card-text"><i class="bi bi-clock me-1"></i> <%= evento.hora %></p>
         <p class="card-text"><i class="bi bi-geo-alt me-2"></i><%= evento.ubicacion %></p>
-        <% if (!usuario || usuario.rol === "asistente") { %>
-            <button class="btn btn-primary mt-1 mb-1" type="button">Inscribirse</button>
-        <% } else { %>
-            <% if (evento.id_organizador === usuario.id) { %>
-                <button class="btn btn-primary mt-1 mb-1" type="button">Editar</button>
-                <button class="btn btn-primary mt-1 mb-1" type="button">Eliminar</button>
+        <% if (!index) { %>
+            <% if (usuario.rol === "asistente") { %>
+                <button class="btn btn-primary mt-1 mb-1" type="button">Anular inscripción</button>
+            <% } else { %>
+                <% if (evento.id_organizador === usuario.id) { %>
+                    <button class="btn btn-primary mt-1 mb-1" type="button">Editar</button>
+                    <button class="btn btn-primary mt-1 mb-1" type="button">Eliminar</button>
+                <% } %>
             <% } %>
         <% } %>
         <div class="card-footer mt-3"><%= evento.tipo_evento %></div>

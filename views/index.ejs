@@ -10,19 +10,9 @@
     <title>Eventos</title>
 </head>
 <body>
-    <%- include('./header.ejs') %>
-    <div class="container-fluid h-100">
-
-        <ul class="list-group">
-            <% eventos.forEach(evento => { %>
-                <li class="list-group-item">
-                    <%- include('./evento.ejs', {evento: evento}) %>
-                </li>
-            <% }); %>
-        </ul>
-
-    </div>
-    <%- include('./footer.ejs') %>
+    <%- include('./fragments/header.ejs') %>
+    <%- include('./fragments/lista_eventos.ejs') %>
+    <%- include('./fragments/footer.ejs') %>
 
 </body>
 </html>

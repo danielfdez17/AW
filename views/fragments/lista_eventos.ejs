@@ -1,0 +1,11 @@
+<div class="container-fluid h-100">
+
+    <ul class="list-group">
+        <% eventos.forEach(evento => { %>
+            <li class="list-group-item">
+                <%- include('./evento.ejs', {evento: evento, index: true}) %>
+            </li>
+        <% }); %>
+    </ul>
+
+</div>
