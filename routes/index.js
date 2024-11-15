@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { body, validationResult } = require('express-validator');
+const { body, validationResult } = require("express-validator");
 
 const LoginController = require("../controllers/logIn.js");
 const loginController = new LoginController();
@@ -34,38 +34,26 @@ const daoEventos = new DAOEventos(pool);
 const daoInscripciones = new DAOInscripciones(pool);
 const daoListaNegra = new DAOListaNegra(pool);
 
-
 router.get("/", (req, res) => {
-  const {ip} = req
-  daoListaNegra.readListaNegra(ip, (err, rows) => 
-  {  
+  const { ip } = req;
+  daoListaNegra.readListaNegra(ip, (err, rows) => {
     if (err) {
       return res.status(500).json({ error: "Error en la base de datos" });
     }
 
     if (rows) {
-      return res.status(401).json({ error: "Acceso denegado: IP en lista negra"});
-    }
-    else
-    {
-      daoFacultades.readAllFacultades((facultades) => {
-        if (req.session.auth) {
-          daoEventos.readAllEventos((eventos) => {
-            if (req.session.usuario.rol === "asistente") {
-              res.render("asistentes", {
-                eventos: eventos,
-                usuario: req.session.usuario,
-                facultades: facultades,
-              });
-            } else {
-              res.render("organizadores", {
-                eventos: eventos,
-                usuario: req.session.usuario,
-                facultades: facultades,
-              });
-            }
-          });
+      return res
+        .status(401)
+        .json({ error: "Acceso denegado: IP en lista negra" });
+    } else {
+      if (req.session.auth) {
+        if (req.session.usuario.rol === "asistente") {
+          res.redirect("/asistentes");
         } else {
+          res.redirect("/organizadores");
+        }
+      } else {
+        daoFacultades.readAllFacultades((facultades) => {
           daoEventos.readAllEventos((eventos) => {
             res.render("index", {
               eventos: eventos,
@@ -73,16 +61,14 @@ router.get("/", (req, res) => {
               facultades: facultades,
             });
           });
-        }
-      });
-
+        });
+      }
     }
-
   });
 });
 
-router.get("/asistentes", routerAsistentes);
-router.get("/organizadores", routerOrganizadores);
+router.use("/asistentes", routerAsistentes);
+router.use("/organizadores", routerOrganizadores);
 
 router.get("/logOut", (req, res, next) => {
   req.session.destroy((err) => {
@@ -90,24 +76,33 @@ router.get("/logOut", (req, res, next) => {
       return next(createError(err)); // Maneja el error si ocurre al destruir la sesión
     } else {
       res.clearCookie("connect.sid"); // Limpia la cookie de sesión
-    //   res.render("index");
+      //   res.render("index");
       res.redirect("/"); // Redirige al usuario a la página principal
     }
   });
 });
 
-router.get("/nuevo_evento", (req, res) => {
-  res.render("nuevo_evento");
-});
-
 //Middleware comprobacion
 const comprobacion = [
-  body('*')
-    .matches(/^[a-zA-Z0-9_@.]*$/).withMessage('Caracteres no permitidos')
-    .custom(value => {
-      const sqlKeywords = ['SELECT', 'INSERT', 'DROP', 'DELETE', 'UPDATE', 'UNION', 'ALTER', 'TRUNCATE', 'CREATE'];
-      if (sqlKeywords.some(keyword => value.toUpperCase().includes(keyword))) {
-        throw new Error('Uso de palabras reservadas no permitido');
+  body("*")
+    .matches(/^[a-zA-Z0-9_@.]*$/)
+    .withMessage("Caracteres no permitidos")
+    .custom((value) => {
+      const sqlKeywords = [
+        "SELECT",
+        "INSERT",
+        "DROP",
+        "DELETE",
+        "UPDATE",
+        "UNION",
+        "ALTER",
+        "TRUNCATE",
+        "CREATE",
+      ];
+      if (
+        sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
+      ) {
+        throw new Error("Uso de palabras reservadas no permitido");
       }
       return true;
     }),
@@ -116,28 +111,22 @@ const comprobacion = [
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const {ip} = req
-      daoListaNegra.createListaNegra(ip, (err) => 
-      {
-        if(err) next(err);
-        else
-        {
+      const { ip } = req;
+      daoListaNegra.createListaNegra(ip, (err) => {
+        if (err) next(err);
+        else {
           // res.status(401).json({ errors: errors.array() });
-          res.redirect('/logOut');
+          res.redirect("/logOut");
         }
-      })
-    }
-    else
-      next();
-    
-  }
+      });
+    } else next();
+  },
 ];
 
-router.post("/signUp", comprobacion ,signUpController.SignUp);
+router.post("/signUp", comprobacion, signUpController.SignUp);
 router.post("/login", comprobacion, loginController.login);
 router.post("/editarPerfil", comprobacion, editProfileController.edit);
 router.post("/inscribirse", comprobacion, inscripcionesController.inscribirse);
 router.post("/nuevo_evento", comprobacion, eventosController.crearEvento);
-
 
 module.exports = router;
