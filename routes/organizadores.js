@@ -34,7 +34,7 @@ router.get("/nuevo_evento", (req, res) => {
 //Middleware comprobacion
 const comprobacion = [
   body("*")
-    .matches(/^[a-zA-Z0-9_@.:/áéíóúÁÉÍÓÚ\-]*$/)
+    .matches(/^[a-zA-Z0-9_@.:/áéíóúÁÉÍÓÚ\-\s]*$/)
     .withMessage("Caracteres no permitidos")
     .custom((value) => {
       const sqlKeywords = [
