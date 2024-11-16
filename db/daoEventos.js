@@ -13,7 +13,7 @@ class DAOEventos {
         return;
       }
       const sql =
-        "INSERT INTO eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        "INSERT INTO eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       connection.query(
         sql,
         [
@@ -22,7 +22,7 @@ class DAOEventos {
           evento.fecha,
           evento.hora,
           evento.ubicacion,
-          evento.capacidadMaxima,
+          evento.capacidad_maxima,
           evento.id_organizador,
           evento.tipo_evento
         ],

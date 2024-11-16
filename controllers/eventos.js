@@ -15,10 +15,11 @@ class EventosController {
       fecha,
       hora,
       ubicacion,
-      capacidad_maxima,
+      capacidad_maxima_string,
       tipo_evento,
     } = req.body;
     const id_organizador = req.session.usuario.id;
+    const capacidad_maxima = parseInt(capacidad_maxima_string);
     daoEventos.createEvento(
       {
         titulo,
@@ -32,7 +33,7 @@ class EventosController {
       },
       (err) => {
         if (err) next(err);
-        res.render("index");
+        res.redirect("/organizadores")
       }
     );
   }

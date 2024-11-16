@@ -16,9 +16,6 @@ const editProfileController = new EditProfileController();
 const InscripcionesController = require("../controllers/inscripciones.js");
 const inscripcionesController = new InscripcionesController();
 
-const EventosController = require("../controllers/eventos.js");
-const eventosController = new EventosController();
-
 // Propuesta  para recoger info de render
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
@@ -127,6 +124,6 @@ router.post("/signUp", comprobacion, signUpController.SignUp);
 router.post("/login", comprobacion, loginController.login);
 router.post("/editarPerfil", comprobacion, editProfileController.edit);
 router.post("/inscribirse", comprobacion, inscripcionesController.inscribirse);
-router.post("/nuevo_evento", comprobacion, eventosController.crearEvento);
+
 
 module.exports = router;
