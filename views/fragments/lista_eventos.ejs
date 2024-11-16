@@ -1,11 +1,15 @@
-<div class="container-fluid h-100">
-
-    <ul class="list-group">
+<div class="row d-flex align-items-center h-75 m-0 eventos">
+    <% if(eventos) {%>
+    
         <% eventos.forEach(evento => { %>
-            <li class="list-group-item">
+            <div class="col-12 col-md-6 mt-3 mb-3"> <!-- Ajusta el tamaño de las columnas -->
                 <%- include('./evento.ejs', {evento: evento, index: true}) %>
-            </li>
+            </div>
         <% }); %>
-    </ul>
 
+    <% }else { %>
+
+        <span class="text-secondary fs-1 text-center">No hay eventos registrados</span>
+
+    <% }%>
 </div>
