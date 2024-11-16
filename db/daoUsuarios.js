@@ -19,7 +19,7 @@ class DAOUsuarios {
           usuario.nombre,
           usuario.correo,
           usuario.telefono,
-          usuario.facultad,
+          usuario.id_facultad,
           usuario.rol,
           usuario.contrasena,
         ],
@@ -68,7 +68,7 @@ class DAOUsuarios {
           usuario.correo,
           usuario.telefono,
           usuario.contrasena,
-          usuario.facultad,
+          usuario.id_facultad,
           usuario.id,
         ],
         (err, rows) => {

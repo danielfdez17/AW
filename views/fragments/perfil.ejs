@@ -23,14 +23,14 @@
 
         <div class="mb-3">
             <label for="facultad" class="form-label">Facultad</label>
-            <select name="facultad" id="editarFacultad" class="form-select" required disabled>
+            <select name="id_facultad" id="editarFacultad" class="form-select" required disabled>
                 <option value="<%= usuario.id_facultad %>">
-                    <%= facultades.find(facultad => facultad.id === usuario.id_facultad)?.nombre %>
+                    <%= facultades.find(facultad => facultad.id == usuario.id_facultad)?.nombre %>
                 </option>
     
                 <!-- Resto de las opciones -->
                 <% facultades.forEach(facultad => { %>
-                    <% if (facultad.id !== usuario.id_facultad) { %>
+                    <% if (facultad.id != usuario.id_facultad) { %>
                     <option value="<%= facultad.id %>">
                         <%= facultad.nombre %>
                     </option>
