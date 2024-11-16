@@ -52,3 +52,9 @@
 {
     background-color: grey;
 }
+
+#guardar, #cancelarEdicion
+{
+    display: none;
+}
+

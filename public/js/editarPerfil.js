@@ -13,6 +13,11 @@ function habilitarEdicion() {
   $("#editarContrasena").val("");
   $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
   $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
+
+  //Botones
+  document.getElementById("guardar").style.display = "block";
+  document.getElementById("cancelarEdicion").style.display = "block";
+  document.getElementById("habilitarEdicion").style.display = "none";
 }
 
 function deshabilitarEdicion() {
@@ -26,10 +31,16 @@ function deshabilitarEdicion() {
   $("#editarCorreo").val("");
   $("#editarContrasena").val("");
   $("#editarTelefono").val("");
+
+ //Botones
+ document.getElementById("guardar").style.display = "none";
+ document.getElementById("cancelarEdicion").style.display = "none";
+ document.getElementById("habilitarEdicion").style.display = "block";
 }
 
 $("#habilitarEdicion").on("click", habilitarEdicion);
 $("#cerrarEdicion").on("click", deshabilitarEdicion);
+$("#cancelarEdicion").on("click", deshabilitarEdicion);
 
 $("#formEditarPerfil button[type=submit]").on("click", (event) => {
   event.preventDefault();
