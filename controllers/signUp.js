@@ -16,7 +16,10 @@ class SignUpController {
       else {
         req.session.usuario = usuario;
         req.session.auth = true;
-        res.redirect("/");
+        if(usuario.rol === "organizador")
+          res.redirect("/organizadores");
+        else
+          res.redirect("/asistentes");
       }
     });
   }

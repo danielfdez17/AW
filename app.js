@@ -5,8 +5,11 @@ const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
 const morgan = require("morgan");
 const path = require("path");
-const indexRouter = require("./routes/index");
 const session = require("express-session");
+
+const indexRouter = require("./routes/index");
+const routerAsistentes = require("./routes/asistentes.js");
+const routerOrganizadores = require("./routes/organizadores.js");
 
 const port = 3000;
 const app = express();
@@ -15,7 +18,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(cookieParser());
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -42,6 +45,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
+app.use("/asistentes", routerAsistentes);
+app.use("/organizadores", routerOrganizadores);
 
 // Control error 404
 app.use(function (req, res, next) {

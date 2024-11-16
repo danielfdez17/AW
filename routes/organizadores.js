@@ -5,7 +5,6 @@ const router = express.Router();
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
 const DAOInscripciones = require("../db/daoInscripciones.js");
-const DAOListaNegra = require("../db/daolListaNegra.js");
 const pool = require("../db/pool.js");
 
 const daoFacultades = new DAOFacultades(pool);

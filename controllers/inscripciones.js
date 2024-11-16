@@ -16,7 +16,7 @@ class InscripcionesController {
             error: "No te puedes inscribir al evento porque ya está inscrito",
           });
         } else {
-          res.redirec("/");
+          res.redirect("/");
         }
       });
     });

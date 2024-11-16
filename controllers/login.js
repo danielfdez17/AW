@@ -15,7 +15,11 @@ class LoginController {
       if (usuario.contrasena === contrasena) {
         req.session.usuario = usuario;
         req.session.auth = true;
-        res.redirect("/");
+        if(usuario.rol === "organizador")
+          res.redirect("/organizadores");
+        else
+          res.redirect("/asistentes");
+        
       } else {
         res.status(401).send("Error: correo y/o contraseña incorrectos");
       }

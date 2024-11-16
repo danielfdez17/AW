@@ -27,6 +27,7 @@ class DAOEventos {
           evento.tipo_evento
         ],
         (err, rows) => {
+          connection.release();
           if (err) {
             callback(err);
             return;
@@ -45,6 +46,7 @@ class DAOEventos {
       }
       const sql = "SELECT * FROM eventos";
       connection.query(sql, (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;
@@ -62,6 +64,7 @@ class DAOEventos {
       }
       const sql = "SELECT * FROM eventos WHERE id_organizador = ?";
       connection.query(sql, [id], (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;
@@ -79,6 +82,7 @@ class DAOEventos {
       }
       const sql = "SELECT * FROM eventos WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;
@@ -109,6 +113,7 @@ class DAOEventos {
           evento.id,
         ],
         (err, rows) => {
+          connection.release();
           if (err) {
             callback(err);
             return;
@@ -127,6 +132,7 @@ class DAOEventos {
       }
       const sql = "UPDATE eventos SET activo = false WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;

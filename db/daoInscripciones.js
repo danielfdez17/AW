@@ -15,6 +15,7 @@ class DAOInscripciones {
       const sql =
         "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM inscripciones i JOIN eventos e ON i.id_evento = e.id WHERE id_usuario = ?";
       connection.query(sql, [id], (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;
@@ -32,6 +33,7 @@ class DAOInscripciones {
       }
       const sql = "SELECT COUNT(*) FROM inscripciones WHERE id_evento = ?";
       connection.query(sql, [id_evento], (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;

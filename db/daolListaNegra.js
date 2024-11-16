@@ -20,6 +20,7 @@ class DAOListaNegra {
             intruso,
         ],
         (err, rows) => {
+          connection.release();
           if (err) {
             callback(err);
             return;
@@ -43,6 +44,7 @@ class DAOListaNegra {
             intruso,
         ],
         (err, rows) => {
+          connection.release();
           if (err) {
             callback(err);
             return;

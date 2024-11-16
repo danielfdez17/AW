@@ -24,6 +24,7 @@ class DAOUsuarios {
           usuario.contrasena,
         ],
         (err, rows) => {
+          connection.release();
           if (err) {
             callback(err);
             return;
@@ -42,6 +43,7 @@ class DAOUsuarios {
       }
       const sql = "SELECT * FROM usuarios WHERE correo = ?";
       connection.query(sql, [correo], (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;
@@ -70,6 +72,7 @@ class DAOUsuarios {
           usuario.id,
         ],
         (err, rows) => {
+          connection.release();
           if (err) {
             callback(err);
             return;

@@ -14,6 +14,7 @@ class DAOFacultades {
       }
       const sql = "SELECT * FROM facultades";
       connection.query(sql, (err, rows) => {
+        connection.release();
         if (err) {
           callback(err);
           return;

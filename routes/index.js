@@ -19,19 +19,14 @@ const inscripcionesController = new InscripcionesController();
 const EventosController = require("../controllers/eventos.js");
 const eventosController = new EventosController();
 
-const routerAsistentes = require("./asistentes.js");
-const routerOrganizadores = require("./organizadores.js");
-
 // Propuesta  para recoger info de render
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
-const DAOInscripciones = require("../db/daoInscripciones.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
 const pool = require("../db/pool.js");
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
-const daoInscripciones = new DAOInscripciones(pool);
 const daoListaNegra = new DAOListaNegra(pool);
 
 router.get("/", (req, res) => {
@@ -66,9 +61,6 @@ router.get("/", (req, res) => {
     }
   });
 });
-
-router.use("/asistentes", routerAsistentes);
-router.use("/organizadores", routerOrganizadores);
 
 router.get("/logOut", (req, res, next) => {
   req.session.destroy((err) => {
