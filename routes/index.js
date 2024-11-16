@@ -77,7 +77,7 @@ router.get("/logOut", (req, res, next) => {
 //Middleware comprobacion
 const comprobacion = [
   body("*")
-    .matches(/^[a-zA-Z0-9_@.]*$/)
+    .matches(/^[a-zA-Z0-9_@.:/áéíóúÁÉÍÓÚ\-]*$/)
     .withMessage("Caracteres no permitidos")
     .custom((value) => {
       const sqlKeywords = [
@@ -104,11 +104,19 @@ const comprobacion = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const { ip } = req;
+
+      // Construir mensajes personalizados
+      const errorDetails = errors.array().map((error) => ({
+        campo: error.param,
+        valorErroneo: error.value,
+        mensaje: error.msg,
+      }));
+
+
       daoListaNegra.createListaNegra(ip, (err) => {
         if (err) next(err);
         else {
-          // res.status(401).json({ errors: errors.array() });
-          res.redirect("/logOut");
+          res.status(401).json({ errores: errorDetails });
         }
       });
     } else next();
