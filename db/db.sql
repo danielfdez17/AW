@@ -38,6 +38,7 @@ create table eventos(
     capacidad_maxima int not null,
     id_organizador int not null,
     tipo_evento varchar(20) not null,
+    activo BOOLEAN DEFAULT TRUE,
     foreign key (id_organizador) references usuarios(id)
 );
 

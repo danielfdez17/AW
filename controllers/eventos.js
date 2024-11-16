@@ -33,6 +33,49 @@ class EventosController {
       },
       (err) => {
         if (err) next(err);
+        else res.redirect("/organizadores")
+        
+      }
+    );
+  }
+
+  eliminarEvento(req, res, next) {
+    if (!validationResult(req).isEmpty())
+      return res.status(400).json({ errors: validationResult(req).array() });
+    const {id} = req.body;
+    daoEventos.deleteEvento(id,
+      (err) => {
+        if (err) next(err);
+        else res.redirect("/organizadores")
+      }
+    );
+  }
+
+  editarEvento(req, res, next) {
+    if (!validationResult(req).isEmpty())
+      return res.status(400).json({ errors: validationResult(req).array() });
+    const {
+      titulo,
+      descripcion,
+      fecha,
+      hora,
+      ubicacion,
+      capacidad_maxima_string,
+      tipo_evento,
+    } = req.body;
+    const capacidad_maxima = parseInt(capacidad_maxima_string);
+    daoEventos.updateEvento(
+      {
+        titulo,
+        descripcion,
+        fecha,
+        hora,
+        ubicacion,
+        capacidad_maxima,
+        tipo_evento,
+      },
+      (err) => {
+        if (err) next(err);
         res.redirect("/organizadores")
       }
     );

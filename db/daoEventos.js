@@ -44,7 +44,7 @@ class DAOEventos {
         callback(err);
         return;
       }
-      const sql = "SELECT * FROM eventos";
+      const sql = "SELECT * FROM eventos WHERE activo = true";
       connection.query(sql, (err, rows) => {
         connection.release();
         if (err) {
@@ -62,7 +62,7 @@ class DAOEventos {
         callback(err);
         return;
       }
-      const sql = "SELECT * FROM eventos WHERE id_organizador = ?";
+      const sql = "SELECT * FROM eventos WHERE id_organizador = ? AND activo = true";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -74,6 +74,7 @@ class DAOEventos {
     });
   }
 
+  //TODO: ¿Hace falta esta función?
   readEvento(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
@@ -137,7 +138,7 @@ class DAOEventos {
           callback(err);
           return;
         }
-        callback(id);
+        callback(null, rows[0]);
       });
     });
   }

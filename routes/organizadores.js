@@ -81,5 +81,7 @@ const comprobacion = [
 ];
 
 router.post("/nuevo_evento", comprobacion, eventosController.crearEvento);
+router.post("/eliminar_evento", comprobacion, eventosController.eliminarEvento);
+router.post("/editar_evento", comprobacion, eventosController.editarEvento);
 
 module.exports = router;

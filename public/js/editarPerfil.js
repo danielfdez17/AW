@@ -14,10 +14,6 @@ function habilitarEdicion() {
   $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
   $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
 
-  //Botones
-  document.getElementById("guardar").style.display = "block";
-  document.getElementById("cancelarEdicion").style.display = "block";
-  document.getElementById("habilitarEdicion").style.display = "none";
 }
 
 function deshabilitarEdicion() {
@@ -32,10 +28,6 @@ function deshabilitarEdicion() {
   $("#editarContrasena").val("");
   $("#editarTelefono").val("");
 
- //Botones
- document.getElementById("guardar").style.display = "none";
- document.getElementById("cancelarEdicion").style.display = "none";
- document.getElementById("habilitarEdicion").style.display = "block";
 }
 
 $("#habilitarEdicion").on("click", habilitarEdicion);

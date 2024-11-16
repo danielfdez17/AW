@@ -1,20 +1,28 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title text-center fw-bold"><%= evento.titulo %> </h5>
-        <p class="card-text"><%= evento.descripcion %></p>
-        <p class="card-text"><i class="bi bi-calendar-event me-2"></i><%= evento.fecha %></p>
-        <p class="card-text"><i class="bi bi-clock me-1"></i> <%= evento.hora %></p>
-        <p class="card-text"><i class="bi bi-geo-alt me-2"></i><%= evento.ubicacion %></p>
-        <% if (!index) { %>
-            <% if (usuario.rol === "asistente") { %>
-                <button class="btn btn-primary mt-1 mb-1" type="button">Anular inscripción</button>
-            <% } else { %>
-                <% if (evento.id_organizador === usuario.id) { %>
-                    <button class="btn btn-primary mt-1 mb-1" type="button">Editar</button>
-                    <button class="btn btn-primary mt-1 mb-1" type="button">Eliminar</button>
+
+        <form id="formulario" action="organizadores/eliminar_evento" method="post">
+            <p id="titulo" class="card-title text-center fw-bold fs-3"><%= evento.titulo %> </p>
+            <p id="descripcion" class="card-text"><%= evento.descripcion %></p>
+            <p id="fecha" class="card-text"><i class="bi bi-calendar-event me-2"></i><%= evento.fecha %></p>
+            <p id="hora" class="card-text"><i class="bi bi-clock me-1"></i> <%= evento.hora %></p>
+            <p id="ubicacion" class="card-text"><i class="bi bi-geo-alt me-2"></i><%= evento.ubicacion %></p>
+            <% if (!index) { %>
+                <% if (usuario.rol === "asistente") { %>
+                    <button class="btn btn-primary mt-1 mb-1" type="button">Anular inscripción</button>
+                <% } else { %>
+                    <% if (evento.id_organizador === usuario.id) { %>
+                        <button id="editar" class="btn btn-primary mt-1 mb-1" type="submit">Editar</button>
+                        <button id="eliminar" class="btn btn-primary mt-1 mb-1" type="submit" onclick="eliminacion()">Eliminar</button>
+                        <input type="hidden" name="id" value="<%= evento.id %>">
+                    <% } %>
                 <% } %>
             <% } %>
-        <% } %>
-        <div class="card-footer mt-3"><%= evento.tipo_evento %></div>
+            <div class="card-footer mt-3">
+                <p id="tipo_evento" class="card-text"><%= evento.tipo_evento %></p>
+            </div>
+        </form>
+
+        <script src="/js/evento.js"></script>
     </div>
 </div>
