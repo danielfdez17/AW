@@ -6,3 +6,11 @@
 {
     overflow-y: auto;
 }
+
+.ocultar {
+    display: none !important;
+}
+
+.mostrar {
+    display: block !important;
+}

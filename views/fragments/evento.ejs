@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form id="formulario" action="organizadores/eliminar_evento" method="post">
+        <form id="formulario" action="organizadores/editar_evento" method="post">
             <p id="titulo" class="card-title text-center fw-bold fs-3"><%= evento.titulo %> </p>
             <p id="descripcion" class="card-text"><%= evento.descripcion %></p>
             <p id="fecha" class="card-text"><i class="bi bi-calendar-event me-2"></i><%= evento.fecha %></p>
@@ -12,9 +12,13 @@
                     <button class="btn btn-primary mt-1 mb-1" type="button">Anular inscripción</button>
                 <% } else { %>
                     <% if (evento.id_organizador === usuario.id) { %>
-                        <button id="editar" class="btn btn-primary mt-1 mb-1" type="submit">Editar</button>
-                        <button id="eliminar" class="btn btn-primary mt-1 mb-1" type="submit" onclick="eliminacion()">Eliminar</button>
-                        <input type="hidden" name="id" value="<%= evento.id %>">
+                        <div class="d-flex gap-1">
+                            <button id="editarEvento<%= evento.id_organizador %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="habilitarEdicion(<%= evento.id_organizador %>)">Editar</button>
+                            <button id="guardarEvento<%= evento.id_organizador %>" class="btn btn-primary mt-1 mb-1 ocultar" type="button">Guardar</button>
+                            <button id="cancelarEvento<%= evento.id_organizador %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id_organizador %>)">Cancelar</button>
+                            <button id="eliminarEvento<%= evento.id_organizador %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="eliminacion()">Eliminar</button>
+                            <input type="hidden" name="id" value="<%= evento.id %>">
+                        </div>
                     <% } %>
                 <% } %>
             <% } %>
