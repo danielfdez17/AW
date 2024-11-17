@@ -62,6 +62,7 @@ class EventosController {
       ubicacion,
       capacidad_maxima_string,
       tipo_evento,
+      id,
     } = req.body;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
     daoEventos.updateEvento(
@@ -73,6 +74,7 @@ class EventosController {
         ubicacion,
         capacidad_maxima,
         tipo_evento,
+        id,
       },
       (err) => {
         if (err) next(err);

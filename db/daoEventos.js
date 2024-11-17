@@ -100,7 +100,7 @@ class DAOEventos {
         return;
       }
       const sql =
-        "UPDATE eventos SET titulo = ? and descripcion = ? and fecha = ? and hora = ? and ubicacion = ? and capacidad_maxima = ? and id_organizador = ? WHERE id = ?";
+        "UPDATE eventos SET titulo = ?, descripcion = ?, fecha = ?, hora = ?, ubicacion = ?, capacidad_maxima = ?, tipo_evento = ?   WHERE id = ?";
       connection.query(
         sql,
         [
@@ -109,8 +109,8 @@ class DAOEventos {
           evento.fecha,
           evento.hora,
           evento.ubicacion,
-          evento.capacidadMaxima,
-          evento.idOrganizador,
+          evento.capacidad_maxima,
+          evento.tipo_evento,
           evento.id,
         ],
         (err, rows) => {

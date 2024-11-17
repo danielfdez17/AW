@@ -1,17 +1,23 @@
 "use strict;"
 
 function habilitarEdicion(id_evento) {
-    // $("#editarNombre").prop("disabled", false);
-    // $("#editarCorreo").prop("disabled", false);
-    // $("#editarContrasena").prop("disabled", false);
-    // $("#editarTelefono").prop("disabled", false);
-    // $("#editarFacultad").prop("disabled", false);
-  
-    // $("#editarNombre").val($("#editarNombre").prop("placeholder"));
-    // $("#editarCorreo").val($("#editarCorreo").prop("placeholder"));
-    // $("#editarContrasena").val("");
-    // $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
-    // $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
+
+    $(`#titulo${id_evento}`).prop("disabled", false);
+    $(`#descripcion${id_evento}`).prop("disabled", false);
+    $(`#fecha${id_evento}`).prop("disabled", false);
+    $(`#hora${id_evento}`).prop("disabled", false);
+    $(`#ubicacion${id_evento}`).prop("disabled", false);
+    $(`#capacidad${id_evento}`).prop("disabled", false);
+    $(`#tipo_evento${id_evento}`).prop("disabled", false);
+    
+
+    $(`#titulo${id_evento}`).val($(`#titulo${id_evento}`).prop("placeholder"));
+    $(`#descripcion${id_evento}`).val($(`#descripcion${id_evento}`).prop("placeholder"));
+    $(`#fecha${id_evento}`).val($(`#fecha${id_evento}`).prop("placeholder"));
+    $(`#hora${id_evento}`).val($(`#hora${id_evento}`).prop("placeholder"));
+    $(`#ubicacion${id_evento}`).val($(`#ubicacion${id_evento}`).prop("placeholder"));
+    $(`#capacidad${id_evento}`).val($(`#capacidad${id_evento}`).prop("placeholder"));
+    $(`#tipo_evento${id_evento}`).val($(`#tipo_evento${id_evento}`).prop("placeholder"));
   
     //Botones
     document.getElementById(`editarEvento${id_evento}`).classList.add('ocultar');
@@ -27,16 +33,21 @@ function habilitarEdicion(id_evento) {
 }
   
 function deshabilitarEdicion(id_evento) {
-    // $("#editarNombre").prop("disabled", true);
-    // $("#editarCorreo").prop("disabled", true);
-    // $("#editarContrasena").prop("disabled", true);
-    // $("#editarTelefono").prop("disabled", true);
-    // $("#editarFacultad").prop("disabled", true);
+    $(`#titulo${id_evento}`).prop("disabled", true);
+    $(`#descripcion${id_evento}`).prop("disabled", true);
+    $(`#fecha${id_evento}`).prop("disabled", true);
+    $(`#hora${id_evento}`).prop("disabled", true);
+    $(`#ubicacion${id_evento}`).prop("disabled", true);
+    $(`#capacidad${id_evento}`).prop("disabled", true);
+    $(`#tipo_evento${id_evento}`).prop("disabled", true);
 
-    // $("#editarNombre").val("");
-    // $("#editarCorreo").val("");
-    // $("#editarContrasena").val("");
-    // $("#editarTelefono").val("");
+    $(`#titulo${id_evento}`).val("");
+    $(`#descripcion${id_evento}`).val("");
+    $(`#fecha${id_evento}`).val("");
+    $(`#hora${id_evento}`).val("");
+    $(`#ubicacion${id_evento}`).val("");
+    $(`#capacidad${id_evento}`).val("");
+    $(`#tipo_evento${id_evento}`).val("");
 
     //Botones
     document.getElementById(`editarEvento${id_evento}`).classList.add('mostrar');

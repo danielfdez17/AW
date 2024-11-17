@@ -2,28 +2,52 @@
     <div class="card-body">
 
         <form id="formulario" action="organizadores/editar_evento" method="post">
-            <p id="titulo" class="card-title text-center fw-bold fs-3"><%= evento.titulo %> </p>
-            <p id="descripcion" class="card-text"><%= evento.descripcion %></p>
-            <p id="fecha" class="card-text"><i class="bi bi-calendar-event me-2"></i><%= evento.fecha %></p>
-            <p id="hora" class="card-text"><i class="bi bi-clock me-1"></i> <%= evento.hora %></p>
-            <p id="ubicacion" class="card-text"><i class="bi bi-geo-alt me-2"></i><%= evento.ubicacion %></p>
+
+
+            <div class="mb-3">
+                <input type="text" class="form-control bg-transparent border-0 text-center fs-4" name="titulo" id="titulo<%= evento.id %>" placeholder="<%= evento.titulo %>" required disabled>
+            </div>
+
+            <input type="text" class="form-control bg-transparent border-0 fs-6" name="descripcion" id="descripcion<%= evento.id %>" placeholder="<%= evento.descripcion %>" required disabled>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="bi bi-calendar-event me-2"></i>
+                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="fecha" id="fecha<%= evento.id %>" placeholder="<%= evento.fecha %>" required disabled>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="bi bi-clock me-2"></i>
+                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="hora" id="hora<%= evento.id %>" placeholder="<%= evento.hora %>" required disabled>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="bi bi-geo-alt me-2"></i>
+                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="ubicacion" id="ubicacion<%= evento.id %>" placeholder="<%= evento.ubicacion %>" required disabled>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="bi bi-person me-2"></i>
+                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_maxima_string" id="capacidad<%= evento.id %>" placeholder="<%= evento.capacidad_maxima %>" required disabled>
+            </div>
+
             <% if (!index) { %>
                 <% if (usuario.rol === "asistente") { %>
                     <button class="btn btn-primary mt-1 mb-1" type="button">Anular inscripción</button>
                 <% } else { %>
                     <% if (evento.id_organizador === usuario.id) { %>
                         <div class="d-flex gap-1">
-                            <button id="editarEvento<%= evento.id_organizador %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="habilitarEdicion(<%= evento.id_organizador %>)">Editar</button>
-                            <button id="guardarEvento<%= evento.id_organizador %>" class="btn btn-primary mt-1 mb-1 ocultar" type="button">Guardar</button>
-                            <button id="cancelarEvento<%= evento.id_organizador %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id_organizador %>)">Cancelar</button>
-                            <button id="eliminarEvento<%= evento.id_organizador %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="eliminacion()">Eliminar</button>
+                            <button id="editarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="habilitarEdicion(<%= evento.id %>)">Editar</button>
+                            <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="submit">Guardar</button>
+                            <button id="cancelarEvento<%= evento.id %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id %>)">Cancelar</button>
+                            <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="eliminacion()">Eliminar</button>
                             <input type="hidden" name="id" value="<%= evento.id %>">
                         </div>
                     <% } %>
                 <% } %>
             <% } %>
+
             <div class="card-footer mt-3">
-                <p id="tipo_evento" class="card-text"><%= evento.tipo_evento %></p>
+                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="tipo_evento" id="tipo_evento<%= evento.id %>" placeholder="<%= evento.tipo_evento %>" required disabled>
             </div>
         </form>
 
