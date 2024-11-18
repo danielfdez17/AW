@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Ejercicio</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:brown;
+        }
+        span.indicador {
+            border: 1px solid red;
+            padding: 5px;
+        }
+        span.activo {
+            background-color: rgba(255,0,0,0.2);
+        }
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            $(document).on("keydown", function(event) {
+                $(".indicador").removeClass("activo");
+                $("#codigoTecla").text(event.which);
+                if (event.ctrlKey) {
+                    $("#ctrl").addClass("activo");
+                }
+                if (event.metaKey) {
+                    $("#meta").addClass("activo");
+                }
+                if (event.altKey) {
+                    $("#alt").addClass("activo");
+                }
+                if (event.key == "Escape") {
+                    $("#esc").addClass("activo");
+                }
+                if (event.shiftKey) {
+                    $("#shift").addClass("activo");
+                }
+                event.preventDefault();
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <p>Código de tecla pulsado: <span id="codigoTecla"></span></p>
+    <p>
+        <span class="indicador" id="ctrl">Control</span>
+        <span class="indicador" id="alt">Alt</span>
+        <span class="indicador" id="meta">Meta</span>
+        <span class="indicador" id="esc">Esc</span>
+        <span class="indicador" id="shift">Shift</span>
+    </p>
+  </body>
+</html>

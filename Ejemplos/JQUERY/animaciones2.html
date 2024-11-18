@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #superficie {
+            display: none;
+            border: 2px dashed green;
+            width: 300px;
+            height: 200px;
+            background-color: lightgreen;
+        }
+
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            // Desplazamiento y fundido simultáneos
+            $("#superficie").show().css("position", "relative")
+            .animate({ top: "400px", opacity: "0" }, 2000);
+        });
+        
+    </script>
+  </head>
+  <body>
+    <div id="superficie">
+    </div>
+  </body>
+</html>

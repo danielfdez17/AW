@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:brown;
+        }
+        .parrafo {
+            background-color: greenyellow;
+            color: darkblue;
+            font-size: 2em;
+            border: 1px dashed darkblue;
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+    <script type="application/javascript">
+        const IZQUIERDA = 37;
+        const DERECHA = 39;
+        const ARRIBA = 38;
+        const ABAJO = 40;
+        $(function() {
+            let parrafo = $("div.parrafo");
+            $("body").on("keydown", function(event) {
+                    let incremento = { x: 0, y: 0 };
+                    switch (event.which) {
+                        case IZQUIERDA: incremento.x = -10; break;
+                        case DERECHA: incremento.x = 10; break;
+                        case ARRIBA: incremento.y = -10; break;
+                        case ABAJO: incremento.y = 10; 
+                    }
+                    let current = parrafo.offset();
+                    parrafo.offset({
+                    left: current.left + incremento.x,
+                    top: current.top + incremento.y
+                });
+                event.preventDefault();
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <div class="parrafo">
+        Muéveme con los cursores
+    </div>
+  </body>
+</html>

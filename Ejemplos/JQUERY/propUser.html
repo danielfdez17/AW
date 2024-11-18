@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:brown;
+        }
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            $("#elem").data("number", 1);
+            // Al pulsar el botón Incrementar, se incrementan la propiedad
+            // 'number' del párrafo.
+            $("#incrementar").on("click", function() {
+                let num = $("#elem").data("number");
+                $("#elem").data("number", num + 1);
+            });
+            // Al pulsar el botón Obtener, se muestra el valor actual de la
+            // propiedad 'number' del párrafo
+            $("#obtener").on("click", function() {
+                alert($("#elem").data("number"));
+            });
+        });
+    </script>
+  </head>
+  <body>
+        <p id="elem">Esto es un elemento del DOM que almacena un número</p>
+        <button id="incrementar">Incrementar</button>
+        <button id="obtener">Obtener valor actual</button>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #superficie {
+            display: none;
+            border: 2px dashed green;
+            width: 300px;
+            height: 200px;
+            background-color: lightgreen;
+        }
+
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            // Mostrar y ocultar completamente
+            $("#superficie").fadeIn(2000).fadeOut(2000);
+            // Mostrar y ocultar hasta el 50% de opaciodad
+            $("#superficie").fadeIn(2000).fadeTo(2000, 0.5);
+            // Deslizamiento hacia abajo
+            $("#superficie").slideDown(2000);
+            // Deslizamiento hacia hacia arriba
+            $("#superficie").fadeIn(2000).slideUp(2000);
+        });
+        
+    </script>
+  </head>
+  <body>
+    <div id="superficie">
+    </div>
+  </body>
+</html>

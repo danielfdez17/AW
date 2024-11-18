@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Ejercicio</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:brown;
+        }
+        #superficie {
+            width: 600px;
+            height: 300px;
+            border: 1px dashed darkblue;
+        }
+        #superficie:hover {
+            cursor:crosshair;
+        }
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            $("#superficie").on("mouseenter", function() {
+                $("#posicion").show();
+            });
+            $("#superficie").on("mouseleave", function() {
+                $("#posicion").hide();
+            });
+            $("#superficie").on("mousemove", function(event) {
+                $("#posicion").text(`${event.pageX} x ${event.pageY}`);
+            });
+        });  
+    </script>
+  </head>
+  <body>
+    <p>Mueve el ratón por esta superficie ...</p>
+    <div id="superficie"></div>
+    <div id="posicion"></div>
+  </body>
+</html>

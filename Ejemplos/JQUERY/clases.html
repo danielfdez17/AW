@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .rojo {
+            color: red;
+        }
+        .verde {
+            color:green;
+        }
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            // Todos los encabezados <h1> tendrán el texto de color verde
+            //$("h1").css("color", "green");
+            // Al hacer click
+            $("h1").on("click", function() {
+                console.log("haciendo click");
+                $("h1").toggleClass("rojo");
+            });
+            console.log($("h1").eq(0).css("font-size")); 
+        });
+    </script>
+  </head>
+  <body>
+    <div style="margin: .5in; height: 400;">
+        <h1>¡Pulsa en mí para cambiar mi estilo!</h1>
+    </div>
+  </body>
+</html>

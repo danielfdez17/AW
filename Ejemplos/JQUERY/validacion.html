@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:brown;
+        }
+        #contenedor {
+            width: 800px;
+        }
+        form {
+            margin: 10px;
+        }
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            $("#formulario input[type=submit]").on("click", function() {
+              //  let valor = $("#formulario input[type=text]").prop("value");
+                let valor = $("#formulario input[type=text]").val();
+                if (isNaN(Number(valor))) {
+                    alert("No has introducido ningún número!");
+                    // Inhibir el envío del formulario
+                    event.preventDefault();
+                    $("#formulario input[type=text]").val("");
+                }
+            });
+        });
+        
+    </script>
+  </head>
+  <body>
+    <div id="contenedor">
+        <form action="correcto.html" method="GET" id="formulario">
+            Introduce un número:
+            <input type="text" name="num">
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+  </body>
+</html>

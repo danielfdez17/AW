@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .incorrecto {
+            color: red;
+        }
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            $("#campoNumero").on("change", function() {
+                // Obtenemos valor actual
+                let valor = $(event.target).prop("value").trim();
+                if (valor === "") {
+                    $("#mensaje").text("El campo está vacío");
+                } else if (isNaN(Number(valor))) {
+                    $("#mensaje").text("No se ha introducido un número");
+                } else {
+                    $("#mensaje").text("");
+                }
+            });
+        });
+
+    </script>
+  </head>
+  <body>
+    <p>
+        Introduce un número: <input type="text" id="campoNumero">
+        <span id="mensaje" class="incorrecto"></span>
+        </p>
+  </body>
+</html>

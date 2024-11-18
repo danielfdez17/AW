@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:brown;
+        }
+    </style>
+    <script type="application/javascript">
+        $(function() {
+            $("#anyadirElemento").on("click", function() {
+                let nuevoElemento = $("<li>Nuevo elemento</li>");
+                $("#listaNumerada").append(nuevoElemento);
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <p>Pulsa el botón de abajo para añadir elementos a la lista:</p>
+    <ol id="listaNumerada">
+    </ol>
+    <button id="anyadirElemento">Añadir elemento</button>
+  </body>
+</html>

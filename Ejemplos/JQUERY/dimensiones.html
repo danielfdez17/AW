@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:brown;
+        }
+        .botones {
+            clear: both;
+            padding-top: 20px;
+        }
+        .parrafo {
+            background-color: greenyellow;
+            color: darkblue;
+            border: 1px dotted darkblue;
+            width: 300px;
+            float:left;
+        }
+        .tamaño {
+            float:left;
+            margin-left: 50px;
+            background-color:darkblue;
+            color:whitesmoke;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+    <script type="application/javascript">
+        // Actualiza la etiqueta de la esquina superior derecha con las
+        // dimensiones del elemento pasado como parámetro
+        function actualizarEtiqueta(elem) {
+            let ancho = Math.round(elem.width());
+            let alto = Math.round(elem.height());
+            $("div.tamaño").text(`${ancho} x ${alto}`);
+        }
+        $(function() {
+            let parrafo = $("div.parrafo");
+            actualizarEtiqueta(parrafo);
+            // Cuando se pulsa el botón de aumentar anchura...
+            $("#aumentarAnchura").on("click", function() {
+                // Obtenemos la anchura actual y establecemos la nueva
+                let anchoActual = parrafo.width();
+                parrafo.width(anchoActual + 20);
+                // Actualizamos la etiqueta con la nueva dimensión
+                actualizarEtiqueta(parrafo);
+            });
+        });
+    </script>
+  </head>
+  <body>
+      <div>
+        <div class="parrafo">
+            Lorem ipsum dolor sit amet consectetur adipiscing elit augue varius, 
+            ultrices lobortis nisl mauris aptent praesent in suspendisse, dictumst 
+            quisque natoque diam pellentesque morbi ornare eu. Non litora eget nascetur 
+            justo augue scelerisque nam penatibus leo, erat himenaeos tincidunt sem 
+            auctor praesent ut integer vehicula, habitant pharetra nullam hendrerit 
+            vivamus dui enim congue. Natoque tellus malesuada at nunc est ligula 
+            penatibus ullamcorper, proin facilisis aenean sollicitudin felis laoreet 
+            massa tempor, quis leo habitant dictum hendrerit eros habitasse.
+        </div>
+        <div class="tamaño"></div>
+    </div>
+    <br>
+    <div class="botones">
+        <button id="aumentarAnchura">Aumentar anchura</button>
+    </div>
+  </body>
+</html>

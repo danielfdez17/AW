@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Método prop</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #ventana {
+            width: 200px;
+            background-color: green;
+            color: whitesmoke;
+            margin: auto;
+            padding: 5px;
+        }
+        .cerrar {
+            float: right;
+        }
+    </style>
+    <script type="application/javascript">
+        function abrirVentana() {
+            $("#ventana").show();
+        }
+        function cerrarVentana() {
+            $("#ventana").hide();
+        }
+        $(function() {
+            cerrarVentana();
+            $("#mostrarVentana").on("click", abrirVentana);
+            $("#ventana span.cerrar").on("click", cerrarVentana);
+            $("#cerrar").on("click", cerrarVentana);
+        });
+    </script>
+  </head>
+  <body>
+    <button id="mostrarVentana">Mostrar ventana</button>
+    <div id="ventana">
+        <span class="cerrar">&#x274C;</span>
+        <p>Esto es una ventana emergente. Puedes pulsar el botón de
+        abajo o el botón cerrar de la esquina para cerrar la
+        ventana.</p>
+        <button id="cerrar">Cerrar</button>
+    </div>
+  </body>
+</html>
