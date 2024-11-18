@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form id="formulario" action="organizadores/editar_evento" method="post">
+        <form id="formulario<%= evento.id %>" action="" method="post">
 
 
             <div class="mb-3">
@@ -37,13 +37,20 @@
                     <% if (evento.id_organizador === usuario.id) { %>
                         <div class="d-flex gap-1">
                             <button id="editarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="habilitarEdicion(<%= evento.id %>)">Editar</button>
-                            <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="submit">Guardar</button>
+                            <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="submit" onclick="enviar_accion('editar', <%= evento.id %>)">Guardar</button>
                             <button id="cancelarEvento<%= evento.id %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id %>)">Cancelar</button>
-                            <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="eliminacion()">Eliminar</button>
+                            <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('eliminar', <%= evento.id %>)">Eliminar</button>
                             <input type="hidden" name="id" value="<%= evento.id %>">
                         </div>
                     <% } %>
                 <% } %>
+            <% } else { %>
+                <% if (usuario && usuario.rol === "asistente") { %>
+                    <button class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('inscribir', <%= evento.id %>)">Inscribirse</button>
+                    <input type="hidden" name="id" value="<%= evento.id %>">
+
+                <% } %>
+
             <% } %>
 
             <div class="card-footer mt-3">

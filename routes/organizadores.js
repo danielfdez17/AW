@@ -18,7 +18,7 @@ const daoListaNegra = new DAOListaNegra(pool);
 router.get("/", (req, res) => {
   daoFacultades.readAllFacultades((facultades) => {
     daoEventos.readAllEventos((eventos) => {
-      res.render("organizadores", {
+      res.render("index", {
         eventos: eventos,
         usuario: req.session.usuario,
         facultades: facultades,

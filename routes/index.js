@@ -123,7 +123,5 @@ const comprobacion = [
 router.post("/signUp", comprobacion, signUpController.SignUp);
 router.post("/login", comprobacion, loginController.login);
 router.post("/editarPerfil", comprobacion, editProfileController.edit);
-router.post("/inscribirse", comprobacion, inscripcionesController.inscribirse);
-
 
 module.exports = router;

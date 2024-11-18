@@ -62,7 +62,19 @@ function deshabilitarEdicion(id_evento) {
 }
 
   
-function eliminacion() {
-    document.getElementById("formulario").action = 'organizadores/eliminar_evento'
-    document.getElementById('eventoForm').submit();
+function enviar_accion(accion, id_evento) {
+
+    switch (accion) {
+        case 'editar':
+          document.getElementById(`formulario${id_evento}`).action = '/organizadores/editar_evento';
+            break;
+        case 'eliminar':
+          document.getElementById(`formulario${id_evento}`).action = '/organizadores/eliminar_evento';
+          break;
+        case 'inscribir':
+          document.getElementById(`formulario${id_evento}`).action = '/asistentes/inscribir_evento';
+            break;
+    }
+
+    document.getElementById(`formulario${id_evento}`).submit()
 }
