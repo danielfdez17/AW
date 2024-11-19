@@ -51,7 +51,7 @@ $(() => {
   function terminar(ganar) {
     $("#mensaje").text(`Fin del juego: has ${ganar ? "ganado" : "perdido"}`);
     $("#fin").show();
-    $("#islas img").unbind("click");
+    $("#islas img").off("click");
     $("#restart").on("click", () => {
       $("#islas img").prop("onclick", null).off("click");
       $("#islas").hide();
@@ -62,6 +62,7 @@ $(() => {
       contador = NUM_INTENTOS;
       actualizarContador();
       console.clear();
+      location.reload()
     });
   }
 });
