@@ -51,8 +51,9 @@ $(() => {
   function terminar(ganar) {
     $("#mensaje").text(`Fin del juego: has ${ganar ? "ganado" : "perdido"}`);
     $("#fin").show();
-    $("#islas img").prop("onclick", null).off("click");
+    $("#islas img").unbind("click");
     $("#restart").on("click", () => {
+      $("#islas img").prop("onclick", null).off("click");
       $("#islas").hide();
       $("#fin").hide();
       $("#inicio").show();
