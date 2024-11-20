@@ -1,3 +1,37 @@
+:root {
+    --sand-bg: #dfae17;
+    --sea-bg: #006994;
+}
+
+@font-face {
+    font-family: caribeanFont;
+    src: url("../fonts/Caribbean_Island.ttf");
+}
+
+* {
+    font-family: caribeanFont ,'Courier New', Courier, monospace;
+}
+
+.container {
+    background-color: var(--sand-bg);
+}
+
 img {
     max-width: 100%;
+}
+
+#inicio img {
+    mix-blend-mode: multiply;
+}
+
+.btn {
+    background-color: var(--sea-bg);
+    color: white;
+    border: none;
+}
+
+.btn:hover {
+    transform: scale(1.2);
+    transition: 0.5s;
+    background-color: var(--sea-bg);
 }
