@@ -1,0 +1,21 @@
+<div class="container text-center">
+    <% if (foto) {%>
+        <div class="mt-3">
+            <h3>Imagen</h3>
+            <img src="/uploads/<%= foto %>" alt="Imagen del servicio" width="100">
+        </div>
+    <%} %>
+    <div class="mt-3 mb-3">
+        <h3>Nombre</h3>
+        <p><%= nombre %></p>
+    </div>
+    <div class="mb-3">
+        <h3>Descripcion</h3>
+        <p><%= descripcion %></p>
+    </div>
+    <div class="mb-3">
+        <h3>Precio</h3>
+        <p><%= precio %></p>
+    </div>
+
+</div>

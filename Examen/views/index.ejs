@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Nuevo Servicio</title>
+    <%- include("../public/html/head.html") %>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center fw-bold">Registrar un nuevo servicio</h1>
+        <form action="nuevo_servicio" method="post" enctype="multipart/form-data">
+            <div class="mt-3 mb-3">
+                <label for="nombre" class="form-label">Nombre del servicio</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" required minlength="3">
+            </div>
+
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Breve descripcion</label>
+                <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio del servicio</label>
+                <input type="number" name="precio" id="precio" class="form-control" required min="0">
+            </div>
+
+            <div class="mb-3">
+                <label for="foto" class="form-label">Imagen del servicio</label>
+                <input type="file" name="foto" id="foto" class="form-control" >
+            </div>
+
+            <div class="mb-3 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary">
+                <a href="/servicios" class="text-decoration-none text-white">Ver todos los servicios</a>
+            </button>
+        </div>
+    </div>
+    <%- include("../public/html/scripts.html") %>
+</body>
+</html>
