@@ -48,6 +48,7 @@ const comprobacion = [
         "ALTER",
         "TRUNCATE",
         "CREATE",
+        "--"
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
