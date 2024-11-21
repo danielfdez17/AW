@@ -20,6 +20,7 @@ create table usuarios(
     id_facultad int not null,
     rol varchar(20) not null,
     contrasena varchar(50) not null,
+    recordatorio varchar(50) not null default "1 hora",
     foreign key (id_facultad) references facultades(id)
 );
 
@@ -38,6 +39,7 @@ create table eventos(
     capacidad_maxima int not null,
     id_organizador int not null,
     tipo_evento varchar(20) not null,
+    duracion varchar(10) not null default "1:00",
     activo BOOLEAN DEFAULT TRUE,
     foreign key (id_organizador) references usuarios(id)
 );
