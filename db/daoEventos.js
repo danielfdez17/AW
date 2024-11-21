@@ -13,7 +13,7 @@ class DAOEventos {
         return;
       }
       const sql =
-        "INSERT INTO eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        "INSERT INTO eventos (titulo, descripcion, fecha, hora, duracion, ubicacion, capacidad_maxima, id_organizador, tipo_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
       connection.query(
         sql,
         [
@@ -21,10 +21,11 @@ class DAOEventos {
           evento.descripcion,
           evento.fecha,
           evento.hora,
+          evento.duracion,
           evento.ubicacion,
           evento.capacidad_maxima,
           evento.id_organizador,
-          evento.tipo_evento
+          evento.tipo_evento,
         ],
         (err, rows) => {
           connection.release();
@@ -62,8 +63,28 @@ class DAOEventos {
         callback(err);
         return;
       }
-      const sql = "SELECT * FROM eventos WHERE id_organizador = ? AND activo = true";
+      const sql =
+        "SELECT * FROM eventos WHERE id_organizador = ? AND activo = true";
       connection.query(sql, [id], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(null, rows);
+      });
+    });
+  }
+
+  readEventoPorFecha(fecha, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql =
+        "SELECT * FROM eventos WHERE fecha = ? and activo = true ORDER BY fecha ASC";
+      connection.query(sql, [fecha], (err, rows) => {
         connection.release();
         if (err) {
           callback(err);
@@ -91,14 +112,15 @@ class DAOEventos {
       });
     });
   }
-  
+
   decrementarCapacidadEvento(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
         return;
       }
-      const sql = "UPDATE eventos SET capacidad_maxima = capacidad_maxima - 1 WHERE id = ?";
+      const sql =
+        "UPDATE eventos SET capacidad_maxima = capacidad_maxima - 1 WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -110,13 +132,15 @@ class DAOEventos {
     });
   }
 
+  // ! TODO: capacidad actual
   incrementarCapacidadEvento(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
         return;
       }
-      const sql = "UPDATE eventos SET capacidad_maxima = capacidad_maxima + 1 WHERE id = ?";
+      const sql =
+        "UPDATE eventos SET capacidad_maxima = capacidad_maxima + 1 WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -135,7 +159,7 @@ class DAOEventos {
         return;
       }
       const sql =
-        "UPDATE eventos SET titulo = ?, descripcion = ?, fecha = ?, hora = ?, ubicacion = ?, capacidad_maxima = ?, tipo_evento = ?   WHERE id = ?";
+        "UPDATE eventos SET titulo = ?, descripcion = ?, fecha = ?, hora = ?, duracion = ?, ubicacion = ?, capacidad_maxima = ?, tipo_evento = ?  WHERE id = ?";
       connection.query(
         sql,
         [
@@ -143,6 +167,7 @@ class DAOEventos {
           evento.descripcion,
           evento.fecha,
           evento.hora,
+          evento.duracion,
           evento.ubicacion,
           evento.capacidad_maxima,
           evento.tipo_evento,
@@ -159,7 +184,6 @@ class DAOEventos {
       );
     });
   }
-
 }
 
 module.exports = DAOEventos;
