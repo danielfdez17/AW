@@ -22,12 +22,16 @@ function habilitarEdicion(id_evento) {
     $(`#tipo_evento${id_evento}`).val($(`#tipo_evento${id_evento}`).prop("placeholder"));
   
     //Botones
+    // $(`#editarEvento${id_evento}`).hide();
+    // $(`#eliminarEvento${id_evento}`).hide();
+    // $(`#cancelarEvento${id_evento}`).show();
+    // $(`#guardarEvento${id_evento}`).show();
     document.getElementById(`editarEvento${id_evento}`).classList.add('ocultar');
     document.getElementById(`eliminarEvento${id_evento}`).classList.add('ocultar');
     document.getElementById(`cancelarEvento${id_evento}`).classList.add('mostrar');
     document.getElementById(`guardarEvento${id_evento}`).classList.add('mostrar');
-
-
+    
+    
     document.getElementById(`editarEvento${id_evento}`).classList.remove('mostrar');
     document.getElementById(`eliminarEvento${id_evento}`).classList.remove('mostrar');
     document.getElementById(`cancelarEvento${id_evento}`).classList.remove('ocultar');
@@ -54,6 +58,10 @@ function deshabilitarEdicion(id_evento) {
     $(`#tipo_evento${id_evento}`).val("");
 
     //Botones
+    $(`#editarEvento${id_evento}`).show();
+    $(`#eliminarEvento${id_evento}`).show();
+    $(`#cancelarEvento${id_evento}`).hide();
+    $(`#guardarEvento${id_evento}`).hide();
     document.getElementById(`editarEvento${id_evento}`).classList.add('mostrar');
     document.getElementById(`eliminarEvento${id_evento}`).classList.add('mostrar');
     document.getElementById(`cancelarEvento${id_evento}`).classList.add('ocultar');
