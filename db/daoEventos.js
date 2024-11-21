@@ -120,7 +120,7 @@ class DAOEventos {
         return;
       }
       const sql =
-        "UPDATE eventos SET capacidad_maxima = capacidad_maxima - 1 WHERE id = ?";
+        "UPDATE eventos SET capacidad_actual = capacidad_actual - 1 WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -132,7 +132,6 @@ class DAOEventos {
     });
   }
 
-  // ! TODO: capacidad actual
   incrementarCapacidadEvento(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
@@ -140,7 +139,7 @@ class DAOEventos {
         return;
       }
       const sql =
-        "UPDATE eventos SET capacidad_maxima = capacidad_maxima + 1 WHERE id = ?";
+        "UPDATE eventos SET capacidad_actual = capacidad_actual + 1 WHERE id = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
