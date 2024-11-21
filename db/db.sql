@@ -36,6 +36,7 @@ create table eventos(
     fecha varchar(10) not null,
     hora varchar(5) not null,
     ubicacion varchar(100) not null,
+    capacidad_actual int not null default 0,
     capacidad_maxima int not null,
     id_organizador int not null,
     tipo_evento varchar(20) not null,
