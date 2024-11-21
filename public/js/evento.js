@@ -6,6 +6,7 @@ function habilitarEdicion(id_evento) {
     $(`#descripcion${id_evento}`).prop("disabled", false);
     $(`#fecha${id_evento}`).prop("disabled", false);
     $(`#hora${id_evento}`).prop("disabled", false);
+    $(`#duracion${id_evento}`).prop("disabled", false);
     $(`#ubicacion${id_evento}`).prop("disabled", false);
     $(`#capacidad${id_evento}`).prop("disabled", false);
     $(`#tipo_evento${id_evento}`).prop("disabled", false);
@@ -15,6 +16,7 @@ function habilitarEdicion(id_evento) {
     $(`#descripcion${id_evento}`).val($(`#descripcion${id_evento}`).prop("placeholder"));
     $(`#fecha${id_evento}`).val($(`#fecha${id_evento}`).prop("placeholder"));
     $(`#hora${id_evento}`).val($(`#hora${id_evento}`).prop("placeholder"));
+    $(`#duracion${id_evento}`).val($(`#duracion${id_evento}`).prop("placeholder"));
     $(`#ubicacion${id_evento}`).val($(`#ubicacion${id_evento}`).prop("placeholder"));
     $(`#capacidad${id_evento}`).val($(`#capacidad${id_evento}`).prop("placeholder"));
     $(`#tipo_evento${id_evento}`).val($(`#tipo_evento${id_evento}`).prop("placeholder"));
@@ -37,6 +39,7 @@ function deshabilitarEdicion(id_evento) {
     $(`#descripcion${id_evento}`).prop("disabled", true);
     $(`#fecha${id_evento}`).prop("disabled", true);
     $(`#hora${id_evento}`).prop("disabled", true);
+    $(`#duracion${id_evento}`).prop("disabled", true);
     $(`#ubicacion${id_evento}`).prop("disabled", true);
     $(`#capacidad${id_evento}`).prop("disabled", true);
     $(`#tipo_evento${id_evento}`).prop("disabled", true);
@@ -45,6 +48,7 @@ function deshabilitarEdicion(id_evento) {
     $(`#descripcion${id_evento}`).val("");
     $(`#fecha${id_evento}`).val("");
     $(`#hora${id_evento}`).val("");
+    $(`#duracion${id_evento}`).val("");
     $(`#ubicacion${id_evento}`).val("");
     $(`#capacidad${id_evento}`).val("");
     $(`#tipo_evento${id_evento}`).val("");
