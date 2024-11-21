@@ -30,6 +30,7 @@ class EventosController {
       hora,
       duracion,
       ubicacion,
+      capacidad,
       capacidad_maxima_string,
       tipo_evento,
     } = req.body;
@@ -49,6 +50,7 @@ class EventosController {
             hora,
             duracion,
             ubicacion,
+            capacidad,
             capacidad_maxima,
             tipo_evento,
             id_organizador,
@@ -84,6 +86,7 @@ class EventosController {
       hora,
       duracion,
       ubicacion,
+      capacidad,
       capacidad_maxima_string,
       tipo_evento,
       id,
@@ -95,7 +98,7 @@ class EventosController {
         eventos.forEach((evento) => {
           if (evento.hora + evento.duracion >= hora) sePuedeActualizar = false;
         });
-        if (sePuedeActualizar) {
+        if (sePuedeActualizar && capacidad <= capacidad_maxima) {
           daoEventos.updateEvento(
             {
               titulo,
@@ -104,6 +107,7 @@ class EventosController {
               hora,
               duracion,
               ubicacion,
+              capacidad,
               capacidad_maxima,
               tipo_evento,
               id,

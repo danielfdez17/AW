@@ -31,8 +31,13 @@
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
+                <i class="bi bi-person-fill me-2"></i>
+                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_actual_string" id="capacidad<%= evento.id %>" placeholder="<%= evento.capacidad_actual %>" required disabled>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
                 <i class="bi bi-person me-2"></i>
-                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_maxima_string" id="capacidad<%= evento.id %>" placeholder="<%= evento.capacidad_maxima %>" required disabled>
+                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_maxima_string" id="capacidad_maxima<%= evento.id %>" placeholder="<%= evento.capacidad_maxima %>" required disabled>
             </div>
 
             <input type="hidden" name="id" value="<%= evento.id %>">
