@@ -18,7 +18,7 @@ const inscripcionesController = new InscripcionesController();
 router.get("/", (req, res) => {
   daoFacultades.readAllFacultades((facultades) => {
     daoEventos.readAllEventos((eventos) => {
-      daoInscripciones.readEventosInscritosPorAsistente(
+      daoInscripciones.readEventosInscritosPorAsistenteActivos(
         req.session.usuario.id,
         (eventosInscritos) => {
           res.render("index", {
@@ -82,5 +82,6 @@ const comprobacion = [
 ];
 
 router.post("/inscribir_evento", comprobacion, inscripcionesController.inscribirEvento);
+router.post("/anular_evento", comprobacion, inscripcionesController.anularEvento);
 
 module.exports = router;

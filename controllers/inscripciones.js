@@ -12,11 +12,42 @@ class InscripcionesController {
     let existe = false;
     daoInscripciones.readEventosInscritosPorAsistente(req.session.usuario.id, (inscripciones) => {
       inscripciones.forEach((inscripcion) => {
-        if (inscripcion.id == id) {
+        if (!existe && inscripcion.id == id) {
           existe = true;
-          res.status(500).json({
-            error: "No te puedes inscribir al evento porque ya está inscrito",
-          });
+
+          daoInscripciones.readInscripcion({id_usuario: req.session.usuario.id, id_evento: inscripcion.id}, (error, evento_inscrito) =>
+          {
+            if(error)
+              res.status(500).json({
+                error: error,
+              });
+            else
+            {
+              if(evento_inscrito.activo)
+                {
+                  res.status(500).json({
+                    error: "No te puedes inscribir al evento porque ya está inscrito",
+                  });
+                }
+                else
+                {
+                  daoInscripciones.reinscripcionEvento({id_usuario: req.session.usuario.id, id_evento: inscripcion.id}, (error) =>
+                  {
+                    daoEventos.decrementarCapacidadEvento(id, (error) => {
+                      if(error)
+                        res.status(500).json({
+                          error: error,
+                        });
+                      else
+                        res.redirect("/");
+                    });
+                    
+                  });
+      
+                }
+            }
+          })
+          
         }
       });
 
@@ -32,19 +63,49 @@ class InscripcionesController {
 
         daoInscripciones.createInscripcion({id_usuario: req.session.usuario.id, id_evento: parseInt(id), estado, fecha_inscripcion: fechaFormateada}, (error) => 
           {
-            daoEventos.updateCapacidadEvento(id, (error) => {
+            daoEventos.decrementarCapacidadEvento(id, (error) => {
               if(error)
                 res.status(500).json({
                   error: error,
                 });
+              else
+                res.redirect("/");
             });
-            res.redirect("/");
+            
           });
       });
     }
     });
 
   }
+
+  anularEvento(req, res, next) {
+    const {id} = req.body;
+    let existe = false;
+    daoInscripciones.readEventosInscritosPorAsistenteActivos(req.session.usuario.id, (inscripciones) => {
+      inscripciones.forEach((inscripcion) => {
+        if (!existe && inscripcion.id == id)
+        {
+          existe = true;
+          daoInscripciones.deleteInscripcion({id_usuario: req.session.usuario.id, id_evento: inscripcion.id}, (error) =>
+            {
+              daoEventos.incrementarCapacidadEvento(id, (error) => {
+                if(error)
+                  res.status(500).json({
+                    error: error,
+                  });
+                else
+                  res.redirect("/");
+              });
+              
+            });
+        }
+
+      });
+
+    });
+  }
 }
 
 module.exports = InscripcionesController;
+

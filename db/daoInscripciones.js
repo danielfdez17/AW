@@ -6,14 +6,14 @@ class DAOInscripciones {
     this.pool = pool;
   }
 
-  readEventosInscritosPorAsistente(id, callback) {
+  readEventosInscritosPorAsistenteActivos(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
         return;
       }
       const sql =
-        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ?;";
+        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ? AND i.activo = true;";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -22,6 +22,50 @@ class DAOInscripciones {
         }
         callback(rows);
       });
+    });
+  }
+
+  readEventosInscritosPorAsistente(id, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql =
+        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ?";
+      connection.query(sql, [id], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(rows);
+      });
+    });
+  }
+
+  readInscripcion(inscripcion, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql = "SELECT * FROM inscripciones WHERE id_usuario = ? AND id_evento = ?";
+      connection.query(
+        sql,
+        [
+          inscripcion.id_usuario,
+          inscripcion.id_evento,
+        ],
+        (err, rows) => {
+          connection.release();
+          if (err) {
+            callback(err);
+            return;
+          }
+          callback(null, rows[0]);
+        }
+      );
     });
   }
 
@@ -50,6 +94,52 @@ class DAOInscripciones {
           callback(null, rows[0]);
         }
       );
+    });
+  }
+
+  deleteInscripcion(inscripcion, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql = "UPDATE inscripciones SET activo = false WHERE id_usuario = ? AND id_evento = ?"
+      connection.query(
+        sql,
+        [
+          inscripcion.id_usuario,
+          inscripcion.id_evento,
+        ],
+        (err, rows) => {
+          connection.release();
+          if (err) {
+            callback(err);
+            return;
+          }
+          callback(null, rows[0]);
+        }
+      );
+    });
+  }
+  reinscripcionEvento(inscripcion, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql = "UPDATE inscripciones SET activo = true WHERE id_usuario = ? AND id_evento = ?";
+      connection.query(sql, 
+      [
+        inscripcion.id_usuario,
+        inscripcion.id_evento,
+      ], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(null, rows[0]);
+      });
     });
   }
 

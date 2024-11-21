@@ -51,6 +51,7 @@ create table inscripciones(
     id_evento int not null,
     estado varchar(20) not null,
     fecha_inscripcion date not null default current_date,
+    activo BOOLEAN DEFAULT TRUE,
     primary key (id_usuario, id_evento),
     foreign key (id_usuario) references usuarios(id),
     foreign key (id_evento) references eventos(id)

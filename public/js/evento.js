@@ -74,6 +74,9 @@ function enviar_accion(accion, id_evento) {
         case 'inscribir':
           document.getElementById(`formulario${id_evento}`).action = '/asistentes/inscribir_evento';
             break;
+        case 'anular':
+          document.getElementById(`formulario${id_evento}`).action = '/asistentes/anular_evento';
+            break;
     }
 
     document.getElementById(`formulario${id_evento}`).submit()

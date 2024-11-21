@@ -1,20 +1,16 @@
-<form action="/inscribirse" method="post">
+<div class="modal-body d-flex flex-column gap-2">
 
-    <div class="modal-body d-flex flex-column gap-2">
+    <ul class="list-group">
+        <% eventosInscritos.forEach(evento => { %>
+            <li class="list-group-item">
+                <%- include('./evento.ejs', {evento: evento, index: false}) %>
+                <input type="hidden" name="evento" value="<%= evento %>">
+            </li>
+        <% }); %>
+    </ul>
 
-        <ul class="list-group">
-            <% eventosInscritos.forEach(evento => { %>
-                <li class="list-group-item">
-                    <%- include('./evento.ejs', {evento: evento, index: false}) %>
-                    <input type="hidden" name="evento" value="<%= evento %>">
-                </li>
-            <% }); %>
-        </ul>
+</div>
 
-    </div>
-
-    <div class="modal-footer">
-        <button id="cerrarEdicion" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deshabilitarEdicion()">Cerrar</button>
-    </div>
-
-  </form>
+<div class="modal-footer">
+    <button id="cerrarEdicion" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deshabilitarEdicion()">Cerrar</button>
+</div>
