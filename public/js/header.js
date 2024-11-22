@@ -1,5 +1,19 @@
 //TODO: Cuando se fije el diseño hacer accsibilidad de colores
 
+const dominio = "@ucm.es";
+$(() => {
+  $("#correoLogin").click(() => {
+    $("#correoLogin").get(dominio.length-1).setSelectionRange(0, 0);
+  });
+  $("#correoLogin").keydown(() => {
+    let correo = $("#correoLogin").val().replace(dominio, "");
+    $("#correoLogin").val(correo + dominio);
+    $("#correoLogin")
+      .get(correo.length)
+      .setSelectionRange(0, 0);
+  });
+});
+
 //Colores claros
 const inicio_degradado_claro = "rgb(255, 237, 241)";
 const fin_degradado_claro = "rgb(207, 146, 238)";
@@ -71,23 +85,20 @@ document.addEventListener("DOMContentLoaded", function () {
   ajustes_color("Predeterminado");
 });
 
-function habilitarEdicion()  {
-    editarNombre.setAttribute("disabled", "false");
-    editarCorreo.setAttribute("disabled", "false");
-    editarContrasena.setAttribute("disabled", "false");
-    editarTelefono.setAttribute("disabled", "false");
-    
-    editarNombre.textContent = editarNombre.getAttribute("placeholder")
-    editarNombre.textContent = editarNombre.getAttribute("placeholder")
-    editarContrasena.textContent = editarContrasena.getAttribute("placeholder")
-}
+function habilitarEdicion() {
+  editarNombre.setAttribute("disabled", "false");
+  editarCorreo.setAttribute("disabled", "false");
+  editarContrasena.setAttribute("disabled", "false");
+  editarTelefono.setAttribute("disabled", "false");
 
+  editarNombre.textContent = editarNombre.getAttribute("placeholder");
+  editarNombre.textContent = editarNombre.getAttribute("placeholder");
+  editarContrasena.textContent = editarContrasena.getAttribute("placeholder");
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   //Identificamos los elementos a los que queremos añadirle el EventListener
-  document.querySelectorAll("#informacion button").forEach(function (button)
-  {
-  
+  document.querySelectorAll("#informacion button").forEach(function (button) {
     button.addEventListener("click", function (event) {
       // Evita que el dropdown se cierre al hacer clic
       event.stopPropagation();
