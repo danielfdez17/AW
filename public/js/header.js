@@ -3,14 +3,11 @@
 const dominio = "@ucm.es";
 $(() => {
   $("#correoLogin").click(() => {
-    $("#correoLogin").get(dominio.length-1).setSelectionRange(0, 0);
+    $("#correoLogin").get(0).setSelectionRange(0, 0);
   });
   $("#correoLogin").keydown(() => {
     let correo = $("#correoLogin").val().replace(dominio, "");
     $("#correoLogin").val(correo + dominio);
-    $("#correoLogin")
-      .get(correo.length)
-      .setSelectionRange(0, 0);
   });
 });
 
