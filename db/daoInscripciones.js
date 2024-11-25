@@ -50,13 +50,11 @@ class DAOInscripciones {
         callback(err);
         return;
       }
-      const sql = "SELECT * FROM inscripciones WHERE id_usuario = ? AND id_evento = ?";
+      const sql =
+        "SELECT * FROM inscripciones WHERE id_usuario = ? AND id_evento = ?";
       connection.query(
         sql,
-        [
-          inscripcion.id_usuario,
-          inscripcion.id_evento,
-        ],
+        [inscripcion.id_usuario, inscripcion.id_evento],
         (err, rows) => {
           connection.release();
           if (err) {
@@ -103,13 +101,11 @@ class DAOInscripciones {
         callback(err);
         return;
       }
-      const sql = "UPDATE inscripciones SET activo = false WHERE id_usuario = ? AND id_evento = ?"
+      const sql =
+        "UPDATE inscripciones SET activo = false WHERE id_usuario = ? AND id_evento = ?";
       connection.query(
         sql,
-        [
-          inscripcion.id_usuario,
-          inscripcion.id_evento,
-        ],
+        [inscripcion.id_usuario, inscripcion.id_evento],
         (err, rows) => {
           connection.release();
           if (err) {
@@ -127,22 +123,41 @@ class DAOInscripciones {
         callback(err);
         return;
       }
-      const sql = "UPDATE inscripciones SET activo = true WHERE id_usuario = ? AND id_evento = ?";
-      connection.query(sql, 
-      [
-        inscripcion.id_usuario,
-        inscripcion.id_evento,
-      ], (err, rows) => {
+      const sql =
+        "UPDATE inscripciones SET activo = true WHERE id_usuario = ? AND id_evento = ?";
+      connection.query(
+        sql,
+        [inscripcion.id_usuario, inscripcion.id_evento],
+        (err, rows) => {
+          connection.release();
+          if (err) {
+            callback(err);
+            return;
+          }
+          callback(null, rows[0]);
+        }
+      );
+    });
+  }
+
+  readListaEsperaPorEvento(id_evento, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql =
+        "select u.* from inscripciones i join usuarios u on i.id_usuario = u.id where i.estado = espera and i.id_evento = ?";
+      connection.query(sql, [id_evento], (err, rows) => {
         connection.release();
         if (err) {
           callback(err);
           return;
         }
-        callback(null, rows[0]);
+        callback(rows);
       });
     });
   }
-
 }
 
 module.exports = DAOInscripciones;

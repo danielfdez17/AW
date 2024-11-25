@@ -52,6 +52,9 @@
                             <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="submit" onclick="enviar_accion('editar', <%= evento.id %>)">Guardar</button>
                             <button id="cancelarEvento<%= evento.id %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id %>)">Cancelar</button>
                             <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('eliminar', <%= evento.id %>)">Eliminar</button>
+                            <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button"><a class="text-decoration-none text-white" href="/organizadores/lista_espera/1" target="_blank" rel="noopener noreferrer"></a> Ver lista de espera</button>
+                            <!-- <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('verListaEspera', <%= evento.id %>)">Lista de espera</button> -->
+
                         </div>
                     <% } %>
                 <% } %>
