@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
             usuario: req.session.usuario,
             facultades: facultades,
             eventosInscritos: eventosInscritos,
+            imagen: null,
           });
         }
       );

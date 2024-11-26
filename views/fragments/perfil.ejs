@@ -1,6 +1,12 @@
-<form id="formEditarPerfil" action="/editarPerfil" method="post">
+<form id="formEditarPerfil" action="/editarPerfil" method="POST" enctype="multipart/form-data">
 
     <div class="modal-body">
+
+        <div class="mb-3">
+            <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle"  width="100"/>
+            <input type="file" class="form-control" name="foto" id="editarFoto" required disabled>
+        </div>
+
         <div class="mb-3">
             <label for="editarNombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" name="nombre" id="editarNombre" placeholder="<%= usuario.nombre %>" required disabled>
@@ -51,4 +57,4 @@
 
 </form>
 
-<script src="/public/js/editarPerfil.js"></script>
+<script src="/js/editarPerfil.js"></script>

@@ -27,25 +27,28 @@
 
          
         <% if (!usuario) { %>
-        <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin">
-            <span class="fs-4">
-                Log In
-            </span>
-        </button>
-               
-         <button class="btn border-0 bg-black d-flex align-items-center registrar"  data-bs-toggle="modal" data-bs-target="#modalSignUp">
-            <span class="fs-4">
-                Sign Up
-            </span>
-         </button>
+          <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin">
+              <span class="fs-4">
+                  Log In
+              </span>
+          </button>
+                
+          <button class="btn border-0 bg-black d-flex align-items-center registrar"  data-bs-toggle="modal" data-bs-target="#modalSignUp">
+              <span class="fs-4">
+                  Sign Up
+              </span>
+          </button>
         <% } else { %>
 
           <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
             <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
-                <span class="fs-5"> 
-                  <%= usuario.nombre %>
-                </span>
-              </button>
+
+            <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle"  width="100"/>
+
+              <span class="fs-5"> 
+                <%= usuario.nombre %>
+              </span>
+            </button>
               
 
               <a href="/logOut" class="text-white d-flex align-items-center text-decoration-none">
@@ -145,7 +148,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
 
-      <form action="/signUp" method="POST">
+      <form action="/signUp" method="POST" enctype="multipart/form-data">
 
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
@@ -180,6 +183,9 @@
             <option value="organizador">Organizador</option>
             <option value="asistente">Asistente</option>
           </select>
+
+          <label for="foto">Foto</label>
+          <input type="file" name="foto">
 
         </div>
         <div class="modal-footer">

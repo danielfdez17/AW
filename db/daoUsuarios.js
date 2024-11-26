@@ -12,7 +12,7 @@ class DAOUsuarios {
         return;
       }
       const sql =
-        "INSERT INTO usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) VALUES (?, ?, ?, ?, ?, ?)";
+        "INSERT INTO usuarios (nombre, correo, telefono, id_facultad, rol, contrasena, foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
       connection.query(
         sql,
         [
@@ -22,6 +22,7 @@ class DAOUsuarios {
           usuario.id_facultad,
           usuario.rol,
           usuario.contrasena,
+          usuario.imagen
         ],
         (err, rows) => {
           connection.release();
@@ -60,7 +61,7 @@ class DAOUsuarios {
         return;
       }
       const sql =
-          "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ? WHERE id = ?";
+          "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ?, rol = ?, foto = ? WHERE id = ?";
       connection.query(
         sql,
         [
@@ -69,6 +70,8 @@ class DAOUsuarios {
           usuario.telefono,
           usuario.contrasena,
           usuario.id_facultad,
+          usuario.rol,
+          usuario.imagen,
           usuario.id,
         ],
         (err, rows) => {
@@ -82,6 +85,29 @@ class DAOUsuarios {
       );
     });
   }
+
+  obtenerImagen(id, callback) {
+    this.pool.getConnection((err, con) => {
+      if (err) {
+        return callback(err);
+      }
+
+      let sql = "SELECT foto FROM usuarios WHERE id = ?";
+      con.query(sql, [id], (err, result) => {
+        con.release();
+        if (err) {
+          return callback(err);
+        }
+
+        if (result.length === 0) {
+          return callback("No existe");
+        }
+
+        callback(null, result[0].foto);
+      });
+    });
+  }
+
 }
 
 module.exports = DAOUsuarios;

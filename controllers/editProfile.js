@@ -9,7 +9,12 @@ class EditProfileController {
   edit(req, res, next) {
     if (!validationResult(req).isEmpty())
         return res.status(400).json({ errors: validationResult(req).array() });
-      const usuario = req.body;
+      let usuario = req.body;
+      if (req.file)
+        usuario.imagen = req.file.buffer ;
+      else
+        usuario.imagen = null;
+
       daoUsuarios.updateUsuario(usuario, (err, usuario) => {
         if (err) next(err);
         else {

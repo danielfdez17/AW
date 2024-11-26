@@ -3,6 +3,12 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
+const path = require("path");
+
+const multer = require("multer");
+const multerFactory = multer({
+  storage: multer.memoryStorage(), // Usar memoria para almacenar archivos
+});
 
 const LoginController = require("../controllers/logIn.js");
 const loginController = new LoginController();
@@ -13,18 +19,18 @@ const signUpController = new SignUpController();
 const EditProfileController = require("../controllers/editProfile.js");
 const editProfileController = new EditProfileController();
 
-const InscripcionesController = require("../controllers/inscripciones.js");
-const inscripcionesController = new InscripcionesController();
-
 // Propuesta  para recoger info de render
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
+const DAOUsuarios = require("../db/daoUsuarios.js");
 const pool = require("../db/pool.js");
+
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoListaNegra = new DAOListaNegra(pool);
+const daoUsuarios = new DAOUsuarios(pool);
 
 router.get("/", (req, res) => {
   const { ip } = req;
@@ -68,6 +74,24 @@ router.get("/logOut", (req, res, next) => {
       //   res.render("index");
       res.redirect("/"); // Redirige al usuario a la página principal
     }
+  });
+});
+
+router.get("/imagen/:id", function(request, response) {
+  let n = Number(request.params.id);
+
+  if (isNaN(n)) {
+    return response.status(400).send("Petición incorrecta");
+  }
+
+  daoUsuarios.obtenerImagen(n, (err, imagen) => {
+    if (err) {
+      if (err === "No existe") {
+        return response.status(404).send("No encontrado");
+      }
+      return response.status(500).send("Error en el servidor");
+    }
+    response.end(imagen);
   });
 });
 
@@ -120,8 +144,8 @@ const comprobacion = [
   },
 ];
 
-router.post("/signUp", comprobacion, signUpController.SignUp);
+router.post("/signUp", comprobacion, multerFactory.single('foto'), signUpController.SignUp);
 router.post("/login", comprobacion, loginController.login);
-router.post("/editarPerfil", comprobacion, editProfileController.edit);
+router.post("/editarPerfil", comprobacion, multerFactory.single('foto'), editProfileController.edit);
 
 module.exports = router;

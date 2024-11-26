@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
+const path = require("path");
 
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
