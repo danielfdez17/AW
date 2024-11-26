@@ -88,7 +88,10 @@ function enviar_accion(accion, id_evento) {
             break;
         case 'anular':
           document.getElementById(`formulario${id_evento}`).action = '/asistentes/anular_evento';
-            break;
+          break;
+        // case 'verListaEspera':
+        //   document.getElementById(`formulario${id_evento}`).action = `/organizadores/lista_espera/${id_evento}`;
+        //   break;
     }
 
     document.getElementById(`formulario${id_evento}`).submit()

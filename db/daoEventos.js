@@ -95,6 +95,25 @@ class DAOEventos {
     });
   }
 
+  readEventoPorId(id, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql =
+        "SELECT * FROM eventos WHERE id = ?";
+      connection.query(sql, [id], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(null, rows);
+      });
+    });
+  }
+
   readCapacidadEvento(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {

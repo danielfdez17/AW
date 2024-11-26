@@ -5,6 +5,7 @@ const { body, validationResult } = require("express-validator");
 
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
+const DAOInscripciones = require("../db/daoInscripciones.js");
 const DAOEventos = require("../db/daoEventos.js");
 const pool = require("../db/pool.js");
 
@@ -13,6 +14,7 @@ const eventosController = new EventosController();
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
+const daoInscripciones = new DAOInscripciones(pool);
 const daoListaNegra = new DAOListaNegra(pool);
 
 router.get("/", (req, res) => {
@@ -22,6 +24,27 @@ router.get("/", (req, res) => {
         eventos: eventos,
         usuario: req.session.usuario,
         facultades: facultades,
+      });
+    });
+  });
+});
+
+router.get("/lista_espera/:ident", (req, res) => {
+  const ident = req.params.ident;
+  console.log(`Id del evento: ${ident}`);
+  daoEventos.readEventoPorId(ident, (evento) => {
+    daoFacultades.readAllFacultades((facultades) => {
+      daoEventos.readAllEventos((eventos) => {
+        daoInscripciones.readListaEsperaPorEvento(ident, (lista) => {
+          res.render("lista_espera", {
+            ident: ident,
+            usuario: req.session.usuario,
+            facultades: facultades,
+            evento: evento,
+            eventos: eventos,
+            lista: lista,
+          });
+        });
       });
     });
   });
@@ -47,6 +70,7 @@ const comprobacion = [
         "ALTER",
         "TRUNCATE",
         "CREATE",
+        "--",
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
@@ -68,7 +92,6 @@ const comprobacion = [
         valorErroneo: error.value,
         mensaje: error.msg,
       }));
-
 
       daoListaNegra.createListaNegra(ip, (err) => {
         if (err) next(err);
