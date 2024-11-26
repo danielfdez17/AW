@@ -50,6 +50,27 @@ router.get("/lista_espera/:ident", (req, res) => {
   });
 });
 
+router.get("/lista_asistentes/:ident", (req, res) => {
+  const ident = req.params.ident;
+  console.log(`Id del evento: ${ident}`);
+  daoEventos.readEventoPorId(ident, (evento) => {
+    daoFacultades.readAllFacultades((facultades) => {
+      daoEventos.readAllEventos((eventos) => {
+        daoInscripciones.readListaAsistentesPorEvento(ident, (lista) => {
+          res.render("lista_espera", {
+            ident: ident,
+            usuario: req.session.usuario,
+            facultades: facultades,
+            evento: evento,
+            eventos: eventos,
+            lista: lista,
+          });
+        });
+      });
+    });
+  });
+});
+
 router.get("/nuevo_evento", (req, res) => {
   res.render("nuevo_evento");
 });

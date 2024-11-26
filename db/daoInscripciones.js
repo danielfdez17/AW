@@ -158,6 +158,25 @@ class DAOInscripciones {
       });
     });
   }
+
+  readListaAsistentesPorEvento(id_evento, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql =
+        "select u.* from inscripciones i join usuarios u on i.id_usuario = u.id where i.estado = 'inscrito' and i.id_evento = ?";
+      connection.query(sql, [id_evento], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(rows);
+      });
+    });
+  }
 }
 
 module.exports = DAOInscripciones;
