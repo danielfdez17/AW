@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
-const DAOInscripciones = require("../db/DAOInscripciones.js");
+const DAOInscripciones = require("../db/daoInscripciones.js");
 const DAOEventos = require("../db/daoEventos.js");
 const pool = require("../db/pool.js");
 
@@ -30,17 +30,19 @@ router.get("/", (req, res) => {
 });
 
 router.get("/lista_espera/:id", (req, res) => {
-  const { id } = req.params.id;
-  daoEventos.readEventoPorId(id, (evento) => {
+  const { ident } = req.params.id;
+  console.log(`Id del evento: ${ident}`);
+  daoEventos.readEventoPorId(ident, (evento) => {
     daoFacultades.readAllFacultades((facultades) => {
       daoEventos.readAllEventos((eventos) => {
-        daoInscripciones.readListaEsperaPorEvento(id, (lista) => {
+        daoInscripciones.readListaEsperaPorEvento(ident, (lista) => {
           res.render("lista_espera", {
             usuario: req.session.usuario,
             facultades: facultades,
             evento: evento,
             eventos: eventos,
             lista: lista,
+            ident: ident,
           });
         });
       });
@@ -68,6 +70,7 @@ const comprobacion = [
         "ALTER",
         "TRUNCATE",
         "CREATE",
+        "--",
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))

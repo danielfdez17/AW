@@ -7,7 +7,14 @@
     <%- include('./fragments/head.ejs') %>
 </head>
 <body>
-    <p><%= lista.length %></p>
+    
+    <%- include('./fragments/header.ejs') %>
+    <p><%=ident%></p>
+    <p><%=facultades.length%></p>
+    <p><%=eventos.length%></p>
+    <p><%=lista.length%></p>
+    <%- include('./fragments/footer.ejs') %>
+
     
 </body>
 </html>
