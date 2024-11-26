@@ -6,6 +6,8 @@ const createError = require("http-errors");
 const morgan = require("morgan");
 const path = require("path");
 const session = require("express-session");
+const mysqlSession = require("express-mysql-session");
+const MySQLStore = mysqlSession(session);
 
 const indexRouter = require("./routes/index");
 const routerAsistentes = require("./routes/asistentes.js");
@@ -18,20 +20,38 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(cookieParser());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
+const sessionStore = new MySQLStore({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "AW-24",
+  port: 3306,
+  expiration: 999999,
+});
+
 // Configuración de la sesión
+// app.use(
+//   session({
+//     secret: "mi_clave_secreta",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: false },
+//   })
+// );
 app.use(
   session({
     secret: "mi_clave_secreta",
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false },
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: { secure: false, maxAge: 999999 },
   })
 );
 
