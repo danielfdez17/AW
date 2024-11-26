@@ -31,7 +31,7 @@ const sessionStore = new MySQLStore({
   host: "localhost",
   user: "root",
   password: "",
-  database: "AW-24",
+  database: "AW_24",
   port: 3306,
   expiration: 999999,
 });
