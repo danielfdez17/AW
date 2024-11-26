@@ -44,39 +44,51 @@ $("#habilitarEdicion").on("click", habilitarEdicion);
 $("#cerrarEdicion").on("click", deshabilitarEdicion);
 $("#cancelarEdicion").on("click", deshabilitarEdicion);
 
-// $("#formEditarPerfil button[type=submit]").on("click", (event) => {
-//   event.preventDefault();
+$("#formEditarPerfil button[type=submit]").on("click", (event) => {
+  event.preventDefault();
   
-//   // Definir una variable para rastrear si el formulario es válido
-//   let isValid = true;
+  // Definir una variable para rastrear si el formulario es válido
+  let isValid = true;
 
-//   // Validación del campo de nombre
-//   if (/\d/.test($("#editarNombre").val())) {
-//     alert("El campo nombre no puede contener números");
-//     isValid = false;
-//   }
 
-//   // Validación del campo de teléfono
-//   if (!/^\d+$/.test($("#editarTelefono").val())) {
-//     alert("El campo teléfono solo puede contener números");
-//     isValid = false;
-//   }
+  var archivo = $('#editarFoto')[0].files[0];
 
-//   // Validación del correo
-//   const dominio = "ucm.es";  // Cambia 'ucm.es' por el dominio que necesites
-//   if ($("#editarCorreo").val().includes("@") && !$("#editarCorreo").val().endsWith(dominio)) {
-//     alert(`El correo debe terminar en @${dominio}`);
-//     isValid = false;
-//   }
+  const tipoArchivo = archivo.type;
+  const tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
 
-//   // Validación de la contraseña
-//   if ($("#editarContrasena").val().length < 4) {
-//     alert("La contraseña debe tener mínimo 4 caracteres");
-//     isValid = false;
-//   }
+  // Validar si el tipo de archivo es permitido
+  if (!tiposPermitidos.includes(tipoArchivo)) {
+    alert('Por favor, sube solo archivos JPG, JPEG o PNG.');
+    isValid = false;
+  }
 
-//   // Enviar el formulario solo si todas las validaciones pasan
-//   if (isValid) {
-//     $("#formEditarPerfil").off("submit").submit();
-//   }
-// });
+  // Validación del campo de nombre
+  if (/\d/.test($("#editarNombre").val())) {
+    alert("El campo nombre no puede contener números");
+    isValid = false;
+  }
+
+  // Validación del campo de teléfono
+  if (!/^\d+$/.test($("#editarTelefono").val())) {
+    alert("El campo teléfono solo puede contener números");
+    isValid = false;
+  }
+
+  // Validación del correo
+  const dominio = "ucm.es";  // Cambia 'ucm.es' por el dominio que necesites
+  if ($("#editarCorreo").val().includes("@") && !$("#editarCorreo").val().endsWith(dominio)) {
+    alert(`El correo debe terminar en @${dominio}`);
+    isValid = false;
+  }
+
+  // Validación de la contraseña
+  if ($("#editarContrasena").val().length < 4) {
+    alert("La contraseña debe tener mínimo 4 caracteres");
+    isValid = false;
+  }
+
+  // Enviar el formulario solo si todas las validaciones pasan
+  if (isValid) {
+    $("#formEditarPerfil").off("submit").submit();
+  }
+});

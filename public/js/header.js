@@ -1,4 +1,5 @@
 //TODO: Cuando se fije el diseño hacer accsibilidad de colores
+"use strict;"
 
 $(() => {
   const dominio = "@ucm.es";
@@ -108,4 +109,34 @@ document.addEventListener("DOMContentLoaded", function () {
       button.classList.add("activo");
     });
   });
+});
+
+
+$("#formSignUp").on("submit", (event) => {
+  event.preventDefault(); // Evitar el envío del formulario
+
+  // Definir una variable para rastrear si el formulario es válido
+  let isValid = true;
+
+  var archivo = $('#foto')[0].files[0];
+
+  // Verificar si se ha seleccionado un archivo
+  if (archivo) {
+    const tipoArchivo = archivo.type;
+    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
+
+    // Validar si el tipo de archivo es permitido
+    if (!tiposPermitidos.includes(tipoArchivo)) {
+      alert('Por favor, sube solo archivos JPG, JPEG o PNG.');
+      isValid = false;
+    }
+  } else {
+    alert('Por favor, selecciona una foto.');
+    isValid = false;
+  }
+
+  // Enviar el formulario solo si todas las validaciones pasan
+  if (isValid) {
+    $("#formSignUp")[0].submit(); // Enviar el formulario de manera programática
+  }
 });
