@@ -10,14 +10,23 @@
     
     <%- include('./fragments/header.ejs') %>
     <div class="d-flex justify-content-center">
-
-    <ul class="list-group">
-        <% lista.forEach(u => {%>
-            <li class="list-group-item">
-                <%- include('./fragments/usuario.ejs', {u: u}) %>
-            </li>
-        <% });%>
-    </ul>
+        <% if (lista.length > 0) {%>
+            <ul class="list-group">
+                <% lista.forEach(u => {%>
+                    <li class="list-group-item">
+                        <%- include('./fragments/usuario.ejs', {u: u}) %>
+                    </li>
+                <% });%>
+            </ul>
+        <% } else { %>
+            <div class="row text-center">
+                <div class="col col-12">
+                    <h4 class="mt-3">La lista de espera del evento está vacía</h4>
+                </div>
+                <div class="col col-12">
+                    <p class="">Para volver a la página anterior haz click en el siguiente <a href="/organizadores">enlace</a></p>
+                </div>
+        <%}%>
     </div>
     <%- include('./fragments/footer.ejs') %>
 
