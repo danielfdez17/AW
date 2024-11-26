@@ -10,6 +10,16 @@ $(() => {
     let correo = $("#correoLogin").val().replace(dominio, "");
     $("#correoLogin").val(correo + dominio);
   });
+
+  document.addEventListener(
+    "keyup",
+    (event) => {
+      if (event.ctrlKey && e.code === "ArrowDown") {
+        alert("Control + p");
+      }
+    },
+    false
+  );
 });
 
 //Colores claros
