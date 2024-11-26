@@ -1,8 +1,9 @@
 //TODO: Cuando se fije el diseño hacer accsibilidad de colores
 
-const dominio = "@ucm.es";
 $(() => {
+  const dominio = "@ucm.es";
   $("#correoLogin").click(() => {
+    $("#correoLogin").val(dominio);
     $("#correoLogin").get(0).setSelectionRange(0, 0);
   });
   $("#correoLogin").keydown(() => {

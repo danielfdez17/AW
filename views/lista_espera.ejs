@@ -9,10 +9,16 @@
 <body>
     
     <%- include('./fragments/header.ejs') %>
-    <p><%=ident%></p>
-    <p><%=facultades.length%></p>
-    <p><%=eventos.length%></p>
-    <p><%=lista.length%></p>
+    <div class="d-flex justify-content-center">
+
+    <ul class="list-group">
+        <% lista.forEach(u => {%>
+            <li class="list-group-item">
+                <%- include('./fragments/usuario.ejs', {u: u}) %>
+            </li>
+        <% });%>
+    </ul>
+    </div>
     <%- include('./fragments/footer.ejs') %>
 
     

@@ -29,20 +29,20 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/lista_espera/:id", (req, res) => {
-  const { ident } = req.params.id;
+router.get("/lista_espera/:ident", (req, res) => {
+  const ident = req.params.ident;
   console.log(`Id del evento: ${ident}`);
   daoEventos.readEventoPorId(ident, (evento) => {
     daoFacultades.readAllFacultades((facultades) => {
       daoEventos.readAllEventos((eventos) => {
         daoInscripciones.readListaEsperaPorEvento(ident, (lista) => {
           res.render("lista_espera", {
+            ident: ident,
             usuario: req.session.usuario,
             facultades: facultades,
             evento: evento,
             eventos: eventos,
             lista: lista,
-            ident: ident,
           });
         });
       });
