@@ -33,7 +33,7 @@ class InscripcionesController {
                 {
                   daoInscripciones.reinscripcionEvento({id_usuario: req.session.usuario.id, id_evento: inscripcion.id}, (error) =>
                   {
-                    daoEventos.decrementarCapacidadEvento(id, (error) => {
+                    daoEventos.incrementarCapacidadEvento(id, (error) => {
                       if(error)
                         res.status(500).json({
                           error: error,
@@ -56,21 +56,27 @@ class InscripcionesController {
         const fecha = new Date();
         const fechaFormateada = fecha.toLocaleDateString('es-ES').replace(/\//g, '-');
         let estado;
-        if (capacidad <= 0) 
+        if (capacidad.capacidad_maxima == capacidad.capacidad_actual) 
           estado = 'Lista de espera';
         else 
           estado = 'Inscrito';
 
         daoInscripciones.createInscripcion({id_usuario: req.session.usuario.id, id_evento: parseInt(id), estado, fecha_inscripcion: fechaFormateada}, (error) => 
           {
-            daoEventos.decrementarCapacidadEvento(id, (error) => {
-              if(error)
-                res.status(500).json({
-                  error: error,
-                });
-              else
-                res.redirect("/");
-            });
+            if(estado == 'Lista de espera')
+              res.redirect("/");
+            else
+            {
+              daoEventos.incrementarCapacidadEvento(id, (error) => {
+                if(error)
+                  res.status(500).json({
+                    error: error,
+                  });
+                else
+                  res.redirect("/");
+              });
+            }
+
             
           });
       });
@@ -89,15 +95,29 @@ class InscripcionesController {
           existe = true;
           daoInscripciones.deleteInscripcion({id_usuario: req.session.usuario.id, id_evento: inscripcion.id}, (error) =>
             {
-              daoEventos.incrementarCapacidadEvento(id, (error) => {
-                if(error)
-                  res.status(500).json({
-                    error: error,
-                  });
+              daoInscripciones.readListaEsperaPorEvento(inscripcion.id, (lista) =>
+              {
+                if(lista)
+                {
+
+                  daoInscripciones.ListaEsperaAInscrito(lista[0], (error) =>
+                  {
+                      res.redirect("/");
+                  })
+
+                }
                 else
-                  res.redirect("/");
-              });
-              
+                {
+                  daoEventos.decrementarCapacidadEvento(id, (error) => {
+                    if(error)
+                      res.status(500).json({
+                        error: error,
+                      });
+                    else
+                      res.redirect("/");
+                  });
+                }
+              })
             });
         }
 

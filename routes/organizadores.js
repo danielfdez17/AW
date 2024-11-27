@@ -36,7 +36,7 @@ router.get("/lista_espera/:ident", (req, res) => {
   daoEventos.readEventoPorId(ident, (evento) => {
     daoFacultades.readAllFacultades((facultades) => {
       daoEventos.readAllEventos((eventos) => {
-        daoInscripciones.readListaEsperaPorEvento(ident, (lista) => {
+        daoInscripciones.readUsuarioListaEsperaPorEvento(ident, (lista) => {
           res.render("lista_espera", {
             ident: ident,
             usuario: req.session.usuario,
@@ -79,6 +79,7 @@ router.get("/nuevo_evento", (req, res) => {
 //Middleware comprobacion
 const comprobacion = [
   body("*")
+    .customSanitizer((value) => value.normalize("NFC"))
     .matches(/^[a-zA-Z0-9_@.:/áéíóúÁÉÍÓÚ\-\s]*$/)
     .withMessage("Caracteres no permitidos")
     .custom((value) => {

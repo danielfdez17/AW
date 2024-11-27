@@ -3,6 +3,9 @@ const pool = require("../db/pool.js");
 const DAOEventos = require("../db/daoEventos.js");
 const daoEventos = new DAOEventos(pool);
 
+const DAOInscripciones = require("../db/daoInscripciones.js");
+const daoInscripciones = new DAOInscripciones(pool);
+
 const { validationResult } = require("express-validator");
 
 const MIN_DURACION = "01:00";
@@ -10,12 +13,17 @@ const MAX_DURACION = "08:00";
 const HORA_INICIO = "08:00";
 const HORA_FIN = "22:00";
 
+const convertirAMinutos = (hora) => {
+  const [h, m] = hora.split(':').map(Number);
+  return h * 60 + m;
+};
+
 function checkHoraDuracion(hora, duracion) {
   return (
-    HORA_INICIO <= hora &&
-    hora < HORA_FIN &&
-    MIN_DURACION <= duracion &&
-    duracion <= MAX_DURACION
+    convertirAMinutos(HORA_INICIO) <= convertirAMinutos(hora) &&
+    convertirAMinutos(hora) <= convertirAMinutos(HORA_FIN) &&
+    convertirAMinutos(MIN_DURACION) <= convertirAMinutos(duracion) &&
+    convertirAMinutos(duracion) <= convertirAMinutos(MAX_DURACION)
   );
 }
 
@@ -86,37 +94,79 @@ class EventosController {
       hora,
       duracion,
       ubicacion,
-      capacidad,
       capacidad_maxima_string,
       tipo_evento,
       id,
     } = req.body;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
+
     if (checkHoraDuracion(hora, duracion)) {
       daoEventos.readEventoPorFecha(fecha, (eventos) => {
         let sePuedeActualizar = true;
-        eventos.forEach((evento) => {
-          if (evento.hora + evento.duracion >= hora) sePuedeActualizar = false;
-        });
-        if (sePuedeActualizar && capacidad <= capacidad_maxima) {
-          daoEventos.updateEvento(
+        if(eventos)
+        {
+          eventos.forEach((evento) => {
+            if (evento.hora + evento.duracion >= hora) sePuedeActualizar = false;
+          });
+        }
+
+        if (sePuedeActualizar) {
+
+          daoEventos.readEventoPorId(parseInt(id), (error, eventos) => 
+          {
+            if(eventos.capacidad_maxima < capacidad_maxima)
             {
-              titulo,
-              descripcion,
-              fecha,
-              hora,
-              duracion,
-              ubicacion,
-              capacidad,
-              capacidad_maxima,
-              tipo_evento,
-              id,
-            },
-            (err) => {
-              if (err) next(err);
-              res.redirect("/organizadores");
+
+              daoInscripciones.readListaEsperaPorEvento(parseInt(id), (lista) =>
+                {
+                  const fecha = new Date();
+                  const fechaFormateada = fecha.toLocaleDateString('es-ES').replace(/\//g, '-');
+                  let auxiliar = capacidad_maxima - eventos.capacidad_actual;
+                  let i = 0;
+                  while(i < auxiliar || (lista && lista.length > 0))
+                  {
+                    daoInscripciones.ListaEsperaAInscrito({id_usuario: lista[i].id_usuario, id_evento: parseInt(lista[i].id_evento), evento: 'Inscrito', fecha_inscripcion: fechaFormateada}, (error) => 
+                    {
+                      daoEventos.incrementarCapacidadEvento(id, (error) => {
+                        if(error)
+                          res.status(500).json({
+                            error: error,
+                          });
+                      });
+                      
+                    });
+                    i++;
+                    lista.pop();
+                  }
+
+                  daoEventos.updateEvento(
+                    {
+                      titulo,
+                      descripcion,
+                      fecha,
+                      hora,
+                      duracion,
+                      ubicacion,
+                      capacidad_maxima,
+                      tipo_evento,
+                      id,
+                    },
+                    (err) => {
+      
+                      if (err) next(err);
+                      res.redirect("/organizadores");
+                    }
+                  );
+                })
+
+
+
+
             }
-          );
+
+
+          })
+
         } else {
           res.redirect("/organizadores");
         }
