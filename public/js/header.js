@@ -1,15 +1,31 @@
 //TODO: Cuando se fije el diseño hacer accsibilidad de colores
-"use strict;"
+"use strict";
 
 $(() => {
   const dominio = "@ucm.es";
   $("#correoLogin").click(() => {
-    $("#correoLogin").val(dominio);
+    $("#correoLogin").val(
+      $("#correoLogin").val().replace(dominio, "") + dominio
+    );
     $("#correoLogin").get(0).setSelectionRange(0, 0);
   });
-  $("#correoLogin").keydown(() => {
+  $("#correoLogin").keyup(() => {
     let correo = $("#correoLogin").val().replace(dominio, "");
     $("#correoLogin").val(correo + dominio);
+    const cursorPosition = $("#correoLogin")[0].selectionStart;
+    console.log(`Size correo: ${correo.length}`);
+    console.log(`Posicion cursor: ${cursorPosition}`);
+    if (cursorPosition > correo.length) {
+      if (correo.length === 0) $("#correoLogin").get(0).setSelectionRange(0, 0);
+      else {
+        $("#correoLogin")
+          .get(0)
+          .setSelectionRange(
+            cursorPosition < correo.length ? cursorPosition : correo.length,
+            cursorPosition < correo.length ? cursorPosition : correo.length
+          );
+      }
+    }
   });
 });
 
@@ -111,27 +127,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 $("#formSignUp").on("submit", (event) => {
   event.preventDefault(); // Evitar el envío del formulario
 
   // Definir una variable para rastrear si el formulario es válido
   let isValid = true;
 
-  var archivo = $('#foto')[0].files[0];
+  var archivo = $("#foto")[0].files[0];
 
   // Verificar si se ha seleccionado un archivo
   if (archivo) {
     const tipoArchivo = archivo.type;
-    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
+    const tiposPermitidos = ["image/jpeg", "image/png", "image/jpg"];
 
     // Validar si el tipo de archivo es permitido
     if (!tiposPermitidos.includes(tipoArchivo)) {
-      alert('Por favor, sube solo archivos JPG, JPEG o PNG.');
+      alert("Por favor, sube solo archivos JPG, JPEG o PNG.");
       isValid = false;
     }
   } else {
-    alert('Por favor, selecciona una foto.');
+    alert("Por favor, selecciona una foto.");
     isValid = false;
   }
 
