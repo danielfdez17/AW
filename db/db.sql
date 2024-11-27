@@ -61,6 +61,15 @@ create table inscripciones(
     foreign key (id_evento) references eventos(id)
 );
 
+CREATE TABLE notificaciones (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  id_usuario INT NOT NULL,
+  mensaje TEXT,
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  activo BOOLEAN DEFAULT TRUE,
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
 insert into inscripciones (id_usuario, id_evento, estado) values (3, 1, "inscrito");
 insert into inscripciones (id_usuario, id_evento, estado) values (3, 2, "inscrito");
 insert into inscripciones (id_usuario, id_evento, estado) values (4, 2, "inscrito");
