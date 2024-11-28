@@ -13,7 +13,7 @@ class DAOInscripciones {
         return;
       }
       const sql =
-        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ? AND i.activo = true;";
+        "SELECT e.* FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ? AND i.activo = true;";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -32,7 +32,7 @@ class DAOInscripciones {
         return;
       }
       const sql =
-        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ?";
+        "SELECT e.* FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
