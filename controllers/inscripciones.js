@@ -57,13 +57,13 @@ class InscripcionesController {
         const fechaFormateada = fecha.toLocaleDateString('es-ES').replace(/\//g, '-');
         let estado;
         if (capacidad.capacidad_maxima == capacidad.capacidad_actual) 
-          estado = 'Lista de espera';
+          estado = 'espera';
         else 
-          estado = 'Inscrito';
+          estado = 'inscrito';
 
         daoInscripciones.createInscripcion({id_usuario: req.session.usuario.id, id_evento: parseInt(id), estado, fecha_inscripcion: fechaFormateada}, (error) => 
           {
-            if(estado == 'Lista de espera')
+            if(estado == 'espera')
               res.redirect("/");
             else
             {
