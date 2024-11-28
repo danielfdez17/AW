@@ -8,55 +8,55 @@
 
     <div class="d-flex align-items-center gap-2 me-3">
 
-        <button class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-            <span class="material-symbols-rounded fs-2 d-flex align-items-center">
-                notifications
-            </span>
-        </button>
-
-        <!-- Notifiaciones -->
-        <form class="dropdown-menu p-0">
-          <div class="card">
-            <h5 class="card-header">Notificaciones</h5>
-            <div class="card-body">
-              <h5 class="card-title">Recordatorio para el evento del dia x</h5>
-              <p class="card-text">No olvides asiste a tu evento</p>
-            </div>
-          </div>
-        </form>
-
-         
+        
+        
         <% if (!usuario) { %>
-          <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin">
-              <span class="fs-4">
-                  Log In
-              </span>
-          </button>
-                
-          <button class="btn border-0 bg-black d-flex align-items-center registrar"  data-bs-toggle="modal" data-bs-target="#modalSignUp">
-              <span class="fs-4">
-                  Sign Up
-              </span>
-          </button>
-        <% } else { %>
-
-          <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
-            <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
-
-            <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle"  width="100"/>
-
-              <span class="fs-5"> 
-                <%= usuario.nombre %>
-              </span>
-            </button>
-              
-
-              <a href="/logOut" class="text-white d-flex align-items-center text-decoration-none">
-                <span class="material-symbols-rounded fs-2" href="/logOut">
-                    logout
+            <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                <span class="fs-4">
+                    Log In
                 </span>
-              </a>
-          </div>
+            </button>
+            
+            <button class="btn border-0 bg-black d-flex align-items-center registrar"  data-bs-toggle="modal" data-bs-target="#modalSignUp">
+                <span class="fs-4">
+                    Sign Up
+                </span>
+            </button>
+        <% } else { %>
+            <button class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                <span class="material-symbols-rounded fs-2 d-flex align-items-center">
+                    notifications
+                </span>
+            </button>
+    
+            <!-- Notifiaciones -->
+            <form class="dropdown-menu p-0">
+                <div class="card">
+                <h5 class="card-header">Notificaciones</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Recordatorio para el evento del dia x</h5>
+                    <p class="card-text">No olvides asiste a tu evento</p>
+                </div>
+                </div>
+            </form>
+
+            <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
+                <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
+
+                <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle"  width="100"/>
+
+                <span class="fs-5"> 
+                    <%= usuario.nombre %>
+                </span>
+                </button>
+                
+
+                <a href="/logOut" class="text-white d-flex align-items-center text-decoration-none">
+                    <span class="material-symbols-rounded fs-2" href="/logOut">
+                        logout
+                    </span>
+                </a>
+            </div>
         <% } %>
 
 
