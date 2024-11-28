@@ -43,7 +43,7 @@
             <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
                 <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
 
-                <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle"  width="100"/>
+                <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle"  width="100" onerror="this.src='/resources/icon-default.png'"/>
 
                 <span class="fs-5"> 
                     <%= usuario.nombre %>
