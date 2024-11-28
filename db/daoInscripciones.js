@@ -185,7 +185,7 @@ class DAOInscripciones {
         return;
       }
       const sql =
-        "select * from inscripciones where estado = 'Lista de espera' and id_evento = ? ORDER BY fecha_inscripcion;";
+        "select * from inscripciones where estado = 'espera' and id_evento = ? ORDER BY fecha_inscripcion;";
       connection.query(sql, [id_evento], (err, rows) => {
         connection.release();
         if (err) {

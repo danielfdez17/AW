@@ -87,3 +87,88 @@ create table listaNegra(
     id int primary key auto_increment,
     ip varchar(100) not null
 );
+
+
+/*Triggers*/
+
+
+--Triger notificación cambio de estado
+
+--Añadimos limitadores para XAMPP
+DELIMITER $$
+
+-- Cambio de estado Lista de espera a Inscrito
+CREATE TRIGGER EsperaAInscrito
+AFTER UPDATE ON inscripciones
+FOR EACH ROW
+BEGIN
+    DECLARE nombre_evento VARCHAR(255);
+    DECLARE fecha_evento DATE;
+    
+    -- Verificar si el estado realmente cambió
+    IF OLD.estado <> NEW.estado THEN
+        -- Obtener los datos del evento
+        SELECT titulo, fecha INTO nombre_evento, fecha_evento
+        FROM eventos
+        WHERE id = NEW.id_evento;
+
+        -- Insertar la notificación
+        INSERT INTO notificaciones (id_usuario, mensaje, fecha)
+        VALUES (NEW.id_usuario, CONCAT('Has sido inscrito en el evento: ', nombre_evento, ' para el ', fecha_evento), NOW());
+    END IF;
+END $$
+
+DELIMITER ;
+
+--Añadimos limitadores para XAMPP
+
+DELIMITER $$
+
+-- Anular inscripción
+CREATE TRIGGER EliminarInscripcion
+AFTER UPDATE ON inscripciones
+FOR EACH ROW
+BEGIN
+    DECLARE nombre_evento VARCHAR(255);
+    DECLARE fecha_evento DATE;
+    
+    -- Verificar si el estado realmente cambió
+    IF OLD.activo <> NEW.activo THEN
+        -- Obtener los datos del evento
+        SELECT titulo, fecha INTO nombre_evento, fecha_evento
+        FROM eventos
+        WHERE id = NEW.id_evento;
+
+        -- Insertar la notificación
+        INSERT INTO notificaciones (id_usuario, mensaje, fecha)
+        VALUES (NEW.id_usuario, CONCAT('Se ha anulado la inscripcion del evento: ', nombre_evento, ' para el ', fecha_evento), NOW());
+    END IF;
+END $$
+
+DELIMITER ;
+
+
+--Añadimos limitadores para XAMPP
+
+DELIMITER $$
+
+-- Nueva inscripción
+CREATE TRIGGER NuevaInscripcion
+AFTER INSERT ON inscripciones
+FOR EACH ROW
+BEGIN
+    DECLARE nombre_evento VARCHAR(255);
+    DECLARE fecha_evento DATE;
+    
+    -- Obtener los datos del evento
+    SELECT titulo, fecha INTO nombre_evento, fecha_evento
+    FROM eventos
+    WHERE id = NEW.id_evento;
+
+    -- Insertar la notificación
+    INSERT INTO notificaciones (id_usuario, mensaje, fecha)
+    VALUES (NEW.id_usuario, CONCAT('Se ha realizado con éxito la inscripcion del evento: ', nombre_evento, ' para el ', fecha_evento), NOW());
+
+END $$
+
+DELIMITER ;
