@@ -49,7 +49,7 @@ const comprobacion = [
         "ALTER",
         "TRUNCATE",
         "CREATE",
-        "--"
+        "--",
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
@@ -72,7 +72,6 @@ const comprobacion = [
         mensaje: error.msg,
       }));
 
-
       daoListaNegra.createListaNegra(ip, (err) => {
         if (err) next(err);
         else {
@@ -83,7 +82,15 @@ const comprobacion = [
   },
 ];
 
-router.post("/inscribir_evento", comprobacion, inscripcionesController.inscribirEvento);
-router.post("/anular_evento", comprobacion, inscripcionesController.anularEvento);
+router.post(
+  "/inscribir_evento",
+  comprobacion,
+  inscripcionesController.inscribirEvento
+);
+router.post(
+  "/anular_evento",
+  comprobacion,
+  inscripcionesController.anularEvento
+);
 
 module.exports = router;

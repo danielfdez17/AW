@@ -25,6 +25,7 @@ router.get("/", (req, res) => {
         eventos: eventos,
         usuario: req.session.usuario,
         facultades: facultades,
+        eventosInscritos: null
       });
     });
   });
