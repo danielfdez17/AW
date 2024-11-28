@@ -13,7 +13,7 @@ class DAOInscripciones {
         return;
       }
       const sql =
-        "SELECT e.* FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ? AND i.activo = true;";
+        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ? AND i.activo = true;";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -32,7 +32,7 @@ class DAOInscripciones {
         return;
       }
       const sql =
-        "SELECT e.* FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ?";
+        "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.hora, e.ubicacion, e.capacidad_maxima, e.id_organizador, e.tipo_evento FROM eventos e JOIN inscripciones i ON i.id_evento = e.id WHERE i.id_usuario = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -159,14 +159,14 @@ class DAOInscripciones {
     });
   }
 
-  readUsuarioListaEsperaPorEvento(id_evento, callback) {
+  readUsuarioListaAsistentesPorEvento(id_evento, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
         return;
       }
       const sql =
-        "select u.* from inscripciones i join usuarios u on i.id_usuario = u.id where i.estado = 'espera' and i.id_evento = ? ORDER BY i.fecha_inscripcion;";
+        "select u.* from inscripciones i join usuarios u on i.id_usuario = u.id where i.estado = 'inscrito' and i.id_evento = ? ORDER BY i.fecha_inscripcion;";
       connection.query(sql, [id_evento], (err, rows) => {
         connection.release();
         if (err) {

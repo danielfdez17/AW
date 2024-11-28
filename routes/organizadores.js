@@ -57,7 +57,7 @@ router.get("/lista_asistentes/:ident", (req, res) => {
   daoEventos.readEventoPorId(ident, (evento) => {
     daoFacultades.readAllFacultades((facultades) => {
       daoEventos.readAllEventos((eventos) => {
-        daoInscripciones.readListaAsistentesPorEvento(ident, (lista) => {
+        daoInscripciones.readUsuarioListaAsistentesPorEvento(ident, (lista) => {
           res.render("lista_espera", {
             ident: ident,
             usuario: req.session.usuario,
