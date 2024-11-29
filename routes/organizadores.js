@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
         eventos: eventos,
         usuario: req.session.usuario,
         facultades: facultades,
-        eventosInscritos: null
+        eventosInscritos: null,
       });
     });
   });
@@ -87,14 +87,18 @@ const comprobacion = [
       const sqlKeywords = [
         "SELECT",
         "INSERT",
-        "DROP",
+        "CREATE",
         "DELETE",
         "UPDATE",
+        "DROP",
         "UNION",
         "ALTER",
         "TRUNCATE",
-        "CREATE",
         "--",
+        "AND",
+        "OR",
+        "LIKE",
+        "BETWEEN"
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))

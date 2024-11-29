@@ -26,7 +26,6 @@ const DAOListaNegra = require("../db/daolListaNegra.js");
 const DAOUsuarios = require("../db/daoUsuarios.js");
 const pool = require("../db/pool.js");
 
-
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoListaNegra = new DAOListaNegra(pool);
@@ -57,7 +56,7 @@ router.get("/", (req, res) => {
               eventos: eventos,
               usuario: null,
               facultades: facultades,
-              eventosInscritos: null
+              eventosInscritos: null,
             });
           });
         });
@@ -78,7 +77,7 @@ router.get("/logOut", (req, res, next) => {
   });
 });
 
-router.get("/imagen/:id", function(request, response) {
+router.get("/imagen/:id", function (request, response) {
   let n = Number(request.params.id);
 
   if (isNaN(n)) {
@@ -105,13 +104,18 @@ const comprobacion = [
       const sqlKeywords = [
         "SELECT",
         "INSERT",
-        "DROP",
+        "CREATE",
         "DELETE",
         "UPDATE",
+        "DROP",
         "UNION",
         "ALTER",
         "TRUNCATE",
-        "CREATE",
+        "--",
+        "AND",
+        "OR",
+        "LIKE",
+        "BETWEEN"
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
@@ -134,7 +138,6 @@ const comprobacion = [
         mensaje: error.msg,
       }));
 
-
       daoListaNegra.createListaNegra(ip, (err) => {
         if (err) next(err);
         else {
@@ -145,8 +148,18 @@ const comprobacion = [
   },
 ];
 
-router.post("/signUp", comprobacion, multerFactory.single('foto'), signUpController.SignUp);
+router.post(
+  "/signUp",
+  comprobacion,
+  multerFactory.single("foto"),
+  signUpController.SignUp
+);
 router.post("/login", comprobacion, loginController.login);
-router.post("/editarPerfil", comprobacion, multerFactory.single('foto'), editProfileController.edit);
+router.post(
+  "/editarPerfil",
+  comprobacion,
+  multerFactory.single("foto"),
+  editProfileController.edit
+);
 
 module.exports = router;
