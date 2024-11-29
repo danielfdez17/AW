@@ -57,6 +57,7 @@ router.get("/", (req, res) => {
               usuario: null,
               facultades: facultades,
               eventosInscritos: null,
+              notificaciones: null
             });
           });
         });

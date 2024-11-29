@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
         usuario: req.session.usuario,
         facultades: facultades,
         eventosInscritos: null,
+        notificaciones: null
       });
     });
   });
@@ -66,6 +67,7 @@ router.get("/lista_asistentes/:ident", (req, res) => {
             evento: evento,
             eventos: eventos,
             lista: lista,
+            notificaciones: null
           });
         });
       });

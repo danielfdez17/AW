@@ -6,11 +6,13 @@ const { body, validationResult } = require("express-validator");
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
 const DAOInscripciones = require("../db/daoInscripciones.js");
+const DAONotificaciones = require("../db/daoNotificaciones.js");
 const pool = require("../db/pool.js");
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoInscripciones = new DAOInscripciones(pool);
+const daoNotificaciones = new DAONotificaciones(pool);
 
 const InscripcionesController = require("../controllers/inscripciones.js");
 const inscripcionesController = new InscripcionesController();
@@ -21,13 +23,18 @@ router.get("/", (req, res) => {
       daoInscripciones.readEventosInscritosPorAsistenteActivos(
         req.session.usuario.id,
         (eventosInscritos) => {
-          res.render("index", {
-            eventos: eventos,
-            usuario: req.session.usuario,
-            facultades: facultades,
-            eventosInscritos: eventosInscritos,
-            imagen: null,
+
+          daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (notificaciones) =>
+          {
+            res.render("index", {
+              eventos: eventos,
+              usuario: req.session.usuario,
+              facultades: facultades,
+              eventosInscritos: eventosInscritos,
+              notificaciones: notificaciones
+            });
           });
+
         }
       );
     });
@@ -91,6 +98,7 @@ router.post(
   comprobacion,
   inscripcionesController.inscribirEvento
 );
+
 router.post(
   "/anular_evento",
   comprobacion,

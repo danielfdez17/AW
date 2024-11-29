@@ -120,7 +120,6 @@ END $$
 
 DELIMITER ;
 
---Añadimos limitadores para XAMPP
 
 DELIMITER $$
 
@@ -148,8 +147,6 @@ END $$
 DELIMITER ;
 
 
---Añadimos limitadores para XAMPP
-
 DELIMITER $$
 
 -- Nueva inscripción
@@ -172,3 +169,29 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+-- DELIMITER $$
+
+-- -- Posible cambio de estado despues de anular
+-- CREATE TRIGGER CambioEstadoSingular
+-- AFTER UPDATE ON inscripciones
+-- FOR EACH ROW
+-- BEGIN
+--     DECLARE usuario VARCHAR(255);
+    
+--     -- Verificar si el estado realmente cambio
+--     IF OLD.activo <> NEW.activo THEN
+--         -- Obtener los datos del evento
+--         SELECT id_usuario INTO usuario
+--         FROM inscripciones
+--         WHERE activo = true AND estado = 'espera' AND id_evento = NEW.id_evento
+--         ORDER BY fecha_inscripcion
+--         LIMIT 1;
+
+--         UPDATE  inscripciones SET estado = 'inscrito' WHERE id_evento = NEW.id_evento AND id_usuario = usuario;
+
+--     END IF;
+-- END $$
+
+-- DELIMITER ;

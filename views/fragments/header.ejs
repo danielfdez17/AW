@@ -31,13 +31,26 @@
     
             <!-- Notifiaciones -->
             <form class="dropdown-menu p-0">
-                <div class="card">
-                <h5 class="card-header">Notificaciones</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Recordatorio para el evento del dia x</h5>
-                    <p class="card-text">No olvides asiste a tu evento</p>
-                </div>
-                </div>
+              
+                  <div class="card">
+                    <h5 class="card-header">notificacion</h5>
+                    <% if(notificaciones) {%>
+                <% notificaciones.forEach(function(notificacion) { %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= notificacion.fecha %></h5>
+                        <p class="card-text"><%= notificacion.mensaje %></p>
+                    </div>
+
+                <% }); %>
+
+                <% } else {%>
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">No hay mensajes pendientes</p>
+                  </div>
+                <% } %>
+
+              </div>
             </form>
 
             <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
