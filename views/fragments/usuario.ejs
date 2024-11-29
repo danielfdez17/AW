@@ -1,6 +1,11 @@
 <div class="card" style="width: 18rem;">
     <!-- Foto del usuario -->
-    <img src="https://www.ucm.es/themes/ucm24/media/img/logo.svg" class="card-img-top img-fluid" alt="...">
+    <% if(u.foto === null) {%>
+        <!-- <img src="https://www.ucm.es/themes/ucm24/media/img/logo.svg" class="card-img-top img-fluid" alt="..."> -->
+        <img src="/resources/icon-default.png" class="card-img-top img-fluid w-50 h-50 mt-1 ms-auto me-auto rounded-circle" alt="Imagen de perfil por defecto">
+    <% } else { %>
+        <%= u.foto %>        
+    <% } %>
     <div class="card-body">
       <h5 class="card-title"><%= u.nombre %> <span class="text-secondary">(<%= u.correo %>)</span></h5>
       <p>Teléfono: <%= u.telefono %></p>
