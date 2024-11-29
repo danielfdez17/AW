@@ -44,26 +44,26 @@
 
             <% if (!index) { %>
                 <% if (usuario.rol === "asistente") { %>
-                    <button class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('anular', <%= evento.id %>)">Anular inscripción</button>
+                    <button class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('anular', <%= evento.id %>)" aria-label="Anular inscripción">Anular inscripción</button>
                 <% } else { %>
                     <% if (evento.id_organizador === usuario.id) { %>
                         <div class="d-flex gap-1">
-                            <button id="editarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="habilitarEdicion(<%= evento.id %>)">Editar</button>
-                            <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="submit" onclick="enviar_accion('editar', <%= evento.id %>)">Guardar</button>
-                            <button id="cancelarEvento<%= evento.id %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id %>)">Cancelar</button>
-                            <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('eliminar', <%= evento.id %>)">Eliminar</button>
+                            <button id="editarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="habilitarEdicion(<%= evento.id %>)" aria-label="Editar evento">Editar</button>
+                            <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="submit" onclick="enviar_accion('editar', <%= evento.id %>)" aria-label="Guardar evento">Guardar</button>
+                            <button id="cancelarEvento<%= evento.id %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id %>)" aria-label="Cancelar edición de evento">Cancelar</button>
+                            <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('eliminar', <%= evento.id %>)" aria-label="Eliminar evento">Eliminar</button>
                             <!-- <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button"><a class="text-decoration-none text-white" href="/organizadores/lista_espera/<%= evento.id %>" target="_blank" rel="noopener noreferrer">Ver lista de espera</a></button> -->
                             <a href="/organizadores/lista_espera/<%= evento.id %>" target="_blank" rel="noopener noreferrer">
-                            <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button">Ver lista de espera</button></a>
+                            <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" aria-label="Ver lista de espera">Ver lista de espera</button></a>
                             <a href="/organizadores/lista_asistentes/<%= evento.id %>" target="_blank" rel="noopener noreferrer">
-                            <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button">Ver lista de asistentes</button></a>
+                            <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" aria-label="Ver lista de asistentes">Ver lista de asistentes</button></a>
 
                         </div>
                     <% } %>
                 <% } %>
             <% } else { %>
                 <% if (usuario && usuario.rol === "asistente") { %>
-                    <button class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('inscribir', <%= evento.id %>)">Inscribirse</button>
+                    <button class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('inscribir', <%= evento.id %>)" aria-label="Inscribirse en el evento" >Inscribirse</button>
                 <% } %>
 
             <% } %>
