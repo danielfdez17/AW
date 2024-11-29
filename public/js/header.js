@@ -13,12 +13,30 @@ $(() => {
     let correo = $("#correoLogin").val().replace(dominio, "");
     $("#correoLogin").val(correo + dominio);
     const cursorPosition = $("#correoLogin")[0].selectionStart;
-    console.log(`Size correo: ${correo.length}`);
-    console.log(`Posicion cursor: ${cursorPosition}`);
     if (cursorPosition > correo.length) {
       if (correo.length === 0) $("#correoLogin").get(0).setSelectionRange(0, 0);
       else {
         $("#correoLogin")
+          .get(0)
+          .setSelectionRange(
+            cursorPosition < correo.length ? cursorPosition : correo.length,
+            cursorPosition < correo.length ? cursorPosition : correo.length
+          );
+      }
+    }
+  });
+  $("#correo").click(() => {
+    $("#correo").val($("#correo").val().replace(dominio, "") + dominio);
+    $("#correo").get(0).setSelectionRange(0, 0);
+  });
+  $("#correo").keyup(() => {
+    let correo = $("#correo").val().replace(dominio, "");
+    $("#correo").val(correo + dominio);
+    const cursorPosition = $("#correo")[0].selectionStart;
+    if (cursorPosition > correo.length) {
+      if (correo.length === 0) $("#correo").get(0).setSelectionRange(0, 0);
+      else {
+        $("#correo")
           .get(0)
           .setSelectionRange(
             cursorPosition < correo.length ? cursorPosition : correo.length,
