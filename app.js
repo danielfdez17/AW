@@ -12,6 +12,7 @@ const MySQLStore = mysqlSession(session);
 const indexRouter = require("./routes/index");
 const routerAsistentes = require("./routes/asistentes.js");
 const routerOrganizadores = require("./routes/organizadores.js");
+const routerNotificaciones = require("./routes/notificaciones.js");
 
 const port = 3000;
 const app = express();
@@ -67,6 +68,7 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/asistentes", routerAsistentes);
 app.use("/organizadores", routerOrganizadores);
+app.use("/notificaciones", routerNotificaciones);
 
 // Control error 404
 app.use(function (req, res, next) {

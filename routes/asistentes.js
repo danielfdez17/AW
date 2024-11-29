@@ -31,7 +31,8 @@ router.get("/", (req, res) => {
               usuario: req.session.usuario,
               facultades: facultades,
               eventosInscritos: eventosInscritos,
-              notificaciones: notificaciones
+              notificaciones: notificaciones = notificaciones && notificaciones.length ? notificaciones : null
+
             });
           });
 

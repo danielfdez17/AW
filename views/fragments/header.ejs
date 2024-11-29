@@ -30,28 +30,32 @@
             </button>
     
             <!-- Notifiaciones -->
-            <form class="dropdown-menu p-0">
-              
-                  <div class="card">
-                    <h5 class="card-header">notificacion</h5>
-                    <% if(notificaciones) {%>
+            <div class="dropdown-menu p-0">
+              <% if(notificaciones) {%>
                 <% notificaciones.forEach(function(notificacion) { %>
+                  <div class="card m-2">
+                    <h5 class="card-header d-flex justify-content-between">
+                      notificacion
+                      <form action="/notificaciones/eliminar" method="post">
+                          <button type="submit" class="btn-close ms-auto" aria-label="Cerrar"></button>
+                          <input type="hidden" name="id" value="<%= notificacion.id %>">
+                      </form>
+                    </h5>
                     <div class="card-body">
-                        <h5 class="card-title"><%= notificacion.fecha %></h5>
-                        <p class="card-text"><%= notificacion.mensaje %></p>
+                      <h5 class="card-title"><%= notificacion.fecha %></h5>
+                      <p class="card-text"><%= notificacion.mensaje %></p>
                     </div>
-
+                  </div>
                 <% }); %>
-
-                <% } else {%>
+              <% } else {%>
+                <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title"></h5>
+                    <h5 class="card-title">Notificaciones</h5>
                     <p class="card-text">No hay mensajes pendientes</p>
                   </div>
-                <% } %>
-
-              </div>
-            </form>
+                </div>
+              <% } %>            
+            </div>
 
             <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
                 <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil" aria-label="Editar perfil">

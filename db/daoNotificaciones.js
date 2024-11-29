@@ -12,7 +12,7 @@ class DAOFacultades {
         callback(err);
         return;
       }
-      const sql = "SELECT * FROM notificaciones WHERE id_usuario = ?";
+      const sql = "SELECT * FROM notificaciones WHERE activo = true AND id_usuario = ?";
       connection.query(sql, [id], (err, rows) => {
         connection.release();
         if (err) {
@@ -24,7 +24,7 @@ class DAOFacultades {
     });
   }
 
-  readEliminarNotificaciones(id, callback) {
+  EliminarNotificaciones(id, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
@@ -37,7 +37,7 @@ class DAOFacultades {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }
