@@ -41,7 +41,7 @@ create table eventos(
     capacidad_maxima int not null,
     id_organizador int not null,
     tipo_evento varchar(20) not null,
-    duracion varchar(10) not null default "1:00",
+    duracion varchar(10) not null default "01:00",
     activo BOOLEAN DEFAULT TRUE,
     foreign key (id_organizador) references usuarios(id)
 );

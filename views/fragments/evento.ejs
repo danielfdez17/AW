@@ -12,17 +12,17 @@
 
             <div class="d-flex justify-content-center align-items-center">
                 <i class="bi bi-calendar-event me-2"></i>
-                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="fecha" id="fecha<%= evento.id %>" placeholder="<%= evento.fecha %>" required disabled>
+                <input type="date" class="form-control bg-transparent border-0 fs-6 ps-0" name="fecha" id="fecha<%= evento.id %>" placeholder="<%= evento.fecha %>" value="<%= evento.fecha %>" required disabled>
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
                 <i class="bi bi-clock me-2"></i>
-                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="hora" id="hora<%= evento.id %>" placeholder="<%= evento.hora %>" required disabled>
+                <input type="time" class="form-control bg-transparent border-0 fs-6 ps-0" name="hora" id="hora<%= evento.id %>" placeholder="<%= evento.hora %>" value="<%= evento.hora %>" required disabled>
             </div>
             
             <div class="d-flex justify-content-center align-items-center">
                 <i class="bi bi-hourglass-split me-2"></i>
-                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="duracion" id="duracion<%= evento.id %>" placeholder="<%= evento.duracion %>" required disabled>
+                <input type="time" class="form-control bg-transparent border-0 fs-6 ps-0" name="duracion" id="duracion<%= evento.id %>" placeholder="<%= evento.duracion %>" value="<%= evento.duracion %>" required disabled>
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
@@ -32,12 +32,12 @@
 
             <div class="d-flex justify-content-center align-items-center">
                 <i class="bi bi-person-fill me-2"></i>
-                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_actual_string" id="capacidad<%= evento.id %>" placeholder="<%= evento.capacidad_actual %>" required disabled>
+                <input type="number" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_actual_string" id="capacidad<%= evento.id %>" placeholder="<%= evento.capacidad_actual %>" required disabled>
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
                 <i class="bi bi-person me-2"></i>
-                <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_maxima_string" id="capacidad_maxima<%= evento.id %>" placeholder="<%= evento.capacidad_maxima %>" required disabled>
+                <input type="number" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_maxima_string" id="capacidad_maxima<%= evento.id %>" placeholder="<%= evento.capacidad_maxima %>" required disabled>
             </div>
 
             <input type="hidden" name="id" value="<%= evento.id %>">

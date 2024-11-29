@@ -8,8 +8,11 @@ function habilitarEdicion(id_evento) {
     $(`#hora${id_evento}`).prop("disabled", false);
     $(`#duracion${id_evento}`).prop("disabled", false);
     $(`#ubicacion${id_evento}`).prop("disabled", false);
+    $(`#capacidad${id_evento}`).prop("disabled", false);
     $(`#capacidad_maxima${id_evento}`).prop("disabled", false);
     $(`#tipo_evento${id_evento}`).prop("disabled", false);
+
+    $(`#fecha${id_evento}`).prop("min", getMinDate());
     
 
     $(`#titulo${id_evento}`).val($(`#titulo${id_evento}`).prop("placeholder"));
@@ -18,6 +21,7 @@ function habilitarEdicion(id_evento) {
     $(`#hora${id_evento}`).val($(`#hora${id_evento}`).prop("placeholder"));
     $(`#duracion${id_evento}`).val($(`#duracion${id_evento}`).prop("placeholder"));
     $(`#ubicacion${id_evento}`).val($(`#ubicacion${id_evento}`).prop("placeholder"));
+    $(`#capacidad${id_evento}`).val($(`#capacidad${id_evento}`).prop("placeholder"));
     $(`#capacidad_maxima${id_evento}`).val($(`#capacidad_maxima${id_evento}`).prop("placeholder"));
     $(`#tipo_evento${id_evento}`).val($(`#tipo_evento${id_evento}`).prop("placeholder"));
   
@@ -45,17 +49,19 @@ function deshabilitarEdicion(id_evento) {
     $(`#hora${id_evento}`).prop("disabled", true);
     $(`#duracion${id_evento}`).prop("disabled", true);
     $(`#ubicacion${id_evento}`).prop("disabled", true);
+    $(`#capacidad${id_evento}`).prop("disabled", true);
     $(`#capacidad_maxima${id_evento}`).prop("disabled", true);
     $(`#tipo_evento${id_evento}`).prop("disabled", true);
 
-    $(`#titulo${id_evento}`).val("");
-    $(`#descripcion${id_evento}`).val("");
-    $(`#fecha${id_evento}`).val("");
-    $(`#hora${id_evento}`).val("");
-    $(`#duracion${id_evento}`).val("");
-    $(`#ubicacion${id_evento}`).val("");
-    $(`#capacidad_maxima${id_evento}`).val("");
-    $(`#tipo_evento${id_evento}`).val("");
+    $(`#titulo${id_evento}`).val($(`#titulo${id_evento}`).prop("placeholder"));
+    $(`#descripcion${id_evento}`).val($(`#descripcion${id_evento}`).prop("placeholder"));
+    $(`#fecha${id_evento}`).val($(`#fecha${id_evento}`).prop("placeholder"));
+    $(`#hora${id_evento}`).val($(`#hora${id_evento}`).prop("placeholder"));
+    $(`#duracion${id_evento}`).val($(`#duracion${id_evento}`).prop("placeholder"));
+    $(`#ubicacion${id_evento}`).val($(`#ubicacion${id_evento}`).prop("placeholder"));
+    $(`#capacidad${id_evento}`).val($(`#capacidad${id_evento}`).prop("placeholder"));
+    $(`#capacidad_maxima${id_evento}`).val($(`#capacidad_maxima${id_evento}`).prop("placeholder"));
+    $(`#tipo_evento${id_evento}`).val($(`#tipo_evento${id_evento}`).prop("placeholder"));
 
     //Botones
     $(`#editarEvento${id_evento}`).show();
@@ -95,4 +101,20 @@ function enviar_accion(accion, id_evento) {
     }
 
     document.getElementById(`formulario${id_evento}`).submit()
+}
+
+function getMinDate() {
+    var hoy = new Date();
+
+    var mes = hoy.getMonth() + 1;
+    var dia = hoy.getDate();
+    var anyo = hoy.getFullYear();
+    if(mes < 10)
+        mes = '0' + mes.toString();
+    if(dia < 10)
+        dia = '0' + dia.toString();
+
+    var maxDate = anyo + '-' + mes + '-' + dia;
+
+    return maxDate;
 }
