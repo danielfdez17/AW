@@ -2,10 +2,10 @@
 <div class="dropdown-menu p-0">
   <% if(notificaciones) {%>
     <% notificaciones.forEach(function(notificacion) { %>
-      <div class="card m-2">
+      <div id="notificacion<%= notificacion.id %>" class="card m-2">
         <h5 class="card-header d-flex justify-content-between">
           notificacion
-          <form action="/notificaciones/eliminar" method="post">
+          <form id="formEliminarNotificacion" action="/notificaciones/eliminar" method="post">
               <button type="submit" class="btn-close ms-auto" aria-label="Cerrar"></button>
               <input type="hidden" name="id" value="<%= notificacion.id %>">
           </form>
@@ -23,5 +23,7 @@
         <p class="card-text">No hay mensajes pendientes</p>
       </div>
     </div>
-  <% } %>            
+  <% } %>   
+  
+  <script src="/js/notificaciones.js"></script>
 </div>

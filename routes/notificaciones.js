@@ -20,7 +20,8 @@ router.post("/eliminar", function (req, res) {
       }
       else
       {
-        res.redirect("/")
+        res.setFlash({ message: "Notificación eliminada correctamente", type: "exito" });
+        res.json({id: id})
       }
     });
 });

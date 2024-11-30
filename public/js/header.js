@@ -47,16 +47,6 @@ $(() => {
   });
 });
 
-//Colores claros
-const inicio_degradado_claro = "rgb(255, 237, 241)";
-const fin_degradado_claro = "rgb(207, 146, 238)";
-const text_color_claro = "rgb(20, 20, 28)";
-
-//Colores oscuros
-const inicio_degradado_oscuro = "rgb(0, 0, 0)";
-const fin_degradado_oscuro = "rgb(231, 207, 243)";
-const text_color_oscuro = "rgb(255, 237, 241)";
-
 //Tipos daltonismo
 // Rojo-verde
 const deuteranomalia = ""; // ciertos tonos verdes se ven mas rojos

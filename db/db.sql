@@ -15,7 +15,7 @@ insert into facultades (nombre) values ("Facultad de Ciencias de la Educación"
 create table usuarios(
     id int primary key auto_increment,
     nombre varchar(100) not null,
-    correo varchar(100) not null,
+    correo varchar(100) not null unique,
     telefono int(9) not null,
     id_facultad int not null,
     rol varchar(20) not null,

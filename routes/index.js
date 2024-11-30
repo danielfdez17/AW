@@ -79,6 +79,10 @@ router.get("/logOut", (req, res, next) => {
   });
 });
 
+router.get("/toasts", function (req, res) {
+  res.render('fragments/toasts');
+});
+
 router.get("/imagen/:id", function (request, response) {
   let n = Number(request.params.id);
 
