@@ -24,12 +24,14 @@ const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
 const DAOUsuarios = require("../db/daoUsuarios.js");
+const DAOAccesibilidad = require("../db/daoAccesibilidad.js");
 const pool = require("../db/pool.js");
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoListaNegra = new DAOListaNegra(pool);
 const daoUsuarios = new DAOUsuarios(pool);
+const daoAccesibilidad = new DAOAccesibilidad(pool);
 
 router.get("/", (req, res) => {
   const { ip } = req;
@@ -57,7 +59,7 @@ router.get("/", (req, res) => {
               usuario: null,
               facultades: facultades,
               eventosInscritos: null,
-              notificaciones: null
+              notificaciones: null,
             });
           });
         });
@@ -116,7 +118,7 @@ const comprobacion = [
         "AND",
         "OR",
         "LIKE",
-        "BETWEEN"
+        "BETWEEN",
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
@@ -148,6 +150,16 @@ const comprobacion = [
     } else next();
   },
 ];
+
+router.post("/accesibilidad/:id", (req, res) => {
+  const { id } = req.params;
+  const { tema, letra } = req.body;
+  daoAccesibilidad.updatePreferencias({ tema, letra, id }, (err) => {
+    if (!err) {
+      res.redirect("/");
+    }
+  });
+});
 
 router.post(
   "/signUp",
