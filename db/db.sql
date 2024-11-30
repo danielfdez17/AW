@@ -77,9 +77,9 @@ insert into inscripciones (id_usuario, id_evento, estado) values (4, 1, "inscrit
 
 create table accesibilidad(
     id_usuario int not null primary key,
-    paleta_colores varchar(100) not null,
-    tamano_texto varchar(100) not null,
-    config_navegacion varchar(100) not null,
+    paleta_colores varchar(100) not null default "predeterminado",
+    tamano_texto varchar(100) not null default "normal",
+    config_navegacion varchar(100) not null default "no",
     foreign key (id_usuario) references usuarios(id)
 );
 
@@ -195,3 +195,17 @@ DELIMITER ;
 -- END $$
 
 -- DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER InsertAccesibilidad
+AFTER INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+
+    INSERT INTO accesibilidad (id_usuario) VALUES (NEW.id);
+    
+END $$
+
+DELIMITER ;
