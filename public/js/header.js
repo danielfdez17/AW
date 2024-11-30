@@ -57,6 +57,16 @@ const inicio_degradado_oscuro = "rgb(0, 0, 0)";
 const fin_degradado_oscuro = "rgb(231, 207, 243)";
 const text_color_oscuro = "rgb(255, 237, 241)";
 
+//Tipos daltonismo
+// Rojo-verde
+const deuteranomalia = ""; // ciertos tonos verdes se ven mas rojos
+const protanomalia = ""; // ciertos tonos rojos se ven mas verdes y menos brillantes
+const protanopia = ""; // no se distingue entre rojo y verde
+const deuteranopia = ""; // no se distingue entre rojo y verde
+// Azul-amarillo
+const tritanomalia = ""; // difícil diferencia entre azul y verde, y entre amarillo y rojo
+const titanopia = ""; // no se distingue entre azul y verde, entre morado(violeta) y rojo, y entre amarillo y rosado. Todos los colores se ven menos brillantes
+
 const botonHabilidarEdicion = document.getElementById("habilitarEdicion");
 const editarNombre = document.getElementById("editarNombre");
 const editarCorreo = document.getElementById("editarCorreo");
@@ -64,29 +74,58 @@ const editarContrasena = document.getElementById("editarContrasena");
 const editarTelefono = document.getElementById("editarTelefono");
 
 //Ajustes de tema
-function ajustes_color(tipo_letra) {
+function ajustes_color(tema) {
   let root = document.documentElement;
-  if (tipo_letra == "Claro") {
-    root.style.setProperty("--inicio-degradado", inicio_degradado_claro);
-    root.style.setProperty("--fin-degradado", fin_degradado_claro);
-    root.style.setProperty("--text-color", text_color_claro);
-  } else if (tipo_letra == "Oscuro") {
-    root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
-    root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
-    root.style.setProperty("--text-color", text_color_oscuro);
-  } else if (tipo_letra == "Predeterminado") {
-    root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
-    root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
-    root.style.setProperty("--text-color", text_color_oscuro);
+  switch (tema) {
+    case "claro":
+      root.style.setProperty("--inicio-degradado", inicio_degradado_claro);
+      root.style.setProperty("--fin-degradado", fin_degradado_claro);
+      root.style.setProperty("--text-color", text_color_claro);
+      break;
+    case "oscuro":
+      root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
+      root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
+      root.style.setProperty("--text-color", text_color_oscuro);
+      break;
+    case "deuteranomalia":
+      break;
+    case "protanomalia":
+      break;
+    case "protanopia":
+      break;
+    case "deuteranopia":
+      break;
+    case "tritanomalia":
+      break;
+    case "titanopia":
+      break;
+    default:
+      root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
+      root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
+      root.style.setProperty("--text-color", text_color_oscuro);
+      break;
   }
+  //   if (tema == "claro") {
+  //     root.style.setProperty("--inicio-degradado", inicio_degradado_claro);
+  //     root.style.setProperty("--fin-degradado", fin_degradado_claro);
+  //     root.style.setProperty("--text-color", text_color_claro);
+  //   } else if (tema == "oscuro") {
+  //     root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
+  //     root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
+  //     root.style.setProperty("--text-color", text_color_oscuro);
+  //   } else if (tema == "predeterminado") {
+  //     root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
+  //     root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
+  //     root.style.setProperty("--text-color", text_color_oscuro);
+  //   }
 }
 
 //Ajustes tamaño de letra
-function ajustes_texto(tipo_color) {
-  if (tipo_color == "Normal") document.documentElement.style.fontSize = "18px";
-  else if (tipo_color == "Grande")
+function ajustes_texto(tam_letra) {
+  if (tam_letra == "normal") document.documentElement.style.fontSize = "18px";
+  else if (tam_letra == "grande")
     document.documentElement.style.fontSize = "22px";
-  else if (tipo_color == "Muy grande")
+  else if (tam_letra == "muy grande")
     document.documentElement.style.fontSize = "26px";
 }
 
@@ -115,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
   //Inicialmente los ajustes corresponden al predeterminado
-  ajustes_color("Predeterminado");
+  ajustes_color("predeterminado");
 });
 
 function habilitarEdicion() {
