@@ -1,4 +1,5 @@
 "use strict";
+
 const pool = require("../db/pool.js");
 const DAOInscripciones = require("../db/daoInscripciones.js");
 const DAOEventos = require("../db/daoEventos.js");
@@ -86,7 +87,6 @@ class InscripcionesController {
               });
             }
 
-            
           });
       });
     }

@@ -21,17 +21,24 @@ const daoListaNegra = new DAOListaNegra(pool);
 const daoAccesibilidad = new DAOAccesibilidad(pool);
 
 router.get("/", (req, res) => {
-  daoFacultades.readAllFacultades((facultades) => {
-    daoEventos.readAllEventos((eventos) => {
-        res.render("index", {
-          eventos: eventos,
-          usuario: req.session.usuario,
-          facultades: facultades,
-          eventosInscritos: null,
-          notificaciones: null
-        });
+  if (!req.session.auth)
+    res.redirect("/");
+  else
+  {
+    daoFacultades.readAllFacultades((facultades) => {
+      daoEventos.readAllEventos((eventos) => {
+          res.render("index", {
+            eventos: eventos,
+            usuario: req.session.usuario,
+            facultades: facultades,
+            eventosInscritos: null,
+            notificaciones: null
+          });
+      });
     });
-  });
+  }
+
+
 });
 
 router.get("/lista_espera/:ident", (req, res) => {

@@ -45,4 +45,3 @@ $(document).ready(function(){
     $("#formSignUp")[0].submit(); // Enviar el formulario de manera programática
   });
 });
-  

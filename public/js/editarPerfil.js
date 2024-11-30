@@ -1,12 +1,14 @@
 "use strict;"
-function habilitarEdicion() {
-  
-  $("#editarFoto").prop("disabled", false);
-  $("#editarNombre").prop("disabled", false);
-  $("#editarCorreo").prop("disabled", false);
-  $("#editarContrasena").prop("disabled", false);
-  $("#editarTelefono").prop("disabled", false);
-  $("#editarFacultad").prop("disabled", false);
+
+$()
+{
+  $("#guardar").hide();
+  $("#cancelarEdicion").hide();
+}
+
+$("#habilitarEdicion").on('click', () => 
+{
+  $("#editarFoto, #editarNombre, #editarCorreo, #editarContrasena, #editarTelefono, #editarFacultad").prop("disabled", false);
   
   $("#editarNombre").val($("#editarNombre").prop("placeholder"));
   $("#editarCorreo").val($("#editarCorreo").prop("placeholder"));
@@ -15,19 +17,15 @@ function habilitarEdicion() {
   $("#editarTelefono").val($("#editarTelefono").prop("placeholder"));
 
   //Botones
-  document.getElementById("guardar").style.display = "block";
-  document.getElementById("cancelarEdicion").style.display = "block";
-  document.getElementById("habilitarEdicion").style.display = "none";
+  $("#guardar").show();
+  $("#cancelarEdicion").show();
+  $("#habilitarEdicion").hide();
+  $("#cerrarEdicion").hide();
+})
 
-}
 
-function deshabilitarEdicion() {
-  $("#editarFoto").prop("disabled", true);
-  $("#editarNombre").prop("disabled", true);
-  $("#editarCorreo").prop("disabled", true);
-  $("#editarContrasena").prop("disabled", true);
-  $("#editarTelefono").prop("disabled", true);
-  $("#editarFacultad").prop("disabled", true);
+$("#cancelarEdicion, #cerrarEdicion").on('click', () => {
+  $("#editarFoto, #editarNombre, #editarCorreo, #editarContrasena, #editarTelefono, #editarFacultad").prop("disabled", true);
 
   $("#editarNombre").val("");
   $("#editarCorreo").val("");
@@ -35,14 +33,11 @@ function deshabilitarEdicion() {
   $("#editarTelefono").val("");
   
  //Botones
- document.getElementById("guardar").style.display = "none";
- document.getElementById("cancelarEdicion").style.display = "none";
- document.getElementById("habilitarEdicion").style.display = "block";
-}
-
-$("#habilitarEdicion").on("click", habilitarEdicion);
-$("#cerrarEdicion").on("click", deshabilitarEdicion);
-$("#cancelarEdicion").on("click", deshabilitarEdicion);
+ $("#guardar").hide();
+ $("#cancelarEdicion").hide();
+ $("#habilitarEdicion").show();
+ $("#cerrarEdicion").show();
+})
 
 $("#formEditarPerfil button[type=submit]").on("click", (event) => {
   event.preventDefault();

@@ -20,27 +20,35 @@ const InscripcionesController = require("../controllers/inscripciones.js");
 const inscripcionesController = new InscripcionesController();
 
 router.get("/", (req, res) => {
-  daoFacultades.readAllFacultades((facultades) => {
-    daoEventos.readAllEventos((eventos) => {
-      daoInscripciones.readEventosInscritosPorAsistenteActivos(
-        req.session.usuario.id,
-        (eventosInscritos) => {
 
-          daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (notificaciones) =>
-          {
-                res.render("index", {
-                    eventos: eventos,
-                    usuario: req.session.usuario,
-                    facultades: facultades,
-                    eventosInscritos: eventosInscritos,
-                    notificaciones: notificaciones = notificaciones && notificaciones.length ? notificaciones : null
-                });
-          });
-
-        }
-      );
+  if (!req.session.auth)
+    res.redirect("/");
+  else
+  {
+    daoFacultades.readAllFacultades((facultades) => {
+      daoEventos.readAllEventos((eventos) => {
+        daoInscripciones.readEventosInscritosPorAsistenteActivos(
+          req.session.usuario.id,
+          (eventosInscritos) => {
+  
+            daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (notificaciones) =>
+            {
+                  res.render("index", {
+                      eventos: eventos,
+                      usuario: req.session.usuario,
+                      facultades: facultades,
+                      eventosInscritos: eventosInscritos,
+                      notificaciones: notificaciones = notificaciones && notificaciones.length ? notificaciones : null
+                  });
+            });
+  
+          }
+        );
+      });
     });
-  });
+  }
+
+
 });
 
 const comprobacion = [
