@@ -30,6 +30,7 @@ class DAOUsuarios {
             callback(err);
             return;
           }
+          usuario.id = rows.insertId
           callback(null, usuario);
         }
       );
