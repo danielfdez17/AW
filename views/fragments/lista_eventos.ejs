@@ -1,24 +1,13 @@
 <div class="row d-flex align-items-center h-75 m-0 eventos">
     <% if(eventos.length > 0) {%>
-        <% if (eventosInscritos === null) { %>
-            <% eventos.forEach(evento => { %>
+
+        <% eventos.forEach(evento => { %>
+            <% if (eventosInscritos !== null && !eventosInscritos.find(e => e.id === evento.id)) { %>
                 <div class="col-12 col-md-6 mt-3 mb-3"> <!-- Ajusta el tamaño de las columnas -->
                     <%- include('./evento.ejs', {evento: evento, index: true}) %>
                 </div>
-            <% }); %>
-        <% } else { %>
-            <% eventos.forEach(evento => { %>
-                <div class="col-12 col-md-6 mt-3 mb-3"> <!-- Ajusta el tamaño de las columnas -->
-                    <% eventosInscritos.forEach(eventoInscrito => { %>
-                        <% if (evento.id !== eventoInscrito.id) { %> 
-                            <%- include('./evento.ejs', {evento: evento, index: true}) %>
-                        <% } else { %>
-                            <h1 class="text-center">Hola</h1>
-                        <% } %>
-                    <% }); %>
-                </div>
-            <% }); %>
-        <% } %>
+            <% } %>
+        <% }); %>
 
     <% } else { %>
 
