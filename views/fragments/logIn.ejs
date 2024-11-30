@@ -1,0 +1,28 @@
+<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <form action="/login" method="post">
+  
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Log In</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="text" class="form-control" name="correoLogin" id="correoLogin" placeholder="Ingresa tu correo (@ucm.es)" pattern="^[a-zA-Z0-9]+@ucm\.es$" required>
+  
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="contrasenaLogin" id="contrasenaLogin" placeholder="Ingresa tu contraseña" minlength="4" maxlength="50" required>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+            <button type="submit" class="btn btn-primary" aria-label="Login">Log In</button>
+          </div>
+  
+        </form>
+  
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,33 @@
+<div class="modal fade modal-xl" id="modalEditarPerfil" tabindex="-1" aria-labelledby="modalEditarPerfil" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+        <div id="carouselExample" class="carousel slide" data-bs-wrap="false">
+
+            <div class="modal-header d-flex" id="informacion">
+            <button class="w-100 btn btn-transparent text-dark boton-encabezado activo border border-1 border-solid border-secondary" id="Perfil" data-bs-target="#carouselExample" data-bs-slide="prev" aria-label="Editar perfil">Editar perfil</button>
+            <div class="border-start divisor"></div>
+            <button class="w-100 btn btn-transparent text-dark boton-encabezado border border-1 border-solid border-secondary" id="Gestion" data-bs-target="#carouselExample" data-bs-slide="next" aria-label="Gestionar eventos">Eventos</button>
+            </div>
+
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+            <%- include('./perfil.ejs') -%>
+            </div>
+            <div class="carousel-item">
+                <% if (usuario.rol === "organizador") { %>
+                    <%- include('./gestion.ejs') -%>
+                <% } else { %>
+                    <%- include('./asistente.ejs', { eventosInscritos: eventosInscritos || null }) %>
+                <% } %>
+            </div>
+            </div>
+
+        </div>
+
+        </div>
+
+    </div>
+
+    <script src="/js/editarPerfil.js"></script>
+</div>

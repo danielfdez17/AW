@@ -8,8 +8,6 @@
 
     <div class="d-flex align-items-center gap-2 me-3">
 
-        
-        
         <% if (!usuario) { %>
             <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin" aria-label="Identificarse">
                 <span class="fs-4">
@@ -29,33 +27,7 @@
                 </span>
             </button>
     
-            <!-- Notifiaciones -->
-            <div class="dropdown-menu p-0">
-              <% if(notificaciones) {%>
-                <% notificaciones.forEach(function(notificacion) { %>
-                  <div class="card m-2">
-                    <h5 class="card-header d-flex justify-content-between">
-                      notificacion
-                      <form action="/notificaciones/eliminar" method="post">
-                          <button type="submit" class="btn-close ms-auto" aria-label="Cerrar"></button>
-                          <input type="hidden" name="id" value="<%= notificacion.id %>">
-                      </form>
-                    </h5>
-                    <div class="card-body">
-                      <h5 class="card-title"><%= notificacion.fecha %></h5>
-                      <p class="card-text"><%= notificacion.mensaje %></p>
-                    </div>
-                  </div>
-                <% }); %>
-              <% } else {%>
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Notificaciones</h5>
-                    <p class="card-text">No hay mensajes pendientes</p>
-                  </div>
-                </div>
-              <% } %>            
-            </div>
+            <%- include('./notificaciones.ejs') %>
 
             <div class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
                 <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil" aria-label="Editar perfil">
@@ -81,199 +53,23 @@
                 </span>
             </button>
     
-           <!-- El menú dropdown que se muestra al hacer clic -->
-           <div class="dropdown-menu dropdown-menu-end p-2 mt-2 shadow ajustes">
-                <form action="/accesibilidad/<%=usuario.id%>" method="post">
-                   <span>Tema</span>
-                   <select class="form-select" name="tema" id="tema">
-                        <option value="predeterminado" selected>Predeterminado</option>
-                        <option value="claro">Claro</option>
-                        <option value="oscuro">Oscuro</option>
-                        <option value="deuteranomalia">Deuteranomalía</option>
-                        <option value="protanomalia">Protanomalía</option>
-                        <option value="protanopia">Protanopia</option>
-                        <option value="deuteranopia">Deuteranopia</option>
-                        <option value="tritanomalia">Tritanomalía</option>
-                        <option value="tritanopia">Tritanopia</option>
-                   </select>
-                   <ul class="list-unstyled d-grid gap-1 p-2 rounded-3 mx-0 shadow" id="Tema">
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2 active" value="predeterminado" aria-label="Activar modo predeterminado">Predeterminado</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="claro" aria-label="Activar modo claro">Claro</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="oscuro" aria-label="Activar modo oscuro">Oscuro</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="deuteranomalia" aria-label="Activar modo daltonismo deuteranomalia">Deuteranomalía</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="protanomalia" aria-label="Activar modo daltonismo protanomalia">Protanomalía</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="protanopia" aria-label="Activar modo daltonismo protanopia">Protanopia</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="deuteranopia" aria-label="Activar modo daltonismo deuteranopia">Deuteranopia</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="tritanomalia" aria-label="Activar modo daltonismo tritanomalia">Tritanomalía</button></li>
-                       <li><button name="tema" type="button" class="dropdown-item rounded-2" value="tritanopia" aria-label="Activar modo daltonismo tritanopia">Tritanopia</button></li>
-                   </ul>
-                   <span class="mt-2">Letra</span>
-                    <select class="form-select" name="letra" id="letra">
-                        <option value="normal" selected>Normal</option>
-                        <option value="grande">Grande</option>
-                        <option value="muy grande">Muy grande</option>
-                </select>
-                   <ul class="list-unstyled d-grid gap-1 p-2 rounded-3 mx-0 shadow" id="Letra">
-                       <li><button name="letra" type="button" class="dropdown-item rounded-2 active" value="normal" aria-label="Activar tamaño de letra normal">Normal</button></li>
-                       <li><button name="letra" type="button" class="dropdown-item rounded-2" value="grande" aria-label="Activar tamaño de letra grande">Grande</button></li>
-                       <li><button name="letra" type="button" class="dropdown-item rounded-2" value="muy grande" aria-label="Activar tamaño de letra muy grande">Muy grande</button></li>
-                   </ul>
-                   <button type="submit" class="btn btn-primary">Guardar preferencias</button>
-                </form>
-           </div>
+            <%- include('./accesibilidad.ejs') %>
         <% } %>
-
 
       </div>
 
-
     </div>
-
-    <!-- Funcionamiento del dropdown -->
-
+    
 </header>
 
 <!-- Modales -->
-<% if(!usuario){%>
-<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<% if(!usuario){ %>
 
-      <form action="/login" method="post">
+  <%- include('./logIn.ejs') %>
+  <%- include('./signUp.ejs') %>
 
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Log In</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <label for="correo" class="form-label">Correo</label>
-          <input type="text" class="form-control" name="correoLogin" id="correoLogin" placeholder="Ingresa tu correo (@ucm.es)" pattern="^[a-zA-Z0-9]+@ucm\.es$" required>
-
-          <label for="contrasena" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" name="contrasenaLogin" id="contrasenaLogin" placeholder="Ingresa tu contraseña" minlength="4" maxlength="50" required>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-          <button type="submit" class="btn btn-primary" aria-label="Login">Log In</button>
-        </div>
-
-      </form>
-
-    </div>
-  </div>
-</div>
-
-<!-- Notificaciones -->
-<form class="dropdown-menu p-4">
-  <div class="mb-3">
-    <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-  </div>
-  <div class="mb-3">
-    <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-  </div>
-  <div class="mb-3">
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-      <label class="form-check-label" for="dropdownCheck2">
-        Remember me
-      </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary" aria-label="Iniciar sesión">Sign in</button>
-</form>
-
-
-<div class="modal fade" id="modalSignUp" tabindex="-1" aria-labelledby="modalSignUp" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <form id="formSignUp" action="/signUp" method="POST" enctype="multipart/form-data">
-
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa tu usuario" required>
-
-          <label for="correo" class="form-label">Correo</label>
-          <input type="text" class="form-control" name="correo" id="correo" placeholder="Ingresa tu correo (@ucm.es)" pattern="^[a-zA-Z0-9]+@ucm\.es$" required>
-
-          <label for="contrasena" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Ingresa tu contraseña" minlength="4" maxlength="50" required>
-
-          <label for="telefono" class="form-label">Telefono</label>
-          <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Ingresa tu teléfono" pattern="^[0-9]*$" required>
-          
-          <label for="facultad" class="form-label">Facultad</label>
-          <select name="id_facultad" id="facultad" class="form-select">
-            <option value="" disabled selected>Selecciona una opción</option>
-
-            <% facultades.forEach(facultad => { %>
-            <option value= "<%= facultad.id %>">  <%= facultad.nombre %>  </option>
-            <% })%>
-
-          </select>
-
-          <label for="rol" class="form-label">Rol</label>
-          <select name="rol" id="rol" class="form-select">
-            <option value="" disabled selected>Selecciona una opción</option>
-            <option value="organizador">Organizador</option>
-            <option value="asistente">Asistente</option>
-          </select>
-
-          <label for="foto">Foto</label>
-          <input class="form-control" type="file" name="foto" id="foto" accept="image/*">
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-          <button type="submit" class="btn btn-primary" aria-label="Registrarse">Sign Up</button>
-        </div>
-
-      </form>
-
-    </div>
-  </div>
-</div>
 <% } else { %>
-    <!-- Modal -->
-  <div class="modal fade modal-xl" id="modalEditarPerfil" tabindex="-1" aria-labelledby="modalEditarPerfil" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          
-          <div id="carouselExample" class="carousel slide" data-bs-wrap="false">
 
-            <div class="modal-header d-flex" id="informacion">
-              <button class="w-100 btn btn-transparent text-dark boton-encabezado activo border border-1 border-solid border-secondary" id="Perfil" data-bs-target="#carouselExample" data-bs-slide="prev" aria-label="Editar perfil">Editar perfil</button>
-              <div class="border-start divisor"></div>
-              <button class="w-100 btn btn-transparent text-dark boton-encabezado border border-1 border-solid border-secondary" id="Gestion" data-bs-target="#carouselExample" data-bs-slide="next" aria-label="Gestionar eventos">Eventos</button>
-            </div>
-
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-              <%- include('./perfil.ejs') -%>
-              </div>
-              <div class="carousel-item">
-                  <% if (usuario.rol === "organizador") { %>
-                      <%- include('./gestion.ejs') -%>
-                  <% } else { %>
-                      <%- include('./asistente.ejs', { eventosInscritos: eventosInscritos || null }) %>
-                  <% } %>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <script src="/js/editarPerfil.js"></script>
-    </div>
+  <%- include('./infoUsuario.ejs') %>
   
 <% } %> 

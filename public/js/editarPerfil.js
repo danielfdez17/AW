@@ -50,7 +50,6 @@ $("#formEditarPerfil button[type=submit]").on("click", (event) => {
   // Definir una variable para rastrear si el formulario es válido
   let isValid = true;
 
-
   var archivo = $('#editarFoto')[0].files[0];
 
   const tipoArchivo = archivo.type;

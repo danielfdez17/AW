@@ -1,19 +1,27 @@
-<form class="dropdown-menu p-4">
-    <div class="mb-3">
-      <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-    </div>
-    <div class="mb-3">
-      <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-    </div>
-    <div class="mb-3">
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-        <label class="form-check-label" for="dropdownCheck2">
-          Remember me
-        </label>
+<!-- Notifiaciones -->
+<div class="dropdown-menu p-0">
+  <% if(notificaciones) {%>
+    <% notificaciones.forEach(function(notificacion) { %>
+      <div class="card m-2">
+        <h5 class="card-header d-flex justify-content-between">
+          notificacion
+          <form action="/notificaciones/eliminar" method="post">
+              <button type="submit" class="btn-close ms-auto" aria-label="Cerrar"></button>
+              <input type="hidden" name="id" value="<%= notificacion.id %>">
+          </form>
+        </h5>
+        <div class="card-body">
+          <h5 class="card-title"><%= notificacion.fecha %></h5>
+          <p class="card-text"><%= notificacion.mensaje %></p>
+        </div>
+      </div>
+    <% }); %>
+  <% } else {%>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Notificaciones</h5>
+        <p class="card-text">No hay mensajes pendientes</p>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" aria-label="Iniciar sesión">Sign in</button>
-  </form>
+  <% } %>            
+</div>
