@@ -1,4 +1,5 @@
 "use strict";
+
 const DAOUsuarios = require("../db/daoUsuarios.js");
 const pool = require("../db/pool.js");
 const { validationResult } = require("express-validator");
@@ -12,16 +13,18 @@ class LoginController {
     const { correoLogin, contrasenaLogin } = req.body;
     daoUsuarios.readUsuarioPorCorreo(correoLogin, (err, usuario) => {
       if (err) next(err);
-      if (usuario.contrasena === contrasenaLogin) {
+      if (usuario && usuario.contrasena === contrasenaLogin ) {
         req.session.usuario = usuario;
         req.session.auth = true;
+        res.setFlash({ message: "¡Has iniciado sesión con exito!", type: "exito" });
         if(usuario.rol === "organizador")
           res.redirect("/organizadores");
         else
           res.redirect("/asistentes");
         
       } else {
-        res.status(401).send("Error: correo y/o contraseña incorrectos");
+        res.setFlash({ message: "Error: correo y/o contraseña incorrectos", type: "error" });
+        res.redirect("/");
       }
     });
   }

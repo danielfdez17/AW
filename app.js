@@ -37,15 +37,6 @@ const sessionStore = new MySQLStore({
   expiration: 999999,
 });
 
-// Configuración de la sesión
-// app.use(
-//   session({
-//     secret: "mi_clave_secreta",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { secure: false },
-//   })
-// );
 app.use(
   session({
     secret: "mi_clave_secreta",
@@ -55,6 +46,8 @@ app.use(
     cookie: { secure: false, maxAge: 999999 },
   })
 );
+
+app.use(flashMiddleware);
 
 // Middleware para la autenticación del usuario
 app.use((req, res, next) => {
@@ -91,3 +84,18 @@ app.listen(port, (err) => {
   if (err) console.log(`Erro al iniciar el servidor: ${err}`);
   else console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
+// Middleware para flash messages
+function flashMiddleware(req, res, next) {
+  res.setFlash = function (msg) {
+    req.session.flashMsg = msg;
+  };
+
+  res.locals.getAndClearFlash = function () {
+    let msg = req.session.flashMsg || null;
+    delete req.session.flashMsg;
+    return msg;
+  };
+
+  next();
+}

@@ -2,3 +2,9 @@ body
 {
     font-family: "Poppins", sans-serif;
 }
+
+.mensajes
+{
+    /* El footer de bootstrap esta en el 1030, lo superamos con 1031*/
+    z-index: 1031;
+}

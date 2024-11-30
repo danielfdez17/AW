@@ -22,6 +22,7 @@ class SignUpController {
       else {
         req.session.usuario = usuario;
         req.session.auth = true;
+        res.setFlash({ message: "¡Te has registrado correctamente!", type: "exito" });
         if(usuario.rol === "organizador")
           res.redirect("/organizadores");
         else

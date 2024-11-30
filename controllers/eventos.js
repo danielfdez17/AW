@@ -65,10 +65,15 @@ class EventosController {
           },
           (err) => {
             if (err) next(err);
-            else res.redirect("/organizadores");
+            else
+            {
+              res.setFlash({ message: "Evento registrado con éxito", type: "exito" });
+              res.redirect("/organizadores");
+            } 
           }
         );
       } else {
+        res.setFlash({ message: "Ya hay un evento que coincide con ese horario y duracion", type: "error" });
         res.redirect("/organizadores");
       }
     });
@@ -80,7 +85,11 @@ class EventosController {
     const { id } = req.body;
     daoEventos.deleteEvento(id, (err) => {
       if (err) next(err);
-      else res.redirect("/organizadores");
+      else
+      {
+        res.setFlash({ message: "Evento elimiando con éxito", type: "exito" });
+        res.redirect("/organizadores");
+      } 
     });
   }
 
@@ -154,20 +163,20 @@ class EventosController {
                     (err) => {
       
                       if (err) next(err);
-                      res.redirect("/organizadores");
+                      else
+                      {
+                        res.setFlash({ message: "Evento registrado con éxito", type: "exito" });
+                        res.redirect("/organizadores");
+                      } 
                     }
                   );
                 })
-
-
-
-
             }
-
 
           })
 
         } else {
+          res.setFlash({ message: "Ya hay un evento que coincide con ese horario y duracion", type: "error" });
           res.redirect("/organizadores");
         }
       });

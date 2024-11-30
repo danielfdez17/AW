@@ -74,7 +74,6 @@ router.get("/logOut", (req, res, next) => {
       return next(createError(err)); // Maneja el error si ocurre al destruir la sesión
     } else {
       res.clearCookie("connect.sid"); // Limpia la cookie de sesión
-      //   res.render("index");
       res.redirect("/"); // Redirige al usuario a la página principal
     }
   });

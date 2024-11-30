@@ -25,9 +25,8 @@ class InscripcionesController {
             {
               if(evento_inscrito.activo)
                 {
-                  res.status(500).json({
-                    error: "No te puedes inscribir al evento porque ya está inscrito",
-                  });
+                  res.setFlash({ message: "No puedes inscribir al evento de nuevo", type: "error" });
+                  res.redirect("/");
                 }
                 else
                 {
@@ -39,7 +38,11 @@ class InscripcionesController {
                           error: error,
                         });
                       else
+                      {
+                        res.setFlash({ message: "Inscripción realizada con exito", type: "exito" });
                         res.redirect("/");
+                      }
+                        
                     });
                     
                   });
@@ -64,7 +67,10 @@ class InscripcionesController {
         daoInscripciones.createInscripcion({id_usuario: req.session.usuario.id, id_evento: parseInt(id), estado, fecha_inscripcion: fechaFormateada}, (error) => 
           {
             if(estado == 'espera')
+            {
+              res.setFlash({ message: "Has sido añadido a la lista de espera del evento", type: "exito" });
               res.redirect("/");
+            }
             else
             {
               daoEventos.incrementarCapacidadEvento(id, (error) => {
@@ -73,7 +79,10 @@ class InscripcionesController {
                     error: error,
                   });
                 else
+                {
+                  res.setFlash({ message: "Has sido inscrito en el evento", type: "exito" });
                   res.redirect("/");
+                }
               });
             }
 
@@ -102,7 +111,8 @@ class InscripcionesController {
 
                   daoInscripciones.ListaEsperaAInscrito(lista[0], (error) =>
                   {
-                      res.redirect("/");
+                    res.setFlash({ message: "Inscripcion anulada correctamente", type: "exito" });
+                    res.redirect("/");
                   })
 
                 }
@@ -114,7 +124,11 @@ class InscripcionesController {
                         error: error,
                       });
                     else
+                    {
+                      res.setFlash({ message: "Inscripcion anulada correctamente", type: "exito" });
                       res.redirect("/");
+                    }
+                      
                   });
                 }
               })
