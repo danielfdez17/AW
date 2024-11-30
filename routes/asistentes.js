@@ -7,12 +7,14 @@ const DAOFacultades = require("../db/daoFacultades.js");
 const DAOEventos = require("../db/daoEventos.js");
 const DAOInscripciones = require("../db/daoInscripciones.js");
 const DAONotificaciones = require("../db/daoNotificaciones.js");
+const DAOAccesibilidad = require("../db/daoAccesibilidad.js");
 const pool = require("../db/pool.js");
 
 const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoInscripciones = new DAOInscripciones(pool);
 const daoNotificaciones = new DAONotificaciones(pool);
+const daoAccesibilidad = new DAOAccesibilidad(pool);
 
 const InscripcionesController = require("../controllers/inscripciones.js");
 const inscripcionesController = new InscripcionesController();
@@ -26,14 +28,13 @@ router.get("/", (req, res) => {
 
           daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (notificaciones) =>
           {
-            res.render("index", {
-              eventos: eventos,
-              usuario: req.session.usuario,
-              facultades: facultades,
-              eventosInscritos: eventosInscritos,
-              notificaciones: notificaciones = notificaciones && notificaciones.length ? notificaciones : null
-
-            });
+                res.render("index", {
+                    eventos: eventos,
+                    usuario: req.session.usuario,
+                    facultades: facultades,
+                    eventosInscritos: eventosInscritos,
+                    notificaciones: notificaciones = notificaciones && notificaciones.length ? notificaciones : null
+                });
           });
 
         }

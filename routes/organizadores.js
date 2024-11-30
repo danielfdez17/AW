@@ -8,6 +8,7 @@ const DAOFacultades = require("../db/daoFacultades.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
 const DAOInscripciones = require("../db/daoInscripciones.js");
 const DAOEventos = require("../db/daoEventos.js");
+const DAOAccesibilidad = require("../db/daoAccesibilidad.js");
 const pool = require("../db/pool.js");
 
 const EventosController = require("../controllers/eventos.js");
@@ -17,17 +18,18 @@ const daoFacultades = new DAOFacultades(pool);
 const daoEventos = new DAOEventos(pool);
 const daoInscripciones = new DAOInscripciones(pool);
 const daoListaNegra = new DAOListaNegra(pool);
+const daoAccesibilidad = new DAOAccesibilidad(pool);
 
 router.get("/", (req, res) => {
   daoFacultades.readAllFacultades((facultades) => {
     daoEventos.readAllEventos((eventos) => {
-      res.render("index", {
-        eventos: eventos,
-        usuario: req.session.usuario,
-        facultades: facultades,
-        eventosInscritos: null,
-        notificaciones: null
-      });
+        res.render("index", {
+          eventos: eventos,
+          usuario: req.session.usuario,
+          facultades: facultades,
+          eventosInscritos: null,
+          notificaciones: null
+        });
     });
   });
 });
