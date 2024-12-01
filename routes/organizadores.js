@@ -27,13 +27,17 @@ router.get("/", (req, res) => {
   {
     daoFacultades.readAllFacultades((facultades) => {
       daoEventos.readAllEventos((eventos) => {
-          res.render("index", {
-            eventos: eventos,
-            usuario: req.session.usuario,
-            facultades: facultades,
-            eventosInscritos: null,
-            notificaciones: null
-          });
+        daoAccesibilidad.readPreferencias(req.session.usuario.id, (preferencias => {
+            console.log(preferencias);
+            res.render("index", {
+                eventos: eventos,
+                usuario: req.session.usuario,
+                facultades: facultades,
+                eventosInscritos: null,
+                notificaciones: null,
+                preferencias: preferencias
+            });
+        }))
       });
     });
   }

@@ -60,6 +60,7 @@ router.get("/", (req, res) => {
               facultades: facultades,
               eventosInscritos: null,
               notificaciones: null,
+              preferencias: { letra: "normal", tema: "predeterminado" },
             });
           });
         });
