@@ -71,26 +71,53 @@ function deshabilitarEdicion(id_evento) {
 
   
 function enviar_accion(accion, id_evento) {
+  
+  var formData = $(`#formularioEventos${id_evento}`).serialize()
 
-    switch (accion) {
-        case 'editar':
-          document.getElementById(`formulario${id_evento}`).action = '/organizadores/editar_evento';
-            break;
-        case 'eliminar':
-          document.getElementById(`formulario${id_evento}`).action = '/organizadores/eliminar_evento';
-          break;
-        case 'inscribir':
-          document.getElementById(`formulario${id_evento}`).action = '/asistentes/inscribir_evento';
-            break;
-        case 'anular':
-          document.getElementById(`formulario${id_evento}`).action = '/asistentes/anular_evento';
-          break;
-        // case 'verListaEspera':
-        //   document.getElementById(`formulario${id_evento}`).action = `/organizadores/lista_espera/${id_evento}`;
-        //   break;
-    }
+  // Verifica si `formData` está vacío antes de concatenar
+  if (formData) {
+    formData += `&id=${id_evento}`;
+  } else {
+    formData = `id=${id_evento}`;
+  }
 
-    document.getElementById(`formulario${id_evento}`).submit()
+    $.ajax({
+      url: accion,
+      type: 'POST',
+      data: formData,
+
+      success: function(response) {
+          // Mostrar mensaje de éxito o error
+
+          switch (accion) {
+            // case '/organizadores/editar_evento':
+            //   accion = ;
+            //     break;
+            case '/organizadores/eliminar_evento':
+              if(response.id_evento)
+                $('.evento' + response.id_evento).remove();
+              
+              $.get('/toasts', function(data) {
+                $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
+              });   
+              break;
+            // case '/asistentes/inscribir_evento':
+            //   accion = ;
+            //     break;
+            case '/asistentes/anular_evento':
+                $('#eventoInscrito' + response.id).remove();
+                $.get('/toasts', function(data) {
+                  $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
+                });     
+              break;
+          }    
+      },
+      error: function(xhr, status, error) {
+          console.error('Error en la solicitud AJAX:', error);
+          $('#errorFuncionamiento .toast-body').text(`Hubo un problema con la solicitud: ${error}`);
+          $('#errorFuncionamiento').toast('show');
+      }
+  });
 }
 
 function getMinDate() {

@@ -112,7 +112,7 @@ class InscripcionesController {
                   daoInscripciones.ListaEsperaAInscrito(lista[0], (error) =>
                   {
                     res.setFlash({ message: "Inscripcion anulada correctamente", type: "exito" });
-                    res.redirect("/");
+                    res.json({id: inscripcion.id});
                   })
 
                 }
@@ -126,7 +126,7 @@ class InscripcionesController {
                     else
                     {
                       res.setFlash({ message: "Inscripcion anulada correctamente", type: "exito" });
-                      res.redirect("/");
+                      res.json({id: inscripcion.id});
                     }
                       
                   });

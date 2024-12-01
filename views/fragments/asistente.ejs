@@ -2,10 +2,14 @@
 
     <ul class="list-group">
         <% eventosInscritos.forEach(evento => { %>
-            <li class="list-group-item">
-                <%- include('./evento.ejs', {evento: evento, index: false}) %>
-                <input type="hidden" name="evento" value="<%= evento %>">
-            </li>
+            <div class="evento<%=evento.id %>">
+                <li class="list-group-item">
+                    <div id="eventoInscrito<%=evento.id%>">
+                        <%- include('./evento.ejs', {evento: evento, index: false}) %>
+                        <input type="hidden" name="evento" value="<%= evento %>">
+                    </div>
+                </li>
+            </div>
         <% }); %>
     </ul>
 

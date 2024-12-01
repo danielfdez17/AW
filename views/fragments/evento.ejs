@@ -1,8 +1,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form id="formulario<%= evento.id %>" action="" method="post">
-
+        <form id="formularioEventos<%= evento.id %>">
 
             <div class="mb-3">
                 <input type="text" class="form-control bg-transparent border-0 text-center fs-4" name="titulo" id="titulo<%= evento.id %>" placeholder="<%= evento.titulo %>" required disabled>
@@ -40,18 +39,18 @@
                 <input type="number" class="form-control bg-transparent border-0 fs-6 ps-0" name="capacidad_maxima_string" id="capacidad_maxima<%= evento.id %>" placeholder="<%= evento.capacidad_maxima %>" required disabled>
             </div>
 
-            <input type="hidden" name="id" value="<%= evento.id %>">
+            <!-- <input type="hidden" name="id" value="<%= evento.id %>"> -->
 
             <% if (!index) { %>
                 <% if (usuario.rol === "asistente") { %>
-                    <button class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('anular', <%= evento.id %>)" aria-label="Anular inscripción">Anular inscripción</button>
+                    <button class="btn btn-primary mt-1 mb-1" type="button" onclick="enviar_accion('/asistentes/anular_evento', <%= evento.id %>)" aria-label="Anular inscripción">Anular inscripción</button>
                 <% } else { %>
                     <% if (evento.id_organizador === usuario.id) { %>
                         <div class="d-flex gap-1">
                             <button id="editarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="habilitarEdicion(<%= evento.id %>)" aria-label="Editar evento">Editar</button>
-                            <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="submit" onclick="enviar_accion('editar', <%= evento.id %>)" aria-label="Guardar evento">Guardar</button>
+                            <button id="guardarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1 ocultar" type="button" onclick="enviar_accion('/organizadores/editar_evento', <%= evento.id %>)" aria-label="Guardar evento">Guardar</button>
                             <button id="cancelarEvento<%= evento.id %>" class="btn btn-secondary mt-1 mb-1 ocultar" type="button" onclick="deshabilitarEdicion(<%= evento.id %>)" aria-label="Cancelar edición de evento">Cancelar</button>
-                            <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('eliminar', <%= evento.id %>)" aria-label="Eliminar evento">Eliminar</button>
+                            <button id="eliminarEvento<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" onclick="enviar_accion('/organizadores/eliminar_evento', <%= evento.id %>)" aria-label="Eliminar evento">Eliminar</button>
                             <!-- <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button"><a class="text-decoration-none text-white" href="/organizadores/lista_espera/<%= evento.id %>" target="_blank" rel="noopener noreferrer">Ver lista de espera</a></button> -->
                             <a href="/organizadores/lista_espera/<%= evento.id %>" target="_blank" rel="noopener noreferrer">
                             <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" aria-label="Ver lista de espera">Ver lista de espera</button></a>
@@ -63,7 +62,7 @@
                 <% } %>
             <% } else { %>
                 <% if (usuario && usuario.rol === "asistente") { %>
-                    <button class="btn btn-primary mt-1 mb-1" type="submit" onclick="enviar_accion('inscribir', <%= evento.id %>)" aria-label="Inscribirse en el evento" >Inscribirse</button>
+                    <button class="btn btn-primary mt-1 mb-1" type="button" onclick="enviar_accion('/asistentes/inscribir_evento', <%= evento.id %>)" aria-label="Inscribirse en el evento" >Inscribirse</button>
                 <% } %>
 
             <% } %>

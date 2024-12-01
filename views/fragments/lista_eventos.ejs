@@ -2,17 +2,19 @@
     <% if(eventos.length > 0) {%>
 
         <% eventos.forEach(evento => { %>
-            <% if (eventosInscritos !== null) { %>
-                <% if (!eventosInscritos.find(e => e.id === evento.id)) { %>
+            <div class="evento<%=evento.id %>">
+                <% if (eventosInscritos !== null) { %>
+                    <% if (!eventosInscritos.find(e => e.id === evento.id)) { %>
+                        <div class="col-12 col-md-6 mt-3 mb-3"> <!-- Ajusta el tamaño de las columnas -->
+                            <%- include('./evento.ejs', {evento: evento, index: true}) %>
+                        </div>
+                    <% } %>
+                <% } else { %>
                     <div class="col-12 col-md-6 mt-3 mb-3"> <!-- Ajusta el tamaño de las columnas -->
                         <%- include('./evento.ejs', {evento: evento, index: true}) %>
                     </div>
                 <% } %>
-            <% } else { %>
-                <div class="col-12 col-md-6 mt-3 mb-3"> <!-- Ajusta el tamaño de las columnas -->
-                    <%- include('./evento.ejs', {evento: evento, index: true}) %>
-                </div>
-            <% } %>
+            </div>
         <% }); %>
 
     <% } else { %>

@@ -202,6 +202,29 @@ class DAOEventos {
       );
     });
   }
+
+  deleteEvento(id, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql =
+        "UPDATE eventos SET activo = false WHERE id = ?";
+      connection.query(sql, [id], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(null, rows);
+      });
+    });
+  }
+
+
 }
+
+
 
 module.exports = DAOEventos;

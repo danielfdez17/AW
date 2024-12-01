@@ -83,14 +83,26 @@ class EventosController {
     if (!validationResult(req).isEmpty())
       return res.status(400).json({ errors: validationResult(req).array() });
     const { id } = req.body;
-    daoEventos.deleteEvento(id, (err) => {
-      if (err) next(err);
+
+    daoInscripciones.readUsuarioListaAsistentesPorEvento(id, (usuario) =>
+    {
+      if(usuario.length > 0)
+      {
+        res.setFlash({ message: "No puedes eliminar este evento, ya hay gente inscrita", type: "error" });
+        res.json({id_evento: null})
+      }
       else
       {
-        res.setFlash({ message: "Evento elimiando con éxito", type: "exito" });
-        res.redirect("/organizadores");
-      } 
-    });
+        daoEventos.deleteEvento(id, (err) => {
+          if (err) next(err);
+          else
+          {
+            res.setFlash({ message: "Evento elimiando con éxito", type: "exito" });
+            res.json({id_evento: id})
+          } 
+        });
+      }
+      });
   }
 
   editarEvento(req, res, next) {
