@@ -4,6 +4,10 @@ $()
 {
   $(`.ocultar`).hide();
 }
+// Es lo mismo la función comentada que la de arriba????
+// $(() => {
+//     $(`.ocultar`).hide();
+// })
 
 function habilitarEdicion(id_evento) {
 

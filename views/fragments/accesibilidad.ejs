@@ -1,40 +1,26 @@
 <!-- El menú dropdown que se muestra al hacer clic -->
 <div class="dropdown-menu dropdown-menu-end p-2 mt-2 shadow ajustes">
-    <form action="/accesibilidad/<%=usuario.id%>" method="post">
+    <form id="formAccesibilidad" action="/accesibilidad/<%=usuario.id%>" method="post">
        <span>Tema</span>
-       <select class="form-select" name="tema" id="tema">
-            <option value="predeterminado" selected>Predeterminado</option>
-            <option value="claro">Claro</option>
-            <option value="oscuro">Oscuro</option>
-            <option value="deuteranomalia">Deuteranomalía</option>
-            <option value="protanomalia">Protanomalía</option>
-            <option value="protanopia">Protanopia</option>
-            <option value="deuteranopia">Deuteranopia</option>
-            <option value="tritanomalia">Tritanomalía</option>
-            <option value="tritanopia">Tritanopia</option>
-       </select>
        <ul class="list-unstyled d-grid gap-1 p-2 rounded-3 mx-0 shadow" id="Tema">
-           <li><button name="tema" type="button" class="dropdown-item rounded-2 active" value="predeterminado" aria-label="Activar modo predeterminado">Predeterminado</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="claro" aria-label="Activar modo claro">Claro</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="oscuro" aria-label="Activar modo oscuro">Oscuro</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="deuteranomalia" aria-label="Activar modo daltonismo deuteranomalia">Deuteranomalía</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="protanomalia" aria-label="Activar modo daltonismo protanomalia">Protanomalía</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="protanopia" aria-label="Activar modo daltonismo protanopia">Protanopia</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="deuteranopia" aria-label="Activar modo daltonismo deuteranopia">Deuteranopia</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="tritanomalia" aria-label="Activar modo daltonismo tritanomalia">Tritanomalía</button></li>
-           <li><button name="tema" type="button" class="dropdown-item rounded-2" value="tritanopia" aria-label="Activar modo daltonismo tritanopia">Tritanopia</button></li>
+           <li><button id="temaPredeterminado" name="temaPredeterminado" type="button" class="dropdown-item rounded-2 active" value="predeterminado" aria-label="Activar modo predeterminado">Predeterminado</button></li>
+           <li><button id="temaClaro" name="temaClaro" type="button" class="dropdown-item rounded-2" value="claro" aria-label="Activar modo claro">Claro</button></li>
+           <li><button id="temaOscuro" name="temaOscuro" type="button" class="dropdown-item rounded-2" value="oscuro" aria-label="Activar modo oscuro">Oscuro</button></li>
+           <li><button id="temaDeuteranomalia" name="temaDeuteranomalia" type="button" class="dropdown-item rounded-2" value="deuteranomalia" aria-label="Activar modo daltonismo deuteranomalia">Deuteranomalía</button></li>
+           <li><button id="temaProtanomalia" name="temaProtanomalia" type="button" class="dropdown-item rounded-2" value="protanomalia" aria-label="Activar modo daltonismo protanomalia">Protanomalía</button></li>
+           <li><button id="temaProtanopia" name="temaProtanopia" type="button" class="dropdown-item rounded-2" value="protanopia" aria-label="Activar modo daltonismo protanopia">Protanopia</button></li>
+           <li><button id="temaDeuteranopia" name="temaDeuteranopia" type="button" class="dropdown-item rounded-2" value="deuteranopia" aria-label="Activar modo daltonismo deuteranopia">Deuteranopia</button></li>
+           <li><button id="temaTritanomalia" name="temaTritanomalia" type="button" class="dropdown-item rounded-2" value="tritanomalia" aria-label="Activar modo daltonismo tritanomalia">Tritanomalía</button></li>
+           <li><button id="temaTritanopia" name="temaTritanopia" type="button" class="dropdown-item rounded-2" value="tritanopia" aria-label="Activar modo daltonismo tritanopia">Tritanopia</button></li>
        </ul>
        <span class="mt-2">Letra</span>
-        <select class="form-select" name="letra" id="letra">
-            <option value="normal" selected>Normal</option>
-            <option value="grande">Grande</option>
-            <option value="muy grande">Muy grande</option>
-    </select>
        <ul class="list-unstyled d-grid gap-1 p-2 rounded-3 mx-0 shadow" id="Letra">
-           <li><button name="letra" type="button" class="dropdown-item rounded-2 active" value="normal" aria-label="Activar tamaño de letra normal">Normal</button></li>
-           <li><button name="letra" type="button" class="dropdown-item rounded-2" value="grande" aria-label="Activar tamaño de letra grande">Grande</button></li>
-           <li><button name="letra" type="button" class="dropdown-item rounded-2" value="muy grande" aria-label="Activar tamaño de letra muy grande">Muy grande</button></li>
+           <li><button id="letraNormal" name="letraNormal" type="button" class="dropdown-item rounded-2 active" value="normal" aria-label="Activar tamaño de letra normal">Normal</button></li>
+           <li><button id="letraGrande" name="letraGrande" type="button" class="dropdown-item rounded-2" value="grande" aria-label="Activar tamaño de letra grande">Grande</button></li>
+           <li><button id="letraMuyGrande" name="letraMuyGrande" type="button" class="dropdown-item rounded-2" value="muy grande" aria-label="Activar tamaño de letra muy grande">Muy grande</button></li>
        </ul>
+       <input id="inputTema" type="hidden" name="tema">
+       <input id="inputLetra" type="hidden" name="letra">
        <button type="submit" class="btn btn-primary">Guardar preferencias</button>
     </form>
 </div>

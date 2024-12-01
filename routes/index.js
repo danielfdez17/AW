@@ -80,7 +80,7 @@ router.get("/logOut", (req, res, next) => {
 });
 
 router.get("/toasts", function (req, res) {
-  res.render('fragments/toasts');
+  res.render("fragments/toasts");
 });
 
 router.get("/imagen/:id", function (request, response) {
@@ -157,6 +157,7 @@ const comprobacion = [
 router.post("/accesibilidad/:id", (req, res) => {
   const { id } = req.params;
   const { tema, letra } = req.body;
+  console.log(`Tema: ${tema}; Letra: ${letra}`);
   daoAccesibilidad.updatePreferencias({ tema, letra, id }, (err) => {
     if (!err) {
       res.redirect("/");

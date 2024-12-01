@@ -127,3 +127,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+$("#formAccesibilidad button[type=submit]").on("click", (event) => {
+  event.preventDefault();
+  let tema = "";
+  if ($("#temaPredeterminado").hasClass("active")) tema = "predeterminado";
+  else if ($("#temaClaro").hasClass("active")) tema = "claro";
+  else if ($("#temaOscuro").hasClass("active")) tema = "oscuro";
+  else if ($("#temaDeuteranomalia").hasClass("active")) tema = "deuteranomalia";
+  else if ($("#temaProtanomalia").hasClass("active")) tema = "protanomalia";
+  else if ($("#temaProtanopia").hasClass("active")) tema = "protanopia";
+  else if ($("#temaDeuteranopia").hasClass("active")) tema = "deuteranopia";
+  else if ($("#temaTritanomalia").hasClass("active")) tema = "tritanomalia";
+  else if ($("#temaTritanopia").hasClass("active")) tema = "tritanopia";
+  else tema = "predeterminado";
+
+  let letra = "";
+  if ($("#letraNormal").hasClass("active")) letra = "normal";
+  else if ($("#letraGrande").hasClass("active")) letra = "grande";
+  else if ($("#letraMuyGrande").hasClass("active")) letra = "muy grande";
+  else letra = "normal";
+  // let tema = "";
+  //   $("#formAccesibilidad #Tema li button").each((index) => {
+  //     // alert($(this).hasClass("active"));
+  //     console.log(index + ": " + $(this).prop("id"));
+  //     if ($(this).hasClass("active")) {
+  //       tema = button.prop("value");
+  //       alert(tema);
+  //     }
+  //   });
+  //   let letra = "";
+  //   $("#formAccesibilidad #Letra").each(() => {
+  //     var li = $(this).find("li");
+  //     if (li.hasClass("active")) {
+  //       letra = li.prop("value");
+  //       alert(letra);
+  //     }
+  //   });
+  // alert(`Tema: ${tema} \n Letra: ${letra}`);
+  $("#inputTema").prop("value", tema);
+  $("#inputLetra").prop("value", letra);
+//   alert(
+//     `Tema: ${$("#inputTema").prop("value")} \n Letra: ${$("#inputLetra").prop(
+//       "value"
+//     )}`
+//   );
+  $("#formAccesibilidad").off("submit").submit();
+});
