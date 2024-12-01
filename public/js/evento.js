@@ -103,11 +103,11 @@ $(() => {
     });
   });
 
-
-
-
-  
 });
+
+
+
+
 
 function habilitarEdicion(id_evento) {
   $(`#titulo${id_evento}`).prop("disabled", false);

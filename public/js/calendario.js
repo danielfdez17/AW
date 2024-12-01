@@ -1,3 +1,8 @@
+$()
+{
+    filtradoFecha();
+}
+
 // Función para actualizar la fecha
 function updateDate(increment) {
     let fecha = $('#fecha').text(); // Obtener el texto de la fecha
@@ -22,6 +27,8 @@ $('#previous').on('click', () => {
             carouselInner.style.transition = 'transform 0.3s ease';
             carouselInner.style.transform = 'translateX(0%)';
             updateDate(-1);
+            filtradoFecha();
+
         }, 10);
     }, 300);
     
@@ -41,6 +48,34 @@ setTimeout(() => {
         carouselInner.style.transition = 'transform 0.3s ease';
         carouselInner.style.transform = 'translateX(0%)';
         updateDate(1);
+        filtradoFecha();
+
     }, 10);
 }, 300);
 });
+
+
+function filtradoFecha()
+{
+
+    let fecha_actual = $('#fecha').text(); // Obtener el texto de la fecha
+    fecha_actual = fecha_actual.split('/').reverse().join('-');
+    let existe = false;
+    $("input[name='fecha']").each((index) => {
+        let fecha = $("input[name='fecha']")[index];
+        let valor = fecha.placeholder;
+        let id = fecha.id.replace("fecha", "");
+        let cardEvento = $(`.evento${id}`); // Seleccionar la tarjeta asociada
+        
+        if (valor === fecha_actual) {
+            existe = true;
+            cardEvento.removeClass("d-none"); // Mostrar si coincide
+        } else {
+            cardEvento.addClass("d-none"); // Ocultar si no coincide
+        }
+        if(!existe)
+            $("#noEventos").show();
+        else
+            $("#noEventos").hide();
+    });
+}
