@@ -102,6 +102,11 @@ $(() => {
       }
     });
   });
+
+
+
+
+  
 });
 
 function habilitarEdicion(id_evento) {
