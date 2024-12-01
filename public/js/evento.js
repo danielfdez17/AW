@@ -1,14 +1,5 @@
 "use strict";
 
-$()
-{
-  $(`.ocultar`).hide();
-}
-// Es lo mismo la función comentada que la de arriba????
-// $(() => {
-//     $(`.ocultar`).hide();
-// })
-
 function habilitarEdicion(id_evento) {
 
     $(`#titulo${id_evento}`).prop("disabled", false);
@@ -90,9 +81,23 @@ function enviar_accion(accion, id_evento) {
           // Mostrar mensaje de éxito o error
 
           switch (accion) {
-            // case '/organizadores/editar_evento':
-            //   accion = ;
-            //     break;
+            case '/organizadores/editar_evento':
+              
+              $.get('/asistentes', function(data) {
+                    
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const eventosContent = doc.querySelector('.eventosOrganizador').innerHTML;
+
+                $('.eventosOrganizador').html(eventosContent);
+              });    
+
+
+              $.get('/toasts', function(data) {
+                $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
+              });  
+          
+                break;
             case '/organizadores/eliminar_evento':
               if(response.id_evento)
                 $('.evento' + response.id_evento).remove();
@@ -101,14 +106,39 @@ function enviar_accion(accion, id_evento) {
                 $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
               });   
               break;
-            // case '/asistentes/inscribir_evento':
-            //   accion = ;
-            //     break;
+            case '/asistentes/inscribir_evento':
+              if(response.id_evento)
+                $('.evento' + response.id_evento).remove();
+
+              $.get('/asistentes', function(data) {
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const eventosInscritosContent = doc.querySelector('.eventoInscrito').innerHTML;
+
+                $('.eventoInscrito').html(eventosInscritosContent);
+              });  
+
+              $.get('/toasts', function(data) {
+                $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
+              });   
+
+                break;
             case '/asistentes/anular_evento':
                 $('#eventoInscrito' + response.id).remove();
+
+                $.get('/asistentes', function(data) {
+                  
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(data, 'text/html');
+                  const eventosContent = doc.querySelector('.eventos').innerHTML;
+  
+                  $('.eventos').html(eventosContent);
+                });    
+
                 $.get('/toasts', function(data) {
                   $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
-                });     
+                });   
               break;
           }    
       },

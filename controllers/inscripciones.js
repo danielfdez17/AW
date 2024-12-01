@@ -27,7 +27,7 @@ class InscripcionesController {
               if(evento_inscrito.activo)
                 {
                   res.setFlash({ message: "No puedes inscribir al evento de nuevo", type: "error" });
-                  res.redirect("/");
+                  res.json({id_evento: null});
                 }
                 else
                 {
@@ -41,7 +41,7 @@ class InscripcionesController {
                       else
                       {
                         res.setFlash({ message: "Inscripción realizada con exito", type: "exito" });
-                        res.redirect("/");
+                        res.json({id_evento: id});
                       }
                         
                     });
@@ -70,7 +70,7 @@ class InscripcionesController {
             if(estado == 'espera')
             {
               res.setFlash({ message: "Has sido añadido a la lista de espera del evento", type: "exito" });
-              res.redirect("/");
+              res.json({id_evento: id});
             }
             else
             {
@@ -82,7 +82,7 @@ class InscripcionesController {
                 else
                 {
                   res.setFlash({ message: "Has sido inscrito en el evento", type: "exito" });
-                  res.redirect("/");
+                  res.json({id_evento: id});
                 }
               });
             }
@@ -106,7 +106,7 @@ class InscripcionesController {
             {
               daoInscripciones.readListaEsperaPorEvento(inscripcion.id, (lista) =>
               {
-                if(lista)
+                if(lista.length > 0)
                 {
 
                   daoInscripciones.ListaEsperaAInscrito(lista[0], (error) =>
@@ -128,7 +128,6 @@ class InscripcionesController {
                       res.setFlash({ message: "Inscripcion anulada correctamente", type: "exito" });
                       res.json({id: inscripcion.id});
                     }
-                      
                   });
                 }
               })

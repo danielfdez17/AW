@@ -1,15 +1,13 @@
 <div class="modal-body d-flex flex-column gap-2">
 
-    <ul class="list-group">
+    <ul class="list-group eventoInscrito">
         <% eventosInscritos.forEach(evento => { %>
-            <div class="evento<%=evento.id %>">
                 <li class="list-group-item">
                     <div id="eventoInscrito<%=evento.id%>">
                         <%- include('./evento.ejs', {evento: evento, index: false}) %>
                         <input type="hidden" name="evento" value="<%= evento %>">
                     </div>
                 </li>
-            </div>
         <% }); %>
     </ul>
 

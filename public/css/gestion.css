@@ -3,3 +3,8 @@
     background-color: blueviolet;
     border-color: blueviolet;
 }
+
+.ocultar
+{
+    display: none;
+}
