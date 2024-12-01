@@ -1,6 +1,8 @@
 $()
 {
     filtradoFecha();
+    $('#inputCalendario').hide();
+
 }
 
 // Función para actualizar la fecha
@@ -54,6 +56,21 @@ setTimeout(() => {
 }, 300);
 });
 
+$('#abrirCalendario').on('click', () =>
+{
+    $('#inputCalendario').show();
+    $('#inputCalendario').focus();
+})
+
+// Escuchar cuando el usuario seleccione una fecha
+$('#inputCalendario').on('change', (event) => {
+    let fecha = event.target.value;
+    fecha = fecha.split('-').reverse().join('/');
+    $('#fecha').text(fecha);
+    $('#inputCalendario').val("");
+    $('#inputCalendario').hide();
+    filtradoFecha();
+});
 
 function filtradoFecha()
 {
@@ -67,7 +84,11 @@ function filtradoFecha()
         let id = fecha.id.replace("fecha", "");
         let cardEvento = $(`.evento${id}`); // Seleccionar la tarjeta asociada
         
-        if (valor === fecha_actual) {
+        let valorFormateado = new Date(valor).toLocaleDateString('es-ES');
+
+        let fecha_actualFormateado = new Date(fecha_actual).toLocaleDateString('es-ES');
+
+        if (valorFormateado === fecha_actualFormateado) {
             existe = true;
             cardEvento.removeClass("d-none"); // Mostrar si coincide
         } else {
