@@ -84,7 +84,7 @@ function enviar_accion(accion, id_evento) {
             case '/organizadores/editar_evento':
               
               $.get('/asistentes', function(data) {
-                    
+                
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data, 'text/html');
                 const eventosContent = doc.querySelector('.eventosOrganizador').innerHTML;

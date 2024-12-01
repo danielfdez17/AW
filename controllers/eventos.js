@@ -50,38 +50,58 @@ class EventosController {
     } = req.body;
     const id_organizador = req.session.usuario.id;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
-    daoEventos.readEventoPorFecha(fecha, (eventos) => {
-      let sePuedeInsertar = true;
-      eventos.forEach((evento) => {
-        if (evento.hora + evento.duracion >= hora) sePuedeInsertar = false;
-      });
-      if (sePuedeInsertar) {
-        daoEventos.createEvento(
-          {
-            titulo,
-            descripcion,
-            fecha,
-            hora,
-            duracion,
-            ubicacion,
-            capacidad_maxima,
-            tipo_evento,
-            id_organizador,
-          },
-          (err) => {
-            if (err) next(err);
-            else
-            {
-              res.setFlash({ message: "Evento registrado con éxito", type: "exito" });
-              res.redirect("/organizadores");
-            } 
+
+    if(checkFecha(fecha))
+    {
+      if (checkHoraDuracion(hora, duracion)) {
+
+        daoEventos.readEventoPorFecha(fecha, (eventos) => {
+          let sePuedeInsertar = true;
+          eventos.forEach((evento) => {
+            if (evento.hora + evento.duracion >= hora) sePuedeInsertar = false;
+          });
+          if (sePuedeInsertar) {
+            daoEventos.createEvento(
+              {
+                titulo,
+                descripcion,
+                fecha,
+                hora,
+                duracion,
+                ubicacion,
+                capacidad_maxima,
+                tipo_evento,
+                id_organizador,
+              },
+              (err) => {
+                if (err) next(err);
+                else
+                {
+                  res.setFlash({ message: "Evento registrado con éxito", type: "exito" });
+                  res.redirect("/organizadores");
+                } 
+              }
+            );
+          } else {
+            res.setFlash({ message: "Ya hay un evento que coincide con ese horario y duracion", type: "error" });
+            res.redirect("/organizadores");
           }
-        );
-      } else {
-        res.setFlash({ message: "Ya hay un evento que coincide con ese horario y duracion", type: "error" });
-        res.redirect("/organizadores");
+        });
+
       }
-    });
+      else
+      {
+        res.setFlash({ message: "Debes respetar los horarios de la universidad", type: "error" });
+        res.json({});
+      }
+    }
+    else
+    {
+      res.setFlash({ message: "Debe ser una fecha igual o posterior a la actual", type: "error" });
+      res.json({});
+    }
+
+
   }
 
   eliminarEvento(req, res, next) {

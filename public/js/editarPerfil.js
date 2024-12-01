@@ -95,6 +95,8 @@ $("#formEditarPerfil").on("submit", (event) => {
 
           $.get(`/${rol}`, function(data) {
                       
+            console.log(data);
+
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, 'text/html');
             const perfilcontent = doc.querySelector('.perfil').innerHTML;
