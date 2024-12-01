@@ -61,31 +61,40 @@ class DAOUsuarios {
         callback(err);
         return;
       }
-      const sql =
-          "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ?, rol = ?, foto = ? WHERE id = ?";
-      connection.query(
-        sql,
-        [
-          usuario.nombre,
-          usuario.correo,
-          usuario.telefono,
-          usuario.contrasena,
-          usuario.id_facultad,
-          usuario.rol,
-          usuario.imagen,
-          usuario.id,
-        ],
-        (err, rows) => {
-          connection.release();
-          if (err) {
-            callback(err);
-            return;
-          }
-          callback(null, usuario);
+  
+      // Base de la consulta y parámetros iniciales
+      let sql = "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ?, rol = ?";
+      const params = [
+        usuario.nombre,
+        usuario.correo,
+        usuario.telefono,
+        usuario.contrasena,
+        usuario.id_facultad,
+        usuario.rol,
+      ];
+  
+      // Agregar el campo foto solo si no es null
+      if (usuario.imagen !== null) {
+        sql += ", foto = ?";
+        params.push(usuario.imagen);
+      }
+  
+      // Agregar la cláusula WHERE
+      sql += " WHERE id = ?";
+      params.push(usuario.id);
+  
+      // Ejecutar la consulta
+      connection.query(sql, params, (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
         }
-      );
+        callback(null, usuario);
+      });
     });
   }
+  
 
   obtenerImagen(id, callback) {
     this.pool.getConnection((err, con) => {

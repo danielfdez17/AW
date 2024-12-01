@@ -22,7 +22,7 @@ class EditProfileController {
           req.session.usuario = usuario;
           req.session.usuario.rol = rol;
           res.setFlash({ message: "¡Se ha editado el perfil con exito!", type: "exito" });
-          res.redirect("/");
+          res.json({rol: rol});
         }
       });
   }

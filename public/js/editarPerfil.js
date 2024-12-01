@@ -39,50 +39,79 @@ $("#cancelarEdicion, #cerrarEdicion").on('click', () => {
  $("#cerrarEdicion").show();
 })
 
-$("#formEditarPerfil button[type=submit]").on("click", (event) => {
-  event.preventDefault();
-  
-  // Definir una variable para rastrear si el formulario es válido
-  let isValid = true;
+$("#formEditarPerfil").on("submit", (event) => {
+    event.preventDefault();
+    
+    var archivo = $('#editarFoto')[0].files[0];
 
-  var archivo = $('#editarFoto')[0].files[0];
+    const tipoArchivo = archivo ? archivo.type : null;
+    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
 
-  const tipoArchivo = archivo.type;
-  const tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
+    const validaciones = [
+      {
+        condition: archivo && !tiposPermitidos.includes(tipoArchivo),
+        message: 'Por favor, sube solo archivos JPG, JPEG o PNG.'
+      },
+      {
+        condition: /\d/.test($("#editarNombre").val()),
+        message: 'El campo nombre no puede contener números.'
+      },
+      {
+        condition: !/^\d+$/.test($("#editarTelefono").val()),
+        message: 'El campo teléfono solo puede contener números.'
+      },
+      {
+        condition: $("#editarCorreo").val().includes("@") && !$("#editarCorreo").val().endsWith("ucm.es"),
+        message: `El correo debe terminar en @ucm.es`
+      },
+      {
+        condition: $("#editarContrasena").val().length < 4,
+        message: 'La contraseña debe tener mínimo 4 caracteres.'
+      }
+    ];
+    
+    // Recorre todas las validaciones
+    for (let validacion of validaciones) {
+      if (validacion.condition) {
+        $('#errorFuncionamiento .toast-body').text(validacion.message);
+        $('#errorFuncionamiento').toast('show');
+        return;
+      }
+    }
+    
+    var formData = new FormData($("#formEditarPerfil").get(0));
 
-  // Validar si el tipo de archivo es permitido
-  if (!tiposPermitidos.includes(tipoArchivo)) {
-    alert('Por favor, sube solo archivos JPG, JPEG o PNG.');
-    isValid = false;
-  }
+    $.ajax({
+      url: '/editarPerfil',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
 
-  // Validación del campo de nombre
-  if (/\d/.test($("#editarNombre").val())) {
-    alert("El campo nombre no puede contener números");
-    isValid = false;
-  }
+      success: function(response) {
+          // Mostrar mensaje de éxito o error
 
-  // Validación del campo de teléfono
-  if (!/^\d+$/.test($("#editarTelefono").val())) {
-    alert("El campo teléfono solo puede contener números");
-    isValid = false;
-  }
+        let rol = response.rol == 'asistente' ? 'asistentes' : 'organizadores';
 
-  // Validación del correo
-  const dominio = "ucm.es";  // Cambia 'ucm.es' por el dominio que necesites
-  if ($("#editarCorreo").val().includes("@") && !$("#editarCorreo").val().endsWith(dominio)) {
-    alert(`El correo debe terminar en @${dominio}`);
-    isValid = false;
-  }
+          $.get(`/${rol}`, function(data) {
+                      
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            const perfilcontent = doc.querySelector('.perfil').innerHTML;
+            const pefilHeadercontent = doc.querySelector('#perfilHeader').innerHTML;
+            $('.perfil').html(perfilcontent);
+            $('#perfilHeader').html(pefilHeadercontent);
+          });    
 
-  // Validación de la contraseña
-  if ($("#editarContrasena").val().length < 4) {
-    alert("La contraseña debe tener mínimo 4 caracteres");
-    isValid = false;
-  }
+          $.get('/toasts', function(data) {
+              $('#contenedor-toasts').append(data);
+          });           
+      },
+      error: function(xhr, status, error) {
+          console.error('Error en la solicitud AJAX:', error);
+          $('#errorFuncionamiento .toast-body').text(`Hubo un problema con la solicitud: ${error}`);
+          $('#errorFuncionamiento').toast('show');
+      }
+  });
 
-  // Enviar el formulario solo si todas las validaciones pasan
-  if (isValid) {
-    $("#formEditarPerfil").off("submit").submit();
-  }
 });

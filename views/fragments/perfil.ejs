@@ -1,10 +1,10 @@
-<form id="formEditarPerfil" action="/editarPerfil" method="POST" enctype="multipart/form-data">
+<form class="perfil" id="formEditarPerfil" action="/editarPerfil" method="POST" enctype="multipart/form-data">
 
-    <div class="modal-body perfil" >
+    <div class="modal-body" >
 
         <div class="mb-3">
             <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle"  width="100" onerror="this.src='/resources/icon-default.png'"/>
-            <input type="file" class="form-control" name="foto" id="editarFoto" accept="image/*" required disabled>
+            <input type="file" class="form-control" name="foto" id="editarFoto" accept="image/*" disabled>
         </div>
 
         <div class="mb-3">
