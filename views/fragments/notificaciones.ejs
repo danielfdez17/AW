@@ -10,6 +10,7 @@
       <li><button name="tiempo" type="submit" class="dropdown-item rounded-2 <%= usuario.recordatorio == '1440' ? 'active' : '' %>" value="1440" aria-label="">1 d</button></li>
     </ul>
   </form>
+  <form id="formEliminarNotificacion">
   <div  class="mostrarNotificaciones">
     
     <% if(notificaciones) {%>
@@ -17,10 +18,8 @@
         <div id="notificacion<%= notificacion.id %>" class="card m-2">
           <h5 class="card-header d-flex justify-content-between">
             notificacion
-            <form id="formEliminarNotificacion">
                 <button type="submit" class="btn-close ms-auto" aria-label="Cerrar"></button>
                 <input type="hidden" name="id" value="<%= notificacion.id %>">
-            </form>
           </h5>
           <div class="card-body">
             <h5 class="card-title"><%= notificacion.fecha %></h5>
@@ -36,7 +35,7 @@
         </div>
       </div>
     <% } %>   
-    
+  </form>
   </div>
   <script src="/js/notificaciones.js"></script>
 </div>

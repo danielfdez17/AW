@@ -2,7 +2,14 @@ $(document).ready(function(){
   $("#formEliminarNotificacion").on('submit', function(event) {
       event.preventDefault();
       
-      var formData = $(this).serialize()
+    // Identificar el botón que disparó el submit
+    var submitButton = $(event.originalEvent.submitter);
+    
+    // Encontrar el input más cercano al botón dentro del mismo card
+    var inputId = submitButton.closest('.card').find('input[name="id"]').val();
+
+    // Crear los datos a enviar
+    var formData = { id: inputId };
       
       $.ajax({
         url: '/notificaciones/eliminar',
