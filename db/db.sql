@@ -53,6 +53,7 @@ create table eventos(
     tipo_evento varchar(20) not null,
     duracion varchar(10) not null default "01:00",
     activo BOOLEAN DEFAULT TRUE,
+    terminado boolean default false,
     foreign key (id_organizador) references usuarios(id)
 );
 
