@@ -3,7 +3,8 @@
 
         <div class="d-flex align-items-center filtros gap-2">
             <div id="filtrosBusqueda" class="mt-3">
-                <div class="dropdown">
+                <button id="btnFiltrosBusqueda" type="button" class="row ms-auto me-auto btn btn-primary">Filtros</button>
+                <!-- <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-label="Filtrar por" aria-expanded="false">
                         Filtrar por
                     </button>
@@ -13,25 +14,28 @@
                         <li id="filtrarPorUbicacion"><a class="dropdown-item" href="#">Ubicacion</a></li>
                         <li id="filtrarPorCapacidad"><a class="dropdown-item" href="#">Capacidad maxima</a></li>
                     </ul>
-                </div>
+                </div> -->
 
-                <div id="containerFiltroTipo" class="mb-3">
-                    <label for="filtroTipo" class="form-label">Tipo</label>
-                    <input class="form-control" type="text" name="filtroTipo" id="filtroTipo">
-                </div>
-                <div id="containerFiltroUbicacion" class="mb-3">
-                    <label for="filtroUbicacion" class="form-label">Ubicacion</label>
-                    <input class="form-control" type="text" name="filtroUbicacion" id="filtroUbicacion">
-                </div>
-                <div id="containerFiltroCapacidad" class="mb-3">
-                    <label for="filtroCapacidad" class="form-label">Capacidad máxima</label>
-                    <input class="form-control" type="number" min="0" name="filtroCapacidad" id="filtroCapacidad">
-                </div>
-                <div id="containerCalendario" class="">
-                    <button class="btn fs-2 mt-3" aria-label="Abrir calendario" id="abrirCalendario">
-                        <i class="bi bi-calendar-event"></i>
-                    </button>
-                    <input type="date" class="form-control" id="inputCalendario">
+                <div class="row">
+                    <div id="containerFiltroTipo" class="mb-3 col">
+                        <label for="filtroTipo" class="form-label">Tipo</label>
+                        <input class="form-control" type="text" name="filtroTipo" id="filtroTipo">
+                    </div>
+                    <div id="containerFiltroUbicacion" class="mb-3 col">
+                        <label for="filtroUbicacion" class="form-label">Ubicacion</label>
+                        <input class="form-control" type="text" name="filtroUbicacion" id="filtroUbicacion">
+                    </div>
+                    <div id="containerFiltroCapacidad" class="mb-3 col">
+                        <label for="filtroCapacidad" class="form-label">Capacidad máxima</label>
+                        <input class="form-control" type="number" min="0" name="filtroCapacidad" id="filtroCapacidad">
+                    </div>
+                    <div id="containerCalendario" class="col">
+                        <!-- <button class="btn fs-2 mt-3" aria-label="Abrir calendario" id="abrirCalendario">
+                            <i class="bi bi-calendar-event"></i>
+                        </button> -->
+                        <label for="inputCalendario" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="inputCalendario">
+                    </div>
                 </div>
             </div>
         </div>
