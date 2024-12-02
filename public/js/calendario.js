@@ -155,42 +155,42 @@ function volverAHoy() {
 $('#previous').on('click', () => {
     // Cambiar de diapositiva con animación
 
-    const carouselInner = document.querySelector('.carousel-inner');
-    carouselInner.style.transition = 'transform 0.3s ease';
-    carouselInner.style.transform = 'translateX(100%)';
+  const carouselInner = $('#eventosCarousel.carousel-inner')[0];
+  carouselInner.style.transition = 'transform 0.3s ease';
+  carouselInner.style.transform = 'translateX(100%)';
 
-    setTimeout(() => {
-        carouselInner.style.transition = 'none';
-        carouselInner.style.transform = 'translateX(-100%)';
+  setTimeout(() => {
+      carouselInner.style.transition = 'none';
+      carouselInner.style.transform = 'translateX(-100%)';
 
-        setTimeout(() => {
-            carouselInner.style.transition = 'transform 0.3s ease';
-            carouselInner.style.transform = 'translateX(0%)';
-            updateDate(-1);
-            filtradoFecha();
+      setTimeout(() => {
+          carouselInner.style.transition = 'transform 0.3s ease';
+          carouselInner.style.transform = 'translateX(0%)';
+          updateDate(-1);
+          filtradoFecha();
 
-        }, 10);
-    }, 300);
+      }, 10);
+  }, 300);
     
 });
 
 $('#next').on('click', () => {
-    const carouselInner = document.querySelector('.carousel-inner');
-    carouselInner.style.transition = 'transform 0.3s ease';
-    carouselInner.style.transform = 'translateX(-100%)';
+  const carouselInner = $('#eventosCarousel.carousel-inner')[0];
+  carouselInner.style.transition = 'transform 0.3s ease';
+  carouselInner.style.transform = 'translateX(-100%)';
 
-    setTimeout(() => {
-        carouselInner.style.transition = 'none';
-        carouselInner.style.transform = 'translateX(+100%)';
+  setTimeout(() => {
+      carouselInner.style.transition = 'none';
+      carouselInner.style.transform = 'translateX(+100%)';
 
-        setTimeout(() => {
-            carouselInner.style.transition = 'transform 0.3s ease';
-            carouselInner.style.transform = 'translateX(0%)';
-            updateDate(1);
-            filtradoFecha();
+      setTimeout(() => {
+          carouselInner.style.transition = 'transform 0.3s ease';
+          carouselInner.style.transform = 'translateX(0%)';
+          updateDate(1);
+          filtradoFecha();
 
-        }, 10);
-    }, 300);
+      }, 10);
+  }, 300);
 });
     
 
