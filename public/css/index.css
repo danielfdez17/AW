@@ -16,7 +16,25 @@ body
     border-radius: 20px;
 }
 
-.filtroInputs
+@media (max-width: 768px) {
+    #containerCalendario {
+        position: relative; /* Cambia a relative en pantallas más pequeñas */
+    }
+}
+
+@media (min-width: 768px) {
+    #containerCalendario {
+        position: absolute; /* Cambia a absolute en pantallas medianas y grandes */
+    }
+}
+
+#inputCalendario
+{
+    position: absolute;
+    width: 150px;
+    top:70px;
+    left: 10px;
+}
 
 .mensajes
 {

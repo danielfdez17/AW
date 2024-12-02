@@ -21,6 +21,15 @@
     
 
     <div class="d-flex sticky-top custom-sticky justify-content-around align-items-center">
+
+        <div id="containerCalendario" class="start-0 d-flex flex-column align-items-center ms-md-5">
+            <button class="btn fs-2" aria-label="Abrir calendario" id="abrirCalendario">
+                <i class="bi bi-calendar-event"></i>
+            </button>
+            <input type="date" class="form-control" id="inputCalendario">
+        </div>
+
+
         <button id="previous" class="btn btn-dark"  type="button" data-bs-target="#calendario" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -31,12 +40,6 @@
             <span class="visually-hidden">Next</span>
         </button>
 
-        <div id="containerCalendario" class="position-absolute start-0 d-flex justify-content-around align-items-center ms-5">
-            <button class="btn fs-2" aria-label="Abrir calendario" id="abrirCalendario">
-                <i class="bi bi-calendar-event"></i>
-            </button>
-            <input type="date" class="form-control" id="inputCalendario">
-        </div>
     </div>
 
 

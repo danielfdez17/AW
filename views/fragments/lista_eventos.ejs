@@ -3,26 +3,26 @@
 
         <div class="d-flex align-items-center filtros gap-2 w-100">
             <div id="filtrosBusqueda" class="d-flex flex-column mt-3 w-100">
-                <button id="btnFiltrosBusqueda" class="ms-auto btn dropdown-toggle me-5 botonFiltros" type="button" aria-label="Filtrar por">
+                <button id="btnFiltrosBusqueda" class="ms-auto btn dropdown-toggle me-1 me-md-5 botonFiltros" type="button" aria-label="Filtrar por">
                     <i class="bi bi-filter"></i>
                     Filtros
                 </button>
 
-                <div class="row d-flex justify-content-around">
-                    <div id="containerFiltroTipo" class="mb-3 col-4">
+                <div class="row d-flex flex-column flex-sm-row flex-wrap justify-content-around">
+                    <div id="containerFiltroTipo" class="mb-3 col-12 col-sm-4">
                         <label for="filtroTipo" class="form-label">Tipo</label>
                         <input class="form-control" type="text" name="filtroTipo" id="filtroTipo">
                     </div>
-                    <div id="containerFiltroUbicacion" class="mb-3 col-4">
-                        <label for="filtroUbicacion" class="form-label">Ubicacion</label>
+                    <div id="containerFiltroUbicacion" class="mb-3 col-12 col-sm-4">
+                        <label for="filtroUbicacion" class="form-label">Ubicación</label>
                         <input class="form-control" type="text" name="filtroUbicacion" id="filtroUbicacion">
                     </div>
-                    <div id="containerFiltroCapacidad" class="mb-3 col-4">
+                    <div id="containerFiltroCapacidad" class="mb-3 col-12 col-sm-4">
                         <label for="filtroCapacidad" class="form-label">Capacidad máxima</label>
                         <input class="form-control" type="number" min="0" name="filtroCapacidad" id="filtroCapacidad">
                     </div>
                 </div>
-
+                
             </div>
         </div>
         

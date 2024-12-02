@@ -4,9 +4,11 @@
 <header class="mx-0 d-flex fs-1 justify-content-between align-items-center sticky-top bg-light">
 
     <div class="m-2 d-flex justify-content-center align-items-center">
-        <a href="http://www.ucm.es" target="_blank" rel="noopener noreferrer">
-            <img src="/resources/logo.png" alt="Logotipo" class="ms-5 logo">
-        </a>
+        <div class="d-none d-lg-inline">
+            <a href="http://www.ucm.es" target="_blank" rel="noopener noreferrer">
+                <img src="/resources/logo.png" alt="Logotipo" class="ms-5 logo">
+            </a>
+        </div>
 
         <div class="ms-3 d-flex align-items-center justify-content-center">
             <% if (usuario) { %>
@@ -14,7 +16,7 @@
                     <span class="material-symbols-rounded fs-4 d-flex align-items-center">
                         notifications
                     </span>
-                    <span> Notificaciones </span>
+                    <span class="d-none d-lg-inline"> Notificaciones </span>
                 </button>
 
                 <%- include('./notificaciones.ejs') %>
@@ -23,7 +25,7 @@
                     <span class="material-symbols-rounded fs-4 d-flex align-items-center">
                     settings
                     </span>
-                    <span> Ajustes </span>
+                    <span class="d-none d-lg-inline"> Ajustes </span>
                 </button>
 
                 <%- include('./accesibilidad.ejs') %>
@@ -31,7 +33,7 @@
         </div>
     </div>
 
-    <div class="mt-4 d-flex align-items-center gap-2 me-5">
+    <div class="mt-2 d-flex align-items-center gap-2 me-5">
 
         <% if (!usuario) { %>
             <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin" aria-label="Identificarse">
