@@ -58,8 +58,8 @@
                             <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" aria-label="Ver lista de espera">Ver lista de espera</button></a>
                             <a href="/organizadores/lista_asistentes/<%= evento.id %>" target="_blank" rel="noopener noreferrer">
                             <button id="verListaEspera<%= evento.id %>" class="btn btn-primary mt-1 mb-1" type="button" aria-label="Ver lista de asistentes">Ver lista de asistentes</button></a>
-
                         </div>
+                        <p>Estadísticas de asistencia: <%= 100 * (evento.capacidad_actual / evento.capacidad_maxima) %>&#37</p>
                     <% } %>
                 <% } %>
             <% } else { %>
