@@ -1,5 +1,14 @@
 <!-- Notifiaciones -->
 <div class="dropdown-menu p-0">
+
+  <form id="formRecordatorios">
+    <span class="fs-5 ms-1">Recordar eventos</span>
+    <ul class="list-unstyled d-flex justify-content-center gap-1 p-2 rounded-3 mx-0 shadow">
+      <li><button id="30mins" name="tiempo" type="submit" class="dropdown-item rounded-2 <%= usuario.recordatorio === '30 mins' ? 'active' : '' %>" value="30 mins" aria-label="">30 mins</button></li>
+      <li><button id="1h" name="tiempo" type="submit" class="dropdown-item rounded-2 <%= usuario.recordatorio === '1 hora' ? 'active' : '' %>" value="1 hora" aria-label="">1 h</button></li>
+      <li><button id="1d" name="tiempo" type="submit" class="dropdown-item rounded-2 <%= usuario.recordatorio === '1 dia' ? 'active' : '' %>" value="1 dia" aria-label="">1 d</button></li>
+    </ul>
+  </form>
   <% if(notificaciones) {%>
     <% notificaciones.forEach(function(notificacion) { %>
       <div id="notificacion<%= notificacion.id %>" class="card m-2">

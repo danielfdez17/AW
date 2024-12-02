@@ -95,6 +95,28 @@ class DAOUsuarios {
     });
   }
   
+  UpdateRecordatorio(recordatorio, callback)
+  {
+    this.pool.getConnection((err, con) => {
+      if (err) {
+        return callback(err);
+      }
+
+      let sql = "UPDATE usuarios SET recordatorio = ? WHERE id = ?";
+      con.query(sql, 
+      [
+        recordatorio.tiempo,
+        recordatorio.id
+      ], (err, result) => {
+        con.release();
+        if (err) {
+          return callback(err);
+        }
+
+        callback(null);
+      });
+    });
+  } 
 
   obtenerImagen(id, callback) {
     this.pool.getConnection((err, con) => {
