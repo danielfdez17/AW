@@ -1,3 +1,29 @@
+:root {
+    /* Esquema de colores 1 */
+    --e1-azul-oscuro-1: #3a3e98;
+    --e1-azul-oscuro-2: #5256bc;
+    --e1-azul-claro-1: #527cbc;
+    --e1-azul-claro-2: #4ab1d8;
+    
+    /* Esquema de colores 2 */
+    --e2-azul: #1a2c79;
+    --e2-rojo: #e80566;
+    --e2-naranja: #ff8d68;
+    --e2-amarillo: #f4eabc;
+
+    /* Esquema de colores 3 */
+    --e3-azul: #4535aa;
+    --e3-azul-gris: #d6d1f5;
+    --e3-rosa: #ed639e;
+    --e3-violeta: #b05cba;
+
+    /* Esquema de colores 4 */
+    --e4-violeta: #7f58af;
+    --e4-azul: #64c5eb;
+    --e4-magenta: #e84d8a;
+    --e4-amarillo: #feb326;
+}
+
 body
 {
     font-family: "Poppins", sans-serif;
