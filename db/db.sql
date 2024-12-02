@@ -82,6 +82,12 @@ create table inscripciones(
     foreign key (id_evento) references eventos(id)
 );
 
+
+insert into inscripciones (id_usuario, id_evento, estado) values (3, 1, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (3, 2, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (4, 2, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (4, 1, "inscrito");
+
 CREATE TABLE notificaciones (
   id INT PRIMARY KEY AUTO_INCREMENT,
   id_usuario INT NOT NULL,
@@ -91,10 +97,16 @@ CREATE TABLE notificaciones (
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
-insert into inscripciones (id_usuario, id_evento, estado) values (3, 1, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (3, 2, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (4, 2, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (4, 1, "inscrito");
+create table comentarioYValoraciones(
+    id_usuario int not null,
+    id_evento int not null,
+    comentario text not null,
+    fecha_comentario date not null default current_date,
+    valoracion int not null,
+    primary key (id_usuario, id_evento),
+    foreign key (id_usuario) references usuarios(id),
+    foreign key (id_evento) references eventos(id)
+)
 
 create table accesibilidad(
     id_usuario int not null primary key,
