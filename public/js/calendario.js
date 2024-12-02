@@ -70,7 +70,6 @@ $(() => {
       let id = ubicacion.id.replace("ubicacion", "");
 
       let cardEvento = $(`.evento${id}`);
-      console.log(cardEvento);
       if (
         valor.toUpperCase().indexOf(filtroUbicacion) > -1 &&
         fechaEvento === fecha_actual
@@ -92,9 +91,7 @@ $(() => {
 
       let valor = tipo_evento.placeholder;
       let id = tipo_evento.id.replace("tipo_evento", "");
-      console.log(`ID: ${id}`);
       let cardEvento = $(`.evento${id}`);
-      console.log(cardEvento);
       if (
         valor.toUpperCase().indexOf(filtroTipoEvento) > -1 &&
         fechaEvento === fecha_actual
@@ -116,10 +113,7 @@ $(() => {
 
       let valor = capacidad_maxima.placeholder;
       let id = capacidad_maxima.id.replace("capacidad_maxima", "");
-      console.log(`ID: ${id}`);
       let cardEvento = $(`.evento${id}`);
-      console.log(cardEvento);
-      console.log(`Valor: ${valor}; Filtro: ${filtroCapacidad}`);
       if (
         (!filtroCapacidad ||
           filtroCapacidad === "0" ||
