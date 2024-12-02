@@ -46,7 +46,7 @@ router.get("/", (req, res) => {
         .json({ error: "Acceso denegado: IP en lista negra" });
     } else {
       if (req.session.auth) {
-        if (req.session.usuario.rol === "asistente") {
+          if (req.session.usuario.rol === "asistente") {
           res.redirect("/asistentes");
         } else {
           res.redirect("/organizadores");
