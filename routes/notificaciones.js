@@ -42,6 +42,7 @@ router.post("/recordar", function (req, res) {
     }
     else
     {
+      req.session.usuario.recordatorio = tiempo;
       res.setFlash({ message: "Se ha actualizado el tiempo de recordatorio con exito", type: "exito" });
       res.json({})
     }
