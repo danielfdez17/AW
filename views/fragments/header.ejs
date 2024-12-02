@@ -1,12 +1,37 @@
 <head>
     <link rel="stylesheet" href="/css/header.css">
 </head>
-<header class="mx-0 d-flex justify-content-between align-items-center bg-warning sticky-top">
-    <a href="http://www.ucm.es" target="_blank" rel="noopener noreferrer">
-        <img src="/resources/logo.png" alt="Logotipo" class="ms-5 logo">
-    </a>
+<header class="mx-0 d-flex fs-1 justify-content-between align-items-center sticky-top bg-light">
 
-    <div class="d-flex align-items-center gap-2 me-3">
+    <div class="m-2 d-flex justify-content-center align-items-center">
+        <a href="http://www.ucm.es" target="_blank" rel="noopener noreferrer">
+            <img src="/resources/logo.png" alt="Logotipo" class="ms-5 logo">
+        </a>
+
+        <div class="ms-3 d-flex align-items-center justify-content-center">
+            <% if (usuario) { %>
+                <button id="botonNotificaciones" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" aria-label="Notificaciones">
+                    <span class="material-symbols-rounded fs-4 d-flex align-items-center">
+                        notifications
+                    </span>
+                    <span> Notificaciones </span>
+                </button>
+
+                <%- include('./notificaciones.ejs') %>
+
+                <button class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
+                    <span class="material-symbols-rounded fs-4 d-flex align-items-center">
+                    settings
+                    </span>
+                    <span> Ajustes </span>
+                </button>
+
+                <%- include('./accesibilidad.ejs') %>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex align-items-center gap-2 me-5">
 
         <% if (!usuario) { %>
             <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin" aria-label="Identificarse">
@@ -21,14 +46,6 @@
                 </span>
             </button>
         <% } else { %>
-            <button id="botonNotificaciones" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" aria-label="Notificaciones">
-                <span class="material-symbols-rounded fs-2 d-flex align-items-center">
-                    notifications
-                </span>
-            </button>
-    
-            <%- include('./notificaciones.ejs') %>
-
             <div id="perfilHeader" class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
                 <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil" aria-label="Editar perfil">
 
@@ -46,17 +63,8 @@
                     </span>
                 </a>
             </div>
-            
-            <button class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
-                <span class="material-symbols-rounded fs-2">
-                   settings
-                </span>
-            </button>
-    
-            <%- include('./accesibilidad.ejs') %>
-        <% } %>
-
-      </div>
+        <% } %> 
+        
 
     </div>
     

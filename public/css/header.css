@@ -1,6 +1,11 @@
+header * {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
 .logo
 {
-    height: 80px;
+    height: 70px;
     width: auto;
 }
 
@@ -12,7 +17,7 @@
 .registrar
 {
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     transition: .3s;
 }
 

@@ -1,112 +1,16 @@
 "use strict";
 
-// $(() => {
-//   let filtroUbicacion;
-//   let filtroTipoEvento;
-//   let filtroCapacidad;
+$('#botonFiltros').on('click', function() {
 
-//   $("#containerFiltroUbicacion").hide();
-//   $("#containerFiltroTipo").hide();
-//   $("#containerFiltroCapacidad").hide();
+  // Verificar el estado actual de la propiedad 'display'
 
-//   $("#filtrarPorSinFiltros").on("click", () => {
-//     $("#filtroUbicacion").val("");
-//     $("#filtroTipo").val("");
-//     $("#filtroCapacidad").val("");
-
-//     $("#containerFiltroUbicacion").hide();
-//     $("#containerFiltroTipo").hide();
-//     $("#containerFiltroCapacidad").hide();
-//   });
-
-//   $("#filtrarPorTipo").on("click", () => {
-//     $("#filtroUbicacion").val("");
-//     $("#filtroTipo").val("");
-//     $("#filtroCapacidad").val("");
-
-//     $("#containerFiltroUbicacion").hide();
-//     $("#containerFiltroTipo").show();
-//     $("#containerFiltroCapacidad").hide();
-//   });
-//   $("#filtrarPorUbicacion").on("click", () => {
-//     $("#filtroUbicacion").val("");
-//     $("#filtroTipo").val("");
-//     $("#filtroCapacidad").val("");
-
-//     $("#containerFiltroUbicacion").show();
-//     $("#containerFiltroTipo").hide();
-//     $("#containerFiltroCapacidad").hide();
-//   });
-//   $("#filtrarPorCapacidad").on("click", () => {
-//     $("#filtroUbicacion").val("");
-//     $("#filtroTipo").val("");
-//     $("#filtroCapacidad").val("");
-
-//     $("#containerFiltroUbicacion").hide();
-//     $("#containerFiltroTipo").hide();
-//     $("#containerFiltroCapacidad").show();
-//   });
-
-//   $("#filtroUbicacion").on("keyup", () => {
-//     filtroUbicacion = $("#filtroUbicacion").val().toUpperCase();
-//     $("input[name='ubicacion']").each((index) => {
-//       let ubicacion = $("input[name='ubicacion']")[index];
-//       let valor = ubicacion.placeholder;
-//       let id = ubicacion.id.replace("ubicacion", "");
-//       console.log(`ID: ${id}`);
-//       let cardEvento = $(`.evento${id}`);
-//       console.log(cardEvento);
-//       if (valor.toUpperCase().indexOf(filtroUbicacion) > -1) {
-//         cardEvento.removeClass("d-none");
-//       } else {
-//         cardEvento.addClass("d-none");
-//       }
-//     });
-//   });
-
-//   $("#filtroTipo").on("keyup", () => {
-//     filtroTipoEvento = $("#filtroTipo").val().toUpperCase();
-//     $("input[name='tipo_evento']").each((index) => {
-//       let tipo_evento = $("input[name='tipo_evento']")[index];
-//       let valor = tipo_evento.placeholder;
-//       let id = tipo_evento.id.replace("tipo_evento", "");
-//       console.log(`ID: ${id}`);
-//       let cardEvento = $(`.evento${id}`);
-//       console.log(cardEvento);
-//       if (valor.toUpperCase().indexOf(filtroTipoEvento) > -1) {
-//         cardEvento.removeClass("d-none");
-//       } else {
-//         cardEvento.addClass("d-none");
-//       }
-//     });
-//   });
-
-//   $("#filtroCapacidad").on("keyup", () => {
-//     filtroCapacidad = $("#filtroCapacidad").val().toUpperCase();
-//     $("input[name='capacidad_maxima_string']").each((index) => {
-//       let capacidad_maxima = $("input[name='capacidad_maxima_string']")[index];
-//       let valor = capacidad_maxima.placeholder;
-//       let id = capacidad_maxima.id.replace("capacidad_maxima", "");
-//       console.log(`ID: ${id}`);
-//       let cardEvento = $(`.evento${id}`);
-//       console.log(cardEvento);
-//       console.log(`Valor: ${valor}; Filtro: ${filtroCapacidad}`);
-//       if (
-//         !filtroCapacidad ||
-//         filtroCapacidad === "0" ||
-//         Number(valor) <= Number(filtroCapacidad)
-//       ) {
-//         cardEvento.removeClass("d-none");
-//       } else {
-//         cardEvento.addClass("d-none");
-//       }
-//     });
-//   });
-
-// });
-
-
-
+  console.log($('#contenedorFiltros').css('display') );
+  if ($('#contenedorFiltros').css('display') == 'none') {
+    $('#contenedorFiltros').css('display') == 'flex';
+  } else {
+    $('#contenedorFiltros').css('display') == 'none';
+  }
+});
 
 
 function habilitarEdicion(id_evento) {

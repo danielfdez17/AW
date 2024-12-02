@@ -9,20 +9,37 @@
     <link rel="stylesheet" href="/css/footer.css">
     <title>Eventos</title>
 </head>
-<body class="vh-100">
+<body class="h-100">
     <%- include('./fragments/header.ejs') %>
 
-    <div class="d-flex justify-content-around align-items-center bg-secondary">
-        <button id="previous" class="btn" type="button" data-bs-target="#calendario" data-bs-slide="prev">
+    <div class="bg-light text-dark py-5 mb-5">
+        <div class="container text-center">
+            <h1 class="display-3 mb-4 hero">Organiza y conecta <br>tus eventos universitarios</h1>
+            <p class="lead text-secondary mb-5">Facilita la gestión y participación en eventos académicos, culturales y deportivos de tu universidad.</p>
+        </div>
+    </div>
+    
+
+    <div class="d-flex sticky-top custom-sticky justify-content-around align-items-center">
+        <button id="previous" class="btn btn-dark"  type="button" data-bs-target="#calendario" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
         <span id="fecha" class="fs-3"><%= new Date().toLocaleDateString() %></span>
-        <button id="next" class="btn" type="button" data-bs-target="#calendario" data-bs-slide="next">
+        <button id="next" class="btn btn-dark" type="button" data-bs-target="#calendario" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+
+        <div id="containerCalendario" class="position-absolute start-0 d-flex justify-content-around align-items-center ms-5">
+            <button class="btn fs-2" aria-label="Abrir calendario" id="abrirCalendario">
+                <i class="bi bi-calendar-event"></i>
+            </button>
+            <input type="date" class="form-control" id="inputCalendario">
+        </div>
     </div>
+
+
 
     <div id="calendario" class="carousel slide" data-bs-wrap="true">
         <div class="carousel-inner" id="eventosCarousel">
@@ -32,7 +49,7 @@
         </div>
     </div>
 
-    <!-- <%- include('./fragments/footer.ejs') %> -->
+    <%- include('./fragments/footer.ejs') %>
 
     <!-- Toasts -->
     <div id="contenedor-toasts">

@@ -5,6 +5,8 @@ $(() => {
   let filtroTipoEvento;
   let filtroCapacidad;
 
+  $("#inputCalendario").hide();
+
   $("#containerCalendario").hide();
   $("#containerFiltroUbicacion").hide();
   $("#containerFiltroTipo").hide();
@@ -238,6 +240,7 @@ $("#inputCalendario").on("change", (event) => {
   let fecha = event.target.value;
   fecha = fecha.split("-").reverse().join("/");
   $("#fecha").text(fecha);
+  $("#inputCalendario").hide();
   vaciarFiltros();
   filtradoFecha();
 });
