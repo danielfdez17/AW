@@ -1,5 +1,7 @@
 create database AW_24;
 
+drop table if exists facultades;
+
 create table facultades(
     id int primary key auto_increment,
     nombre varchar(100) not null
@@ -11,6 +13,8 @@ insert into facultades (nombre) values ("Facultad de Medicina");
 insert into facultades (nombre) values ("Facultad de Ciencias de la Salud");
 insert into facultades (nombre) values ("Facultad de Educación");
 insert into facultades (nombre) values ("Facultad de Ciencias de la Educación");
+
+drop table if exists usuarios;
 
 create table usuarios(
     id int primary key auto_increment,
@@ -39,6 +43,8 @@ insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) va
 insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Luis", "luis@ucm.es", 123456789, 4, "asistente", "1234");
 insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Eduardo", "eduardo@ucm.es", 123456789, 5, "asistente", "1234");
 insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Diego", "diego@ucm.es", 123456789, 6, "asistente", "1234");
+
+drop table if exists eventos;
 
 create table eventos(
     id int primary key auto_increment,
@@ -70,6 +76,7 @@ insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxi
 insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 11", "Descripción 11", "2024-12-12", "11:00:00", "Sala 11", 15, 1, "Taller");
 insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 12", "Descripción 12", "2024-12-13", "15:00:00", "Sala 12", 40, 2, "Seminario");
 
+drop table if exists inscripciones;
 
 create table inscripciones(
     id_usuario int not null,
@@ -107,10 +114,10 @@ create table comentarioYValoraciones(
     primary key (id_usuario, id_evento),
     foreign key (id_usuario) references usuarios(id),
     foreign key (id_evento) references eventos(id)
-)
+);
 
 create table accesibilidad(
-    id_usuario int not null primary key,
+    id_usuario int not null,
     paleta_colores varchar(100) not null default "predeterminado",
     tamano_texto varchar(100) not null default "normal",
     config_navegacion varchar(100) not null default "no",
