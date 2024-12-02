@@ -93,6 +93,7 @@ CREATE TABLE notificaciones (
   id_usuario INT NOT NULL,
   mensaje TEXT,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  tipo VARCHAR(50),
   activo BOOLEAN DEFAULT TRUE,
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
@@ -146,8 +147,8 @@ BEGIN
         WHERE id = NEW.id_evento;
 
         -- Insertar la notificación
-        INSERT INTO notificaciones (id_usuario, mensaje, fecha)
-        VALUES (NEW.id_usuario, CONCAT('Has sido inscrito en el evento: ', nombre_evento, ' para el ', fecha_evento), NOW());
+        INSERT INTO notificaciones (id_usuario, mensaje, fecha, tipo)
+        VALUES (NEW.id_usuario, CONCAT('Has sido inscrito en el evento: ', nombre_evento, ' para el ', fecha_evento), DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'), 'Inscripcion');
     END IF;
 END $$
 
@@ -172,8 +173,8 @@ BEGIN
         WHERE id = NEW.id_evento;
 
         -- Insertar la notificación
-        INSERT INTO notificaciones (id_usuario, mensaje, fecha)
-        VALUES (NEW.id_usuario, CONCAT('Se ha anulado la inscripcion del evento: ', nombre_evento, ' para el ', fecha_evento), NOW());
+        INSERT INTO notificaciones (id_usuario, mensaje, fecha, tipo)
+        VALUES (NEW.id_usuario, CONCAT('Se ha anulado la inscripcion del evento: ', nombre_evento, ' para el ', fecha_evento), DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'), 'Actividad');
     END IF;
 END $$
 
@@ -196,39 +197,100 @@ BEGIN
     WHERE id = NEW.id_evento;
 
     -- Insertar la notificación
-    INSERT INTO notificaciones (id_usuario, mensaje, fecha)
-    VALUES (NEW.id_usuario, CONCAT('Se ha realizado con éxito la inscripcion del evento: ', nombre_evento, ' para el ', fecha_evento), NOW());
+    INSERT INTO notificaciones (id_usuario, mensaje, fecha, tipo)
+    VALUES (NEW.id_usuario, CONCAT('Se ha realizado con éxito la inscripcion del evento: ', nombre_evento, ' para el ', fecha_evento), DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'), 'Actividad');
 
 END $$
 
 DELIMITER ;
 
 
--- DELIMITER $$
+SET GLOBAL event_scheduler = ON;
 
--- -- Posible cambio de estado despues de anular
--- CREATE TRIGGER CambioEstadoSingular
--- AFTER UPDATE ON inscripciones
--- FOR EACH ROW
--- BEGIN
---     DECLARE usuario VARCHAR(255);
+CREATE OR REPLACE EVENT comprobar_recordatorio_evento
+ON SCHEDULE EVERY 5 MINUTE
+DO
+    CALL verificar_recordatorios();
+
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE verificar_recordatorios()
+BEGIN
+    DECLARE v_id_usuario INT;
+    DECLARE v_recordatorio INT;
+
+    DECLARE v_id_evento INT;
+
+    DECLARE v_fecha_evento DATE;
+    DECLARE v_hora_evento TIME;
+
+    -- Inicializar la variable done
+    DECLARE done BOOLEAN DEFAULT FALSE;
+
+    -- Declaración de cursores
+    DECLARE cursor_usuarios CURSOR FOR
+        SELECT id, recordatorio FROM usuarios;
+
+    DECLARE cursor_eventosxusuario CURSOR FOR
+        SELECT id_evento FROM inscripciones WHERE id_usuario = v_id_usuario;
+
+    -- Declaración de manejador para fin de cursores
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    -- Abrir el cursor de usuarios
+    OPEN cursor_usuarios;
     
---     -- Verificar si el estado realmente cambio
---     IF OLD.activo <> NEW.activo THEN
---         -- Obtener los datos del evento
---         SELECT id_usuario INTO usuario
---         FROM inscripciones
---         WHERE activo = true AND estado = 'espera' AND id_evento = NEW.id_evento
---         ORDER BY fecha_inscripcion
---         LIMIT 1;
+    -- Loop para iterar sobre los usuarios
+    usuario_loop: LOOP
+        FETCH cursor_usuarios INTO v_id_usuario, v_recordatorio;
+        IF done THEN
+	    SET done = FALSE;
+            LEAVE usuario_loop; -- Salir si ya no hay más usuarios
+        END IF;
 
---         UPDATE  inscripciones SET estado = 'inscrito' WHERE id_evento = NEW.id_evento AND id_usuario = usuario;
+        -- Abrir el cursor de eventos para el usuario actual
+        OPEN cursor_eventosxusuario;
 
---     END IF;
--- END $$
+        -- Loop para iterar sobre los eventos de cada usuario
+        evento_loop: LOOP
+            FETCH cursor_eventosxusuario INTO v_id_evento;
 
--- DELIMITER ;
+            IF done THEN
+		SET done = FALSE;
+                LEAVE evento_loop; -- Salir si ya no hay más eventos
+            END IF;
 
+            -- Obtener la fecha y hora del evento
+            SELECT fecha, hora INTO v_fecha_evento, v_hora_evento
+            FROM eventos
+            WHERE id = v_id_evento;
+
+            
+            -- Verificar si el evento está dentro del tiempo de recordatorio
+            IF v_fecha_evento = CURDATE() AND TIMESTAMPDIFF(MINUTE, CURTIME(), v_hora_evento) > 0 AND TIMESTAMPDIFF(MINUTE, CURTIME(), v_hora_evento) <= v_recordatorio THEN
+
+                  INSERT INTO log_debug (usuario_id, evento_id, diferencia_minutos, recordatorio)
+                VALUES (v_id_usuario, v_id_evento, TIMESTAMPDIFF(MINUTE, CURTIME(), v_hora_evento), v_recordatorio);
+
+
+                -- Insertar notificación
+                INSERT INTO notificaciones (id_usuario, mensaje, fecha, tipo)
+                VALUES (v_id_usuario, 
+                        CONCAT('Le recordamos que tiene un evento: ', (SELECT titulo FROM eventos WHERE id = v_id_evento), ' para el ', v_fecha_evento),
+                        DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'), 'Recordatorio');
+            END IF;
+
+        END LOOP evento_loop;
+
+        CLOSE cursor_eventosxusuario;
+
+    END LOOP usuario_loop;
+
+    CLOSE cursor_usuarios;
+
+END $$
+
+DELIMITER ;
 
 DELIMITER $$
 
