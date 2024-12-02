@@ -152,45 +152,47 @@ function volverAHoy() {
   $("#fecha").text(new Date().toLocaleDateString("es-ES"));
 }
 
-//Animacion hacia atrás
-$("#previous").on("click", () => {
-  // Cambiar de diapositiva con animación
+$('#previous').on('click', () => {
+    // Cambiar de diapositiva con animación
 
-  const carouselInner = document.querySelector(".carousel-inner");
-  carouselInner.style.transition = "transform 0.3s ease";
-  carouselInner.style.transform = "translateX(100%)";
-
-  setTimeout(() => {
-    carouselInner.style.transition = "none";
-    carouselInner.style.transform = "translateX(-100%)";
+    const carouselInner = document.querySelector('.carousel-inner');
+    carouselInner.style.transition = 'transform 0.3s ease';
+    carouselInner.style.transform = 'translateX(100%)';
 
     setTimeout(() => {
-      carouselInner.style.transition = "transform 0.3s ease";
-      carouselInner.style.transform = "translateX(0%)";
-      updateDate(-1);
-      filtradoFecha();
-    }, 10);
-  }, 300);
+        carouselInner.style.transition = 'none';
+        carouselInner.style.transform = 'translateX(-100%)';
+
+        setTimeout(() => {
+            carouselInner.style.transition = 'transform 0.3s ease';
+            carouselInner.style.transform = 'translateX(0%)';
+            updateDate(-1);
+            filtradoFecha();
+
+        }, 10);
+    }, 300);
+    
 });
 
-//Animacion hacia adelante
-$("#next").on("click", () => {
-  const carouselInner = document.querySelector(".carousel-inner");
-  carouselInner.style.transition = "transform 0.3s ease";
-  carouselInner.style.transform = "translateX(-100%)";
-
-  setTimeout(() => {
-    carouselInner.style.transition = "none";
-    carouselInner.style.transform = "translateX(+100%)";
+$('#next').on('click', () => {
+    const carouselInner = document.querySelector('.carousel-inner');
+    carouselInner.style.transition = 'transform 0.3s ease';
+    carouselInner.style.transform = 'translateX(-100%)';
 
     setTimeout(() => {
-      carouselInner.style.transition = "transform 0.3s ease";
-      carouselInner.style.transform = "translateX(0%)";
-      updateDate(1);
-      filtradoFecha();
-    }, 10);
-  }, 300);
+        carouselInner.style.transition = 'none';
+        carouselInner.style.transform = 'translateX(+100%)';
+
+        setTimeout(() => {
+            carouselInner.style.transition = 'transform 0.3s ease';
+            carouselInner.style.transform = 'translateX(0%)';
+            updateDate(1);
+            filtradoFecha();
+
+        }, 10);
+    }, 300);
 });
+    
 
 $("#abrirCalendario").on("click", () => {
   $("#filtroUbicacion").val("");
