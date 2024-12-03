@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de espera del evento</title>
+    <title>Lista de asistentes</title>
     <%- include('./fragments/head.ejs') %>
 </head>
 <body>
@@ -20,7 +20,7 @@
             <ul class="list-group">
                 <% lista.forEach(u => {%>
                     <li class="list-group-item">
-                        <%- include('./fragments/usuario.ejs', {u: u}) %>
+                        <%- include('./fragments/usuario.ejs') %>
                     </li>
                 <% });%>
             </ul>
