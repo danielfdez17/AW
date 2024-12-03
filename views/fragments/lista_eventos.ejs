@@ -26,7 +26,6 @@
             </div>
         </div>
         
-
         <% eventos.forEach(evento => { %> 
             <% if (eventosInscritos !== null && !eventosInscritos.find(e => e.id === evento.id)) { %>
                 <div class="evento<%=evento.id %> col-12 col-md-6 mt-2">
