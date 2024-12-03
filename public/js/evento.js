@@ -131,7 +131,7 @@ function enviar_accion(accion, id_evento) {
 
           break;
         case "/organizadores/eliminar_evento":
-          if (response.id_evento) $(".evento" + response.id_evento).remove();
+          if (response.id_evento) $("#evento" + response.id_evento).remove();
 
           $.get("/toasts", function (data) {
             $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer

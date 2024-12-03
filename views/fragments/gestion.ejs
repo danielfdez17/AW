@@ -17,12 +17,10 @@
 
         <ul class="list-group">
             <% eventos.forEach(evento => { %>
-                <% if (evento.id_organizador === usuario.id)  { %>
-                    <div class="evento<%=evento.id %>">
-                        <li class="list-group-item">
-                            <%- include('./evento.ejs', {evento: evento, index: false}) %>
-                        </li>
-                    </div>
+                <% if (evento.id_organizador == usuario.id)  { %>
+                    <li class="list-group-item">
+                        <%- include('./evento.ejs', {evento: evento, index: false}) %>
+                    </li>
                 <% } %>
             <% }); %>
         </ul>
