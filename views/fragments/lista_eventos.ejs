@@ -27,16 +27,12 @@
         </div>
         
 
-        <% eventos.forEach(evento => { %>
-            <div class="evento<%=evento.id %> col-12 col-md-6 mt-2">
-                <% if (eventosInscritos !== null) { %>
-                    <% if (!eventosInscritos.find(e => e.id === evento.id)) { %>
-                        <%- include('./evento.ejs', {evento: evento, index: true}) %>
-                    <% } %>
-                <% } else { %>
-                        <%- include('./evento.ejs', {evento: evento, index: true}) %>
-                <% } %>
-            </div>
+        <% eventos.forEach(evento => { %> 
+            <% if (eventosInscritos !== null && !eventosInscritos.find(e => e.id === evento.id)) { %>
+                <div class="evento<%=evento.id %> col-12 col-md-6 mt-2">
+                    <%- include('./evento.ejs', {evento: evento, index: true}) %>   
+                </div>         
+            <% } %>
         <% }); %>
 
     <% } %>
