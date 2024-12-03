@@ -40,8 +40,7 @@ function ajustes_color(tema) {
     case "titanopia":
       break;
     default:
-      temaHeader("claro");
-      temaFooter("claro");
+      temaClaro();
       break;
   }
 }
@@ -128,6 +127,14 @@ function temaClaro() {
   $("#previous span:first, #next span:first").addClass("text-light");
   $("#previous span:first, #next span:first").removeClass("text-dark");
 
+  $(".cardEvento .card-body").addClass("bg-light")
+  $(".cardEvento .card-body").removeClass("bg-dark")
+
+  $(".cardEvento .card-body input").addClass("bg-light")
+  $(".cardEvento .card-body input").removeClass("bg-dark")
+  $(".cardEvento .card-body input").removeClass("text-light")
+  $(".cardEvento .card-body input").addClass("text-dark")
+
   $("footer").removeClass("bg-dark");
   $("footer").addClass("bg-light");
   $("footer a").removeClass("text-light");
@@ -212,6 +219,14 @@ function temaOscuro() {
   $("#previous, #next").removeClass("btn-dark");
   //   $("#previous, #next").addClass("text-dark");
   //   $("#previous, #next").removeClass("text-light");
+
+  $(".cardEvento .card-body").addClass("bg-dark")
+  $(".cardEvento .card-body").removeClass("bg-light")
+
+  $(".cardEvento .card-body input").addClass("bg-dark")
+  $(".cardEvento .card-body input").removeClass("bg-light")
+  $(".cardEvento .card-body input").removeClass("text-dark")
+  $(".cardEvento .card-body input").addClass("text-light")
 
   $("#previous span:first, #next span:first").addClass("bg-dark");
   $("#previous span:first, #next span:first").removeClass("bg-light");
