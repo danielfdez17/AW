@@ -3,13 +3,13 @@
 
 //Tipos daltonismo
 // Rojo-verde
-const deuteranomalia = ""; // ciertos tonos verdes se ven mas rojos
-const protanomalia = ""; // ciertos tonos rojos se ven mas verdes y menos brillantes
-const protanopia = ""; // no se distingue entre rojo y verde
-const deuteranopia = ""; // no se distingue entre rojo y verde
-// Azul-amarillo
-const tritanomalia = ""; // difícil diferencia entre azul y verde, y entre amarillo y rojo
-const titanopia = ""; // no se distingue entre azul y verde, entre morado(violeta) y rojo, y entre amarillo y rosado. Todos los colores se ven menos brillantes
+// const deuteranomalia = ""; // ciertos tonos verdes se ven mas rojos
+// const protanomalia = ""; // ciertos tonos rojos se ven mas verdes y menos brillantes
+// const protanopia = ""; // no se distingue entre rojo y verde
+// const deuteranopia = ""; // no se distingue entre rojo y verde
+// // Azul-amarillo
+// const tritanomalia = ""; // difícil diferencia entre azul y verde, y entre amarillo y rojo
+// const titanopia = ""; // no se distingue entre azul y verde, entre morado(violeta) y rojo, y entre amarillo y rosado. Todos los colores se ven menos brillantes
 
 /*Se puede borrar esto no?*/
 const botonHabilidarEdicion = document.getElementById("habilitarEdicion");
@@ -20,7 +20,6 @@ const editarTelefono = document.getElementById("editarTelefono");
 
 //Ajustes de tema
 function ajustes_color(tema) {
-  let root = document.documentElement;
   switch (tema) {
     case "claro":
       temaClaro();
@@ -28,18 +27,18 @@ function ajustes_color(tema) {
     case "oscuro":
       temaOscuro();
       break;
-    case "deuteranomalia":
-      break;
-    case "protanomalia":
-      break;
-    case "protanopia":
-      break;
-    case "deuteranopia":
-      break;
-    case "tritanomalia":
-      break;
-    case "titanopia":
-      break;
+    // case "deuteranomalia":
+    //   break;
+    // case "protanomalia":
+    //   break;
+    // case "protanopia":
+    //   break;
+    // case "deuteranopia":
+    //   break;
+    // case "tritanomalia":
+    //   break;
+    // case "titanopia":
+    //   break;
     default:
       temaClaro();
       break;
@@ -128,13 +127,23 @@ function temaClaro() {
   $("#previous span:first, #next span:first").addClass("text-light");
   $("#previous span:first, #next span:first").removeClass("text-dark");
 
-  $(".cardEvento .card-body").addClass("bg-light")
-  $(".cardEvento .card-body").removeClass("bg-dark")
+  $(".cardEvento .card-body").addClass("bg-white");
+  $(".cardEvento .card-body").removeClass("bg-black");
 
-  $(".cardEvento .card-body input").addClass("bg-light")
-  $(".cardEvento .card-body input").removeClass("bg-dark")
-  $(".cardEvento .card-body input").removeClass("text-light")
-  $(".cardEvento .card-body input").addClass("text-dark")
+  $(".cardEvento .card-body input").addClass("bg-light");
+  $(".cardEvento .card-body input").removeClass("bg-dark");
+  $(".cardEvento .card-body input").removeClass("text-light");
+  $(".cardEvento .card-body input").addClass("text-dark");
+
+  $(".cardEvento .card-body i").addClass("bg-light");
+  $(".cardEvento .card-body i").removeClass("bg-dark");
+  $(".cardEvento .card-body i").removeClass("text-light");
+  $(".cardEvento .card-body i").addClass("text-dark");
+
+  $(".cardEvento .card-footer").addClass("bg-light");
+  $(".cardEvento .card-footer").removeClass("bg-dark");
+  $(".cardEvento .card-footer").removeClass("text-light");
+  $(".cardEvento .card-footer").addClass("text-dark");
 
   $("footer").removeClass("bg-dark");
   $("footer").addClass("bg-light");
@@ -221,13 +230,23 @@ function temaOscuro() {
   //   $("#previous, #next").addClass("text-dark");
   //   $("#previous, #next").removeClass("text-light");
 
-  $(".cardEvento .card-body").addClass("bg-dark")
-  $(".cardEvento .card-body").removeClass("bg-light")
+  $(".cardEvento .card-body").addClass("bg-black");
+  $(".cardEvento .card-body").removeClass("bg-white");
 
-  $(".cardEvento .card-body input").addClass("bg-dark")
-  $(".cardEvento .card-body input").removeClass("bg-light")
-  $(".cardEvento .card-body input").removeClass("text-dark")
-  $(".cardEvento .card-body input").addClass("text-light")
+  $(".cardEvento .card-body input").addClass("bg-dark");
+  $(".cardEvento .card-body input").removeClass("bg-light");
+  $(".cardEvento .card-body input").removeClass("text-dark");
+  $(".cardEvento .card-body input").addClass("text-light");
+
+  $(".cardEvento .card-body i").addClass("bg-dark");
+  $(".cardEvento .card-body i").removeClass("bg-light");
+  $(".cardEvento .card-body i").removeClass("text-dark");
+  $(".cardEvento .card-body i").addClass("text-light");
+
+  $(".cardEvento .card-footer").addClass("bg-dark");
+  $(".cardEvento .card-footer").removeClass("bg-light");
+  $(".cardEvento .card-footer").removeClass("text-dark");
+  $(".cardEvento .card-footer").addClass("text-light");
 
   $("#previous span:first, #next span:first").addClass("bg-dark");
   $("#previous span:first, #next span:first").removeClass("bg-light");
