@@ -56,7 +56,7 @@
             </button>
         <% } else { %>
             <div id="perfilHeader" class="d-flex align-items-center justify-content-between px-3 text-white usuario gap-4">
-                <button type="button" class="btn btn-dark border-0 text-light botonPerfil" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil" aria-label="Editar perfil">
+                <button type="button" id="botonPerfil" class="btn btn-dark border-0 text-light botonPerfil" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil" aria-label="Editar perfil">
 
                 <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle border border-white border-1" width="25" height="25" onerror="this.src='/resources/icon-default.png'"/>
 

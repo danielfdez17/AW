@@ -11,6 +11,7 @@ const deuteranopia = ""; // no se distingue entre rojo y verde
 const tritanomalia = ""; // difícil diferencia entre azul y verde, y entre amarillo y rojo
 const titanopia = ""; // no se distingue entre azul y verde, entre morado(violeta) y rojo, y entre amarillo y rosado. Todos los colores se ven menos brillantes
 
+/*Se puede borrar esto no?*/
 const botonHabilidarEdicion = document.getElementById("habilitarEdicion");
 const editarNombre = document.getElementById("editarNombre");
 const editarCorreo = document.getElementById("editarCorreo");
