@@ -33,13 +33,19 @@ router.get("/", (req, res) => {
   
             daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (notificaciones) =>
             {
-                  res.render("index", {
-                      eventos: eventos,
-                      usuario: req.session.usuario,
-                      facultades: facultades,
-                      eventosInscritos: eventosInscritos,
-                      notificaciones: notificaciones = notificaciones && notificaciones.length ? notificaciones : null
-                  });
+              daoAccesibilidad.readPreferencias(req.session.usuario.id, (accesibilidad) =>
+              {
+                res.render("index", {
+                  eventos: eventos,
+                  usuario: req.session.usuario,
+                  facultades: facultades,
+                  eventosInscritos: eventosInscritos,
+                  notificaciones: notificaciones = notificaciones && notificaciones.length ? notificaciones : null,
+                  accesibilidad: accesibilidad,
+                });
+              });
+
+
             });
   
           }

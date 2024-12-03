@@ -6,17 +6,17 @@ class DAOAccesibilidad {
     this.pool = pool;
   }
 
-  updatePreferencias(preferencias, callback) {
+  updateTema(preferencias, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
         callback(err);
         return;
       }
       const sql =
-        "UPDATE accesibilidad SET paleta_colores = ?, tamano_texto = ? WHERE id_usuario = ?";
+        "UPDATE accesibilidad SET paleta_colores = ? WHERE id_usuario = ?";
       connection.query(
         sql,
-        [preferencias.tema, preferencias.letra, preferencias.id],
+        [preferencias.tema, preferencias.id],
         (err, rows) => {
           connection.release();
           if (err) {
@@ -28,6 +28,32 @@ class DAOAccesibilidad {
       );
     });
   }
+
+  updateLetra(preferencias, callback) {
+    this.pool.getConnection((err, connection) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      const sql =
+        "UPDATE accesibilidad SET tamano_texto = ? WHERE id_usuario = ?";
+      connection.query(
+        sql,
+        [preferencias.letra, preferencias.id],
+        (err, rows) => {
+          connection.release();
+          if (err) {
+            callback(err);
+            return;
+          }
+          callback(null, rows);
+        }
+      );
+    });
+  }
+
+  
+
   readPreferencias(id_usuario, callback) {
     this.pool.getConnection((err, connection) => {
       if (err) {
@@ -42,7 +68,7 @@ class DAOAccesibilidad {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(rows[0]);
       });
     });
   }

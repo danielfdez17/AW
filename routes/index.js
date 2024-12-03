@@ -154,13 +154,24 @@ const comprobacion = [
   },
 ];
 
-router.post("/accesibilidad/:id", (req, res) => {
+router.post("/accesibilidad/Tema/:id", (req, res) => {
   const { id } = req.params;
-  const { tema, letra } = req.body;
-  console.log(`Tema: ${tema}; Letra: ${letra}`);
-  daoAccesibilidad.updatePreferencias({ tema, letra, id }, (err) => {
+  const { tema } = req.body;
+  daoAccesibilidad.updateTema({ tema, id }, (err) => {
     if (!err) {
-      res.redirect("/");
+      res.setFlash({ message: "Se ha cambiado el tema con exito", type: "exito" });
+      res.json({});
+    }
+  });
+});
+
+router.post("/accesibilidad/Letra/:id", (req, res) => {
+  const { id } = req.params;
+  const { letra } = req.body;
+  daoAccesibilidad.updateLetra({letra, id }, (err) => {
+    if (!err) {
+      res.setFlash({ message: "Se ha cambiado la letra con exito", type: "exito" });
+      res.json({});
     }
   });
 });

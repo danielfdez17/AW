@@ -1,25 +1,15 @@
 //TODO: Cuando se fije el diseño hacer accsibilidad de colores
 "use strict";
 
-//Tipos daltonismo
-// Rojo-verde
-// const deuteranomalia = ""; // ciertos tonos verdes se ven mas rojos
-// const protanomalia = ""; // ciertos tonos rojos se ven mas verdes y menos brillantes
-// const protanopia = ""; // no se distingue entre rojo y verde
-// const deuteranopia = ""; // no se distingue entre rojo y verde
-// // Azul-amarillo
-// const tritanomalia = ""; // difícil diferencia entre azul y verde, y entre amarillo y rojo
-// const titanopia = ""; // no se distingue entre azul y verde, entre morado(violeta) y rojo, y entre amarillo y rosado. Todos los colores se ven menos brillantes
-
-/*Se puede borrar esto no?*/
-const botonHabilidarEdicion = document.getElementById("habilitarEdicion");
-const editarNombre = document.getElementById("editarNombre");
-const editarCorreo = document.getElementById("editarCorreo");
-const editarContrasena = document.getElementById("editarContrasena");
-const editarTelefono = document.getElementById("editarTelefono");
-
 //Ajustes de tema
 function ajustes_color(tema) {
+
+  if(tema == 'predeterminado')
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+      tema = 'oscuro';
+    else
+      tema = 'claro'
+
   switch (tema) {
     case "claro":
       temaClaro();
@@ -27,18 +17,6 @@ function ajustes_color(tema) {
     case "oscuro":
       temaOscuro();
       break;
-    // case "deuteranomalia":
-    //   break;
-    // case "protanomalia":
-    //   break;
-    // case "protanopia":
-    //   break;
-    // case "deuteranopia":
-    //   break;
-    // case "tritanomalia":
-    //   break;
-    // case "titanopia":
-    //   break;
     default:
       temaClaro();
       break;
@@ -261,40 +239,80 @@ function temaOscuro() {
 
 //Ajustes tamaño de letra
 function ajustes_texto(tam_letra) {
-  if (tam_letra === "normal") document.documentElement.style.fontSize = "18px";
+  if (tam_letra === "normal") document.documentElement.style.fontSize = "16px";
   else if (tam_letra === "grande")
-    document.documentElement.style.fontSize = "22px";
+    document.documentElement.style.fontSize = "20px";
   else if (tam_letra === "muy grande")
-    document.documentElement.style.fontSize = "26px";
+    document.documentElement.style.fontSize = "24px";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  //Identificamos los elementos a los que queremos añadirle el EventListener
-  document.querySelectorAll(".dropdown-menu ul").forEach(function (list) {
-    list.querySelectorAll(".dropdown-item").forEach(function (item) {
-      //Añadimos EventListener, para que el momento de hacer click sobre alguno
-      //de estos elementos salte la funcion
-      item.addEventListener("click", function (event) {
-        // Evita que el dropdown se cierre al hacer clic
-        event.stopPropagation();
 
-        // Elimina la clase 'active' de todos los elementos en este <ul>
-        list.querySelectorAll(".dropdown-item").forEach(function (i) {
-          i.classList.remove("active");
-        });
+$("#formAccesibilidadTema button[type='submit']").on('click', function(event)
+{
+  event.preventDefault();
+    
+  const actionUrl = $("#formAccesibilidadTema").attr('action');
+  const buttonValue = $(this).val();
+  var formData = `tema=${buttonValue}`;
 
-        // Añade la clase 'active' al elemento clicado
-        item.classList.add("active");
+  const button = $(this); // Guardar referencia al botón actual
+      $.ajax({
+      url: actionUrl,
+      type: 'POST',
+      data: formData,
 
-        //Identificamos que lista es
-        if (list.id == "Tema") ajustes_color(item.getAttribute("value"));
-        else if (list.id == "Letra") ajustes_texto(item.getAttribute("value"));
-      });
-    });
+      success: function(response) {
+          // Mostrar mensaje de éxito o error
+          $('#formAccesibilidadTema .dropdown-item').removeClass('active');
+          button.addClass('active');
+          ajustes_color(buttonValue)
+          $.get('/toasts', function(data) {
+              $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
+          });           
+      },
+      error: function(xhr, status, error) {
+          console.error('Error en la solicitud AJAX:', error);
+          $('#errorFuncionamiento .toast-body').text(`Hubo un problema con la solicitud: ${error}`);
+          $('#errorFuncionamiento').toast('show');
+      }
   });
-  //Inicialmente los ajustes corresponden al predeterminado
-  ajustes_color("predeterminado");
+
 });
+
+
+$("#formAccesibilidadLetra button[type='submit']").on('click', function(event)
+{
+  event.preventDefault();
+    
+  const actionUrl = $("#formAccesibilidadLetra").attr('action');
+  const buttonValue = $(this).val();
+  var formData = `letra=${buttonValue}`;
+  
+  const button = $(this); // Guardar referencia al botón actual
+
+      $.ajax({
+      url: actionUrl,
+      type: 'POST',
+      data: formData,
+
+      success: function(response) {
+          // Mostrar mensaje de éxito o error
+          $('#formAccesibilidadLetra .dropdown-item').removeClass('active');
+          button.addClass('active');
+          ajustes_texto(buttonValue);
+          $.get('/toasts', function(data) {
+              $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
+          });           
+      },
+      error: function(xhr, status, error) {
+          console.error('Error en la solicitud AJAX:', error);
+          $('#errorFuncionamiento .toast-body').text(`Hubo un problema con la solicitud: ${error}`);
+          $('#errorFuncionamiento').toast('show');
+      }
+  });
+
+});
+
 
 function habilitarEdicion() {
   editarNombre.setAttribute("disabled", "false");
@@ -307,44 +325,11 @@ function habilitarEdicion() {
   editarContrasena.textContent = editarContrasena.getAttribute("placeholder");
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  //Identificamos los elementos a los que queremos añadirle el EventListener
-  document.querySelectorAll("#informacion button").forEach(function (button) {
-    button.addEventListener("click", function (event) {
-      // Evita que el dropdown se cierre al hacer clic
-      event.stopPropagation();
+$(document).ready(function(){
 
-      document.querySelectorAll("#informacion button").forEach(function (i) {
-        i.classList.remove("activo");
-      });
+  let tema = $('button[name="tema"].active').val();
+  let letra = $('button[name="letra"].active').val();
 
-      button.classList.add("activo");
-    });
-  });
-});
-
-$("#formAccesibilidad button[type=submit]").on("click", (event) => {
-  event.preventDefault();
-  let tema = "";
-  if ($("#temaPredeterminado").hasClass("active")) tema = "predeterminado";
-  else if ($("#temaClaro").hasClass("active")) tema = "claro";
-  else if ($("#temaOscuro").hasClass("active")) tema = "oscuro";
-  else if ($("#temaDeuteranomalia").hasClass("active")) tema = "deuteranomalia";
-  else if ($("#temaProtanomalia").hasClass("active")) tema = "protanomalia";
-  else if ($("#temaProtanopia").hasClass("active")) tema = "protanopia";
-  else if ($("#temaDeuteranopia").hasClass("active")) tema = "deuteranopia";
-  else if ($("#temaTritanomalia").hasClass("active")) tema = "tritanomalia";
-  else if ($("#temaTritanopia").hasClass("active")) tema = "tritanopia";
-  else tema = "predeterminado";
-
-  let letra = "";
-  if ($("#letraNormal").hasClass("active")) letra = "normal";
-  else if ($("#letraGrande").hasClass("active")) letra = "grande";
-  else if ($("#letraMuyGrande").hasClass("active")) letra = "muy grande";
-  else letra = "normal";
-
-  $("#inputTema").prop("value", tema);
-  $("#inputLetra").prop("value", letra);
-
-  $("#formAccesibilidad").off("submit").submit();
+  ajustes_texto(letra);
+  ajustes_color(tema);
 });

@@ -36,7 +36,8 @@ $(document).ready(function(){
     
     const buttonValue = $(this).val(); // Obtiene el valor del botón presionado
     var formData = `tiempo=${buttonValue}`;
-    
+
+    const button = $(this); // Guardar referencia al botón actual
         $.ajax({
         url: '/notificaciones/recordar',
         type: 'POST',
@@ -44,6 +45,8 @@ $(document).ready(function(){
 
         success: function(response) {
             // Mostrar mensaje de éxito o error
+            $('#formRecordatorios .dropdown-item').removeClass('active');
+            button.addClass('active');
             $.get('/toasts', function(data) {
                 $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
             });           
