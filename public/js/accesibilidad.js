@@ -24,7 +24,13 @@ function ajustes_color(tema) {
 }
 
 function temaClaro() {
-  $("header").removeClass("bg-black");
+
+  $('header .logo').attr('src', '/resources/logo.png');
+
+  $("body").removeClass("bg-dark");
+  $("body").addClass("bg-light");
+
+  $("header").removeClass("bg-dark");
   $("header").addClass("bg-light");
 
   $("header a").removeClass("text-light");
@@ -132,8 +138,14 @@ function temaClaro() {
 }
 
 function temaOscuro() {
+
+  $('header .logo').attr('src', '/resources/logo-negativo.png');
+
+  $("body").removeClass("bg-light");
+  $("body").addClass("bg-dark");
+
   $("header").removeClass("bg-light");
-  $("header").addClass("bg-black");
+  $("header").addClass("bg-dark");
 
   $("header a").removeClass("text-dark");
   $("header a").addClass("text-light");
