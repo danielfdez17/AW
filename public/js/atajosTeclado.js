@@ -6,7 +6,7 @@ $(document).keydown(function (e) {
             
         //     focusedEvent.closest('.evento').find('.btn-inscribir').click();
         // }
-    } else if (e.key === 'p') {
+    } else if (e.ctrlKey && e.key === 'm') {
         $('#botonPerfil').click();
 
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
