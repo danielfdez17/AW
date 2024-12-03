@@ -160,9 +160,9 @@ function enviar_accion(accion, id_evento) {
           $.get("/asistentes", function (data) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, "text/html");
-            const eventosContent = doc.querySelector(".eventos").innerHTML;
+            const eventosContent = doc.querySelector(`.evento${response.id}`);
+            $("#listaEventos").append(eventosContent);
 
-            $(".eventos").html(eventosContent);
           });
 
           $.get("/toasts", function (data) {
