@@ -22,14 +22,10 @@ function ajustes_color(tema) {
   let root = document.documentElement;
   switch (tema) {
     case "claro":
-      root.style.setProperty("--inicio-degradado", inicio_degradado_claro);
-      root.style.setProperty("--fin-degradado", fin_degradado_claro);
-      root.style.setProperty("--text-color", text_color_claro);
+      temaClaro();
       break;
     case "oscuro":
-      root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
-      root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
-      root.style.setProperty("--text-color", text_color_oscuro);
+      temaOscuro();
       break;
     case "deuteranomalia":
       break;
@@ -44,32 +40,196 @@ function ajustes_color(tema) {
     case "titanopia":
       break;
     default:
-      root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
-      root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
-      root.style.setProperty("--text-color", text_color_oscuro);
+      temaHeader("claro");
+      temaFooter("claro");
       break;
   }
-  //   if (tema == "claro") {
-  //     root.style.setProperty("--inicio-degradado", inicio_degradado_claro);
-  //     root.style.setProperty("--fin-degradado", fin_degradado_claro);
-  //     root.style.setProperty("--text-color", text_color_claro);
-  //   } else if (tema == "oscuro") {
-  //     root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
-  //     root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
-  //     root.style.setProperty("--text-color", text_color_oscuro);
-  //   } else if (tema == "predeterminado") {
-  //     root.style.setProperty("--inicio-degradado", inicio_degradado_oscuro);
-  //     root.style.setProperty("--fin-degradado", fin_degradado_oscuro);
-  //     root.style.setProperty("--text-color", text_color_oscuro);
-  //   }
+}
+
+function temaClaro() {
+  $("header").removeClass("bg-black");
+  $("header").addClass("bg-light");
+
+  $("header a").removeClass("text-light");
+  $("header a").addClass("text-black");
+
+  $("header [href='/logOut']").removeClass("text-light");
+  $("header [href='/logOut']").addClass("text-dark");
+
+  $("header #botonNotificaciones").removeClass("text-light");
+  $("header #botonNotificaciones").addClass("text-dark");
+  $("header #botonAccesibilidad").removeClass("text-light");
+  $("header #botonAccesibilidad").addClass("text-dark");
+
+  $("header #formAccesibilidad").addClass("text-dark");
+  $("header #formAccesibilidad").removeClass("text-light");
+  $("header #formAccesibilidad").addClass("bg-light");
+  $("header #formAccesibilidad").removeClass("bg-dark");
+
+  $("header .dropdown-menu").addClass("text-dark");
+  $("header .dropdown-menu").removeClass("text-light");
+  $("header .dropdown-menu").addClass("bg-light");
+  $("header .dropdown-menu").removeClass("bg-dark");
+
+  $("header #formAccesibilidad #Tema").addClass("text-dark");
+  $("header #formAccesibilidad #Tema").removeClass("text-light");
+  $("header #formAccesibilidad #Tema").addClass("bg-light");
+  $("header #formAccesibilidad #Tema").removeClass("bg-dark");
+  $("header #formAccesibilidad #Tema .dropdown-item").addClass("text-dark");
+  $("header #formAccesibilidad #Tema .dropdown-item").removeClass("text-light");
+  $("header #formAccesibilidad #Tema .dropdown-item").addClass("bg-light");
+  $("header #formAccesibilidad #Tema .dropdown-item").removeClass("bg-dark");
+  $("header #formAccesibilidad #Letra").addClass("text-dark");
+  $("header #formAccesibilidad #Letra").removeClass("text-light");
+  $("header #formAccesibilidad #Letra").addClass("bg-light");
+  $("header #formAccesibilidad #Letra").removeClass("bg-dark");
+  $("header #formAccesibilidad #Letra .dropdown-item").addClass("text-dark");
+  $("header #formAccesibilidad #Letra .dropdown-item").removeClass(
+    "text-light"
+  );
+  $("header #formAccesibilidad #Letra .dropdown-item").addClass("bg-light");
+  $("header #formAccesibilidad #Letra .dropdown-item").removeClass("bg-dark");
+  $("#infoIndex").addClass("bg-light");
+  $("#infoIndex").removeClass("bg-dark");
+  $("#infoIndex").addClass("text-dark");
+  $("#infoIndex").removeClass("text-light");
+
+  $("#containerCarousel").addClass("bg-light");
+  $("#containerCarousel").removeClass("bg-dark");
+  $("#containerCarousel").addClass("text-dark");
+  $("#containerCarousel").removeClass("text-light");
+
+  $("#abrirCalendario").addClass("text-dark");
+  $("#abrirCalendario").removeClass("text-light");
+
+  $("#filtrosBusqueda").addClass("bg-light");
+  $("#filtrosBusqueda").removeClass("bg-dark");
+  $("#filtrosBusqueda").addClass("text-dark");
+  $("#filtrosBusqueda").removeClass("text-light");
+
+  $("#btnFiltrosBusqueda").addClass("text-dark");
+  $("#btnFiltrosBusqueda").removeClass("text-light");
+
+  $("#listaEventos").addClass("bg-light");
+  $("#listaEventos").removeClass("bg-dark");
+  $("#listaEventos").addClass("text-dark");
+  $("#listaEventos").removeClass("text-light");
+
+  $("#perfilHeader button:first").addClass("bg-dark");
+  $("#perfilHeader button:first").removeClass("bg-light");
+  $("#perfilHeader button:first").addClass("text-light");
+  $("#perfilHeader button:first").removeClass("text-dark");
+
+  $("#previous, #next").addClass("btn-dark");
+  $("#previous, #next").removeClass("btn-light");
+  //   $("#previous, #next").addClass("text-light");
+  //   $("#previous, #next").removeClass("text-dark");
+
+  $("#previous span:first, #next span:first").addClass("text-light");
+  $("#previous span:first, #next span:first").removeClass("text-dark");
+
+  $("footer").removeClass("bg-dark");
+  $("footer").addClass("bg-light");
+  $("footer a").removeClass("text-light");
+  $("footer a").addClass("text-dark");
+  $("footer i:first").removeClass("text-light");
+  $("footer i:first").addClass("text-dark");
+}
+
+function temaOscuro() {
+  $("header").removeClass("bg-light");
+  $("header").addClass("bg-black");
+
+  $("header a").removeClass("text-dark");
+  $("header a").addClass("text-light");
+
+  $("header [href='/logOut']").removeClass("text-dark");
+  $("header [href='/logOut']").addClass("text-light");
+
+  $("header #botonNotificaciones").removeClass("text-dark");
+  $("header #botonNotificaciones").addClass("text-light");
+  $("header #botonAccesibilidad").removeClass("text-dark");
+  $("header #botonAccesibilidad").addClass("text-light");
+
+  $("header #formAccesibilidad").addClass("text-light");
+  $("header #formAccesibilidad").removeClass("text-dark");
+  $("header #formAccesibilidad").addClass("bg-dark");
+  $("header #formAccesibilidad").removeClass("bg-light");
+
+  $("header .dropdown-menu").addClass("text-light");
+  $("header .dropdown-menu").removeClass("text-dark");
+  $("header .dropdown-menu").addClass("bg-dark");
+  $("header .dropdown-menu").removeClass("bg-light");
+
+  $("header #formAccesibilidad #Tema").addClass("text-light");
+  $("header #formAccesibilidad #Tema").removeClass("text-dark");
+  $("header #formAccesibilidad #Tema").addClass("bg-dark");
+  $("header #formAccesibilidad #Tema").removeClass("bg-light");
+  $("header #formAccesibilidad #Tema .dropdown-item").addClass("text-light");
+  $("header #formAccesibilidad #Tema .dropdown-item").removeClass("text-dark");
+  $("header #formAccesibilidad #Tema .dropdown-item").addClass("bg-dark");
+  $("header #formAccesibilidad #Tema .dropdown-item").removeClass("bg-light");
+  $("header #formAccesibilidad #Letra").addClass("text-light");
+  $("header #formAccesibilidad #Letra").removeClass("text-dark");
+  $("header #formAccesibilidad #Letra").addClass("bg-dark");
+  $("header #formAccesibilidad #Letra").removeClass("bg-light");
+  $("header #formAccesibilidad #Letra .dropdown-item").addClass("text-light");
+  $("header #formAccesibilidad #Letra .dropdown-item").removeClass("text-dark");
+  $("header #formAccesibilidad #Letra .dropdown-item").addClass("bg-dark");
+  $("header #formAccesibilidad #Letra .dropdown-item").removeClass("bg-light");
+  $("#infoIndex").addClass("bg-dark");
+  $("#infoIndex").removeClass("bg-light");
+  $("#infoIndex").addClass("text-light");
+  $("#infoIndex").removeClass("text-dark");
+
+  $("#containerCarousel").addClass("bg-dark");
+  $("#containerCarousel").removeClass("bg-light");
+  $("#containerCarousel").addClass("text-light");
+  $("#containerCarousel").removeClass("text-dark");
+
+  $("#abrirCalendario").addClass("text-light");
+  $("#abrirCalendario").removeClass("text-dark");
+
+  $("#filtrosBusqueda").addClass("bg-dark");
+  $("#filtrosBusqueda").removeClass("bg-light");
+  $("#filtrosBusqueda").addClass("text-light");
+  $("#filtrosBusqueda").removeClass("text-dark");
+
+  $("#btnFiltrosBusqueda").addClass("text-light");
+  $("#btnFiltrosBusqueda").removeClass("text-dark");
+
+  $("#listaEventos").addClass("bg-dark");
+  $("#listaEventos").removeClass("bg-light");
+  $("#listaEventos").addClass("text-light");
+  $("#listaEventos").removeClass("text-dark");
+
+  $("#perfilHeader button:first").addClass("bg-light");
+  $("#perfilHeader button:first").removeClass("bg-dark");
+  $("#perfilHeader button:first").addClass("text-dark");
+  $("#perfilHeader button:first").removeClass("text-light");
+
+  $("#previous, #next").addClass("btn-light");
+  $("#previous, #next").removeClass("btn-dark");
+  //   $("#previous, #next").addClass("text-dark");
+  //   $("#previous, #next").removeClass("text-light");
+
+  $("#previous span:first, #next span:first").addClass("bg-dark");
+  $("#previous span:first, #next span:first").removeClass("bg-light");
+
+  $("footer").removeClass("bg-light");
+  $("footer").addClass("bg-dark");
+  $("footer a").removeClass("text-dark");
+  $("footer a").addClass("text-light");
+  $("footer i:first").removeClass("text-dark");
+  $("footer i:first").addClass("text-light");
 }
 
 //Ajustes tamaño de letra
 function ajustes_texto(tam_letra) {
-  if (tam_letra == "normal") document.documentElement.style.fontSize = "18px";
-  else if (tam_letra == "grande")
+  if (tam_letra === "normal") document.documentElement.style.fontSize = "18px";
+  else if (tam_letra === "grande")
     document.documentElement.style.fontSize = "22px";
-  else if (tam_letra == "muy grande")
+  else if (tam_letra === "muy grande")
     document.documentElement.style.fontSize = "26px";
 }
 
@@ -147,30 +307,9 @@ $("#formAccesibilidad button[type=submit]").on("click", (event) => {
   else if ($("#letraGrande").hasClass("active")) letra = "grande";
   else if ($("#letraMuyGrande").hasClass("active")) letra = "muy grande";
   else letra = "normal";
-  // let tema = "";
-  //   $("#formAccesibilidad #Tema li button").each((index) => {
-  //     // alert($(this).hasClass("active"));
-  //     console.log(index + ": " + $(this).prop("id"));
-  //     if ($(this).hasClass("active")) {
-  //       tema = button.prop("value");
-  //       alert(tema);
-  //     }
-  //   });
-  //   let letra = "";
-  //   $("#formAccesibilidad #Letra").each(() => {
-  //     var li = $(this).find("li");
-  //     if (li.hasClass("active")) {
-  //       letra = li.prop("value");
-  //       alert(letra);
-  //     }
-  //   });
-  // alert(`Tema: ${tema} \n Letra: ${letra}`);
+
   $("#inputTema").prop("value", tema);
   $("#inputLetra").prop("value", letra);
-//   alert(
-//     `Tema: ${$("#inputTema").prop("value")} \n Letra: ${$("#inputLetra").prop(
-//       "value"
-//     )}`
-//   );
+
   $("#formAccesibilidad").off("submit").submit();
 });

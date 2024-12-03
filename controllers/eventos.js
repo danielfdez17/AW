@@ -57,9 +57,11 @@ class EventosController {
 
         daoEventos.readEventoPorFecha(fecha, (eventos) => {
           let sePuedeInsertar = true;
-          eventos.forEach((evento) => {
-            if (evento.hora + evento.duracion >= hora) sePuedeInsertar = false;
-          });
+          if (eventos) {
+              eventos.forEach((evento) => {
+                if (evento.hora + evento.duracion >= hora) sePuedeInsertar = false;
+              });
+          }
           if (sePuedeInsertar) {
             daoEventos.createEvento(
               {
@@ -70,8 +72,8 @@ class EventosController {
                 duracion,
                 ubicacion,
                 capacidad_maxima,
-                tipo_evento,
                 id_organizador,
+                tipo_evento,
               },
               (err) => {
                 if (err) next(err);
