@@ -12,7 +12,7 @@
 
         <div class="ms-3 d-flex align-items-center justify-content-center">
             <% if (usuario) { %>
-                <button id="botonNotificaciones" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" aria-label="Notificaciones">
+                <button id="botonNotificaciones" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" aria-label="Notificaciones">
                     <span class="material-symbols-rounded fs-4 d-flex align-items-center">
                         notifications
                     </span>
@@ -21,7 +21,7 @@
 
                 <%- include('./notificaciones.ejs') %>
 
-                <button class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center" data-bs-toggle="dropdown" aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
+                <button class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="dropdown" aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
                     <span class="material-symbols-rounded fs-4 d-flex align-items-center">
                     settings
                     </span>
@@ -36,20 +36,20 @@
     <div class="mt-2 d-flex align-items-center gap-2 me-5">
 
         <% if (!usuario) { %>
-            <button class="btn border-0 bg-transparent d-flex align-items-center inicio" data-bs-toggle="modal" data-bs-target="#modalLogin" aria-label="Identificarse">
+            <button class="btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="modal" data-bs-target="#modalLogin" aria-label="Identificarse">
                 <span class="fs-4">
                     Log In
                 </span>
             </button>
             
-            <button class="btn border-0 bg-black d-flex align-items-center registrar"  data-bs-toggle="modal" data-bs-target="#modalSignUp" aria-label="Registrarse">
-                <span class="fs-4">
+            <button class="btn border-0 bg-black d-flex align-items-center focus"  data-bs-toggle="modal" data-bs-target="#modalSignUp" aria-label="Registrarse">
+                <span class="fs-4 text-light">
                     Sign Up
                 </span>
             </button>
         <% } else { %>
-            <div id="perfilHeader" class="d-flex align-items-center justify-content-between px-3 bg-black text-white usuario gap-4">
-                <button type="button" class="btn btn-transparent text-white" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil" aria-label="Editar perfil">
+            <div id="perfilHeader" class="d-flex align-items-center justify-content-between px-3 text-white usuario gap-4">
+                <button type="button" class="btn btn-dark border-0 text-light botonPerfil" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil" aria-label="Editar perfil">
 
                 <img src="/imagen/<%= usuario.id %>" alt="Foto de usuario" class="rounded-circle border border-white border-1" width="25" height="25" onerror="this.src='/resources/icon-default.png'"/>
 
@@ -59,7 +59,7 @@
                 </button>
                 
 
-                <a href="/logOut" class="text-white d-flex align-items-center text-decoration-none">
+                <a href="/logOut" class="text-black d-flex align-items-center text-decoration-none">
                     <span class="material-symbols-rounded fs-2" href="/logOut">
                         logout
                     </span>

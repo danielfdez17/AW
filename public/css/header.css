@@ -4,22 +4,14 @@
     width: auto;
 }
 
-.inicio:hover
+.focus:focus, .focus:hover
 {
     text-decoration: underline;
 }
 
-.registrar
+.botonPerfil:focus, .botonPerfil:hover
 {
-    color: white;
-    border-radius: 20px;
-    transition: .3s;
-}
-
-.registrar:hover
-{
-    color: white;
-    border-radius: 20px;
+    background-color: #ea4c89;
 }
 
 .registrar:focus
