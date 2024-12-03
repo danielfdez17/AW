@@ -12,47 +12,50 @@
 <body class="h-100">
     <%- include('./fragments/header.ejs') %>
 
-    <div id="infoIndex" class="bg-light text-dark py-5 mb-1">
-        <div class="container text-center">
-            <h1 class="display-3 mb-4 hero">Organiza y conecta <br>tus eventos universitarios</h1>
-            <p class="lead text-secondary mb-5">Facilita la gestión y participación en eventos académicos, culturales y deportivos de tu universidad.</p>
-        </div>
-    </div>
-
-    <div id="containerCarousel" class="row m-0 d-flex sticky-top custom-sticky justify-content-around align-items-center z-index-1">
-
-        <div id="containerCalendario" class="col-12 col-sm-2 d-flex flex-column align-items-center ms-md-5">
-            <button class="btn fs-2" aria-label="Abrir calendario" id="abrirCalendario">
-                <i class="bi bi-calendar-event"></i>
-            </button>
-            <input type="date" class="ms-sm-5 form-control" id="inputCalendario">
-        </div>
-
-        <div class="col-12 col-sm-9 d-flex justify-content-around align-items-center">
-            <button id="previous" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center"  type="button" data-bs-target="#calendario" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
-            </button>
-            <span id="fecha" class="fs-3"><%= new Date().toLocaleDateString() %></span>
-            <button id="next" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center" type="button" data-bs-target="#calendario" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-        </div>
-    </div>
-
-    <div id="calendario" class="carousel slide" data-bs-wrap="true">
-        <div class="carousel-inner" id="eventosCarousel">
-            <div class="carousel-item active">
-                <%- include('./fragments/lista_eventos.ejs') %>
+    <main>
+        <div id="infoIndex" class="bg-light text-dark py-5 pb-1">
+            <div class="container text-center">
+                <h1 class="display-3 mb-4 hero">Organiza y conecta <br>tus eventos universitarios</h1>
+                <p class="lead text-secondary mb-5">Facilita la gestión y participación en eventos académicos, culturales y deportivos de tu universidad.</p>
             </div>
         </div>
-    </div>
 
+        <div id="containerCarousel" class="row m-0 d-flex sticky-top custom-sticky justify-content-around align-items-center z-index-1">
+
+            <div id="containerCalendario" class="col-12 col-sm-2 d-flex flex-column align-items-center ms-md-5">
+                <button class="btn fs-2" aria-label="Abrir calendario" id="abrirCalendario">
+                    <i class="bi bi-calendar-event"></i>
+                </button>
+                <input type="date" class="ms-sm-5 form-control" id="inputCalendario">
+            </div>
+
+            <div class="col-12 col-sm-9 d-flex justify-content-around align-items-center">
+                <button id="previous" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center"  type="button" data-bs-target="#calendario" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
+                </button>
+                <span id="fecha" class="fs-3"><%= new Date().toLocaleDateString() %></span>
+                <button id="next" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center" type="button" data-bs-target="#calendario" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="calendario" class="carousel slide m-1" data-bs-wrap="true">
+            <div class="carousel-inner" id="eventosCarousel">
+                <div class="carousel-item active">
+                    <%- include('./fragments/lista_eventos.ejs') %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toasts -->
+        <div id="contenedor-toasts">
+            <%- include('./fragments/toasts.ejs') %> 
+        </div>
+    </main>
     <%- include('./fragments/footer.ejs') %>
 
-    <!-- Toasts -->
-    <div id="contenedor-toasts">
-        <%- include('./fragments/toasts.ejs') %> 
-    </div>
+
 
     <script src="/js/accesibilidad.js"></script>
     <script src="/js/evento.js"></script>

@@ -267,7 +267,14 @@ function filtradoFecha() {
     } else {
       cardEvento.addClass("d-none"); // Ocultar si no coincide
     }
-    if (!existe) $("#noEventos").show();
-    else $("#noEventos").hide();
   });
+
+  if (!existe) {
+    // Añadir el mensaje dentro de #listaEventos
+    $("#listaEventos").append('<span class="text-secondary fs-1 text-center vh-100 d-flex justify-content-center align-items-center">No hay eventos registrados</span>');
+  }
+  else {
+    // Eliminar el mensaje si existe
+    $("#listaEventos span").remove();
+  }
 }
