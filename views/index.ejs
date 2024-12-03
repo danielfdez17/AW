@@ -20,24 +20,24 @@
     </div>
     
 
-    <div class="d-flex flex-wrap custom-sticky justify-content-around align-items-center">
+    <div class="row m-0 d-flex custom-sticky justify-content-around align-items-center">
 
-        <div id="containerCalendario" class="start-0 d-flex flex-column align-items-center ms-md-5">
+        <div id="containerCalendario" class="col-12 col-sm-2 d-flex flex-column align-items-center ms-md-5">
             <button class="btn fs-2" aria-label="Abrir calendario" id="abrirCalendario">
                 <i class="bi bi-calendar-event"></i>
             </button>
-            <input type="date" class="form-control" id="inputCalendario">
+            <input type="date" class="ms-sm-5 form-control" id="inputCalendario">
         </div>
 
-        <button id="previous" class="btn btn-dark"  type="button" data-bs-target="#calendario" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <span id="fecha" class="fs-3"><%= new Date().toLocaleDateString() %></span>
-        <button id="next" class="btn btn-dark" type="button" data-bs-target="#calendario" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="col-12 col-sm-9 d-flex justify-content-around align-items-center">
+            <button id="previous" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center"  type="button" data-bs-target="#calendario" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
+            </button>
+            <span id="fecha" class="fs-3"><%= new Date().toLocaleDateString() %></span>
+            <button id="next" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center" type="button" data-bs-target="#calendario" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
     </div>
 
     <div id="calendario" class="carousel slide" data-bs-wrap="true">
