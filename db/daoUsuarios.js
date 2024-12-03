@@ -63,14 +63,13 @@ class DAOUsuarios {
       }
   
       // Base de la consulta y parámetros iniciales
-      let sql = "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ?, rol = ?";
+      let sql = "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ?";
       const params = [
         usuario.nombre,
         usuario.correo,
         usuario.telefono,
         usuario.contrasena,
         usuario.id_facultad,
-        usuario.rol,
       ];
   
       // Agregar el campo foto solo si no es null

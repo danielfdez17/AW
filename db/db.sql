@@ -20,7 +20,7 @@ create table usuarios(
     id_facultad int not null,
     rol varchar(20) not null,
     contrasena varchar(50) not null,
-    recordatorio varchar(50) not null default "1 hora",
+    recordatorio varchar(50) not null default "60",
     foto BLOB,
     foreign key (id_facultad) references facultades(id)
 );
