@@ -12,7 +12,7 @@
 
         <div class="ms-3 d-flex align-items-center justify-content-center">
             <% if (usuario) { %>
-                <button id="botonNotificaciones" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" aria-label="Notificaciones">
+                <button id="botonNotificaciones" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus ratonDesbloqueo" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" aria-label="Notificaciones">
                     <span class="material-symbols-rounded fs-4 d-flex align-items-center">
                         notifications
                     </span>
@@ -21,7 +21,7 @@
 
                 <%- include('./notificaciones.ejs') %>
 
-                <button id="botonAccesibilidad" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="dropdown" aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
+                <button id="botonAccesibilidad" class="dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="dropdown" data-bs-auto-close="outside"  aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
                     <span class="material-symbols-rounded fs-4 d-flex align-items-center">
                     settings
                     </span>
@@ -30,7 +30,7 @@
 
                 <%- include('./accesibilidad.ejs') %>
 
-                <button id="botonAtajosTeclado" class="d-none d-sm-inline dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="dropdown" aria-label="Abrir desplegabla de atajos de teclado" title="Ajustes de tema y letra">
+                <button id="botonAtajos" class="d-none d-sm-inline dropdown-toggle btn border-0 bg-transparent d-flex align-items-center focus" data-bs-toggle="dropdown" aria-label="Abrir ajustes de tema y letra" title="Ajustes de tema y letra">
                     <span> Atajos de teclado </span>
                 </button>
 
