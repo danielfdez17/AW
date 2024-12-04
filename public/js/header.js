@@ -19,7 +19,7 @@ $(document).ready(function () {
         if (!dropdownMenu.is(':hover') && !dropdownboton.is(':hover')) {
           instance.hide(); // Oculta el dropdown si no hay hover en el botón ni en el menú
         }
-      }, 5); // Pequeña espera para permitir que el ratón se desplace del botón al menú
+      }, 30); // Pequeña espera para permitir que el ratón se desplace del botón al menú
     });
 
     // Si el ratón sale del menú, ocultamos el dropdown
