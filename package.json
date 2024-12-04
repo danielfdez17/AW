@@ -17,7 +17,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "devDependencies": {
-    "nodemon": "3.1.7"
+    "nodemon": "^3.1.7"
   },
   "scripts": {
     "test": "mocha test/**/*.js",

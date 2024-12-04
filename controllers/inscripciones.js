@@ -21,11 +21,8 @@ class InscripcionesController {
           if (!existe && inscripcion.id == id) {
             existe = true;
 
-            daoInscripciones.readInscripcion(
-              { id_usuario: req.session.usuario.id, id_evento: inscripcion.id },
-              (err, evento_inscrito) => {
-                if (err)
-                  if (err) next(err);
+            daoInscripciones.readInscripcion({ id_usuario: req.session.usuario.id, id_evento: inscripcion.id },(err, evento_inscrito) => {
+                if (err) next(err);
                 else {
                   if (evento_inscrito.activo) {
                     res.setFlash({
@@ -127,7 +124,7 @@ class InscripcionesController {
                 daoInscripciones.readListaEsperaPorEvento(
                   inscripcion.id,
                   (lista) => {
-                    if (lista.length > 0) {
+                    if (lista && lista.length > 0) {
                       daoInscripciones.ListaEsperaAInscrito(
                         lista[0],
                         (err) => {
