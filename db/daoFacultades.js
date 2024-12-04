@@ -20,7 +20,7 @@ class DAOFacultades {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }

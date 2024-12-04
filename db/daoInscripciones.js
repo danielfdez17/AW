@@ -21,7 +21,7 @@ class DAOInscripciones {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }
@@ -40,7 +40,7 @@ class DAOInscripciones {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }
@@ -155,7 +155,7 @@ class DAOInscripciones {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }
@@ -174,7 +174,7 @@ class DAOInscripciones {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }
@@ -193,7 +193,7 @@ class DAOInscripciones {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }
@@ -215,7 +215,7 @@ class DAOInscripciones {
             callback(err);
             return;
           }
-          callback(rows);
+          callback(null, rows);
         }
       );
     });

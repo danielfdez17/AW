@@ -29,7 +29,7 @@ class DAOComentarios {
             callback(err);
             return;
           }
-          callback(rows[0]);
+          callback(null, rows[0]);
         }
       );
     });
@@ -49,7 +49,7 @@ class DAOComentarios {
           callback(err);
           return;
         }
-        callback(rows);
+        callback(null, rows);
       });
     });
   }

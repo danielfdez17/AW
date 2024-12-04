@@ -67,7 +67,7 @@ class DAOAccesibilidad {
           callback(err);
           return;
         }
-        callback(rows[0]);
+        callback(null, rows[0]);
       });
     });
   }

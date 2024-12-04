@@ -30,9 +30,9 @@ function checkHoraDuracion(hora, duracion) {
 }
 
 // Función que comprueba que la hora de un evento es posterior a la actual
-function checkFecha(fecha) {
+function checkFecha(fecha, hora) {
   const fechaActual = new Date();
-  const fechaIntroducida = new Date(fecha);
+  const fechaIntroducida = new Date(fecha, hora);
 
   return fechaIntroducida >= fechaActual;
 }
@@ -59,7 +59,7 @@ class EventosController {
     const capacidad_maxima = parseInt(capacidad_maxima_string);
 
     //Comprobamos que sea posterior a la fecha actual
-    if (checkFecha(fecha)) {
+    if (checkFecha(fecha, hora)) {
 
       //Comprobamos que cumpla con el horario de la universidad
       if (checkHoraDuracion(hora, duracion)) {
@@ -113,14 +113,14 @@ class EventosController {
           message: "Debes respetar los horarios de la universidad",
           type: "error",
         });
-        res.json({});
+        res.redirect("/organizadores");
       }
     } else {
       res.setFlash({
         message: "Debe ser una fecha igual o posterior a la actual",
         type: "error",
       });
-      res.json({});
+      res.redirect("/organizadores");
     }
   }
 
