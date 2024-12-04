@@ -27,8 +27,8 @@ $(document).ready(function () {
   $("#formSignUp").on("submit", function (event) {
     event.preventDefault();
 
-    // Se comprueba que la entrada del usuario no contenga inyecciones sql
-    const regex = /\b(select|insert|delete|drop|update)\b/i;
+    const regex =
+      /\b(select|insert|create|delete|update|drop|union|alter|truncate|and|or|like|between)\b/i;
     var archivo = $("#foto")[0].files[0];
 
     if (archivo) {
@@ -44,8 +44,7 @@ $(document).ready(function () {
         return;
       }
       //Comprobamos que el tamaño de la imagen sea menor a 64KB
-      else if(archivo.size < 64000)
-      {
+      else if (archivo.size < 64000) {
         $("#errorFuncionamiento .toast-body").text(
           "Por favor, sube solo imagenes menores de 64KB."
         );
