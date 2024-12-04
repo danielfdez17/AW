@@ -57,13 +57,12 @@ CREATE TABLE notificaciones (
 );
 
 create table comentarioYValoraciones(
-    id int not null auto_increment,
     id_usuario int not null,
     id_evento int not null,
     comentario text not null,
     fecha_comentario date not null default current_date,
     valoracion int not null,
-    primary key (id, id_usuario, id_evento),
+    primary key (id_usuario, id_evento),
     foreign key (id_usuario) references usuarios(id),
     foreign key (id_evento) references eventos(id)
 );
