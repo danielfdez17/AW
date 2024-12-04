@@ -154,7 +154,7 @@ const comprobacion = [
   },
 ];
 
-router.post("/accesibilidad/Tema/:id", (req, res) => {
+router.post("/accesibilidad/Tema/:id", comprobacion, (req, res) => {
   const { id } = req.params;
   const { tema } = req.body;
   daoAccesibilidad.updateTema({ tema, id }, (err) => {
@@ -165,7 +165,7 @@ router.post("/accesibilidad/Tema/:id", (req, res) => {
   });
 });
 
-router.post("/accesibilidad/Letra/:id", (req, res) => {
+router.post("/accesibilidad/Letra/:id", comprobacion, (req, res) => {
   const { id } = req.params;
   const { letra } = req.body;
   daoAccesibilidad.updateLetra({letra, id }, (err) => {

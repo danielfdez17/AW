@@ -24,15 +24,4 @@ $(() => {
         }
     });
    
-});
-
-$(document).ready(function(){
-    $("#formLogIn").on('submit', function(event) {
-    event.preventDefault(); // Evitar el envío del formulario
-    
-  
-    $("#formLogIn")[0].submit(); // Enviar el formulario de manera programática
-  });
-});
-  
-  
+}); 

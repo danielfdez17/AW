@@ -1,6 +1,7 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
+const { body, validationResult } = require("express-validator");
 
 const DAONotificaciones = require("../db/daoNotificaciones.js");
 const DAOUsuarios = require("../db/daoUsuarios.js");
@@ -9,7 +10,60 @@ const pool = require("../db/pool.js");
 const daoNotificaciones = new DAONotificaciones(pool);
 const daoUsuarios= new DAOUsuarios(pool);
 
-router.post("/eliminar", function (req, res) {
+const comprobacion = [
+  body("*")
+    .matches(/^[a-zA-Z0-9_@.:/áéíóúÁÉÍÓÚ\-]*$/)
+    .withMessage("Caracteres no permitidos")
+    .custom((value) => {
+      const sqlKeywords = [
+        "SELECT",
+        "INSERT",
+        "CREATE",
+        "DELETE",
+        "UPDATE",
+        "DROP",
+        "UNION",
+        "ALTER",
+        "TRUNCATE",
+        "--",
+        "AND",
+        "OR",
+        "LIKE",
+        "BETWEEN"
+      ];
+      if (
+        sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
+      ) {
+        throw new Error("Uso de palabras reservadas no permitido");
+      }
+      return true;
+    }),
+
+  // Maneja los resultados de la validación
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const { ip } = req;
+
+      // Construir mensajes personalizados
+      const errorDetails = errors.array().map((error) => ({
+        campo: error.param,
+        valorErroneo: error.value,
+        mensaje: error.msg,
+      }));
+
+      daoListaNegra.createListaNegra(ip, (err) => {
+        if (err) next(err);
+        else {
+          res.status(401).json({ errores: errorDetails });
+        }
+      });
+    } else next();
+  },
+];
+
+
+router.post("/eliminar", comprobacion, function (req, res) {
 
     const {id} = req.body;
   
@@ -28,7 +82,7 @@ router.post("/eliminar", function (req, res) {
     });
 });
 
-router.post("/recordar", function (req, res) {
+router.post("/recordar", comprobacion, function (req, res) {
 
   const {tiempo} = req.body;
   const id = req.session.usuario.id;
