@@ -42,6 +42,15 @@ $(document).ready(function () {
         $("#errorFuncionamiento").toast("show");
         return;
       }
+      //Comprobamos que el tamaño de la imagen sea menor a 64KB
+      else if(archivo.size < 64000)
+      {
+        $("#errorFuncionamiento .toast-body").text(
+          "Por favor, sube solo imagenes menores de 64KB."
+        );
+        $("#errorFuncionamiento").toast("show");
+        return;
+      }
     }
 
     if (

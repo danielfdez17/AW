@@ -69,6 +69,10 @@ $("#formEditarPerfil").on("submit", (event) => {
       message: "Por favor, sube solo archivos JPG, JPEG o PNG.",
     },
     {
+      condition: archivo && (archivo.size >= 64000),
+      message: "Por favor, sube solo imagenes menores de 64KB.",
+    },
+    {
       condition: /\d/.test($("#editarNombre").val()),
       message: "El campo nombre no puede contener números.",
     },
