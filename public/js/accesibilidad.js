@@ -42,6 +42,9 @@ function temaClaro() {
   $("header #botonAccesibilidad").removeClass("text-light");
   $("header #botonAccesibilidad").addClass("text-dark");
 
+  $("header #botonAtajos").removeClass("text-light");
+  $("header #botonAtajos").addClass("text-dark");
+
   $("header #botonAtajosTeclado").removeClass("text-light");
   $("header #botonAtajosTeclado").addClass("text-dark");
 
@@ -182,6 +185,9 @@ function temaOscuro() {
 
   $("header #botonAccesibilidad").removeClass("text-dark");
   $("header #botonAccesibilidad").addClass("text-light");
+
+  $("header #botonAtajos").removeClass("text-dark");
+  $("header #botonAtajos").addClass("text-light");
 
   $("header #botonAtajosTeclado").removeClass("text-dark");
   $("header #botonAtajosTeclado").addClass("text-light");
