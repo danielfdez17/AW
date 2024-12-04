@@ -21,5 +21,5 @@ $("#formNuevoComentario").on("submit", (event) => {
     return;
   }
 
-  $("#formNuevoComentario").submit();
+  $("#formNuevoComentario")[0].submit();
 });

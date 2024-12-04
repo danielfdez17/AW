@@ -17,7 +17,7 @@
                 <%- include("./fragments/comentario.ejs", { comentario: comentario }) %>
             <% }) %>
         <% } %>
-        <button id="btnNuevoComentario" class="btn btn-primary" type="button">Añadir comentario y valoracion</button>
+        <button id="btnNuevoComentario" class="btn btn-primary mt-3" type="button">Añadir comentario y valoracion</button>
         <form id="formNuevoComentario" action="/comentarios/<%=evento.id%>/nuevo_comentario" method="post">
             <div class="mb-3">
                 <label for="comentario" class="form-label">Comentario</label>
@@ -28,10 +28,9 @@
                 <input class="form-range" type="range" name="valoracion" id="valoracion" min="1" max="5" class="form-control">
             </div>
 
-                <button class="btn btn-primary" type="submit">Enviar comentario y valoracion</button>
-                
-            </form>
-        <%} %>
+            <button class="btn btn-primary" type="submit">Enviar comentario y valoracion</button>
+            
+        </form>
     </div>
     <script src="/js/comentarios.js"></script>
 </body>
