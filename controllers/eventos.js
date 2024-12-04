@@ -65,7 +65,9 @@ class EventosController {
       if (checkHoraDuracion(hora, duracion)) {
 
         //Comprobamos si existe algun otro evento que coincida con el nuevo
-        daoEventos.readEventoPorFecha(fecha, (eventos) => {
+        daoEventos.readEventoPorFecha(fecha, (err, eventos) => {
+          if (err) next(err);
+
           let sePuedeInsertar = true;
           if (eventos) {
             eventos.forEach((evento) => {
@@ -129,7 +131,9 @@ class EventosController {
       return res.status(400).json({ errors: validationResult(req).array() });
     const { id } = req.body;
 
-    daoInscripciones.readUsuarioListaAsistentesPorEvento(id, (usuario) => {
+    daoInscripciones.readUsuarioListaAsistentesPorEvento(id, (err, usuario) => {
+      if (err) next(err);
+
       if (usuario.length > 0) {
         res.setFlash({
           message: "No puedes eliminar este evento, ya hay gente inscrita",
@@ -169,7 +173,9 @@ class EventosController {
 
     if (checkFecha(fecha)) {
       if (checkHoraDuracion(hora, duracion)) {
-        daoEventos.readEventoPorFecha(fecha, (error, eventos) => {
+        daoEventos.readEventoPorFecha(fecha, (err, eventos) => {
+          if (err) next(err);
+
           let sePuedeActualizar = true;
           if (eventos) {
             eventos.forEach((evento) => {
@@ -184,7 +190,9 @@ class EventosController {
           }
 
           if (sePuedeActualizar) {
-            daoEventos.readEventoPorId(parseInt(id), (error, eventos) => {
+            daoEventos.readEventoPorId(parseInt(id), (err, eventos) => {
+              if (err) next(err);
+
               if (eventos.capacidad_actual < capacidad_maxima) {
                 daoInscripciones.readListaEsperaPorEvento(
                   parseInt(id),

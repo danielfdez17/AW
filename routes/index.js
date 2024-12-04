@@ -39,10 +39,8 @@ const daoComentarios = new DAOComentarios(pool);
 router.get("/", (req, res) => {
   const { ip } = req;
   daoListaNegra.readListaNegra(ip, (err, rows) => {
-    if (err) {
-      return res.status(500).json({ error: "Error en la base de datos" });
-    }
-
+    if (err) next(err);
+    
     if (rows) {
       return res
         .status(401)
@@ -55,8 +53,12 @@ router.get("/", (req, res) => {
           res.redirect("/organizadores");
         }
       } else {
-        daoFacultades.readAllFacultades((facultades) => {
-          daoEventos.readAllEventos((eventos) => {
+        daoFacultades.readAllFacultades((err, facultades) => {
+          if (err) next(err);
+
+          daoEventos.readAllEventos((err, eventos) => {
+            if (err) next(err);
+
             res.render("index", {
               eventos: eventos,
               usuario: null,
@@ -74,7 +76,7 @@ router.get("/", (req, res) => {
 router.get("/logOut", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
-      return next(createError(err)); // Maneja el error si ocurre al destruir la sesión
+      if (err) next(err);
     } else {
       res.clearCookie("connect.sid"); // Limpia la cookie de sesión
       res.redirect("/"); // Redirige al usuario a la página principal
@@ -97,12 +99,8 @@ router.get(
     }
 
     daoUsuarios.obtenerImagen(n, (err, imagen) => {
-      if (err) {
-        if (err === "No existe") {
-          return response.status(404).send("No encontrado");
-        }
-        return response.status(500).send("Error en el servidor");
-      }
+      if (err) next(err);
+
       response.end(imagen);
     });
   }
@@ -167,7 +165,8 @@ router.post("/accesibilidad/Tema/:id", comprobacion, (req, res) => {
   const { id } = req.params;
   const { tema } = req.body;
   daoAccesibilidad.updateTema({ tema, id }, (err) => {
-    if (!err) {
+    if (err) next(err);
+    else {
       res.setFlash({
         message: "Se ha cambiado el tema con exito",
         type: "exito",
@@ -181,7 +180,8 @@ router.post("/accesibilidad/Letra/:id", comprobacion, (req, res) => {
   const { id } = req.params;
   const { letra } = req.body;
   daoAccesibilidad.updateLetra({ letra, id }, (err) => {
-    if (!err) {
+    if (err) next(err);
+    else{
       res.setFlash({
         message: "Se ha cambiado la letra con exito",
         type: "exito",
@@ -237,8 +237,10 @@ router.post("/recuperar", comprobacion,  (req, res, next) =>
   mailOptions.to = correoRecuperacion;
   mailOptions.html = `<h1>Recupera tu contraseña</h1><p>Su nueva contraseña es ${numero_ramdon}</p>`;// Cuerpo HTML
 
-  daoUsuarios.readUsuarioPorCorreo(correoRecuperacion, (error, usuario)=>
+  daoUsuarios.readUsuarioPorCorreo(correoRecuperacion, (err, usuario)=>
   {
+    if (err) next(err);
+
     if(!usuario)
     {
       res.setFlash({ message: "No existe ese correo", type: "error" });
@@ -252,9 +254,9 @@ router.post("/recuperar", comprobacion,  (req, res, next) =>
           {contrasena: numero_ramdon, 
           correo: correoRecuperacion, 
           telefono: telefonoRecuperacion}, 
-        async (error) =>
+        async (err) =>
         {
-  
+          if (err) next(err);
           try {
             // Enviar correo
             const info = await transporter.sendMail(mailOptions);

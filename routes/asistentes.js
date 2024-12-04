@@ -25,16 +25,24 @@ router.get("/", (req, res) => {
     res.redirect("/");
   else
   {
-    daoFacultades.readAllFacultades((facultades) => {
-      daoEventos.readAllEventos((eventos) => {
+    daoFacultades.readAllFacultades((err, facultades) => {
+      if (err) next(err);
+      daoEventos.readAllEventos((err, eventos) => {
+        if (err) next(err);
+
         daoInscripciones.readEventosInscritosPorAsistenteActivos(
           req.session.usuario.id,
-          (eventosInscritos) => {
-  
-            daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (notificaciones) =>
+          (err, eventosInscritos) => {
+            if (err) next(err);
+
+            daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (err, notificaciones) =>
             {
-              daoAccesibilidad.readPreferencias(req.session.usuario.id, (accesibilidad) =>
+              if (err) next(err);
+
+              daoAccesibilidad.readPreferencias(req.session.usuario.id, (err, accesibilidad) =>
               {
+                if (err) next(err);
+                
                 res.render("index", {
                   eventos: eventos,
                   usuario: req.session.usuario,

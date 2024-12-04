@@ -70,8 +70,12 @@ const comprobacion = [
 
 router.get("/:id_evento", identificacionRequerida, (req, res) => {
   const { id_evento } = req.params;
-  daoEventos.readEventoPorId(id_evento, (evento) => {
-    daoComentarios.readComentarios(req.session.usuario.id, id_evento, (comentarios) => {
+  daoEventos.readEventoPorId(id_evento, (err, evento) => {
+    if (err) next(err);
+
+    daoComentarios.readComentarios(req.session.usuario.id, id_evento, (err, comentarios) => {
+      if (err) next(err);
+
       res.render("comentarios", {
         usuario: req.session.usuario,
         evento: evento,
@@ -90,15 +94,11 @@ router.post("/:id_evento/nuevo_comentario", comprobacion, (req, res) => {
   daoComentarios.createComentario(
     { id_usuario, id_evento, comentario, valoracion },
     (err) => {
-      if (!err) {
+      if (err) next(err);
+      else{
         res.setFlash({
           message: "Se ha añadido el comentario con exito",
           type: "exito",
-        });
-      } else {
-        res.setFlash({
-          message: "Error al añadir el comentario",
-          type: "error",
         });
       }
       res.redirect(`/comentarios/${id_evento}`);

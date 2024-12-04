@@ -26,10 +26,16 @@ router.get("/", (req, res) => {
     res.redirect("/");
   else
   {
-    daoFacultades.readAllFacultades((facultades) => {
-      daoEventos.readAllEventos((eventos) => {
-        daoAccesibilidad.readPreferencias(req.session.usuario.id, (accesibilidad) =>
+    daoFacultades.readAllFacultades((err, facultades) => {
+      if (err) next(err);
+
+      daoEventos.readAllEventos((err, eventos) => {
+        if (err) next(err);
+
+        daoAccesibilidad.readPreferencias(req.session.usuario.id, (err, accesibilidad) =>
           {
+            if (err) next(err);
+
             res.render("index", {
               eventos: eventos,
               usuario: req.session.usuario,
@@ -49,11 +55,19 @@ router.get("/", (req, res) => {
 
 router.get("/lista_espera/:ident", identificacionRequerida, (req, res) => {
   const ident = req.params.ident;
-  console.log(`Id del evento: ${ident}`);
-  daoEventos.readEventoPorId(ident, (evento) => {
-    daoFacultades.readAllFacultades((facultades) => {
-      daoEventos.readAllEventos((eventos) => {
-        daoInscripciones.readUsuarioListaEsperaPorEvento(ident, (lista) => {
+  daoEventos.readEventoPorId(ident, (err, evento) => {
+    if (err) next(err);
+
+    daoFacultades.readAllFacultades((err, facultades) => {
+      if (err) next(err);
+
+      daoEventos.readAllEventos((err, eventos) => {
+        if (err) next(err);
+
+        daoInscripciones.readUsuarioListaEsperaPorEvento(ident, (err, lista) => {
+          if (err) next(err);
+
+
           res.render("lista_espera", {
             ident: ident,
             usuario: req.session.usuario,
@@ -70,11 +84,18 @@ router.get("/lista_espera/:ident", identificacionRequerida, (req, res) => {
 
 router.get("/lista_asistentes/:ident", identificacionRequerida, (req, res) => {
   const ident = req.params.ident;
-  console.log(`Id del evento: ${ident}`);
-  daoEventos.readEventoPorId(ident, (evento) => {
-    daoFacultades.readAllFacultades((facultades) => {
-      daoEventos.readAllEventos((eventos) => {
-        daoInscripciones.readUsuarioListaAsistentesPorEvento(ident, (lista) => {
+  daoEventos.readEventoPorId(ident, (err, evento) => {
+    if (err) next(err);
+
+    daoFacultades.readAllFacultades((err, facultades) => {
+      if (err) next(err);
+
+      daoEventos.readAllEventos((err, eventos) => {
+        if (err) next(err);
+
+        daoInscripciones.readUsuarioListaAsistentesPorEvento(ident, (err, lista) => {
+          if (err) next(err);
+
           res.render("lista_asistentes", {
             ident: ident,
             usuario: req.session.usuario,

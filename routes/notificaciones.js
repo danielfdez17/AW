@@ -70,12 +70,8 @@ router.post("/eliminar", comprobacion, function (req, res) {
   const { id } = req.body;
 
   daoNotificaciones.EliminarNotificaciones(id, (err, result) => {
-    if (err) {
-      if (err === "No existe") {
-        return res.status(404).send("No encontrado");
-      }
-      return res.status(500).send("Error en el servidor");
-    } else {
+    if (err) next(err);
+    else {
       res.setFlash({
         message: "Notificación eliminada correctamente",
         type: "exito",
@@ -92,12 +88,8 @@ router.post("/recordar", comprobacion, function (req, res) {
   const id = req.session.usuario.id;
 
   daoUsuarios.UpdateRecordatorio({ tiempo: tiempo, id: id }, (err, result) => {
-    if (err) {
-      if (err === "No existe") {
-        return res.status(404).send("No encontrado");
-      }
-      return res.status(500).send("Error en el servidor");
-    } else {
+    if (err) next(err);
+    else {
       req.session.usuario.recordatorio = tiempo;
       res.setFlash({
         message: "Se ha actualizado el tiempo de recordatorio con exito",

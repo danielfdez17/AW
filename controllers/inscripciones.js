@@ -14,18 +14,18 @@ class InscripcionesController {
     let existe = false;
     daoInscripciones.readEventosInscritosPorAsistente(
       req.session.usuario.id,
-      (inscripciones) => {
+      (err, inscripciones) => {
+        if (err) next(err);
+
         inscripciones.forEach((inscripcion) => {
           if (!existe && inscripcion.id == id) {
             existe = true;
 
             daoInscripciones.readInscripcion(
               { id_usuario: req.session.usuario.id, id_evento: inscripcion.id },
-              (error, evento_inscrito) => {
-                if (error)
-                  res.status(500).json({
-                    error: error,
-                  });
+              (err, evento_inscrito) => {
+                if (err)
+                  if (err) next(err);
                 else {
                   if (evento_inscrito.activo) {
                     res.setFlash({
@@ -39,12 +39,11 @@ class InscripcionesController {
                         id_usuario: req.session.usuario.id,
                         id_evento: inscripcion.id,
                       },
-                      (error) => {
-                        daoEventos.incrementarCapacidadEvento(id, (error) => {
-                          if (error)
-                            res.status(500).json({
-                              error: error,
-                            });
+                      (err) => {
+                        if (err) next(err);
+
+                        daoEventos.incrementarCapacidadEvento(id, (err) => {
+                          if (err) next(err);
                           else {
                             res.setFlash({
                               message: "Inscripción realizada con exito",
@@ -63,7 +62,8 @@ class InscripcionesController {
         });
 
         if (!existe) {
-          daoEventos.readCapacidadEvento(id, (error, capacidad) => {
+          daoEventos.readCapacidadEvento(id, (err, capacidad) => {
+            if (err) next(err);
             const fecha = new Date();
             const fechaFormateada = fecha
               .toLocaleDateString("es-ES")
@@ -80,7 +80,9 @@ class InscripcionesController {
                 estado,
                 fecha_inscripcion: fechaFormateada,
               },
-              (error) => {
+              (err) => {
+                if (err) next(err);
+
                 if (estado == "espera") {
                   res.setFlash({
                     message: "Has sido añadido a la lista de espera del evento",
@@ -88,11 +90,8 @@ class InscripcionesController {
                   });
                   res.json({ id_evento: id });
                 } else {
-                  daoEventos.incrementarCapacidadEvento(id, (error) => {
-                    if (error)
-                      res.status(500).json({
-                        error: error,
-                      });
+                  daoEventos.incrementarCapacidadEvento(id, (err) => {
+                    if (err) next(err);
                     else {
                       res.setFlash({
                         message: "Has sido inscrito en el evento",
@@ -115,20 +114,24 @@ class InscripcionesController {
     let existe = false;
     daoInscripciones.readEventosInscritosPorAsistenteActivos(
       req.session.usuario.id,
-      (inscripciones) => {
+      (err, inscripciones) => {
+        if (err) next(err);
+
         inscripciones.forEach((inscripcion) => {
           if (!existe && inscripcion.id == id) {
             existe = true;
             daoInscripciones.deleteInscripcion(
               { id_usuario: req.session.usuario.id, id_evento: inscripcion.id },
-              (error) => {
+              (err) => {
+                if (err) next(err);
                 daoInscripciones.readListaEsperaPorEvento(
                   inscripcion.id,
                   (lista) => {
                     if (lista.length > 0) {
                       daoInscripciones.ListaEsperaAInscrito(
                         lista[0],
-                        (error) => {
+                        (err) => {
+                          if (err) next(err);
                           res.setFlash({
                             message: "Inscripcion anulada correctamente",
                             type: "exito",
@@ -137,11 +140,8 @@ class InscripcionesController {
                         }
                       );
                     } else {
-                      daoEventos.decrementarCapacidadEvento(id, (error) => {
-                        if (error)
-                          res.status(500).json({
-                            error: error,
-                          });
+                      daoEventos.decrementarCapacidadEvento(id, (err) => {
+                        if (err) next(err);
                         else {
                           res.setFlash({
                             message: "Inscripcion anulada correctamente",
