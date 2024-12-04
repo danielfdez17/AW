@@ -46,10 +46,9 @@ $("#cancelarEdicion, #cerrarEdicion").on("click", () => {
 
 // Muestra qué botón está activo
 $("#Perfil, #Gestion").on("click", function () {
-  // Remover la clase "active" de ambos botones
+
   $("#Perfil, #Gestion").removeClass("bg-primary");
 
-  // Añadir la clase "active" al botón clicado
   $(this).addClass("bg-primary");
 });
 
@@ -108,7 +107,6 @@ $("#formEditarPerfil").on("submit", (event) => {
     },
   ];
 
-  // Recorre todas las validaciones
   for (let validacion of validaciones) {
     if (validacion.condition) {
       $("#errorFuncionamiento .toast-body").text(validacion.message);
@@ -127,7 +125,6 @@ $("#formEditarPerfil").on("submit", (event) => {
     contentType: false,
 
     success: function (response) {
-      // Mostrar mensaje de éxito o error
 
       let rol = response.rol == "asistente" ? "asistentes" : "organizadores";
 

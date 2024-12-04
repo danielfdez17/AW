@@ -1,8 +1,6 @@
 body
 {
     font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /* font-family: "Source Serif 4", Georgia, serif */
-
 }
 
 .hero
@@ -34,9 +32,9 @@ body
 
 .botonCalendario
 {
-    width: 60px; /* Ajusta el ancho del botón */
-    height: 50px; /* Ajusta la altura del botón */
-    font-size: 18px; /* Ajusta el tamaño de la fuente */
+    width: 60px;
+    height: 50px;
+    font-size: 18px;
     border-radius: 20px;
 }
  
@@ -49,7 +47,6 @@ body
 
 .mensajes
 {
-    /* El footer de bootstrap esta en el 1030, lo superamos con 1031*/
     z-index: 1031;
 }
 

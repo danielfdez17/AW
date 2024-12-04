@@ -5,10 +5,9 @@ $(document).ready(function () {
     // Identificar el botón que disparó el submit
     var submitButton = $(event.originalEvent.submitter);
 
-    // Encontrar el input más cercano al botón dentro del mismo card
+    // Encontrar el input más cercano al botón
     var inputId = submitButton.closest(".card").find('input[name="id"]').val();
 
-    // Crear los datos a enviar
     var formData = { id: inputId };
 
     $.ajax({
@@ -17,10 +16,10 @@ $(document).ready(function () {
       data: formData,
 
       success: function (response) {
-        // Mostrar mensaje de éxito o error
+
         $("#notificacion" + response.id).remove();
         $.get("/toasts", function (data) {
-          $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+          $("#contenedor-toasts").html(data);
         });
       },
       error: function (xhr, status, error) {
@@ -36,21 +35,21 @@ $(document).ready(function () {
   $("#formRecordatorios button[type='submit']").on("click", function (event) {
     event.preventDefault();
 
-    const buttonValue = $(this).val(); // Obtiene el valor del botón presionado
+    const buttonValue = $(this).val();
     var formData = `tiempo=${buttonValue}`;
 
-    const button = $(this); // Guardar referencia al botón actual
+    const button = $(this);
     $.ajax({
       url: "/notificaciones/recordar",
       type: "POST",
       data: formData,
 
       success: function (response) {
-        // Mostrar mensaje de éxito o error
+
         $("#formRecordatorios .dropdown-item").removeClass("active");
         button.addClass("active");
         $.get("/toasts", function (data) {
-          $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+          $("#contenedor-toasts").html(data);
         });
       },
       error: function (xhr, status, error) {

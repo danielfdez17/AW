@@ -13,7 +13,7 @@ $(() => {
   $("#containerFiltroTipo").hide();
   $("#containerFiltroCapacidad").hide();
 
-  // Se muestran/ocultan los filtros de búsqueda al puslar sobre el botón
+  // Se muestran/ocultan los filtros de búsqueda al pulsar sobre el botón
   $("#btnFiltrosBusqueda").on("click", () => {
     $("#containerCalendario").toggle();
     $("#containerFiltroUbicacion").toggle();
@@ -133,8 +133,8 @@ function vaciarFiltros() {
 
 // Función que devuelve la fecha del filtro de búsqueda por fecha en formato YYYY-MM-DD
 function getValorFecha() {
-  let fecha = $("#fecha").text(); // Obtener el texto de la fecha
-  let fechaModificada = new Date(fecha.split("/").reverse().join("-")); // Convertir la fecha al formato adecuado para Date (YYYY-MM-DD)
+  let fecha = $("#fecha").text();
+  let fechaModificada = new Date(fecha.split("/").reverse().join("-"));
   return fechaModificada;
 }
 
@@ -142,15 +142,15 @@ function getValorFecha() {
 function getFechaEspanyola(fecha) {
   let fechaModificada = new Date(
     fecha.split("/").reverse().join("-")
-  ).toLocaleDateString("es-ES"); // Convertir la fecha al formato adecuado para Date (DD-MM-YYYY)
+  ).toLocaleDateString("es-ES");
   return fechaModificada;
 }
 
 // Función para actualizar la fecha en el carousel
 function updateDate(increment) {
   let fechaModificada = getValorFecha();
-  fechaModificada.setDate(fechaModificada.getDate() + increment); // Modificar la fecha (sumar o restar un día)
-  $("#fecha").text(fechaModificada.toLocaleDateString("es-ES")); // Actualizar el texto con la fecha modificada en formato España
+  fechaModificada.setDate(fechaModificada.getDate() + increment);
+  $("#fecha").text(fechaModificada.toLocaleDateString("es-ES"));
   vaciarFiltros();
 }
 
@@ -220,14 +220,14 @@ $("#inputCalendario").on("change", (event) => {
 
 // Función que filtra los eventos del día seleccionado por el usuario o el día actual
 function filtradoFecha() {
-  let fecha_actual = $("#fecha").text(); // Obtener el texto de la fecha
+  let fecha_actual = $("#fecha").text();
   fecha_actual = fecha_actual.split("/").reverse().join("-");
   let existe = false;
   $("input[name='fecha']").each((index) => {
     let fecha = $("input[name='fecha']")[index];
     let valor = fecha.placeholder;
     let id = fecha.id.replace("fecha", "");
-    let cardEvento = $(`.evento${id}`); // Seleccionar la tarjeta asociada
+    let cardEvento = $(`.evento${id}`);
 
     let valorFormateado = new Date(valor).toLocaleDateString("es-ES");
 
@@ -237,19 +237,19 @@ function filtradoFecha() {
 
     if (valorFormateado === fecha_actualFormateado) {
       existe = true;
-      cardEvento.removeClass("d-none"); // Mostrar si coincide
+      cardEvento.removeClass("d-none");
     } else {
-      cardEvento.addClass("d-none"); // Ocultar si no coincide
+      cardEvento.addClass("d-none");
     }
   });
 
+  //Anadir o elimianr mensaje de No hay eventos registrados
   if (!existe) {
     $("#listaEventos span").remove();
     $("#listaEventos").append(
       '<span class="text-secondary fs-1 text-center vh-100 d-flex justify-content-center align-items-center">No hay eventos registrados</span>'
     );
   } else {
-    // Eliminar el mensaje si existe
     $("#listaEventos span").remove();
   }
 }

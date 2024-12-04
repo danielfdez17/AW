@@ -88,7 +88,6 @@ function deshabilitarEdicion(id_evento) {
 function enviar_accion(accion, id_evento) {
   var formData = $(`#formularioEventos${id_evento}`).serialize();
 
-  // Verifica si `formData` está vacío antes de concatenar
   if (formData) {
     formData += `&id=${id_evento}`;
   } else {
@@ -101,7 +100,6 @@ function enviar_accion(accion, id_evento) {
     data: formData,
 
     success: function (response) {
-      // Mostrar mensaje de éxito o error
 
       switch (accion) {
         case "/organizadores/editar_evento":
@@ -116,7 +114,7 @@ function enviar_accion(accion, id_evento) {
           });
 
           $.get("/toasts", function (data) {
-            $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+            $("#contenedor-toasts").html(data);
           });
 
           break;
@@ -124,7 +122,7 @@ function enviar_accion(accion, id_evento) {
           if (response.id_evento) $("#evento" + response.id_evento).remove();
 
           $.get("/toasts", function (data) {
-            $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+            $("#contenedor-toasts").html(data);
           });
           break;
         case "/asistentes/inscribir_evento":
@@ -140,7 +138,7 @@ function enviar_accion(accion, id_evento) {
           });
 
           $.get("/toasts", function (data) {
-            $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+            $("#contenedor-toasts").html(data);
           });
 
           break;
@@ -153,14 +151,14 @@ function enviar_accion(accion, id_evento) {
             const eventosContent = doc.querySelector(`.evento${response.id}`);
             $("#listaEventos").append(eventosContent);
 
-            let fecha_actual = $("#fecha").text(); // Obtener el texto de la fecha
+            let fecha_actual = $("#fecha").text();
             fecha_actual = fecha_actual.split("/").reverse().join("-");
             let existe = false;
             $("input[name='fecha']").each((index) => {
               let fecha = $("input[name='fecha']")[index];
               let valor = fecha.placeholder;
               let id = fecha.id.replace("fecha", "");
-              let cardEvento = $(`.evento${id}`); // Seleccionar la tarjeta asociada
+              let cardEvento = $(`.evento${id}`);
 
               let valorFormateado = new Date(valor).toLocaleDateString("es-ES");
 
@@ -170,9 +168,9 @@ function enviar_accion(accion, id_evento) {
 
               if (valorFormateado === fecha_actualFormateado) {
                 existe = true;
-                cardEvento.removeClass("d-none"); // Mostrar si coincide
+                cardEvento.removeClass("d-none");
               } else {
-                cardEvento.addClass("d-none"); // Ocultar si no coincide
+                cardEvento.addClass("d-none");
               }
             });
 
@@ -188,7 +186,7 @@ function enviar_accion(accion, id_evento) {
           });
 
           $.get("/toasts", function (data) {
-            $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+            $("#contenedor-toasts").html(data);
           });
           break;
       }

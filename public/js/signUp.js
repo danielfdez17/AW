@@ -22,11 +22,12 @@ $(() => {
     }
   });
 });
-// Se comprueba que la entrada del usuario no contenga inyecciones sql
+
 $(document).ready(function () {
   $("#formSignUp").on("submit", function (event) {
-    event.preventDefault(); // Evitar el envío del formulario
+    event.preventDefault();
 
+    // Se comprueba que la entrada del usuario no contenga inyecciones sql
     const regex = /\b(select|insert|delete|drop|update)\b/i;
     var archivo = $("#foto")[0].files[0];
 
@@ -62,6 +63,6 @@ $(document).ready(function () {
     ) {
       return;
     }
-    $("#formSignUp")[0].submit(); // Enviar el formulario de manera programática
+    $("#formSignUp")[0].submit();
   });
 });

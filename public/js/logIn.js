@@ -67,7 +67,7 @@ $("#formRecuperarContrasena button[type='submit']").on('click', async function(e
         success: function(response) {
             // Mostrar mensaje de éxito o error
             $.get('/toasts', function(data) {
-                $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
+                $('#contenedor-toasts').html(data);
             });           
         },
         error: function(xhr, status, error) {

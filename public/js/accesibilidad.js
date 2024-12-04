@@ -332,19 +332,19 @@ $("#formAccesibilidadTema button[type='submit']").on("click", function (event) {
   const buttonValue = $(this).val();
   var formData = `tema=${buttonValue}`;
 
-  const button = $(this); // Guardar referencia al botón actual
+  const button = $(this);
   $.ajax({
     url: actionUrl,
     type: "POST",
     data: formData,
 
     success: function (response) {
-      // Mostrar mensaje de éxito o error
+
       $("#formAccesibilidadTema .dropdown-item").removeClass("active");
       button.addClass("active");
       ajustes_color(buttonValue);
       $.get("/toasts", function (data) {
-        $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+        $("#contenedor-toasts").html(data);
       });
     },
     error: function (xhr, status, error) {
@@ -364,7 +364,7 @@ $("#formAccesibilidadLetra button[type='submit']").on("click",function (event) {
     const buttonValue = $(this).val();
     var formData = `letra=${buttonValue}`;
 
-    const button = $(this); // Guardar referencia al botón actual
+    const button = $(this);
 
     $.ajax({
       url: actionUrl,
@@ -372,12 +372,12 @@ $("#formAccesibilidadLetra button[type='submit']").on("click",function (event) {
       data: formData,
 
       success: function (response) {
-        // Mostrar mensaje de éxito o error
+
         $("#formAccesibilidadLetra .dropdown-item").removeClass("active");
         button.addClass("active");
         ajustes_texto(buttonValue);
         $.get("/toasts", function (data) {
-          $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+          $("#contenedor-toasts").html(data);
         });
       },
       error: function (xhr, status, error) {
