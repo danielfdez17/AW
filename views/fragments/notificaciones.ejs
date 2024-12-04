@@ -17,13 +17,13 @@
       <% notificaciones.forEach(function(notificacion) { %>
         <div id="notificacion<%= notificacion.id %>" class="card m-2">
           <h5 class="card-header d-flex justify-content-between">
-            notificacion
+            <%= notificacion.tipo %>
                 <button type="submit" class="btn-close ms-auto" aria-label="Cerrar"></button>
                 <input type="hidden" name="id" value="<%= notificacion.id %>">
           </h5>
           <div class="card-body">
-            <h5 class="card-title"><%= notificacion.fecha %></h5>
-            <p class="card-text"><%= notificacion.mensaje %></p>
+            <h5 class="card-title"><%= notificacion.mensaje %></h5>
+            <p class="card-text text-secondary"><%= new Date(notificacion.fecha).toLocaleDateString('es-ES') %></p>
           </div>
         </div>
       <% }); %>
