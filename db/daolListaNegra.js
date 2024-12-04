@@ -1,5 +1,6 @@
 "use strict";
 
+// Clase que accede a los datos relacionados con los usuarios que han intentado acceder sin autorización en el sistema de la aplicación
 class DAOListaNegra {
   pool;
   constructor(pool) {
@@ -12,22 +13,15 @@ class DAOListaNegra {
         callback(err);
         return;
       }
-      const sql =
-        "INSERT INTO listaNegra (ip) VALUES (?)";
-      connection.query(
-        sql,
-        [
-            intruso,
-        ],
-        (err, rows) => {
-          connection.release();
-          if (err) {
-            callback(err);
-            return;
-          }
-          callback(null, rows[0]);
+      const sql = "INSERT INTO listaNegra (ip) VALUES (?)";
+      connection.query(sql, [intruso], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
         }
-      );
+        callback(null, rows[0]);
+      });
     });
   }
 
@@ -38,23 +32,16 @@ class DAOListaNegra {
         return;
       }
       const sql = "SELECT * FROM listaNegra WHERE ip = ?";
-      connection.query(
-        sql,
-        [
-            intruso,
-        ],
-        (err, rows) => {
-          connection.release();
-          if (err) {
-            callback(err);
-            return;
-          }
-          callback(null, rows[0]);
+      connection.query(sql, [intruso], (err, rows) => {
+        connection.release();
+        if (err) {
+          callback(err);
+          return;
         }
-      );
+        callback(null, rows[0]);
+      });
     });
   }
-
 }
 
 module.exports = DAOListaNegra;

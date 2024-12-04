@@ -1,5 +1,6 @@
 "use strict";
 
+// Clase que accede a los datos relacionados con los usuarios
 class DAOUsuarios {
   pool;
   constructor(pool) {
@@ -22,7 +23,7 @@ class DAOUsuarios {
           usuario.id_facultad,
           usuario.rol,
           usuario.contrasena,
-          usuario.imagen
+          usuario.imagen,
         ],
         (err, rows) => {
           connection.release();
@@ -30,7 +31,7 @@ class DAOUsuarios {
             callback(err);
             return;
           }
-          usuario.id = rows.insertId
+          usuario.id = rows.insertId;
           callback(null, usuario);
         }
       );
@@ -61,9 +62,10 @@ class DAOUsuarios {
         callback(err);
         return;
       }
-  
+
       // Base de la consulta y parámetros iniciales
-      let sql = "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ?";
+      let sql =
+        "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, contrasena = ?, id_facultad = ?";
       const params = [
         usuario.nombre,
         usuario.correo,
@@ -71,17 +73,17 @@ class DAOUsuarios {
         usuario.contrasena,
         usuario.id_facultad,
       ];
-  
+
       // Agregar el campo foto solo si no es null
       if (usuario.imagen !== null) {
         sql += ", foto = ?";
         params.push(usuario.imagen);
       }
-  
+
       // Agregar la cláusula WHERE
       sql += " WHERE id = ?";
       params.push(usuario.id);
-  
+
       // Ejecutar la consulta
       connection.query(sql, params, (err, rows) => {
         connection.release();
@@ -93,20 +95,15 @@ class DAOUsuarios {
       });
     });
   }
-  
-  UpdateRecordatorio(recordatorio, callback)
-  {
+
+  UpdateRecordatorio(recordatorio, callback) {
     this.pool.getConnection((err, con) => {
       if (err) {
         return callback(err);
       }
 
       let sql = "UPDATE usuarios SET recordatorio = ? WHERE id = ?";
-      con.query(sql, 
-      [
-        recordatorio.tiempo,
-        recordatorio.id
-      ], (err, result) => {
+      con.query(sql, [recordatorio.tiempo, recordatorio.id], (err, result) => {
         con.release();
         if (err) {
           return callback(err);
@@ -115,7 +112,7 @@ class DAOUsuarios {
         callback(null);
       });
     });
-  } 
+  }
 
   obtenerImagen(id, callback) {
     this.pool.getConnection((err, con) => {
@@ -138,7 +135,6 @@ class DAOUsuarios {
       });
     });
   }
-
 }
 
 module.exports = DAOUsuarios;

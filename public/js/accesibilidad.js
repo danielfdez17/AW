@@ -1,14 +1,11 @@
-//TODO: Cuando se fije el diseño hacer accsibilidad de colores
 "use strict";
 
-//Ajustes de tema
+// Función que actualiza los ajustes del tema
 function ajustes_color(tema) {
-
-  if(tema == 'predeterminado')
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-      tema = 'oscuro';
-    else
-      tema = 'claro'
+  if (tema == "predeterminado")
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+      tema = "oscuro";
+    else tema = "claro";
 
   switch (tema) {
     case "claro":
@@ -23,9 +20,9 @@ function ajustes_color(tema) {
   }
 }
 
+// Función que actualiza el tema de la aplicación al tema claro
 function temaClaro() {
-
-  $('header .logo').attr('src', '/resources/logo.png');
+  $("header .logo").attr("src", "/resources/logo.png");
 
   $("body").removeClass("bg-dark");
   $("body").addClass("bg-light");
@@ -71,7 +68,9 @@ function temaClaro() {
   $("header #formAccesibilidad #Letra").addClass("bg-light");
   $("header #formAccesibilidad #Letra").removeClass("bg-dark");
   $("header #formAccesibilidad #Letra .dropdown-item").addClass("text-dark");
-  $("header #formAccesibilidad #Letra .dropdown-item").removeClass("text-light");
+  $("header #formAccesibilidad #Letra .dropdown-item").removeClass(
+    "text-light"
+  );
   $("header #formAccesibilidad #Letra .dropdown-item").addClass("bg-light");
   $("header #formAccesibilidad #Letra .dropdown-item").removeClass("bg-dark");
 
@@ -121,8 +120,6 @@ function temaClaro() {
 
   $("#previous, #next").addClass("btn-dark");
   $("#previous, #next").removeClass("btn-light");
-  //   $("#previous, #next").addClass("text-light");
-  //   $("#previous, #next").removeClass("text-dark");
 
   $("#previous span:first, #next span:first").addClass("text-light");
   $("#previous span:first, #next span:first").removeClass("text-dark");
@@ -153,9 +150,9 @@ function temaClaro() {
   $("footer i:first").addClass("text-dark");
 }
 
+// Función que actualiza el tema de la aplicación al tema claro
 function temaOscuro() {
-
-  $('header .logo').attr('src', '/resources/logo-negativo.png');
+  $("header .logo").attr("src", "/resources/logo-negativo.png");
 
   $("body").removeClass("bg-light");
   $("body").addClass("bg-dark");
@@ -223,9 +220,6 @@ function temaOscuro() {
   $("#infoIndex").addClass("text-light");
   $("#infoIndex").removeClass("text-dark");
 
-
-
-
   $("#containerCarousel").addClass("bg-dark");
   $("#containerCarousel").removeClass("bg-light");
   $("#containerCarousel").addClass("text-light");
@@ -254,8 +248,6 @@ function temaOscuro() {
 
   $("#previous, #next").addClass("btn-light");
   $("#previous, #next").removeClass("btn-dark");
-  //   $("#previous, #next").addClass("text-dark");
-  //   $("#previous, #next").removeClass("text-light");
 
   $(".cardEvento .card-body").addClass("bg-black");
   $(".cardEvento .card-body").removeClass("bg-white");
@@ -286,7 +278,7 @@ function temaOscuro() {
   $("footer i:first").addClass("text-light");
 }
 
-//Ajustes tamaño de letra
+// Función que actualiza los ajustes del tamaño de letra
 function ajustes_texto(tam_letra) {
   if (tam_letra === "normal") document.documentElement.style.fontSize = "16px";
   else if (tam_letra === "grande")
@@ -295,87 +287,75 @@ function ajustes_texto(tam_letra) {
     document.documentElement.style.fontSize = "24px";
 }
 
-
-$("#formAccesibilidadTema button[type='submit']").on('click', function(event)
-{
+$("#formAccesibilidadTema button[type='submit']").on("click", function (event) {
   event.preventDefault();
-    
-  const actionUrl = $("#formAccesibilidadTema").attr('action');
+
+  const actionUrl = $("#formAccesibilidadTema").attr("action");
   const buttonValue = $(this).val();
   var formData = `tema=${buttonValue}`;
 
   const button = $(this); // Guardar referencia al botón actual
-      $.ajax({
-      url: actionUrl,
-      type: 'POST',
-      data: formData,
+  $.ajax({
+    url: actionUrl,
+    type: "POST",
+    data: formData,
 
-      success: function(response) {
-          // Mostrar mensaje de éxito o error
-          $('#formAccesibilidadTema .dropdown-item').removeClass('active');
-          button.addClass('active');
-          ajustes_color(buttonValue)
-          $.get('/toasts', function(data) {
-              $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
-          });           
-      },
-      error: function(xhr, status, error) {
-          console.error('Error en la solicitud AJAX:', error);
-          $('#errorFuncionamiento .toast-body').text(`Hubo un problema con la solicitud: ${error}`);
-          $('#errorFuncionamiento').toast('show');
-      }
+    success: function (response) {
+      // Mostrar mensaje de éxito o error
+      $("#formAccesibilidadTema .dropdown-item").removeClass("active");
+      button.addClass("active");
+      ajustes_color(buttonValue);
+      $.get("/toasts", function (data) {
+        $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+      });
+    },
+    error: function (xhr, status, error) {
+      console.error("Error en la solicitud AJAX:", error);
+      $("#errorFuncionamiento .toast-body").text(
+        `Hubo un problema con la solicitud: ${error}`
+      );
+      $("#errorFuncionamiento").toast("show");
+    },
   });
-
 });
 
+$("#formAccesibilidadLetra button[type='submit']").on(
+  "click",
+  function (event) {
+    event.preventDefault();
 
-$("#formAccesibilidadLetra button[type='submit']").on('click', function(event)
-{
-  event.preventDefault();
-    
-  const actionUrl = $("#formAccesibilidadLetra").attr('action');
-  const buttonValue = $(this).val();
-  var formData = `letra=${buttonValue}`;
-  
-  const button = $(this); // Guardar referencia al botón actual
+    const actionUrl = $("#formAccesibilidadLetra").attr("action");
+    const buttonValue = $(this).val();
+    var formData = `letra=${buttonValue}`;
 
-      $.ajax({
+    const button = $(this); // Guardar referencia al botón actual
+
+    $.ajax({
       url: actionUrl,
-      type: 'POST',
+      type: "POST",
       data: formData,
 
-      success: function(response) {
-          // Mostrar mensaje de éxito o error
-          $('#formAccesibilidadLetra .dropdown-item').removeClass('active');
-          button.addClass('active');
-          ajustes_texto(buttonValue);
-          $.get('/toasts', function(data) {
-              $('#contenedor-toasts').html(data); // Reemplaza el contenido del footer
-          });           
+      success: function (response) {
+        // Mostrar mensaje de éxito o error
+        $("#formAccesibilidadLetra .dropdown-item").removeClass("active");
+        button.addClass("active");
+        ajustes_texto(buttonValue);
+        $.get("/toasts", function (data) {
+          $("#contenedor-toasts").html(data); // Reemplaza el contenido del footer
+        });
       },
-      error: function(xhr, status, error) {
-          console.error('Error en la solicitud AJAX:', error);
-          $('#errorFuncionamiento .toast-body').text(`Hubo un problema con la solicitud: ${error}`);
-          $('#errorFuncionamiento').toast('show');
-      }
-  });
+      error: function (xhr, status, error) {
+        console.error("Error en la solicitud AJAX:", error);
+        $("#errorFuncionamiento .toast-body").text(
+          `Hubo un problema con la solicitud: ${error}`
+        );
+        $("#errorFuncionamiento").toast("show");
+      },
+    });
+  }
+);
 
-});
-
-
-function habilitarEdicion() {
-  editarNombre.setAttribute("disabled", "false");
-  editarCorreo.setAttribute("disabled", "false");
-  editarContrasena.setAttribute("disabled", "false");
-  editarTelefono.setAttribute("disabled", "false");
-
-  editarNombre.textContent = editarNombre.getAttribute("placeholder");
-  editarNombre.textContent = editarNombre.getAttribute("placeholder");
-  editarContrasena.textContent = editarContrasena.getAttribute("placeholder");
-}
-
-$(document).ready(function(){
-
+$(document).ready(function () {
   let tema = $('button[name="tema"].active').val();
   let letra = $('button[name="letra"].active').val();
 

@@ -1,5 +1,6 @@
 "use strict";
 
+// Clase que accede a los datos relacionados con las facultades
 class DAOFacultades {
   pool;
   constructor(pool) {

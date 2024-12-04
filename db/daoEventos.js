@@ -1,5 +1,6 @@
 "use strict";
 
+// Clase que accede a los datos relacionados con los eventos
 class DAOEventos {
   pool;
   constructor(pool) {

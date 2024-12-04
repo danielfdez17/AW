@@ -11,7 +11,7 @@ const multerFactory = multer({
   storage: multer.memoryStorage(), // Usar memoria para almacenar archivos
 });
 
-const LoginController = require("../controllers/logIn.js");
+const LoginController = require("../controllers/login.js");
 const loginController = new LoginController();
 
 const SignUpController = require("../controllers/signUp.js");

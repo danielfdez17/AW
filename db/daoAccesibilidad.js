@@ -1,5 +1,6 @@
 "use strict";
 
+// Clase que accede a los datos relacionados con la accesibilidad/preferencias de los usuarios (tema, tamaño letra...)
 class DAOAccesibilidad {
   pool;
   constructor(pool) {
@@ -51,8 +52,6 @@ class DAOAccesibilidad {
       );
     });
   }
-
-  
 
   readPreferencias(id_usuario, callback) {
     this.pool.getConnection((err, connection) => {

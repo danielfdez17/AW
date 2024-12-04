@@ -1,20 +1,9 @@
 create database AW_24;
 
-drop table if exists facultades;
-
 create table facultades(
     id int primary key auto_increment,
     nombre varchar(100) not null
 );
-
-insert into facultades (nombre) values ("Facultad de Informática");
-insert into facultades (nombre) values ("Facultad de Derecho");
-insert into facultades (nombre) values ("Facultad de Medicina");
-insert into facultades (nombre) values ("Facultad de Ciencias de la Salud");
-insert into facultades (nombre) values ("Facultad de Educación");
-insert into facultades (nombre) values ("Facultad de Ciencias de la Educación");
-
-drop table if exists usuarios;
 
 create table usuarios(
     id int primary key auto_increment,
@@ -28,23 +17,6 @@ create table usuarios(
     foto BLOB,
     foreign key (id_facultad) references facultades(id)
 );
-
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("daniel", "danief17@ucm.es", 123456789, 1, "organizador", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("jose", "josetort@ucm.es", 123456789, 3, "organizador", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Javier", "javier@ucm.es", 123456789, 1, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Antonio", "antonio@ucm.es", 123456789, 2, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Pedro", "pedro@ucm.es", 123456789, 3, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Pablo", "pablo@ucm.es", 123456789, 4, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Sergio", "sergio@ucm.es", 123456789, 5, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Miguel", "miguel@ucm.es", 123456789, 6, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Manolo", "manolo@ucm.es", 123456789, 1, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Ricardo", "ricardo@ucm.es", 123456789, 2, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Rafael", "rafael@ucm.es", 123456789, 3, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Luis", "luis@ucm.es", 123456789, 4, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Eduardo", "eduardo@ucm.es", 123456789, 5, "asistente", "1234");
-insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Diego", "diego@ucm.es", 123456789, 6, "asistente", "1234");
-
-drop table if exists eventos;
 
 create table eventos(
     id int primary key auto_increment,
@@ -63,21 +35,6 @@ create table eventos(
     foreign key (id_organizador) references usuarios(id)
 );
 
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 1", "Descripción 1", "2024-12-02", "10:00:00", "Sala 1", 50, 1, "Conferencia");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 2", "Descripción 2", "2024-12-03", "14:00:00", "Sala 2", 30, 2, "Taller");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 3", "Descripción 3", "2024-12-04", "18:00:00", "Sala 3", 20, 1, "Seminario");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 4", "Descripción 4", "2024-12-05", "09:00:00", "Sala 4", 40, 2, "Conferencia");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 5", "Descripción 5", "2024-12-06", "13:00:00", "Sala 5", 25, 1, "Taller");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 6", "Descripción 6", "2024-12-07", "17:00:00", "Sala 6", 15, 2, "Seminario");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 7", "Descripción 7", "2024-12-08", "08:00:00", "Sala 7", 35, 1, "Conferencia");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 8", "Descripción 8", "2024-12-09", "12:00:00", "Sala 8", 20, 2, "Taller");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 9", "Descripción 9", "2024-12-10", "16:00:00", "Sala 9", 10, 1, "Seminario");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 10", "Descripción 10", "2024-12-11", "07:00:00", "Sala 10", 30, 2, "Conferencia");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 11", "Descripción 11", "2024-12-12", "11:00:00", "Sala 11", 15, 1, "Taller");
-insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 12", "Descripción 12", "2024-12-13", "15:00:00", "Sala 12", 40, 2, "Seminario");
-
-drop table if exists inscripciones;
-
 create table inscripciones(
     id_usuario int not null,
     id_evento int not null,
@@ -88,12 +45,6 @@ create table inscripciones(
     foreign key (id_usuario) references usuarios(id),
     foreign key (id_evento) references eventos(id)
 );
-
-
-insert into inscripciones (id_usuario, id_evento, estado) values (3, 1, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (3, 2, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (4, 2, "inscrito");
-insert into inscripciones (id_usuario, id_evento, estado) values (4, 1, "inscrito");
 
 CREATE TABLE notificaciones (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -128,7 +79,6 @@ create table listaNegra(
     id int primary key auto_increment,
     ip varchar(100) not null
 );
-
 
 /*Triggers*/
 
@@ -311,3 +261,49 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+
+-- DATOS DE PRUEBA
+insert into facultades (nombre) values ("Facultad de Informática");
+insert into facultades (nombre) values ("Facultad de Derecho");
+insert into facultades (nombre) values ("Facultad de Medicina");
+insert into facultades (nombre) values ("Facultad de Ciencias de la Salud");
+insert into facultades (nombre) values ("Facultad de Educación");
+insert into facultades (nombre) values ("Facultad de Ciencias de la Educación");
+
+
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("daniel", "danief17@ucm.es", 123456789, 1, "organizador", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("jose", "josetort@ucm.es", 123456789, 3, "organizador", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Javier", "javier@ucm.es", 123456789, 1, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Antonio", "antonio@ucm.es", 123456789, 2, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Pedro", "pedro@ucm.es", 123456789, 3, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Pablo", "pablo@ucm.es", 123456789, 4, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Sergio", "sergio@ucm.es", 123456789, 5, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Miguel", "miguel@ucm.es", 123456789, 6, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Manolo", "manolo@ucm.es", 123456789, 1, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Ricardo", "ricardo@ucm.es", 123456789, 2, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Rafael", "rafael@ucm.es", 123456789, 3, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Luis", "luis@ucm.es", 123456789, 4, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Eduardo", "eduardo@ucm.es", 123456789, 5, "asistente", "1234");
+insert into usuarios (nombre, correo, telefono, id_facultad, rol, contrasena) values ("Diego", "diego@ucm.es", 123456789, 6, "asistente", "1234");
+
+
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 1", "Descripción 1", "2024-12-02", "10:00:00", "Sala 1", 50, 1, "Conferencia");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 2", "Descripción 2", "2024-12-03", "14:00:00", "Sala 2", 30, 2, "Taller");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 3", "Descripción 3", "2024-12-04", "18:00:00", "Sala 3", 20, 1, "Seminario");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 4", "Descripción 4", "2024-12-05", "09:00:00", "Sala 4", 40, 2, "Conferencia");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 5", "Descripción 5", "2024-12-06", "13:00:00", "Sala 5", 25, 1, "Taller");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 6", "Descripción 6", "2024-12-07", "17:00:00", "Sala 6", 15, 2, "Seminario");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 7", "Descripción 7", "2024-12-08", "08:00:00", "Sala 7", 35, 1, "Conferencia");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 8", "Descripción 8", "2024-12-09", "12:00:00", "Sala 8", 20, 2, "Taller");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 9", "Descripción 9", "2024-12-10", "16:00:00", "Sala 9", 10, 1, "Seminario");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 10", "Descripción 10", "2024-12-11", "07:00:00", "Sala 10", 30, 2, "Conferencia");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 11", "Descripción 11", "2024-12-12", "11:00:00", "Sala 11", 15, 1, "Taller");
+insert into eventos (titulo, descripcion, fecha, hora, ubicacion, capacidad_maxima, id_organizador, tipo_evento) values ("Evento 12", "Descripción 12", "2024-12-13", "15:00:00", "Sala 12", 40, 2, "Seminario");
+
+
+insert into inscripciones (id_usuario, id_evento, estado) values (3, 1, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (3, 2, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (4, 2, "inscrito");
+insert into inscripciones (id_usuario, id_evento, estado) values (4, 1, "inscrito");

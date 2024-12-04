@@ -1,18 +1,6 @@
 "use strict";
 
-$('#botonFiltros').on('click', function() {
-
-  // Verificar el estado actual de la propiedad 'display'
-
-  console.log($('#contenedorFiltros').css('display') );
-  if ($('#contenedorFiltros').css('display') == 'none') {
-    $('#contenedorFiltros').css('display') == 'flex';
-  } else {
-    $('#contenedorFiltros').css('display') == 'none';
-  }
-});
-
-
+// Función que habilita la edición de los campos del evento con id 'id_evento'
 function habilitarEdicion(id_evento) {
   $(`#titulo${id_evento}`).prop("disabled", false);
   $(`#descripcion${id_evento}`).prop("disabled", false);
@@ -55,6 +43,7 @@ function habilitarEdicion(id_evento) {
   $(`#guardarEvento${id_evento}`).show();
 }
 
+// Función que deshabilita la edición de los campos del evento con id 'id_evento'
 function deshabilitarEdicion(id_evento) {
   $(`#titulo${id_evento}`).prop("disabled", true);
   $(`#descripcion${id_evento}`).prop("disabled", true);
@@ -95,6 +84,7 @@ function deshabilitarEdicion(id_evento) {
   $(`#guardarEvento${id_evento}`).hide();
 }
 
+// Función que engloba las posibles acciones disponibles relacionadas con los eventos (editar evento, eliminar evento, inscribirse en un evento y anular la inscripción de un evento)
 function enviar_accion(accion, id_evento) {
   var formData = $(`#formularioEventos${id_evento}`).serialize();
 
@@ -162,7 +152,6 @@ function enviar_accion(accion, id_evento) {
             const doc = parser.parseFromString(data, "text/html");
             const eventosContent = doc.querySelector(`.evento${response.id}`);
             $("#listaEventos").append(eventosContent);
-
           });
 
           $.get("/toasts", function (data) {
@@ -181,6 +170,7 @@ function enviar_accion(accion, id_evento) {
   });
 }
 
+// Función que devuelve la fecha actual para impedir que el usuario añada eventos con una fecha anterior a la actual
 function getMinDate() {
   var hoy = new Date();
 
@@ -194,3 +184,27 @@ function getMinDate() {
 
   return maxDate;
 }
+
+// Se comprueba que la entrada del usuario no contenga inyecciones sql
+$(".cardEvento form").on("submit", (event) => {
+  event.preventDefault();
+  const id = $(this)[0].id.replace("formularioEventos", "");
+
+  const regex = /\b(select|insert|delete|drop|update)\b/;
+
+  if (
+    regex.test($(`#titulo${id}`).val()) ||
+    regex.test($(`#descripcion${id}`).val()) ||
+    regex.test($(`#fecha${id}`).val()) ||
+    regex.test($(`#hora${id}`).val()) ||
+    regex.test($(`#duracion${id}`).val()) ||
+    regex.test($(`#ubicacion${id}`).val()) ||
+    regex.test($(`#capacidad_actual${id}`).val()) ||
+    regex.test($(`#capacidad_maxima${id}`).val()) ||
+    regex.test($(`#tipo_evento${id}`).val())
+  ) {
+    return;
+  }
+
+  $(`#formularioEventos${id}`).submit();
+});

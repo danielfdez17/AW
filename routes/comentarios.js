@@ -80,6 +80,8 @@ router.get("/:id_evento", identificacionRequerida, (req, res) => {
 });
 
 router.post("/:id_evento/nuevo_comentario", comprobacion, (req, res) => {
+  if (!validationResult(req).isEmpty())
+    return res.status(400).json({ errors: validationResult(req).array() });
   const id_usuario = req.session.usuario.id;
   const { id_evento } = req.params;
   const { comentario, valoracion } = req.body;

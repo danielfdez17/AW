@@ -13,11 +13,13 @@ const MAX_DURACION = "08:00";
 const HORA_INICIO = "08:00";
 const HORA_FIN = "22:00";
 
+// Función que recibe una hora como cadena y devuelve los minutos totales
 const convertirAMinutos = (hora) => {
-  const [h, m] = hora.split(':').map(Number);
+  const [h, m] = hora.split(":").map(Number);
   return h * 60 + m;
 };
 
+// Función que comprueba si la hora de inicio del evento y duración del evento está dentro del rango de horas en el que puede haber eventos durante el día
 function checkHoraDuracion(hora, duracion) {
   return (
     convertirAMinutos(HORA_INICIO) <= convertirAMinutos(hora) &&
@@ -27,6 +29,7 @@ function checkHoraDuracion(hora, duracion) {
   );
 }
 
+// Función que comprueba que la hora de un evento es venidera
 function checkFecha(fecha) {
   const fechaActual = new Date();
   const fechaIntroducida = new Date(fecha);
@@ -34,6 +37,7 @@ function checkFecha(fecha) {
   return fechaIntroducida >= fechaActual;
 }
 
+// Clase que controla los datos enviados de los formulario relacionados con los eventos
 class EventosController {
   crearEvento(req, res, next) {
     if (!validationResult(req).isEmpty())
@@ -51,16 +55,15 @@ class EventosController {
     const id_organizador = req.session.usuario.id;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
 
-    if(checkFecha(fecha))
-    {
+    if (checkFecha(fecha)) {
       if (checkHoraDuracion(hora, duracion)) {
-
         daoEventos.readEventoPorFecha(fecha, (eventos) => {
           let sePuedeInsertar = true;
           if (eventos) {
-              eventos.forEach((evento) => {
-                if (evento.hora + evento.duracion >= hora) sePuedeInsertar = false;
-              });
+            eventos.forEach((evento) => {
+              if (evento.hora + evento.duracion >= hora)
+                sePuedeInsertar = false;
+            });
           }
           if (sePuedeInsertar) {
             daoEventos.createEvento(
@@ -77,33 +80,38 @@ class EventosController {
               },
               (err) => {
                 if (err) next(err);
-                else
-                {
-                  res.setFlash({ message: "Evento registrado con éxito", type: "exito" });
+                else {
+                  res.setFlash({
+                    message: "Evento registrado con éxito",
+                    type: "exito",
+                  });
                   res.redirect("/organizadores");
-                } 
+                }
               }
             );
           } else {
-            res.setFlash({ message: "Ya hay un evento que coincide con ese horario y duracion", type: "error" });
+            res.setFlash({
+              message:
+                "Ya hay un evento que coincide con ese horario y duracion",
+              type: "error",
+            });
             res.redirect("/organizadores");
           }
         });
-
-      }
-      else
-      {
-        res.setFlash({ message: "Debes respetar los horarios de la universidad", type: "error" });
+      } else {
+        res.setFlash({
+          message: "Debes respetar los horarios de la universidad",
+          type: "error",
+        });
         res.json({});
       }
-    }
-    else
-    {
-      res.setFlash({ message: "Debe ser una fecha igual o posterior a la actual", type: "error" });
+    } else {
+      res.setFlash({
+        message: "Debe ser una fecha igual o posterior a la actual",
+        type: "error",
+      });
       res.json({});
     }
-
-
   }
 
   eliminarEvento(req, res, next) {
@@ -111,25 +119,26 @@ class EventosController {
       return res.status(400).json({ errors: validationResult(req).array() });
     const { id } = req.body;
 
-    daoInscripciones.readUsuarioListaAsistentesPorEvento(id, (usuario) =>
-    {
-      if(usuario.length > 0)
-      {
-        res.setFlash({ message: "No puedes eliminar este evento, ya hay gente inscrita", type: "error" });
-        res.json({id_evento: null})
-      }
-      else
-      {
+    daoInscripciones.readUsuarioListaAsistentesPorEvento(id, (usuario) => {
+      if (usuario.length > 0) {
+        res.setFlash({
+          message: "No puedes eliminar este evento, ya hay gente inscrita",
+          type: "error",
+        });
+        res.json({ id_evento: null });
+      } else {
         daoEventos.deleteEvento(id, (err) => {
           if (err) next(err);
-          else
-          {
-            res.setFlash({ message: "Evento elimiando con éxito", type: "exito" });
-            res.json({id_evento: id})
-          } 
+          else {
+            res.setFlash({
+              message: "Evento elimiando con éxito",
+              type: "exito",
+            });
+            res.json({ id_evento: id });
+          }
         });
       }
-      });
+    });
   }
 
   editarEvento(req, res, next) {
@@ -148,43 +157,51 @@ class EventosController {
     } = req.body;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
 
-    if(checkFecha(fecha))
-    {
+    if (checkFecha(fecha)) {
       if (checkHoraDuracion(hora, duracion)) {
         daoEventos.readEventoPorFecha(fecha, (error, eventos) => {
           let sePuedeActualizar = true;
-          if(eventos)
-          {
+          if (eventos) {
             eventos.forEach((evento) => {
-              if (evento.id != id && (convertirAMinutos(evento.hora) + convertirAMinutos(evento.duracion) >= convertirAMinutos(hora))) sePuedeActualizar = false;
+              if (
+                evento.id != id &&
+                convertirAMinutos(evento.hora) +
+                  convertirAMinutos(evento.duracion) >=
+                  convertirAMinutos(hora)
+              )
+                sePuedeActualizar = false;
             });
           }
 
           if (sePuedeActualizar) {
-
-            daoEventos.readEventoPorId(parseInt(id), (error, eventos) => 
-            {
-              if(eventos.capacidad_actual < capacidad_maxima)
-              {
-
-                daoInscripciones.readListaEsperaPorEvento(parseInt(id), (lista) =>
-                  {
+            daoEventos.readEventoPorId(parseInt(id), (error, eventos) => {
+              if (eventos.capacidad_actual < capacidad_maxima) {
+                daoInscripciones.readListaEsperaPorEvento(
+                  parseInt(id),
+                  (lista) => {
                     const fecha_actual = new Date();
-                    const fechaFormateada = fecha_actual.toLocaleDateString('es-ES').replace(/\//g, '-');
+                    const fechaFormateada = fecha_actual
+                      .toLocaleDateString("es-ES")
+                      .replace(/\//g, "-");
                     let auxiliar = capacidad_maxima - eventos.capacidad_actual;
                     let i = 0;
-                    while(i < auxiliar && (lista && lista.length > 0))
-                    {
-                      daoInscripciones.ListaEsperaAInscrito({id_usuario: lista[i].id_usuario, id_evento: parseInt(lista[i].id_evento), evento: 'inscrito', fecha_inscripcion: fechaFormateada}, (error) => 
-                      {
-                        daoEventos.incrementarCapacidadEvento(id, (error) => {
-                          if(error)
-                            res.status(500).json({
-                              error: error,
-                            });
-                        });
-                        
-                      });
+                    while (i < auxiliar && lista && lista.length > 0) {
+                      daoInscripciones.ListaEsperaAInscrito(
+                        {
+                          id_usuario: lista[i].id_usuario,
+                          id_evento: parseInt(lista[i].id_evento),
+                          evento: "inscrito",
+                          fecha_inscripcion: fechaFormateada,
+                        },
+                        (error) => {
+                          daoEventos.incrementarCapacidadEvento(id, (error) => {
+                            if (error)
+                              res.status(500).json({
+                                error: error,
+                              });
+                          });
+                        }
+                      );
                       i++;
                       lista.pop();
                     }
@@ -202,46 +219,51 @@ class EventosController {
                         id,
                       },
                       (err) => {
-        
                         if (err) next(err);
-                        else
-                        {
-                          res.setFlash({ message: "Edicion registrada con éxito", type: "exito" });
-                          res.json({})
-                        } 
+                        else {
+                          res.setFlash({
+                            message: "Edicion registrada con éxito",
+                            type: "exito",
+                          });
+                          res.json({});
+                        }
                       }
                     );
-                  })
-              }
-              else
-              {
-                res.setFlash({ message: "No puedes reducir la capacidad maxima a menos de la asistencia actual", type: "error" });
+                  }
+                );
+              } else {
+                res.setFlash({
+                  message:
+                    "No puedes reducir la capacidad maxima a menos de la asistencia actual",
+                  type: "error",
+                });
                 res.json({});
               }
-
-            })
-
+            });
           } else {
-            res.setFlash({ message: "Ya hay un evento que coincide con ese horario y duracion", type: "error" });
-            res.json({})
+            res.setFlash({
+              message:
+                "Ya hay un evento que coincide con ese horario y duracion",
+              type: "error",
+            });
+            res.json({});
           }
         });
-      }
-      else
-      {
-        res.setFlash({ message: "Debes respetar los horarios de la universidad", type: "error" });
+      } else {
+        res.setFlash({
+          message: "Debes respetar los horarios de la universidad",
+          type: "error",
+        });
         res.json({});
       }
-    }
-    else
-    {
-      res.setFlash({ message: "Debe ser una fecha igual o posterior a la actual", type: "error" });
+    } else {
+      res.setFlash({
+        message: "Debe ser una fecha igual o posterior a la actual",
+        type: "error",
+      });
       res.json({});
     }
-
   }
-
-  
 }
 
 module.exports = EventosController;

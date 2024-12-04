@@ -6,6 +6,7 @@ const { validationResult } = require("express-validator");
 
 const daoUsuarios = new DAOUsuarios(pool);
 
+// Clase que controla los datos enviados de los formulario relacionados con los inicios de sesión
 class LoginController {
   login(req, res, next) {
     if (!validationResult(req).isEmpty())
@@ -13,17 +14,20 @@ class LoginController {
     const { correoLogin, contrasenaLogin } = req.body;
     daoUsuarios.readUsuarioPorCorreo(correoLogin, (err, usuario) => {
       if (err) next(err);
-      if (usuario && usuario.contrasena === contrasenaLogin ) {
+      if (usuario && usuario.contrasena === contrasenaLogin) {
         req.session.usuario = usuario;
         req.session.auth = true;
-        res.setFlash({ message: "¡Has iniciado sesión con exito!", type: "exito" });
-        if(usuario.rol === "organizador")
-          res.redirect("/organizadores");
-        else
-          res.redirect("/asistentes");
-        
+        res.setFlash({
+          message: "¡Has iniciado sesión con exito!",
+          type: "exito",
+        });
+        if (usuario.rol === "organizador") res.redirect("/organizadores");
+        else res.redirect("/asistentes");
       } else {
-        res.setFlash({ message: "Error: correo y/o contraseña incorrectos", type: "error" });
+        res.setFlash({
+          message: "Error: correo y/o contraseña incorrectos",
+          type: "error",
+        });
         res.redirect("/");
       }
     });

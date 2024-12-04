@@ -1,3 +1,4 @@
+"use strict";
 $(() => {
   filtradoFecha();
 
@@ -12,6 +13,7 @@ $(() => {
   $("#containerFiltroTipo").hide();
   $("#containerFiltroCapacidad").hide();
 
+  // Se muestran/ocultan los filtros de búsqueda al puslar sobre el botón
   $("#btnFiltrosBusqueda").on("click", () => {
     $("#containerCalendario").toggle();
     $("#containerFiltroUbicacion").toggle();
@@ -21,42 +23,7 @@ $(() => {
     vaciarFiltros();
   });
 
-  $("#filtrarPorSinFiltros").on("click", () => {
-    vaciarFiltros();
-
-    $("#containerFiltroUbicacion").hide();
-    $("#containerFiltroTipo").hide();
-    $("#containerFiltroCapacidad").hide();
-    $("#inputCalendario").hide();
-    volverAHoy();
-    filtradoFecha();
-  });
-
-  $("#filtrarPorTipo").on("click", () => {
-    vaciarFiltros();
-
-    $("#containerFiltroUbicacion").hide();
-    $("#containerFiltroTipo").show();
-    $("#containerFiltroCapacidad").hide();
-    $("#inputCalendario").hide();
-  });
-  $("#filtrarPorUbicacion").on("click", () => {
-    vaciarFiltros();
-
-    $("#containerFiltroUbicacion").show();
-    $("#containerFiltroTipo").hide();
-    $("#containerFiltroCapacidad").hide();
-    $("#inputCalendario").hide();
-  });
-  $("#filtrarPorCapacidad").on("click", () => {
-    vaciarFiltros();
-
-    $("#containerFiltroUbicacion").hide();
-    $("#containerFiltroTipo").hide();
-    $("#containerFiltroCapacidad").show();
-    $("#inputCalendario").hide();
-  });
-
+  // Actualiza la lista de eventos acorde con todos los filtros establecidos por el usuario
   $("#filtroUbicacion").on("keyup", () => {
     fecha_actual = getValorFecha().toLocaleDateString("es-ES");
     filtroUbicacion = $("#filtroUbicacion").val().toUpperCase();
@@ -67,7 +34,8 @@ $(() => {
       let ubicacion = $("input[name='ubicacion']")[index];
       let fechaEvento = $("input[name='fecha']")[index].placeholder;
       let tipo = $("input[name='tipo_evento']")[index].placeholder;
-      let capacidad = $("input[name='capacidad_maxima_string']")[index].placeholder;
+      let capacidad = $("input[name='capacidad_maxima_string']")[index]
+        .placeholder;
       fechaEvento = getFechaEspanyola(fechaEvento);
 
       let valorUbicacion = ubicacion.placeholder;
@@ -89,6 +57,7 @@ $(() => {
     });
   });
 
+  // Actualiza la lista de eventos acorde con todos los filtros establecidos por el usuario
   $("#filtroTipo").on("keyup", () => {
     fecha_actual = getValorFecha().toLocaleDateString("es-ES");
     filtroUbicacion = $("#filtroUbicacion").val().toUpperCase();
@@ -98,7 +67,8 @@ $(() => {
     $("input[name='tipo_evento']").each((index) => {
       let ubicacion = $("input[name='ubicacion']")[index].placeholder;
       let fechaEvento = $("input[name='fecha']")[index].placeholder;
-      let capacidad = $("input[name='capacidad_maxima_string']")[index].placeholder;
+      let capacidad = $("input[name='capacidad_maxima_string']")[index]
+        .placeholder;
       let tipo_evento = $("input[name='tipo_evento']")[index];
       fechaEvento = getFechaEspanyola(fechaEvento);
 
@@ -120,6 +90,7 @@ $(() => {
     });
   });
 
+  // Actualiza la lista de eventos acorde con todos los filtros establecidos por el usuario
   $("#filtroCapacidad").on("keyup", () => {
     fecha_actual = getValorFecha().toLocaleDateString("es-ES");
     filtroUbicacion = $("#filtroUbicacion").val().toUpperCase();
@@ -152,6 +123,7 @@ $(() => {
   });
 });
 
+// Función que vacía los filtros de búsqueda
 function vaciarFiltros() {
   $("#filtroUbicacion").val("");
   $("#filtroTipo").val("");
@@ -159,20 +131,22 @@ function vaciarFiltros() {
   $("#inputCalendario").val("");
 }
 
+// Función que devuelve la fecha del filtro de búsqueda por fecha en formato YYYY-MM-DD
 function getValorFecha() {
   let fecha = $("#fecha").text(); // Obtener el texto de la fecha
   let fechaModificada = new Date(fecha.split("/").reverse().join("-")); // Convertir la fecha al formato adecuado para Date (YYYY-MM-DD)
   return fechaModificada;
 }
 
+// Función que devuelve la fecha pasada por parámetro en formato DD-MM-YYYY
 function getFechaEspanyola(fecha) {
   let fechaModificada = new Date(
     fecha.split("/").reverse().join("-")
-  ).toLocaleDateString("es-ES"); // Convertir la fecha al formato adecuado para Date (YYYY-MM-DD)
+  ).toLocaleDateString("es-ES"); // Convertir la fecha al formato adecuado para Date (DD-MM-YYYY)
   return fechaModificada;
 }
 
-// Función para actualizar la fecha
+// Función para actualizar la fecha en el carousel
 function updateDate(increment) {
   fechaModificada = getValorFecha();
   fechaModificada.setDate(fechaModificada.getDate() + increment); // Modificar la fecha (sumar o restar un día)
@@ -180,10 +154,7 @@ function updateDate(increment) {
   vaciarFiltros();
 }
 
-function volverAHoy() {
-  $("#fecha").text(new Date().toLocaleDateString("es-ES"));
-}
-
+// Retrocede un día en el calendario de la aplicación
 $("#previous").on("click", () => {
   // Cambiar de diapositiva con animación
 
@@ -204,6 +175,7 @@ $("#previous").on("click", () => {
   }, 300);
 });
 
+// Avanza un día en el calendario de la aplicación
 $("#next").on("click", () => {
   const carouselInner = $("#eventosCarousel.carousel-inner")[0];
   carouselInner.style.transition = "transform 0.3s ease";
@@ -222,6 +194,7 @@ $("#next").on("click", () => {
   }, 300);
 });
 
+// Muestra en input[type="date"] para que el usuario pueda elegir la fecha que desee
 $("#abrirCalendario").on("click", () => {
   $("#filtroUbicacion").val("");
   $("#filtroTipo").val("");
@@ -245,6 +218,7 @@ $("#inputCalendario").on("change", (event) => {
   filtradoFecha();
 });
 
+// Función que filtra los eventos del día seleccionado por el usuario o el día actual
 function filtradoFecha() {
   let fecha_actual = $("#fecha").text(); // Obtener el texto de la fecha
   fecha_actual = fecha_actual.split("/").reverse().join("-");
@@ -271,9 +245,10 @@ function filtradoFecha() {
 
   if (!existe) {
     // Añadir el mensaje dentro de #listaEventos
-    $("#listaEventos").append('<span class="text-secondary fs-1 text-center vh-100 d-flex justify-content-center align-items-center">No hay eventos registrados</span>');
-  }
-  else {
+    $("#listaEventos").append(
+      '<span class="text-secondary fs-1 text-center vh-100 d-flex justify-content-center align-items-center">No hay eventos registrados</span>'
+    );
+  } else {
     // Eliminar el mensaje si existe
     $("#listaEventos span").remove();
   }

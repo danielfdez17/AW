@@ -1,5 +1,6 @@
 "use strict";
 
+// Clase que accede a los datos relacionados con los comentarios y las valoraciones de los eventos
 class DAOComentarios {
   pool;
   constructor(pool) {
