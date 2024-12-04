@@ -1,10 +1,10 @@
-<div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Comentario de <%= u.nombre %></h5>
-      <p class="card-text"><%= comentario.comentario %></p>
-      <div class="card-footer">
-        <p><%= comentario.fecha_comentario %></p>
-        <p><%= comentario.valoracion %></p>
-    </div>    
-    </div>
+<div class="card m-2">
+  <div class="card-body">
+    <h5 class="card-title">Comentario de <%= usuario.nombre %></h5>
+    <p class="card-text"><%= comentario.comentario %></p>
+    <div class="card-footer">
+      <p>Fecha: <%= new Date(comentario.fecha_comentario).toLocaleDateString('es-ES')  %></p>
+      <p>Valoracion: <%= comentario.valoracion %></p>
   </div>
+  </div>
+</div>

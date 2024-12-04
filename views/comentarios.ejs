@@ -7,15 +7,16 @@
     <%- include("./fragments/head.ejs") %>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container my-2">
         <%- include("./fragments/evento.ejs", {evento: evento, index: false, valoraciones: true}) %>
-        <% if (!comentarios || comentarios.length <= 0) { %>
+
+        <% if (!comentarios) { %>
             <h3 class="text-center fw-bold">Este evento no tiene comentarios ni valoraciones de momento</h3>
-        <%} else {%>
-            comentarios.forEach(comentario => {
-                <%- include("./fragments/comentario.ejs") %>
-            })
-        <%}%>
+        <% } else { %>
+            <% comentarios.forEach(comentario => { %>
+                <%- include("./fragments/comentario.ejs", { comentario: comentario }) %>
+            <% }) %>
+        <% } %>
         <button id="btnNuevoComentario" class="btn btn-primary" type="button">Añadir comentario y valoracion</button>
         <form id="formNuevoComentario" action="/comentarios/<%=evento.id%>/nuevo_comentario" method="post">
             <div class="mb-3">

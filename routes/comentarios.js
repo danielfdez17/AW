@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
+const { identificacionRequerida } = require("./identificacionRequerida.js");
 
 const DAOEventos = require("../db/daoEventos.js");
 const DAOComentarios = require("../db/daoComentarios.js");
@@ -12,10 +13,6 @@ const pool = require("../db/pool.js");
 const daoEventos = new DAOEventos(pool);
 const daoComentarios = new DAOComentarios(pool);
 const daoListaNegra = new DAOListaNegra(pool);
-
-// router.get("/comentarios", (req, res) => {
-//   res.redirect(`/comentarios/${req.params.id}`);
-// });
 
 const comprobacion = [
   body("*")
@@ -69,10 +66,10 @@ const comprobacion = [
   },
 ];
 
-router.get("/:id", (req, res) => {
-  const { id } = req.params;
-  daoEventos.readEventoPorId(id, (evento) => {
-    daoComentarios.readComentarios(req.session.id, id, (comentarios) => {
+router.get("/:id_evento", identificacionRequerida, (req, res) => {
+  const { id_evento } = req.params;
+  daoEventos.readEventoPorId(id_evento, (evento) => {
+    daoComentarios.readComentarios(req.session.usuario.id, id_evento, (comentarios) => {
       res.render("comentarios", {
         usuario: req.session.usuario,
         evento: evento,
@@ -82,16 +79,12 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.post("/:id/nuevo_comentario", comprobacion, (req, res) => {
+router.post("/:id_evento/nuevo_comentario", comprobacion, (req, res) => {
   const id_usuario = req.session.usuario.id;
-  const { id } = req.params;
+  const { id_evento } = req.params;
   const { comentario, valoracion } = req.body;
-  console.log(`id_usuario: ${id_usuario}`);
-  console.log(`id: ${id}`);
-  console.log(`Comentario: ${comentario}`);
-  console.log(`valoracion: ${valoracion}`);
   daoComentarios.createComentario(
-    { id_usuario, id, comentario, valoracion },
+    { id_usuario, id_evento, comentario, valoracion },
     (err) => {
       if (!err) {
         res.setFlash({
@@ -104,16 +97,8 @@ router.post("/:id/nuevo_comentario", comprobacion, (req, res) => {
           type: "error",
         });
       }
-      res.redirect(`/comentarios/${id}`);
-      //   daoEventos.readEventoPorId(id, (evento) => {
-      //     daoComentarios.readComentarios(req.session.id, id, (comentarios) => {
-      //       res.render("comentarios", {
-      //         usuario: req.session.usuario,
-      //         evento: evento,
-      //         comentarios: comentarios,
-      //       });
-      //     });
-      //   });
+      res.redirect(`/comentarios/${id_evento}`);
+
     }
   );
 });

@@ -41,14 +41,14 @@ class DAOComentarios {
         return;
       }
       const sql =
-        "SELECT cv.*, u.* FROM comentarioyvaloraciones cv JOIN usuarios u ON cv.id_usuario = u.id WHERE id_usuario = ? AND id_evento = ?";
-      connection.query(sql, [id_usuario, id_evento], (err, rows) => {
+        "SELECT * FROM comentarioyvaloraciones WHERE id_evento = ?";
+      connection.query(sql, [id_evento], (err, rows) => {
         connection.release();
         if (err) {
           callback(err);
           return;
         }
-        callback(rows[0]);
+        callback(rows);
       });
     });
   }
