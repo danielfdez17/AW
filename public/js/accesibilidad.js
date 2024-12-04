@@ -122,6 +122,11 @@ function temaClaro() {
   $("#perfilHeader button:first").addClass("text-light");
   $("#perfilHeader button:first").removeClass("text-dark");
 
+  $("#perfilHeader a span").addClass("bg-light");
+  $("#perfilHeader a span").removeClass("bg-dark");
+  $("#perfilHeader a span").addClass("text-dark");
+  $("#perfilHeader a span").removeClass("text-light");
+
   $("#previous, #next").addClass("btn-dark");
   $("#previous, #next").removeClass("btn-light");
 
@@ -253,6 +258,11 @@ function temaOscuro() {
   $("#perfilHeader button:first").removeClass("bg-dark");
   $("#perfilHeader button:first").addClass("text-dark");
   $("#perfilHeader button:first").removeClass("text-light");
+
+  $("#perfilHeader a span").addClass("bg-dark");
+  $("#perfilHeader a span").removeClass("bg-light");
+  $("#perfilHeader a span").addClass("text-light");
+  $("#perfilHeader a span").removeClass("text-dark");
 
   $("#previous, #next").addClass("btn-light");
   $("#previous, #next").removeClass("btn-dark");
