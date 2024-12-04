@@ -152,6 +152,39 @@ function enviar_accion(accion, id_evento) {
             const doc = parser.parseFromString(data, "text/html");
             const eventosContent = doc.querySelector(`.evento${response.id}`);
             $("#listaEventos").append(eventosContent);
+
+            let fecha_actual = $("#fecha").text(); // Obtener el texto de la fecha
+            fecha_actual = fecha_actual.split("/").reverse().join("-");
+            let existe = false;
+            $("input[name='fecha']").each((index) => {
+              let fecha = $("input[name='fecha']")[index];
+              let valor = fecha.placeholder;
+              let id = fecha.id.replace("fecha", "");
+              let cardEvento = $(`.evento${id}`); // Seleccionar la tarjeta asociada
+
+              let valorFormateado = new Date(valor).toLocaleDateString("es-ES");
+
+              let fecha_actualFormateado = new Date(
+                fecha_actual
+              ).toLocaleDateString("es-ES");
+
+              if (valorFormateado === fecha_actualFormateado) {
+                existe = true;
+                cardEvento.removeClass("d-none"); // Mostrar si coincide
+              } else {
+                cardEvento.addClass("d-none"); // Ocultar si no coincide
+              }
+            });
+
+            if (!existe) {
+              $("#listaEventos span").remove();
+              $("#listaEventos").append(
+                '<span class="text-secondary fs-1 text-center vh-100 d-flex justify-content-center align-items-center">No hay eventos registrados</span>'
+              );
+            } else {
+              // Eliminar el mensaje si existe
+              $("#listaEventos span").remove();
+            }
           });
 
           $.get("/toasts", function (data) {
