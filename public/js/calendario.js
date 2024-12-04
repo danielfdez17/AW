@@ -25,7 +25,7 @@ $(() => {
 
   // Actualiza la lista de eventos acorde con todos los filtros establecidos por el usuario
   $("#filtroUbicacion").on("keyup", () => {
-    fecha_actual = getValorFecha().toLocaleDateString("es-ES");
+    let fecha_actual = getValorFecha().toLocaleDateString("es-ES");
     filtroUbicacion = $("#filtroUbicacion").val().toUpperCase();
     filtroTipoEvento = $("#filtroTipo").val().toUpperCase();
     filtroCapacidad = $("#filtroCapacidad").val().toUpperCase();
@@ -59,7 +59,7 @@ $(() => {
 
   // Actualiza la lista de eventos acorde con todos los filtros establecidos por el usuario
   $("#filtroTipo").on("keyup", () => {
-    fecha_actual = getValorFecha().toLocaleDateString("es-ES");
+    let fecha_actual = getValorFecha().toLocaleDateString("es-ES");
     filtroUbicacion = $("#filtroUbicacion").val().toUpperCase();
     filtroTipoEvento = $("#filtroTipo").val().toUpperCase();
     filtroCapacidad = $("#filtroCapacidad").val().toUpperCase();
@@ -92,7 +92,7 @@ $(() => {
 
   // Actualiza la lista de eventos acorde con todos los filtros establecidos por el usuario
   $("#filtroCapacidad").on("keyup", () => {
-    fecha_actual = getValorFecha().toLocaleDateString("es-ES");
+    let fecha_actual = getValorFecha().toLocaleDateString("es-ES");
     filtroUbicacion = $("#filtroUbicacion").val().toUpperCase();
     filtroTipoEvento = $("#filtroTipo").val().toUpperCase();
     filtroCapacidad = $("#filtroCapacidad").val().toUpperCase();
