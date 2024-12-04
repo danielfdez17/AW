@@ -27,14 +27,14 @@ router.get("/", (req, res) => {
   else
   {
     daoFacultades.readAllFacultades((err, facultades) => {
-      if (err) next(err);
+      if (err) return next(err);;
 
       daoEventos.readAllEventos((err, eventos) => {
-        if (err) next(err);
+        if (err) return next(err);;
 
         daoAccesibilidad.readPreferencias(req.session.usuario.id, (err, accesibilidad) =>
           {
-            if (err) next(err);
+            if (err) return next(err);;
 
             res.render("index", {
               eventos: eventos,
@@ -59,16 +59,16 @@ router.get("/lista_espera/:ident", identificacionRequerida, (req, res) => {
 
   const ident = req.params.ident;
   daoEventos.readEventoPorId(ident, (err, evento) => {
-    if (err) next(err);
+    if (err) return next(err);;
 
     daoFacultades.readAllFacultades((err, facultades) => {
-      if (err) next(err);
+      if (err) return next(err);;
 
       daoEventos.readAllEventos((err, eventos) => {
-        if (err) next(err);
+        if (err) return next(err);;
 
         daoInscripciones.readUsuarioListaEsperaPorEvento(ident, (err, lista) => {
-          if (err) next(err);
+          if (err) return next(err);;
 
 
           res.render("lista_espera", {
@@ -92,16 +92,16 @@ router.get("/lista_asistentes/:ident", identificacionRequerida, (req, res) => {
 
   const ident = req.params.ident;
   daoEventos.readEventoPorId(ident, (err, evento) => {
-    if (err) next(err);
+    if (err) return next(err);;
 
     daoFacultades.readAllFacultades((err, facultades) => {
-      if (err) next(err);
+      if (err) return next(err);;
 
       daoEventos.readAllEventos((err, eventos) => {
-        if (err) next(err);
+        if (err) return next(err);;
 
         daoInscripciones.readUsuarioListaAsistentesPorEvento(ident, (err, lista) => {
-          if (err) next(err);
+          if (err) return next(err);;
 
           res.render("lista_asistentes", {
             ident: ident,
@@ -167,7 +167,7 @@ const comprobacion = [
       }));
 
       daoListaNegra.createListaNegra(ip, (err) => {
-        if (err) next(err);
+        if (err) return next(err);
         else {
           res.status(401).json({ errores: errorDetails });
         }

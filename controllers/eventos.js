@@ -8,6 +8,7 @@ const daoInscripciones = new DAOInscripciones(pool);
 
 const { validationResult } = require("express-validator");
 
+//Limites de horario y duracion
 const MIN_DURACION = "01:00";
 const MAX_DURACION = "08:00";
 const HORA_INICIO = "08:00";

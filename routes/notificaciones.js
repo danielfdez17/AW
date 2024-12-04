@@ -54,7 +54,7 @@ const comprobacion = [
       }));
 
       daoListaNegra.createListaNegra(ip, (err) => {
-        if (err) next(err);
+        if (err) return next(err);
         else {
           res.status(401).json({ errores: errorDetails });
         }
@@ -70,7 +70,7 @@ router.post("/eliminar", comprobacion, function (req, res) {
   const { id } = req.body;
 
   daoNotificaciones.EliminarNotificaciones(id, (err, result) => {
-    if (err) next(err);
+    if (err) return next(err);
     else {
       res.setFlash({
         message: "Notificación eliminada correctamente",
@@ -88,7 +88,7 @@ router.post("/recordar", comprobacion, function (req, res) {
   const id = req.session.usuario.id;
 
   daoUsuarios.UpdateRecordatorio({ tiempo: tiempo, id: id }, (err, result) => {
-    if (err) next(err);
+    if (err) return next(err);
     else {
       req.session.usuario.recordatorio = tiempo;
       res.setFlash({

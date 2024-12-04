@@ -26,22 +26,22 @@ router.get("/", (req, res) => {
   else
   {
     daoFacultades.readAllFacultades((err, facultades) => {
-      if (err) next(err);
+      if (err) return next(err);
       daoEventos.readAllEventos((err, eventos) => {
-        if (err) next(err);
+        if (err) return next(err);
 
         daoInscripciones.readEventosInscritosPorAsistenteActivos(
           req.session.usuario.id,
           (err, eventosInscritos) => {
-            if (err) next(err);
+            if (err) return next(err);
 
             daoNotificaciones.readNotificacionesPorUsuario(req.session.usuario.id, (err, notificaciones) =>
             {
-              if (err) next(err);
+              if (err) return next(err);
 
               daoAccesibilidad.readPreferencias(req.session.usuario.id, (err, accesibilidad) =>
               {
-                if (err) next(err);
+                if (err) return next(err);
                 
                 res.render("index", {
                   eventos: eventos,
@@ -109,7 +109,7 @@ const comprobacion = [
       }));
 
       daoListaNegra.createListaNegra(ip, (err) => {
-        if (err) next(err);
+        if (err) return next(err);
         else {
           res.status(401).json({ errores: errorDetails });
         }

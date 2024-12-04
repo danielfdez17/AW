@@ -36,15 +36,16 @@ const daoUsuarios = new DAOUsuarios(pool);
 const daoAccesibilidad = new DAOAccesibilidad(pool);
 const daoComentarios = new DAOComentarios(pool);
 
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   const { ip } = req;
+
   daoListaNegra.readListaNegra(ip, (err, rows) => {
-    if (err) next(err);
-    
+    if (err) return next(err);
+
     if (rows) {
-      return res
-        .status(401)
-        .json({ error: "Acceso denegado: IP en lista negra" });
+      const err = new Error("Acceso denegado: IP en lista negra");
+      err.status = 401;
+      return next(err); // Pasamos el error al handler de errores
     } else {
       if (req.session.auth) {
         if (req.session.usuario.rol === "asistente") {
@@ -54,10 +55,10 @@ router.get("/", (req, res) => {
         }
       } else {
         daoFacultades.readAllFacultades((err, facultades) => {
-          if (err) next(err);
+          if (err) return next(err);
 
           daoEventos.readAllEventos((err, eventos) => {
-            if (err) next(err);
+            if (err) return next(err);
 
             res.render("index", {
               eventos: eventos,
@@ -73,10 +74,10 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/logOut", (req, res, next) => {
+router.get("/logOut", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      if (err) next(err);
+      if (err) return next(err);
     } else {
       res.clearCookie("connect.sid"); // Limpia la cookie de sesión
       res.redirect("/"); // Redirige al usuario a la página principal
@@ -99,7 +100,7 @@ router.get(
     }
 
     daoUsuarios.obtenerImagen(n, (err, imagen) => {
-      if (err) next(err);
+      if (err) return next(err);
 
       response.end(imagen);
     });
@@ -151,7 +152,7 @@ const comprobacion = [
       }));
 
       daoListaNegra.createListaNegra(ip, (err) => {
-        if (err) next(err);
+        if (err) return next(err);
         else {
           res.status(401).json({ errores: errorDetails });
         }
@@ -165,7 +166,7 @@ router.post("/accesibilidad/Tema/:id", comprobacion, (req, res) => {
   const { id } = req.params;
   const { tema } = req.body;
   daoAccesibilidad.updateTema({ tema, id }, (err) => {
-    if (err) next(err);
+    if (err) return next(err);
     else {
       res.setFlash({
         message: "Se ha cambiado el tema con exito",
@@ -180,7 +181,7 @@ router.post("/accesibilidad/Letra/:id", (req, res) => {
   const { id } = req.params;
   const { letra } = req.body;
   daoAccesibilidad.updateLetra({ letra, id }, (err) => {
-    if (err) next(err);
+    if (err) return next(err);
     else{
       res.setFlash({
         message: "Se ha cambiado la letra con exito",
@@ -228,7 +229,7 @@ const mailOptions = {
 
 };
 
-router.post("/recuperar", comprobacion,  (req, res, next) => 
+router.post("/recuperar", comprobacion,  (req, res) => 
 {
   const {correoRecuperacion, telefonoRecuperacion} = req.body;
 
@@ -239,7 +240,7 @@ router.post("/recuperar", comprobacion,  (req, res, next) =>
 
   daoUsuarios.readUsuarioPorCorreo(correoRecuperacion, (err, usuario)=>
   {
-    if (err) next(err);
+    if (err) return next(err);
 
     if(!usuario)
     {
@@ -256,7 +257,7 @@ router.post("/recuperar", comprobacion,  (req, res, next) =>
           telefono: telefonoRecuperacion}, 
         async (err) =>
         {
-          if (err) next(err);
+          if (err) return next(err);
           try {
             // Enviar correo
             const info = await transporter.sendMail(mailOptions);

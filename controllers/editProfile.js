@@ -22,6 +22,7 @@ class EditProfileController {
     daoUsuarios.updateUsuario(usuario, (err, usuario) => {
       if (err) next(err);
       else {
+        //Actualizamos los valores de la sesion
         let rol = req.session.usuario.rol;
         req.session.usuario = usuario;
         req.session.usuario.rol = rol;
