@@ -41,9 +41,6 @@
             </div>
 
             <!-- <input type="hidden" name="id" value="<%= evento.id %>"> -->
-            <% if (valoraciones) {%>
-                
-            <%} else {%>
                 <% if (!index) { %>
                     <% if (usuario.rol === "asistente") { %>
                         <button class="btn btn-primary mt-1 mb-1" type="button" onclick="enviar_accion('/asistentes/anular_evento', <%= evento.id %>)" aria-label="Anular inscripción">Anular inscripción</button>
@@ -71,7 +68,6 @@
                         <button class="btn btn-primary mt-1 mb-1" type="button"  aria-label="Ver comentarios"><a href="/comentarios/<%=evento.id%>" target="_blank" class="text-decoration-none text-white" rel="noopener noreferrer">Ver comentarios</a></button>
                     <% } %>
                 <% } %>
-            <% } %>
 
             <div class="card-footer mt-3">
                 <input type="text" class="form-control bg-transparent border-0 fs-6 ps-0" name="tipo_evento" id="tipo_evento<%= evento.id %>" placeholder="<%= evento.tipo_evento %>" value="<%= evento.tipo_evento %>" required disabled>

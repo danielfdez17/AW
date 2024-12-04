@@ -148,7 +148,7 @@ function getFechaEspanyola(fecha) {
 
 // Función para actualizar la fecha en el carousel
 function updateDate(increment) {
-  fechaModificada = getValorFecha();
+  let fechaModificada = getValorFecha();
   fechaModificada.setDate(fechaModificada.getDate() + increment); // Modificar la fecha (sumar o restar un día)
   $("#fecha").text(fechaModificada.toLocaleDateString("es-ES")); // Actualizar el texto con la fecha modificada en formato España
   vaciarFiltros();
@@ -244,7 +244,7 @@ function filtradoFecha() {
   });
 
   if (!existe) {
-    // Añadir el mensaje dentro de #listaEventos
+    $("#listaEventos span").remove();
     $("#listaEventos").append(
       '<span class="text-secondary fs-1 text-center vh-100 d-flex justify-content-center align-items-center">No hay eventos registrados</span>'
     );
