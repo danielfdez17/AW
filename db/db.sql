@@ -226,10 +226,6 @@ BEGIN
             -- Verificar si el evento está dentro del tiempo de recordatorio
             IF v_fecha_evento = CURDATE() AND TIMESTAMPDIFF(MINUTE, CURTIME(), v_hora_evento) > 0 AND TIMESTAMPDIFF(MINUTE, CURTIME(), v_hora_evento) <= v_recordatorio THEN
 
-                  INSERT INTO log_debug (usuario_id, evento_id, diferencia_minutos, recordatorio)
-                VALUES (v_id_usuario, v_id_evento, TIMESTAMPDIFF(MINUTE, CURTIME(), v_hora_evento), v_recordatorio);
-
-
                 -- Insertar notificación
                 INSERT INTO notificaciones (id_usuario, mensaje, fecha, tipo)
                 VALUES (v_id_usuario, 
