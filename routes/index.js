@@ -2,6 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
+const routerComentarios = require("./comentarios.js");
 const { body, validationResult } = require("express-validator");
 const { identificacionRequerida } = require("./identificacionRequerida.js");
 
@@ -25,6 +26,7 @@ const DAOEventos = require("../db/daoEventos.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
 const DAOUsuarios = require("../db/daoUsuarios.js");
 const DAOAccesibilidad = require("../db/daoAccesibilidad.js");
+const DAOComentarios = require("../db/daoComentarios.js");
 const pool = require("../db/pool.js");
 
 const daoFacultades = new DAOFacultades(pool);
@@ -32,6 +34,7 @@ const daoEventos = new DAOEventos(pool);
 const daoListaNegra = new DAOListaNegra(pool);
 const daoUsuarios = new DAOUsuarios(pool);
 const daoAccesibilidad = new DAOAccesibilidad(pool);
+const daoComentarios = new DAOComentarios(pool);
 
 router.get("/", (req, res) => {
   const { ip } = req;
@@ -46,7 +49,7 @@ router.get("/", (req, res) => {
         .json({ error: "Acceso denegado: IP en lista negra" });
     } else {
       if (req.session.auth) {
-          if (req.session.usuario.rol === "asistente") {
+        if (req.session.usuario.rol === "asistente") {
           res.redirect("/asistentes");
         } else {
           res.redirect("/organizadores");
@@ -83,23 +86,27 @@ router.get("/toasts", function (req, res) {
   res.render("fragments/toasts");
 });
 
-router.get("/imagen/:id",  identificacionRequerida, function (request, response) {
-  let n = Number(request.params.id);
+router.get(
+  "/imagen/:id",
+  identificacionRequerida,
+  function (request, response) {
+    let n = Number(request.params.id);
 
-  if (isNaN(n)) {
-    return response.status(400).send("Petición incorrecta");
-  }
-
-  daoUsuarios.obtenerImagen(n, (err, imagen) => {
-    if (err) {
-      if (err === "No existe") {
-        return response.status(404).send("No encontrado");
-      }
-      return response.status(500).send("Error en el servidor");
+    if (isNaN(n)) {
+      return response.status(400).send("Petición incorrecta");
     }
-    response.end(imagen);
-  });
-});
+
+    daoUsuarios.obtenerImagen(n, (err, imagen) => {
+      if (err) {
+        if (err === "No existe") {
+          return response.status(404).send("No encontrado");
+        }
+        return response.status(500).send("Error en el servidor");
+      }
+      response.end(imagen);
+    });
+  }
+);
 
 //Middleware comprobacion
 const comprobacion = [
@@ -159,7 +166,10 @@ router.post("/accesibilidad/Tema/:id", comprobacion, (req, res) => {
   const { tema } = req.body;
   daoAccesibilidad.updateTema({ tema, id }, (err) => {
     if (!err) {
-      res.setFlash({ message: "Se ha cambiado el tema con exito", type: "exito" });
+      res.setFlash({
+        message: "Se ha cambiado el tema con exito",
+        type: "exito",
+      });
       res.json({});
     }
   });
@@ -168,13 +178,18 @@ router.post("/accesibilidad/Tema/:id", comprobacion, (req, res) => {
 router.post("/accesibilidad/Letra/:id", comprobacion, (req, res) => {
   const { id } = req.params;
   const { letra } = req.body;
-  daoAccesibilidad.updateLetra({letra, id }, (err) => {
+  daoAccesibilidad.updateLetra({ letra, id }, (err) => {
     if (!err) {
-      res.setFlash({ message: "Se ha cambiado la letra con exito", type: "exito" });
+      res.setFlash({
+        message: "Se ha cambiado la letra con exito",
+        type: "exito",
+      });
       res.json({});
     }
   });
 });
+
+router.use("/comentarios", routerComentarios);
 
 router.post(
   "/signUp",

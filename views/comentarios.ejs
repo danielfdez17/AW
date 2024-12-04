@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+    <%- include("./fragments/head.ejs") %>
+</head>
+<body>
+    <div class="container-fluid">
+        <%- include("./fragments/evento.ejs", {evento: evento, index: false, valoraciones: true}) %>
+        <% if (!comentarios || comentarios.length <= 0) { %>
+            <h3 class="text-center fw-bold">Este evento no tiene comentarios ni valoraciones de momento</h3>
+        <%} else {%>
+            comentarios.forEach(comentario => {
+                <%- include("./fragments/comentario.ejs") %>
+            })
+        <%}%>
+        <button id="btnNuevoComentario" class="btn btn-primary" type="button">Añadir comentario y valoracion</button>
+        <form id="formNuevoComentario" action="/comentarios/<%=evento.id%>/nuevo_comentario" method="post">
+            <div class="mb-3">
+                <label for="comentario" class="form-label">Comentario</label>
+                <textarea class="form-control" name="comentario" id="comentario" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="valoracion" class="form-label">Valoracion (de 1 a 5)</label>
+                <input class="form-range" type="range" name="valoracion" id="valoracion" min="1" max="5" class="form-control">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Enviar comentario y valoracion</button>
+            
+        </form>
+    </div>
+    <script src="/js/comentarios.js"></script>
+</body>
+</html>
