@@ -162,6 +162,11 @@ function temaClaro() {
   $("footer a").addClass("text-dark");
   $("footer i:first").removeClass("text-light");
   $("footer i:first").addClass("text-dark");
+
+  $(".estadisticasAsistencia").addClass("bg-white");
+  $(".estadisticasAsistencia").removeClass("bg-black");
+  $(".estadisticasAsistencia").addClass("text-black");
+  $(".estadisticasAsistencia").removeClass("text-white");
 }
 
 // Función que actualiza el tema de la aplicación al tema claro
@@ -298,17 +303,17 @@ function temaOscuro() {
   $("#previous span:first, #next span:first").addClass("text-dark");
   $("#previous span:first, #next span:first").removeClass("text-light");
 
-  //   $("#previous span:first, #next span:first").addClass("bg-dark");
-  //   $("#previous span:first, #next span:first").removeClass("bg-light");
-  //   $("#previous span:first, #next span:first").addClass("text-light");
-  //   $("#previous span:first, #next span:first").removeClass("text-dark");
-
   $("footer").removeClass("bg-light");
   $("footer").addClass("bg-dark");
   $("footer a").removeClass("text-dark");
   $("footer a").addClass("text-light");
   $("footer i:first").removeClass("text-dark");
   $("footer i:first").addClass("text-light");
+
+  $(".estadisticasAsistencia").addClass("bg-black");
+  $(".estadisticasAsistencia").removeClass("bg-white");
+  $(".estadisticasAsistencia").addClass("text-white");
+  $(".estadisticasAsistencia").removeClass("text-black");
 }
 
 // Función que actualiza los ajustes del tamaño de letra

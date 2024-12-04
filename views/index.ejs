@@ -30,11 +30,11 @@
             </div>
 
             <div class="col-12 col-sm-9 d-flex justify-content-around align-items-center">
-                <button id="previous" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center"  type="button" data-bs-target="#calendario" data-bs-slide="prev">
+                <button id="previous" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center"  type="button" data-bs-target="#calendario" data-bs-slide="prev" aria-label="Retroceder un dia en el calendario de eventos">
                     <span class="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
                 </button>
                 <span id="fecha" class="fs-3"><%= new Date().toLocaleDateString() %></span>
-                <button id="next" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center" type="button" data-bs-target="#calendario" data-bs-slide="next">
+                <button id="next" class="btn btn-dark botonCalendario d-flex align-items-center justify-content-center" type="button" data-bs-target="#calendario" data-bs-slide="next" aria-label="Avanzar un dia en el calendario de eventos">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 </button>
             </div>
