@@ -132,6 +132,8 @@ function temaClaro() {
 
   $("#previous span:first, #next span:first").addClass("text-light");
   $("#previous span:first, #next span:first").removeClass("text-dark");
+  $("#previous span:first, #next span:first").addClass("bg-dark");
+  $("#previous span:first, #next span:first").removeClass("bg-light");
 
   $(".cardEvento .card-body").addClass("bg-white");
   $(".cardEvento .card-body").removeClass("bg-black");
@@ -264,8 +266,8 @@ function temaOscuro() {
   $("#perfilHeader a span").addClass("text-light");
   $("#perfilHeader a span").removeClass("text-dark");
 
-  $("#previous, #next").addClass("btn-light");
-  $("#previous, #next").removeClass("btn-dark");
+  $("#previous, #next").addClass("btn-dark");
+  $("#previous, #next").removeClass("btn-light");
 
   $(".cardEvento .card-body").addClass("bg-black");
   $(".cardEvento .card-body").removeClass("bg-white");
@@ -287,6 +289,13 @@ function temaOscuro() {
 
   $("#previous span:first, #next span:first").addClass("bg-dark");
   $("#previous span:first, #next span:first").removeClass("bg-light");
+  $("#previous span:first, #next span:first").addClass("text-dark");
+  $("#previous span:first, #next span:first").removeClass("text-light");
+
+  //   $("#previous span:first, #next span:first").addClass("bg-dark");
+  //   $("#previous span:first, #next span:first").removeClass("bg-light");
+  //   $("#previous span:first, #next span:first").addClass("text-light");
+  //   $("#previous span:first, #next span:first").removeClass("text-dark");
 
   $("footer").removeClass("bg-light");
   $("footer").addClass("bg-dark");
