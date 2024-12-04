@@ -59,17 +59,18 @@ $("#formEditarPerfil").on("submit", (event) => {
 
   var archivo = $("#editarFoto")[0].files[0];
 
-  const regex = /\b(select|insert|delete|drop|update)\b/i;
+  const regex =
+    /\b(select|insert|create|delete|update|drop|union|alter|truncate|and|or|like|between)\b/i;
   const tipoArchivo = archivo ? archivo.type : null;
   const tiposPermitidos = ["image/jpeg", "image/png", "image/jpg"];
-
+  console.log(regex.test("--"));
   const validaciones = [
     {
       condition: archivo && !tiposPermitidos.includes(tipoArchivo),
       message: "Por favor, sube solo archivos JPG, JPEG o PNG.",
     },
     {
-      condition: archivo && (archivo.size >= 64000),
+      condition: archivo && archivo.size >= 64000,
       message: "Por favor, sube solo imagenes menores de 64KB.",
     },
     {
