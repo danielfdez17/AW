@@ -107,7 +107,7 @@ router.get(
   }
 );
 
-//Middleware comprobacion
+//Middleware comprobacion de inyeccion sql
 const comprobacion = [
   body("*")
     .customSanitizer((value) => value.normalize("NFC"))
@@ -138,13 +138,11 @@ const comprobacion = [
       return true;
     }),
 
-  // Maneja los resultados de la validación
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const { ip } = req;
 
-      // Construir mensajes personalizados
       const errorDetails = errors.array().map((error) => ({
         campo: error.param,
         valorErroneo: error.value,
@@ -214,18 +212,18 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'usuariopractica3@gmail.com',  // Tu correo de Gmail
-    pass: 'hgkfaufqvlarkbue'  // Tu contraseña o contraseña de aplicación
+    user: 'usuariopractica3@gmail.com',
+    pass: 'hgkfaufqvlarkbue'
   },
   tls: {
-    rejectUnauthorized: false // Deshabilita la validación del certificado SSL
+    rejectUnauthorized: false
   }
 });
 
 // Opciones del correo
-const mailOptions = {
-  from: 'usuariopractica3@gmail.com',  // Dirección del remitente
-  subject: 'Recuperación de contraseña', // Asunto del correo
+const configuracion = {
+  from: 'usuariopractica3@gmail.com',
+  subject: 'Recuperación de contraseña',
 
 };
 
@@ -233,11 +231,13 @@ router.post("/recuperar", comprobacion,  (req, res) =>
 {
   const {correoRecuperacion, telefonoRecuperacion} = req.body;
 
+  //Generamos un numero aleatorio y se lo enviamos por correo al usuario
   const numero_ramdon = Math.floor(Math.random() * 90000) + 10000;
 
-  mailOptions.to = correoRecuperacion;
-  mailOptions.html = `<h1>Recupera tu contraseña</h1><p>Su nueva contraseña es ${numero_ramdon}</p>`;// Cuerpo HTML
+  configuracion.to = correoRecuperacion;
+  configuracion.html = `<h1>Recupera tu contraseña</h1><p>Su nueva contraseña es ${numero_ramdon}</p>`;// Cuerpo HTML
 
+  //Comprobamos si el correo existe en la base de datos
   daoUsuarios.readUsuarioPorCorreo(correoRecuperacion, (err, usuario)=>
   {
     if (err) return next(err);
@@ -249,8 +249,11 @@ router.post("/recuperar", comprobacion,  (req, res) =>
     }
     else
     {
+      //Como medida de seguridad comprobamos si el numero de telefono es igual al asociado al correo
       if (usuario.  telefono == telefonoRecuperacion)
       {
+
+        //Actulizamos la nueva contrasena
         daoUsuarios.UpdateContrasena(
           {contrasena: numero_ramdon, 
           correo: correoRecuperacion, 
@@ -259,8 +262,8 @@ router.post("/recuperar", comprobacion,  (req, res) =>
         {
           if (err) return next(err);
           try {
-            // Enviar correo
-            const info = await transporter.sendMail(mailOptions);
+            // Enviamos la contrasena al usuario mediante correo
+            const info = await transporter.sendMail(configuracion);
             console.log("Mensaje enviado: %s", info.messageId);
         } catch (error) {
             console.error("Error al enviar el correo:", error);

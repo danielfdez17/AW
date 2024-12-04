@@ -10,6 +10,7 @@ const pool = require("../db/pool.js");
 const daoNotificaciones = new DAONotificaciones(pool);
 const daoUsuarios = new DAOUsuarios(pool);
 
+//Middleware comprobacion de inyeccion sql
 const comprobacion = [
   body("*")
     .customSanitizer((value) => value.normalize("NFC"))
@@ -40,13 +41,11 @@ const comprobacion = [
       return true;
     }),
 
-  // Maneja los resultados de la validación
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const { ip } = req;
 
-      // Construir mensajes personalizados
       const errorDetails = errors.array().map((error) => ({
         campo: error.param,
         valorErroneo: error.value,
