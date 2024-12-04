@@ -27,7 +27,7 @@ $(document).ready(function () {
   $("#formSignUp").on("submit", function (event) {
     event.preventDefault(); // Evitar el envío del formulario
 
-    const regex = /\b(select|insert|delete|drop|update)\b/;
+    const regex = /\b(select|insert|delete|drop|update)\b/i;
     var archivo = $("#foto")[0].files[0];
 
     if (archivo) {

@@ -59,7 +59,7 @@ $("#formEditarPerfil").on("submit", (event) => {
 
   var archivo = $("#editarFoto")[0].files[0];
 
-  const regex = /\b(select|insert|delete|drop|update)\b/;
+  const regex = /\b(select|insert|delete|drop|update)\b/i;
   const tipoArchivo = archivo ? archivo.type : null;
   const tiposPermitidos = ["image/jpeg", "image/png", "image/jpg"];
 

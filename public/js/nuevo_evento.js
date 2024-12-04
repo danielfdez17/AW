@@ -19,7 +19,7 @@ $(() => {
 $("#formNuevoEvento").on("submit", (event) => {
   event.preventDefault();
 
-  const regex = /\b(select|insert|delete|drop|update)\b/;
+  const regex = /\b(select|insert|delete|drop|update)\b/i;
 
   if (
     regex.test($("#titulo").val()) ||
