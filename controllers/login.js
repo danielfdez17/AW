@@ -11,9 +11,14 @@ class LoginController {
   login(req, res, next) {
     if (!validationResult(req).isEmpty())
       return res.status(400).json({ errors: validationResult(req).array() });
+
     const { correoLogin, contrasenaLogin } = req.body;
+
+    //Extraemos informacion del usuario a traves del correo
     daoUsuarios.readUsuarioPorCorreo(correoLogin, (err, usuario) => {
       if (err) next(err);
+
+      //Comporamos contraseñas
       if (usuario && usuario.contrasena === contrasenaLogin) {
         req.session.usuario = usuario;
         req.session.auth = true;

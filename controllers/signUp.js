@@ -13,9 +13,12 @@ class SignUpController {
       return res.status(400).json({ errors: validationResult(req).array() });
 
     let usuario = req.body;
+
+    //Comprobamos si el usuario ha adjuntado una imagen
     if (req.file) usuario.imagen = req.file.buffer;
     else usuario.imagen = null;
 
+    //Creamos el usuario
     daoUsuarios.createUsuario(usuario, (err, usuario) => {
       if (err) next(err);
       else {

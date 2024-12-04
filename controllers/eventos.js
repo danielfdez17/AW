@@ -16,7 +16,7 @@ const HORA_FIN = "22:00";
 
 // Función para trasnformar horas a minutos
 const convertirAMinutos = (hora) => {
-  const [h, m] = hora.split(":").map(Number);
+  let [h, m] = hora.split(":").map(Number);
   return h * 60 + m;
 };
 
@@ -127,14 +127,16 @@ class EventosController {
     }
   }
 
+  //Funcion de eliminar evento
   eliminarEvento(req, res, next) {
     if (!validationResult(req).isEmpty())
       return res.status(400).json({ errors: validationResult(req).array() });
-    const { id } = req.body;
 
+    const { id } = req.body;
     daoInscripciones.readUsuarioListaAsistentesPorEvento(id, (err, usuario) => {
       if (err) next(err);
 
+      //Comprobamos si hay gente inscrita en el evento antes de eliminarlo
       if (usuario.length > 0) {
         res.setFlash({
           message: "No puedes eliminar este evento, ya hay gente inscrita",
@@ -142,6 +144,7 @@ class EventosController {
         });
         res.json({ id_evento: null });
       } else {
+        //Borrado logico del elemento en la base de datos
         daoEventos.deleteEvento(id, (err) => {
           if (err) next(err);
           else {
@@ -156,6 +159,7 @@ class EventosController {
     });
   }
 
+  //Funcion de editar evento
   editarEvento(req, res, next) {
     if (!validationResult(req).isEmpty())
       return res.status(400).json({ errors: validationResult(req).array() });
@@ -172,11 +176,15 @@ class EventosController {
     } = req.body;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
 
+    //Comprobamos que sea posterior a la fecha actual
     if (checkFecha(fecha, hora)) {
+
+      //Comprobamos que cumpla con el horario de la universidad
       if (checkHoraDuracion(hora, duracion)) {
         daoEventos.readEventoPorFecha(fecha, (err, eventos) => {
           if (err) next(err);
 
+          //Comprobamos si existe algun otro evento que coincida con el nuevo
           let sePuedeActualizar = true;
           if (eventos) {
             eventos.forEach((evento) => {
@@ -190,10 +198,14 @@ class EventosController {
             });
           }
 
+          //Podemos actualizar el evento
           if (sePuedeActualizar) {
+
+            //Extraemos informacion antigua del evento
             daoEventos.readEventoPorId(parseInt(id), (err, eventos) => {
               if (err) next(err);
 
+              //Comprobamos si la capacidad ha aumentado
               if (eventos.capacidad_actual < capacidad_maxima) {
                 daoInscripciones.readListaEsperaPorEvento(
                   parseInt(id),
@@ -204,6 +216,8 @@ class EventosController {
                       .replace(/\//g, "-");
                     let auxiliar = capacidad_maxima - eventos.capacidad_actual;
                     let i = 0;
+
+                    //Añadimos todos los usuarios que estaban en lista de espera para ocupar espacio disponible
                     while (i < auxiliar && lista && lista.length > 0) {
                       daoInscripciones.ListaEsperaAInscrito(
                         {
@@ -213,11 +227,10 @@ class EventosController {
                           fecha_inscripcion: fechaFormateada,
                         },
                         (error) => {
+
+                          //Incrementamos la capacidad actual del evento (no la maxima)
                           daoEventos.incrementarCapacidadEvento(id, (error) => {
-                            if (error)
-                              res.status(500).json({
-                                error: error,
-                              });
+                            if (err) next(err);
                           });
                         }
                       );
@@ -225,6 +238,7 @@ class EventosController {
                       lista.pop();
                     }
 
+                    //Finalmente actualizamos el evento
                     daoEventos.updateEvento(
                       {
                         titulo,
