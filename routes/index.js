@@ -176,7 +176,7 @@ router.post("/accesibilidad/Tema/:id", comprobacion, (req, res) => {
   });
 });
 
-router.post("/accesibilidad/Letra/:id", comprobacion, (req, res) => {
+router.post("/accesibilidad/Letra/:id", (req, res) => {
   const { id } = req.params;
   const { letra } = req.body;
   daoAccesibilidad.updateLetra({ letra, id }, (err) => {
