@@ -3,12 +3,15 @@
     <ul class="list-group eventoInscrito" id="eventoInscrito">
         <% if(eventosInscritos){ %>
             <% eventosInscritos.forEach(evento => { %>
+
+                <% if (new Date(`${evento.fecha}T${evento.hora}`) >= new Date()) { %>
                     <li class="list-group-item">
                         <div id="eventoInscrito<%=evento.id%>">
                             <%- include('./evento.ejs', {evento: evento, index: false, valoraciones: false}) %>
                             <input type="hidden" name="evento" value="<%= evento %>">
                         </div>
                     </li>
+                <% }%>
             <% }); %>
         <% } %>
     </ul>

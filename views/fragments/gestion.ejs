@@ -17,7 +17,7 @@
 
         <ul class="list-group">
             <% eventos.forEach(evento => { %>
-                <% if (evento.id_organizador == usuario.id)  { %>
+                <% if (evento.id_organizador == usuario.id && new Date(`${evento.fecha}T${evento.hora}`) >= new Date())  { %>
                     <li class="list-group-item">
                         <%- include('./evento.ejs', {evento: evento, index: false}) %>
                     </li>
