@@ -38,8 +38,12 @@ function temaClaro() {
 
   $("header #botonNotificaciones").removeClass("text-light");
   $("header #botonNotificaciones").addClass("text-dark");
+
   $("header #botonAccesibilidad").removeClass("text-light");
   $("header #botonAccesibilidad").addClass("text-dark");
+
+  $("header #botonAtajosTeclado").removeClass("text-light");
+  $("header #botonAtajosTeclado").addClass("text-dark");
 
   $("#formRecordatorios button").not(".active").removeClass("bg-light");
   $("#formAccesibilidadTema button").not(".active").removeClass("bg-light");
@@ -168,8 +172,12 @@ function temaOscuro() {
 
   $("header #botonNotificaciones").removeClass("text-dark");
   $("header #botonNotificaciones").addClass("text-light");
+
   $("header #botonAccesibilidad").removeClass("text-dark");
   $("header #botonAccesibilidad").addClass("text-light");
+
+  $("header #botonAtajosTeclado").removeClass("text-dark");
+  $("header #botonAtajosTeclado").addClass("text-light");
 
   $("#formRecordatorios button").not(".active").addClass("bg-light");
   $("#formAccesibilidadTema button").not(".active").addClass("bg-light");

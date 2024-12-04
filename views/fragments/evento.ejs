@@ -61,11 +61,12 @@
                         <% } %>
                     <% } %>
                 <% } else { %>
-                    <% if (usuario && usuario.rol === "asistente") { %>
-                        <button class="btn btn-primary mt-1 mb-1" type="button" onclick="enviar_accion('/asistentes/inscribir_evento', <%= evento.id %>)" aria-label="Inscribirse en el evento" >Inscribirse</button>
-                    <% } %>
                     <% if (new Date(evento.fecha).toLocaleDateString("es-ES").replace(/\//g, '-') < new Date().toLocaleDateString("es-ES").replace(/\//g, '-')) { %> 
                         <button class="btn btn-primary mt-1 mb-1" type="button"  aria-label="Ver comentarios"><a href="/comentarios/<%=evento.id%>" target="_blank" class="text-decoration-none text-white" rel="noopener noreferrer">Ver comentarios</a></button>
+                    <% } else {%>
+                        <% if (usuario && usuario.rol === "asistente") { %>
+                            <button class="btn btn-primary mt-1 mb-1" type="button" onclick="enviar_accion('/asistentes/inscribir_evento', <%= evento.id %>)" aria-label="Inscribirse en el evento" >Inscribirse</button>
+                        <% } %>
                     <% } %>
                 <% } %>
 
