@@ -2,7 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const path = require("path");
+const { identificacionRequerida } = require("./identificacionRequerida.js");
+
 
 const DAOFacultades = require("../db/daoFacultades.js");
 const DAOListaNegra = require("../db/daolListaNegra.js");
@@ -46,7 +47,7 @@ router.get("/", (req, res) => {
 
 });
 
-router.get("/lista_espera/:ident", (req, res) => {
+router.get("/lista_espera/:ident", identificacionRequerida, (req, res) => {
   const ident = req.params.ident;
   console.log(`Id del evento: ${ident}`);
   daoEventos.readEventoPorId(ident, (evento) => {
@@ -67,7 +68,7 @@ router.get("/lista_espera/:ident", (req, res) => {
   });
 });
 
-router.get("/lista_asistentes/:ident", (req, res) => {
+router.get("/lista_asistentes/:ident", identificacionRequerida, (req, res) => {
   const ident = req.params.ident;
   console.log(`Id del evento: ${ident}`);
   daoEventos.readEventoPorId(ident, (evento) => {
@@ -89,7 +90,7 @@ router.get("/lista_asistentes/:ident", (req, res) => {
   });
 });
 
-router.get("/nuevo_evento", (req, res) => {
+router.get("/nuevo_evento", identificacionRequerida, (req, res) => {
   res.render("nuevo_evento");
 });
 

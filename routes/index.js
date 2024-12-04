@@ -3,7 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const path = require("path");
+const { identificacionRequerida } = require("./identificacionRequerida.js");
 
 const multer = require("multer");
 const multerFactory = multer({
@@ -83,7 +83,7 @@ router.get("/toasts", function (req, res) {
   res.render("fragments/toasts");
 });
 
-router.get("/imagen/:id", function (request, response) {
+router.get("/imagen/:id",  identificacionRequerida, function (request, response) {
   let n = Number(request.params.id);
 
   if (isNaN(n)) {
