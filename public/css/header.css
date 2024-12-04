@@ -1,3 +1,8 @@
+header
+{
+    height: 100px;
+}
+
 .logo
 {
     height: 70px;
@@ -32,21 +37,4 @@
 .divisor
 {
     height: 50px;
-}
-
-.activo
-{
-    background-color: grey;
-    transition: 1s;
-}
-
-.activo:hover
-{
-    background-color: grey;
-}
-
-.ajustes
-{
-    max-height: 500px;
-    overflow-y: scroll;
 }

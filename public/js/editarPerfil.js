@@ -39,6 +39,14 @@ $("#cancelarEdicion, #cerrarEdicion").on('click', () => {
  $("#cerrarEdicion").show();
 })
 
+$('#Perfil, #Gestion').on('click', function() {
+  // Remover la clase "active" de ambos botones
+  $('#Perfil, #Gestion').removeClass('bg-primary');
+
+  // Añadir la clase "active" al botón clicado
+  $(this).addClass('bg-primary');
+});
+
 $("#formEditarPerfil").on("submit", (event) => {
     event.preventDefault();
     

@@ -44,6 +44,10 @@ function temaClaro() {
   $("header #botonAccesibilidad").removeClass("text-light");
   $("header #botonAccesibilidad").addClass("text-dark");
 
+  $("#formRecordatorios button").not(".active").removeClass("bg-light");
+  $("#formAccesibilidadTema button").not(".active").removeClass("bg-light");
+  $("#formAccesibilidadLetra button").not(".active").removeClass("bg-light");
+
   $("header #formAccesibilidad").addClass("text-dark");
   $("header #formAccesibilidad").removeClass("text-light");
   $("header #formAccesibilidad").addClass("bg-light");
@@ -67,11 +71,21 @@ function temaClaro() {
   $("header #formAccesibilidad #Letra").addClass("bg-light");
   $("header #formAccesibilidad #Letra").removeClass("bg-dark");
   $("header #formAccesibilidad #Letra .dropdown-item").addClass("text-dark");
-  $("header #formAccesibilidad #Letra .dropdown-item").removeClass(
-    "text-light"
-  );
+  $("header #formAccesibilidad #Letra .dropdown-item").removeClass("text-light");
   $("header #formAccesibilidad #Letra .dropdown-item").addClass("bg-light");
   $("header #formAccesibilidad #Letra .dropdown-item").removeClass("bg-dark");
+
+  $("#modalEditarPerfil .modal-content").addClass("bg-light");
+  $("#modalEditarPerfil .modal-content").removeClass("bg-dark");
+  $("#modalEditarPerfil button").addClass("text-dark");
+  $("#modalEditarPerfil button").removeClass("text-light");
+
+  $("#formEditarPerfil label").addClass("text-dark");
+  $("#formEditarPerfil label").removeClass("text-light");
+
+  $("#eventoInscrito .list-group-item").addClass("bg-light");
+  $("#eventoInscrito .list-group-item").removeClass("bg-dark");
+
   $("#infoIndex").addClass("bg-light");
   $("#infoIndex").removeClass("bg-dark");
   $("#infoIndex").addClass("text-dark");
@@ -120,9 +134,9 @@ function temaClaro() {
   $(".cardEvento .card-body input").addClass("text-dark");
 
   $(".cardEvento .card-body i").addClass("bg-light");
-  $(".cardEvento .card-body i").removeClass("bg-dark");
+  $(".cardEvento .card-body i").removeClass("bg-black");
   $(".cardEvento .card-body i").removeClass("text-light");
-  $(".cardEvento .card-body i").addClass("text-dark");
+  $(".cardEvento .card-body i").addClass("text-black");
 
   $(".cardEvento .card-footer").addClass("bg-light");
   $(".cardEvento .card-footer").removeClass("bg-dark");
@@ -158,6 +172,10 @@ function temaOscuro() {
   $("header #botonAccesibilidad").removeClass("text-dark");
   $("header #botonAccesibilidad").addClass("text-light");
 
+  $("#formRecordatorios button").not(".active").addClass("bg-light");
+  $("#formAccesibilidadTema button").not(".active").addClass("bg-light");
+  $("#formAccesibilidadLetra button").not(".active").addClass("bg-light");
+
   $("header #formAccesibilidad").addClass("text-light");
   $("header #formAccesibilidad").removeClass("text-dark");
   $("header #formAccesibilidad").addClass("bg-dark");
@@ -184,10 +202,25 @@ function temaOscuro() {
   $("header #formAccesibilidad #Letra .dropdown-item").removeClass("text-dark");
   $("header #formAccesibilidad #Letra .dropdown-item").addClass("bg-dark");
   $("header #formAccesibilidad #Letra .dropdown-item").removeClass("bg-light");
+
+  $("#modalEditarPerfil .modal-content").addClass("bg-dark");
+  $("#modalEditarPerfil .modal-content").removeClass("bg-light");
+  $("#modalEditarPerfil button").addClass("text-light");
+  $("#modalEditarPerfil button").removeClass("text-dark");
+
+  $("#formEditarPerfil label").addClass("text-light");
+  $("#formEditarPerfil label").removeClass("text-dark");
+
+  $("#eventoInscrito .list-group-item").addClass("bg-dark");
+  $("#eventoInscrito .list-group-item").removeClass("bg-light");
+
   $("#infoIndex").addClass("bg-dark");
   $("#infoIndex").removeClass("bg-light");
   $("#infoIndex").addClass("text-light");
   $("#infoIndex").removeClass("text-dark");
+
+
+
 
   $("#containerCarousel").addClass("bg-dark");
   $("#containerCarousel").removeClass("bg-light");
@@ -228,9 +261,9 @@ function temaOscuro() {
   $(".cardEvento .card-body input").removeClass("text-dark");
   $(".cardEvento .card-body input").addClass("text-light");
 
-  $(".cardEvento .card-body i").addClass("bg-dark");
+  $(".cardEvento .card-body i").addClass("bg-black");
   $(".cardEvento .card-body i").removeClass("bg-light");
-  $(".cardEvento .card-body i").removeClass("text-dark");
+  $(".cardEvento .card-body i").removeClass("text-black");
   $(".cardEvento .card-body i").addClass("text-light");
 
   $(".cardEvento .card-footer").addClass("bg-dark");
