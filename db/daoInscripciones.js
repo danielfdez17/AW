@@ -204,7 +204,7 @@ class DAOInscripciones {
         return;
       }
       const sql =
-        "UPDATE inscripciones SET estado = 'Inscrito' WHERE activo = true AND id_usuario = ? AND id_evento = ? ";
+        "UPDATE inscripciones SET estado = 'inscrito' WHERE activo = true AND id_usuario = ? AND id_evento = ? ";
       connection.query(
         sql,
         [inscripcion.id_usuario, inscripcion.id_evento],

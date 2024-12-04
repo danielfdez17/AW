@@ -175,7 +175,7 @@ class EventosController {
                     let i = 0;
                     while(i < auxiliar && (lista && lista.length > 0))
                     {
-                      daoInscripciones.ListaEsperaAInscrito({id_usuario: lista[i].id_usuario, id_evento: parseInt(lista[i].id_evento), evento: 'Inscrito', fecha_inscripcion: fechaFormateada}, (error) => 
+                      daoInscripciones.ListaEsperaAInscrito({id_usuario: lista[i].id_usuario, id_evento: parseInt(lista[i].id_evento), evento: 'inscrito', fecha_inscripcion: fechaFormateada}, (error) => 
                       {
                         daoEventos.incrementarCapacidadEvento(id, (error) => {
                           if(error)
