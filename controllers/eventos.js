@@ -156,7 +156,7 @@ class EventosController {
           if(eventos)
           {
             eventos.forEach((evento) => {
-              if (convertirAMinutos(evento.hora) + convertirAMinutos(evento.duracion) >= convertirAMinutos(hora)) sePuedeActualizar = false;
+              if (evento.id != id && (convertirAMinutos(evento.hora) + convertirAMinutos(evento.duracion) >= convertirAMinutos(hora))) sePuedeActualizar = false;
             });
           }
 
