@@ -239,5 +239,5 @@ $(".cardEvento form").on("submit", (event) => {
     return;
   }
 
-  $(`#formularioEventos${id}`).submit();
+  $(`#formularioEventos${id}`)[0].submit();
 });

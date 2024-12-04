@@ -33,5 +33,5 @@ $("#formNuevoEvento").on("submit", (event) => {
     return;
   }
 
-  $("#formNuevoEvento").submit();
+  $("#formNuevoEvento")[0].submit();
 });
