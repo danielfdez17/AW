@@ -12,7 +12,8 @@ const daoUsuarios = new DAOUsuarios(pool);
 
 const comprobacion = [
   body("*")
-    .matches(/^[a-zA-Z0-9_@.:/áéíóúÁÉÍÓÚ\-]*$/)
+    .customSanitizer((value) => value.normalize("NFC"))
+    .matches(/^[a-zA-Z0-9_@ñ.:/áéíóúÁÉÍÓÚ\-\s]*$/)
     .withMessage("Caracteres no permitidos")
     .custom((value) => {
       const sqlKeywords = [
@@ -29,7 +30,7 @@ const comprobacion = [
         "AND",
         "OR",
         "LIKE",
-        "BETWEEN",
+        "BETWEEN"
       ];
       if (
         sqlKeywords.some((keyword) => value.toUpperCase().includes(keyword))
@@ -61,6 +62,7 @@ const comprobacion = [
     } else next();
   },
 ];
+
 
 router.post("/eliminar", comprobacion, function (req, res) {
   if (!validationResult(req).isEmpty())

@@ -13,7 +13,7 @@ const MAX_DURACION = "08:00";
 const HORA_INICIO = "08:00";
 const HORA_FIN = "22:00";
 
-// Función que recibe una hora como cadena y devuelve los minutos totales
+// Función para trasnformar horas a minutos
 const convertirAMinutos = (hora) => {
   const [h, m] = hora.split(":").map(Number);
   return h * 60 + m;
@@ -29,7 +29,7 @@ function checkHoraDuracion(hora, duracion) {
   );
 }
 
-// Función que comprueba que la hora de un evento es venidera
+// Función que comprueba que la hora de un evento es posterior a la actual
 function checkFecha(fecha) {
   const fechaActual = new Date();
   const fechaIntroducida = new Date(fecha);
@@ -39,9 +39,11 @@ function checkFecha(fecha) {
 
 // Clase que controla los datos enviados de los formulario relacionados con los eventos
 class EventosController {
+  //Funcion crear eventos
   crearEvento(req, res, next) {
     if (!validationResult(req).isEmpty())
       return res.status(400).json({ errors: validationResult(req).array() });
+
     const {
       titulo,
       descripcion,
@@ -52,11 +54,17 @@ class EventosController {
       capacidad_maxima_string,
       tipo_evento,
     } = req.body;
+
     const id_organizador = req.session.usuario.id;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
 
+    //Comprobamos que sea posterior a la fecha actual
     if (checkFecha(fecha)) {
+
+      //Comprobamos que cumpla con el horario de la universidad
       if (checkHoraDuracion(hora, duracion)) {
+
+        //Comprobamos si existe algun otro evento que coincida con el nuevo
         daoEventos.readEventoPorFecha(fecha, (eventos) => {
           let sePuedeInsertar = true;
           if (eventos) {
@@ -66,6 +74,8 @@ class EventosController {
             });
           }
           if (sePuedeInsertar) {
+
+            //Si cumple lo anterior insertamos el evento en la base de datos
             daoEventos.createEvento(
               {
                 titulo,

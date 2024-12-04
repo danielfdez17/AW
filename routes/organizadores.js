@@ -98,7 +98,7 @@ router.get("/nuevo_evento", identificacionRequerida, (req, res) => {
 const comprobacion = [
   body("*")
     .customSanitizer((value) => value.normalize("NFC"))
-    .matches(/^[a-zA-Z0-9_@.:/áéíóúÁÉÍÓÚ\-\s]*$/)
+    .matches(/^[a-zA-Z0-9_@ñ.:/áéíóúÁÉÍÓÚ\-\s]*$/)
     .withMessage("Caracteres no permitidos")
     .custom((value) => {
       const sqlKeywords = [
