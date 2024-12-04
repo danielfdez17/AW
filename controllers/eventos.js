@@ -32,8 +32,8 @@ function checkHoraDuracion(hora, duracion) {
 // Función que comprueba que la hora de un evento es posterior a la actual
 function checkFecha(fecha, hora) {
   const fechaActual = new Date();
-  const fechaIntroducida = new Date(fecha, hora);
-
+  const fechaIntroducida = new Date(`${fecha}T${hora}`)
+  
   return fechaIntroducida >= fechaActual;
 }
 
@@ -171,7 +171,7 @@ class EventosController {
     } = req.body;
     const capacidad_maxima = parseInt(capacidad_maxima_string);
 
-    if (checkFecha(fecha)) {
+    if (checkFecha(fecha, hora)) {
       if (checkHoraDuracion(hora, duracion)) {
         daoEventos.readEventoPorFecha(fecha, (err, eventos) => {
           if (err) next(err);
