@@ -357,9 +357,7 @@ $("#formAccesibilidadTema button[type='submit']").on("click", function (event) {
   });
 });
 
-$("#formAccesibilidadLetra button[type='submit']").on(
-  "click",
-  function (event) {
+$("#formAccesibilidadLetra button[type='submit']").on("click",function (event) {
     event.preventDefault();
 
     const actionUrl = $("#formAccesibilidadLetra").attr("action");
