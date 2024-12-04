@@ -114,6 +114,30 @@ class DAOUsuarios {
     });
   }
 
+  UpdateContrasena(recordatorio, callback)
+  {
+    this.pool.getConnection((err, con) => {
+      if (err) {
+        return callback(err);
+      }
+
+      let sql = "UPDATE usuarios SET contrasena = ? WHERE correo = ? AND telefono = ?";
+      con.query(sql, 
+      [
+        recordatorio.contrasena,
+        recordatorio.correo,
+        recordatorio.telefono,
+      ], (err, result) => {
+        con.release();
+        if (err) {
+          return callback(err);
+        }
+
+        callback(null);
+      });
+    });
+  } 
+
   obtenerImagen(id, callback) {
     this.pool.getConnection((err, con) => {
       if (err) {

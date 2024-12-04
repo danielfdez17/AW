@@ -205,4 +205,73 @@ router.post(
   editProfileController.edit
 );
 
+const nodemailer = require('nodemailer');
+
+// Configuración de Nodemailer
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'usuariopractica3@gmail.com',  // Tu correo de Gmail
+    pass: 'hgkfaufqvlarkbue'  // Tu contraseña o contraseña de aplicación
+  },
+  tls: {
+    rejectUnauthorized: false // Deshabilita la validación del certificado SSL
+  }
+});
+
+// Opciones del correo
+const mailOptions = {
+  from: 'usuariopractica3@gmail.com',  // Dirección del remitente
+  subject: 'Recuperación de contraseña', // Asunto del correo
+
+};
+
+router.post("/recuperar", comprobacion,  (req, res, next) => 
+{
+  const {correoRecuperacion, telefonoRecuperacion} = req.body;
+
+  const numero_ramdon = Math.floor(Math.random() * 90000) + 10000;
+
+  mailOptions.to = correoRecuperacion;
+  mailOptions.html = `<h1>Recupera tu contraseña</h1><p>Su nueva contraseña es ${numero_ramdon}</p>`;// Cuerpo HTML
+
+  daoUsuarios.readUsuarioPorCorreo(correoRecuperacion, (error, usuario)=>
+  {
+    if(!usuario)
+    {
+      res.setFlash({ message: "No existe ese correo", type: "error" });
+      res.json({});
+    }
+    else
+    {
+      if (usuario.  telefono == telefonoRecuperacion)
+      {
+        daoUsuarios.UpdateContrasena(
+          {contrasena: numero_ramdon, 
+          correo: correoRecuperacion, 
+          telefono: telefonoRecuperacion}, 
+        async (error) =>
+        {
+  
+          try {
+            // Enviar correo
+            const info = await transporter.sendMail(mailOptions);
+            console.log("Mensaje enviado: %s", info.messageId);
+        } catch (error) {
+            console.error("Error al enviar el correo:", error);
+            $('#errorFuncionamiento .toast-body').text('Error al enviar el correo');
+            $('#errorFuncionamiento').toast('show');
+        }
+        })
+      }
+      else
+      {
+        res.setFlash({ message: "Los parametros no coinciden", type: "error" });
+        res.json({});
+      }
+    }    
+  })
+
+});
+
 module.exports = router;
