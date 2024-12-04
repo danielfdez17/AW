@@ -77,14 +77,16 @@ function temaClaro() {
 
   $("#modalEditarPerfil .modal-content").addClass("bg-light");
   $("#modalEditarPerfil .modal-content").removeClass("bg-dark");
-  $("#modalEditarPerfil button").addClass("text-dark");
-  $("#modalEditarPerfil button").removeClass("text-light");
+  $("#modalEditarPerfil .modal-header button").addClass("text-dark");
+  $("#modalEditarPerfil .modal-header button").removeClass("text-light");
 
   $("#formEditarPerfil label").addClass("text-dark");
   $("#formEditarPerfil label").removeClass("text-light");
 
   $("#eventoInscrito .list-group-item").addClass("bg-light");
   $("#eventoInscrito .list-group-item").removeClass("bg-dark");
+  $(".eventosOrganizador .list-group-item").addClass("bg-light");
+  $(".eventosOrganizador .list-group-item").removeClass("bg-dark");
 
   $("#infoIndex").addClass("bg-light");
   $("#infoIndex").removeClass("bg-dark");
@@ -205,14 +207,16 @@ function temaOscuro() {
 
   $("#modalEditarPerfil .modal-content").addClass("bg-dark");
   $("#modalEditarPerfil .modal-content").removeClass("bg-light");
-  $("#modalEditarPerfil button").addClass("text-light");
-  $("#modalEditarPerfil button").removeClass("text-dark");
+  $("#modalEditarPerfil .modal-header button").addClass("text-light");
+  $("#modalEditarPerfil .modal-header button").removeClass("text-dark");
 
   $("#formEditarPerfil label").addClass("text-light");
   $("#formEditarPerfil label").removeClass("text-dark");
 
   $("#eventoInscrito .list-group-item").addClass("bg-dark");
   $("#eventoInscrito .list-group-item").removeClass("bg-light");
+  $(".eventosOrganizador .list-group-item").addClass("bg-dark");
+  $(".eventosOrganizador .list-group-item").removeClass("bg-light");
 
   $("#infoIndex").addClass("bg-dark");
   $("#infoIndex").removeClass("bg-light");
