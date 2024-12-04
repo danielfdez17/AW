@@ -21,7 +21,7 @@ const inscripcionesController = new InscripcionesController();
 
 router.get("/", (req, res) => {
 
-  if (!req.session.auth)
+  if (!req.session.auth || req.session.usuario.rol !== 'asistente')
     res.redirect("/");
   else
   {

@@ -22,7 +22,7 @@ const daoListaNegra = new DAOListaNegra(pool);
 const daoAccesibilidad = new DAOAccesibilidad(pool);
 
 router.get("/", (req, res) => {
-  if (!req.session.auth)
+  if (!req.session.auth || req.session.usuario.rol !== 'organizador')
     res.redirect("/");
   else
   {
@@ -54,6 +54,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/lista_espera/:ident", identificacionRequerida, (req, res) => {
+  if(req.session.usuario.rol !== 'organizador')
+    res.redirect("/");
+
   const ident = req.params.ident;
   daoEventos.readEventoPorId(ident, (err, evento) => {
     if (err) next(err);
@@ -83,6 +86,10 @@ router.get("/lista_espera/:ident", identificacionRequerida, (req, res) => {
 });
 
 router.get("/lista_asistentes/:ident", identificacionRequerida, (req, res) => {
+  
+  if(req.session.usuario.rol !== 'organizador')
+    res.redirect("/");
+
   const ident = req.params.ident;
   daoEventos.readEventoPorId(ident, (err, evento) => {
     if (err) next(err);

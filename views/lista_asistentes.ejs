@@ -20,7 +20,7 @@
             <ul class="list-group">
                 <% lista.forEach(u => {%>
                     <li class="list-group-item">
-                        <%- include('./fragments/usuario.ejs') %>
+                        <%- include('./fragments/usuario.ejs', {usuario: u}) %>
                     </li>
                 <% });%>
             </ul>
