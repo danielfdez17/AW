@@ -7,5 +7,17 @@
     "morgan": "1.10.0",
     "multer": "1.4.5-lts.1",
     "nodemon": "3.1.9"
-  }
+  },
+  "name": "aw",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
