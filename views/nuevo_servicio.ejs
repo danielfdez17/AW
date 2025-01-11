@@ -10,6 +10,7 @@
     <%- include("./fragments/navbar.ejs") %>
     <div class="container">
         <%- include("./fragments/card-servicio.ejs", {servicio: {foto: foto, nombre: nombre, descripcion: descripcion, precio: precio}}) %>
+        <div id="resultMessage"></div>
     </div>
 </body>
 </html>

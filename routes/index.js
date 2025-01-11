@@ -23,7 +23,18 @@ const multerFactory = multer({
 const serviceController = new ServiceController();
 
 router.get("/", (req, res) => {
-  res.render("index");
+  res.render("ajax");
+});
+
+router.get("/multiplica/:num", (req, res) => {
+  let numero = Number(req.params.num);
+  res.json({ resultado: parseInt(numero * 2) });
+//   if (isNaN(numero) && numero >= 0) {
+//   } else {
+//     res.status(400);
+//     res.json({ resultado: parseInt(numero * 2) });
+//     res.end();
+//   }
 });
 
 const servicios = [];

@@ -12,7 +12,7 @@
     <%- include("./fragments/navbar.ejs") %>
         <div class="container mt-3">
             <h1 class="font-weight-bold text-center">Crear un nuevo servicio</h1>
-            <form action="/nuevo_servicio" method="POST" enctype="multipart/form-data">
+            <form id="formNuevoServicio" action="/nuevo_servicio" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="foto">Imagen del servicio </label>
                     <input type="file" name="foto" class="form-control">
@@ -38,6 +38,7 @@
                     <button type="reset" class="ml-2 btn btn-primary">Vaciar</button>
                 </div>
             </form>
+            <div id="resultMessage"></div>
         </div>
 </body>
 
