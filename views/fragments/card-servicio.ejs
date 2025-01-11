@@ -1,0 +1,10 @@
+<div class="card mt-3">
+    <div class="card-body">
+        <% if (servicio.foto) { %>
+            <img class="card-img-top" src="/public/uploads/<%=servicio.foto%>" alt="Imagen del servicio" width="100">
+        <% } %>
+        <h4 class="card-title">Título: <%= servicio.nombre %></h4>
+        <p class="card-text">Descripción: <%= servicio.descripcion %></p>
+        <p class="card-text">Precio: <%= servicio.precio %></p>
+    </div>
+</div>

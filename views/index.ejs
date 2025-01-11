@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <%- include("../public/html/head.html") %>
+</head>
+
+<body>
+    <%- include("./fragments/navbar.ejs") %>
+        <div class="container mt-3">
+            <h1 class="font-weight-bold text-center">Crear un nuevo servicio</h1>
+            <form action="/nuevo_servicio" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="foto">Imagen del servicio </label>
+                    <input type="file" name="foto" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre <span class="text-danger font-weight-bold">*</span> </label>
+                    <input id="nombre" name="nombre" type="text" class="form-control"
+                        placeholder="Clases de Aplicaciones Web" required value="Clases de Aplicaciones Web">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción <span class="text-danger font-weight-bold">*</span> </label>
+                    <textarea id="descripcion" name="descripcion" type="text" class="form-control"
+                        placeholder="Clases para aprender/mejorar en la creación de aplicaciones web con Node.js"
+                        required>Clases para aprender/mejorar en la creación de aplicaciones web con Node.js</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio <span class="text-danger font-weight-bold">*</span> </label>
+                    <input id="precio" name="precio" type="number" min="1" class="form-control" placeholder="10€"
+                        value="10" required>
+                </div>
+                <div class="form-group d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="reset" class="ml-2 btn btn-primary">Vaciar</button>
+                </div>
+            </form>
+        </div>
+</body>
+
+</html>

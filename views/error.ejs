@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de error</title>
+    <%- include("../public/html/head.html") %>
+</head>
+<body>
+    <div class="container">
+        <h1 class="font-weight-bold text-center"><%= error %> - <span class="text-danger"><%= status %></span></h1>
+        <p class="text-center"><%= message %></p>
+        <p class=""><%= stack %></p>
+    </div>
+</body>
+</html>

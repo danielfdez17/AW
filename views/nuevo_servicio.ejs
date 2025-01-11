@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo servicio</title>
+    <%- include("../public/html/head.html") %>
+</head>
+<body>
+    <%- include("./fragments/navbar.ejs") %>
+    <div class="container">
+        <%- include("./fragments/card-servicio.ejs", {servicio: {foto: foto, nombre: nombre, descripcion: descripcion, precio: precio}}) %>
+    </div>
+</body>
+</html>
