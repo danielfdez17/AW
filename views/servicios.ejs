@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de servicios</title>
+    <!-- ! ORDEN EN EL QUE DEBEN IR LAS DEPENDENCIAS -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/card-servicio.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="font-weight-bold text-center m-3">Listado de servicios</h1>
+        <div class="row">
+
+            <% servicios.forEach(servicio=> { %>
+                <div class="col-auto">
+                    <div class="d-flex justify-content-center">
+                        <%- include("./card-servicio.ejs", {nombre: servicio.nombre, desc: servicio.desc, precio:
+                            servicio.precio}) %>
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+            <a href="/" class="btn btn-primary">Volver a la página de inicio</a>
+        </div>
+    </div>
+</body>
+
+</html>

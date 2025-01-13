@@ -13,13 +13,33 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <h1 class="text-center-font-weight-bold">MODAL</h1>
-            <%- include("./modal.ejs") %>
-        </div>
-        <div class="row">
-            <h1 class="text-center-font-weight-bold">CARD</h1>
-            <%- include("./card.ejs") %>
+        <h1 class="font-weight-bold text-center">Crear un nuevo servicio</h1>
+        <form action="/nuevo_servicio" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="foto">Imagen del servicio</label>
+                <input type="file" name="foto" id="foto" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre del servicio</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="Clases de AW" required>
+            </div>
+            <div class="form-group">
+                <label for="desc">Descripción breve del servicio</label>
+                <textarea name="desc" id="desc" class="form-control">Clases de AW</textarea>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio del servicio</label>
+                <input type="number" name="precio" id="precio" class="form-control" value="39">
+            </div>
+            <div class="form-group row">
+                <div class="col-1"></div>
+                <button class="btn btn-primary col-4" type="submit">Enviar</button>
+                <div class="col-2"></div>
+                <button class="btn btn-secondary col-4" type="reset">Vaciar</button>
+            </div>
+        </form>
+        <div class="d-flex justify-content-center">
+            <a href="/servicios" class="btn btn-primary">Ver todos los servicios</a>
         </div>
     </div>
 </body>

@@ -1,0 +1,16 @@
+<div class="card mt-3 mb-3">
+    <% if (foto) { %>
+        <img src="/uploads/<%=foto%>" class="card-img-top" alt="Imagen del servicio">
+        <br>
+    <% } else { %>
+        <img src="/uploads/default.png" class="card-img-top" alt="Imagen del servicio">
+    <% } %>
+    <div class="card-body">
+        <h5 class="card-header">Nombre: <span class="font-weight-bolder"><%= nombre %></span></h5>
+        <p class="card-text mt-4 mb-4">Descripción: <span class="font-weight-bolder"><%= desc %></span></p>
+        <p class="card-footer">Precio: <span class="font-weight-bolder"><%= precio %>€</span></p>
+    </div>
+</div>
+
+
+

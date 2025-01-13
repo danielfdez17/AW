@@ -1,11 +1,14 @@
-// TODO: Si express-generator está como dependencia, sacar de la plantilla app.js.ejs
-"use strict"; // ! PLANTILLA app.js
+"use strict";
 const express = require("express");
 const path = require("path");
-const createError = require("http-errors");
 const morgan = require("morgan");
+const createError = require("http-errors");
 
-const PORT = 3000;
+const indexRouter = require("./routes/index.js");
+
+const PORT = 3500;
+const ISERR = 500;
+const NFERR = 404;
 const app = express();
 
 app.set("view engine", "ejs");
@@ -16,19 +19,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use(indexRouter);
 
 app.use((req, res, next) => {
-  next(createError(404));
+  next(createError(NFERR));
 });
 app.use((req, res, next) => {
-  next(createError(500));
+  next(createError(ISERR));
 });
 
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
+  res.status(err.status || ISERR);
   res.render("error", {
     message: err.message,
     status: err.status,
@@ -38,7 +39,7 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, (err) => {
   if (err) {
-    console.log(`Error al iniciar el servidor: ${err}`);
+    console.log(`Error al iniciar el servirdor: ${err}`);
   } else {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
   }
